@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+
+                <form  [formGroup]="userForm" *ngIf="user">
+                    <label for="exampleForm2" style="margin-bottom: 10px">
+                        Nhập tên Song mới của bạn:
+                    </label>
+                    <input [(ngModel)]="user.name" formControlName="name" type="text" id="exampleForm2" class="form-control"
+                           placeholder="Nhập tên song...">
+                    <br>
+                    <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+                    <button  type="submit" (click)="createAvatar()" class="btn btn-primary">Update Avatar</button>
+                </form>
+
+        </div>
+    </div>
+</div>
+<!--<div class="container">-->
+
+
+<!--        <div class="col-9" style="margin-bottom: 10px" >-->
+<!--            <form  [formGroup]="userForm" *ngIf="user">-->
+<!--                &lt;!&ndash; Default input &ndash;&gt;-->
+<!--                <label for="exampleForm2" style="margin-bottom: 10px">-->
+<!--                    Nhập tên Song mới của bạn:-->
+<!--                </label>-->
+<!--                <input [(ngModel)]="user.avatar" formControlName="avatar" type="text" id="exampleForm2" class="form-control"-->
+<!--                       placeholder="Nhập tên song...">-->
+<!--                <br>-->
+<!--                <button type="submit" (click)="createAvatar()" class="btn btn-primary">Update Song</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+

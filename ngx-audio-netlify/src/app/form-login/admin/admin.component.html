@@ -1,0 +1,50 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar>{{info._avatar}}</div>
+                    <mat-card-title style="color: #2c8ebb"> Your Information</mat-card-title>
+                    <!--                                <h5 class="text-primary">Your Information</h5>-->
+                    <mat-card-title STYLE="color: fuchsia">User name: {{info.username}}</mat-card-title>
+                </mat-card-header>
+                <!--                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+                <!--                            <mat-card-content>-->
+                <!--                                <p>-->
+                <!--                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+                <!--                                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+                <!--                                    bred for hunting.-->
+                <!--                                </p>-->
+                <!--                            </mat-card-content>-->
+                <!--                            <mat-card-actions>-->
+                <!--                                <button mat-button>LIKE</button>-->
+                <!--                                <button mat-button>SHARE</button>-->
+                <!--                            </mat-card-actions>-->
+
+                <!--                                <div class="example-box" style="margin: auto" cdkDrag>-->
+
+                <div *ngIf="info.token; else loggedOut">
+
+                    <!--                                        <p>-->
+                    <!--                                            <strong>Username:</strong> {{info.username}}<br/>-->
+                    <!--                                            &lt;!&ndash;                    <strong>Roles:</strong> {{info.roles}}<br/>&ndash;&gt;-->
+                    <!--                                            &lt;!&ndash;                    <strong>Token:</strong> {{info.token}}.&ndash;&gt;-->
+                    <!--                                        </p>-->
+                    <button routerLink="/" class="btn btn-danger" (click)="logout()">Logout</button>
+                    <button class="btn btn-primary"routerLink="/changepassword">Change Pass</button>
+                    <button class="btn btn-danger"routerLink="/detailSinger">Detail Singer</button>
+
+                </div>
+                <ng-template #loggedOut>
+                    <h1 style="color: #f92672">Please login!!!</h1>
+                </ng-template>
+                <!--                                </div>-->
+
+
+            </mat-card>
+
+        </div>
+    </div>
+</div>
+<app-create-singer></app-create-singer>

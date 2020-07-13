@@ -1,0 +1,148 @@
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-12" style="margin-top: 20px">-->
+<!--            <mat-card style="margin: 50px 0;">-->
+<!--                <div class="container">-->
+<!--                    <div class="row">-->
+<!--                        <div *ngIf="isLoggedIn; else loggedOut">-->
+<!--                            <h1 style="color: fuchsia">Welcome {{userName}}!!! Chúc Bạn có những giây phút thư giãn và-->
+<!--                                vui vẻ!!</h1>-->
+<!--                        </div>-->
+<!--                        <ng-template #loggedOut>-->
+<!--                            <div class="row col-sm-12" style="max-width:600px;">-->
+<!--                                <form name="form" (ngSubmit)="f.form.valid && onSubmit()"-->
+<!--                                      #f="ngForm" novalidate>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="username">Username</label>-->
+<!--                                        <input type="text" style="width: 400px" class="form-control" name="username"-->
+<!--                                               [(ngModel)]="form.username" #username="ngModel"-->
+<!--                                               required/>-->
+<!--                                        <div *ngIf="f.submitted && username.invalid">-->
+<!--                                            <div *ngIf="username.errors.required">Username is-->
+<!--                                                required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="password">Password</label>-->
+<!--                                        <input type="password" class="form-control" name="password"-->
+<!--                                               [(ngModel)]="form.password" #password="ngModel"-->
+<!--                                               required minlength="6"/>-->
+<!--                                        <div *ngIf="f.submitted && password.invalid">-->
+<!--                                            <div *ngIf="password.errors.required">Password is-->
+<!--                                                required-->
+<!--                                            </div>-->
+<!--                                            <div *ngIf="password.errors.minlength">Password must be-->
+<!--                                                at least 6 characters-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <button class="btn btn-primary">Login</button>-->
+<!--                                        <div *ngIf="f.submitted && isLoginFailed"-->
+<!--                                             class="alert alert-danger">-->
+<!--                                            Login failed: {{errorMessage}}-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+<!--                                <hr/>-->
+<!--                                <p>Don't have an account?</p>-->
+<!--                                <a href="register" class="btn btn-success">Sign Up</a>-->
+<!--                            </div>-->
+<!--                        </ng-template>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </mat-card>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <div *ngIf="isLoggedIn; else loggedOut">
+                    <h1 style="color: #2c8ebb"> Welcome: <strong style="color: #f92672"> {{userName}}</strong></h1>
+                    <button style="color: darkred; text-decoration: none;" aria-label="Angular Audio Player"
+                       class="docs-button mat-button"
+                       mat-button tabindex="0" aria-disabled="false" routerLink="/user">
+                        <mat-icon color="accent" matSuffix>account_circle</mat-icon>
+
+                         <b>User Account</b>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button><span class="example-spacer"></span>
+                </div>
+                <ng-template #loggedOut>
+                    <form class="form-login" name="form" (ngSubmit)="f.form.valid && onSubmit()"
+                          #f="ngForm" novalidate>
+
+                        <mat-form-field style="width: 350px" appearance="outline">
+                            <mat-label>Please login ...</mat-label>
+                            <input name="username" matInput placeholder="User account login..."
+                                   [(ngModel)]="form.username" #username="ngModel" required>
+                            <mat-icon color="accent" matSuffix>sentiment_very_satisfied</mat-icon>
+                            <div *ngIf="f.submitted && username.invalid">
+<!--                                <div *ngIf="username.errors.required">Username is-->
+<!--                                    required-->
+<!--                                </div>-->
+                            </div>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field style=" width: 350px" appearance="outline">
+                            <mat-label>Enter your password</mat-label>
+                            <input name="password" matInput [type]="hide ? 'password' : 'text'"
+                                   [(ngModel)]="form.password" #password="ngModel"
+                                   required minlength="6">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="hide">
+                                <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <div *ngIf="f.submitted && password.invalid">
+<!--                                <div *ngIf="password.errors.required">Password is-->
+<!--                                    required-->
+<!--                                </div>-->
+                            </div>
+                            <mat-error *ngIf="password.hasError('required')">
+                                Password is <strong>required</strong>
+                            </mat-error>
+                            <mat-error *ngIf="password.errors?.minlength">
+                                Password min is 6 character
+                            </mat-error>
+
+                        </mat-form-field>
+
+                        <br>
+                        <button style="color: springgreen; text-decoration: none;" aria-label="Angular Audio Player"
+                           class="docs-button mat-button"
+                           mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><img
+                                width="30px;" alt="angular" class="docs-angular-logo"
+                                src="../../../assets/images/icons/login.png" height="30px" ><b>Login</b></span>
+                            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                            <div class="mat-button-focus-overlay"></div>
+                        </button><span class="example-spacer"></span>
+                        <div *ngIf="f.submitted && isLoginFailed"
+                             class="alert alert-danger">
+
+                           Login Failled please Check username or password -> {{errorMessage}}
+                        </div>
+
+                    </form>
+                    <hr/>
+                    <p>You don't have an account?</p>
+                    <a style="color: darkred; text-decoration: none;" aria-label="Angular Audio Player"
+                       class="docs-button mat-button"
+                       mat-button tabindex="0" aria-disabled="false" href="register"><span class="mat-button-wrapper"><img
+                            width="30px;" alt="angular" class="docs-angular-logo"
+                            src="../assets/images/icons/add_user.png" height="30" [width]="30"/><b>Register</b></span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a><span class="example-spacer"></span>
+                </ng-template>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
+
+

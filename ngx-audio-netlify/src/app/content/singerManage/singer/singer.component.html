@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2>Employee List</h2>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>avatar</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let employee of singerList">
+                <td><a>{{employee.name}}</a></td>
+                <td><img style="height: 200px; width: 200px" [src]=employee.avatar></td>
+<!--                <td>{{employee.emailId}}</td>-->
+                <td>
+                    <button [routerLink]="['/editSinger/',employee.id]" class="btn btn-primary">Edit</button>
+                    <button (click)="singerDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+                    <button (click)="deleteEmployee(employee.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

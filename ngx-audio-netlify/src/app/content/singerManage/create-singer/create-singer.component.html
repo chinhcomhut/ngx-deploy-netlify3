@@ -1,0 +1,26 @@
+<h3>Create Employee</h3>
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="singer.name" name="name">
+        </div>
+
+<!--        <div class="form-group">-->
+<!--            <label for="name">Last Name</label>-->
+<!--            <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">-->
+<!--        </div>-->
+
+
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+<div class="col-4" style="margin-bottom: 10px">
+    <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+</div>
+<div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+    <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
+
