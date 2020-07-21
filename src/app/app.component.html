@@ -49,6 +49,19 @@
         <div class="mat-button-ripple mat-ripple" matripple=""></div>
         <div class="mat-button-focus-overlay"></div>
     </a><span class="example-spacer"></span>
+<!--    <a>-->
+<!--        <span class="mat-button-wrapper">-->
+<!--            <img  class="image" *ngIf="authority==='user'"[src]=info.avatar width="50px" height="50px" routerLink="/changeAvatar"></span>-->
+<!--        <div class="mat-button-ripple mat-ripple" matripple=""></div>-->
+<!--        <div class="mat-button-focus-overlay"></div>-->
+<!--    </a><span class="example-spacer"></span>-->
+    <a class="image" *ngIf="authority==='user'" style="color: springgreen; text-decoration: none;" aria-label="Angular Audio Player"
+       mat-button tabindex="0" aria-disabled="false" routerLink="/changeAvatar"><span class="mat-button-wrapper">
+        <img  alt="angular" class="image" [src]=info.avatar width="50px" height="50px"></span>
+        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+        <div class="mat-button-focus-overlay"></div>
+    </a><span class="example-spacer"></span>
+
 <!--    <a href="#news">News</a>-->
 <!--    <a href="#contact">Contact</a>-->
 <!--    <a href="#about">About</a>-->

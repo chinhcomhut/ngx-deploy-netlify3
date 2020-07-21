@@ -1,0 +1,108 @@
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-12" style="margin-top: 20px">-->
+
+<!--                <form  [formGroup]="userForm" *ngIf="user">-->
+<!--                    <label for="exampleForm2" style="margin-bottom: 10px">-->
+<!--                        Nhập tên Song mới của bạn:-->
+<!--                    </label>-->
+<!--                    <input [(ngModel)]="user.name" formControlName="name" type="text" id="exampleForm2" class="form-control"-->
+<!--                           placeholder="Nhập tên song...">-->
+<!--                    <br>-->
+<!--                    <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>-->
+<!--                    <button  type="submit" (click)="createAvatar()" class="btn btn-primary">Update Avatar</button>-->
+<!--                </form>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <mat-card-title *ngIf="isCheckSuccess; else changeProfile">
+                    <mat-card-subtitle style="color: #f92672">Please Login Again!!</mat-card-subtitle>
+                    <button routerLink="/login" style="color: springgreen; text-decoration: none;" aria-label="Angular Audio Player"
+                            class="docs-button mat-button"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><img
+                            width="30px;" alt="angular" class="docs-angular-logo"
+                            src="../../../assets/images/icons/login.png" height="30px" ><b>Login </b></span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button><span class="example-spacer"></span>
+                </mat-card-title>
+                <ng-template #changeProfile>
+                    <mat-error style="color: red" *ngIf="f.submitted " class="alert alert-warning">
+                        {{errormessage}}
+                    </mat-error>
+                    <form class="change-profile" (ngSubmit)="f.form.valid && ngSubmit()" #f="ngForm" novalidate>
+                        <mat-form-field style="width: 350px" appearance="outline">
+                            <mat-label>Enter your name ...</mat-label>
+                            <input matInput placeholder="Enter your name..."
+                                   name="name" [(ngModel)]="form.name" #name = "ngModel" required >
+                            <mat-icon color="accent" matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-error *ngIf="f.submitted && name.invalid "></mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field style="width: 350px" appearance="outline">
+                            <mat-label>Enter your user account ...</mat-label>
+                            <input matInput placeholder="Enter your account..."
+                                   name="username" [(ngModel)]="form.username" #username="ngModel" required >
+                            <mat-icon color="accent" matSuffix>recent_actors</mat-icon>
+<!--                            <div *ngIf="f.submitted && username.invalid; else nouser">-->
+<!--                                &lt;!&ndash;                                <div *ngIf="username.errors.required">Username is&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                    required&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--                            </div>-->
+                        </mat-form-field>
+<!--                        <ng-template #nouser>-->
+<!--                            <mat-error *ngIf="isCheckUser;" style="color: #f92672"> User Trùng Nhau</mat-error>-->
+<!--                        </ng-template>-->
+
+                        <br>
+<!--                        <mat-form-field style="width: 350px" appearance="outline">-->
+<!--                            <mat-label>Enter your user account ...</mat-label>-->
+<!--                            <input matInput placeholder="Enter your avatar..."-->
+<!--                                   name="avatar" [(ngModel)]="form.avatar" #avatar="ngModel" required >-->
+<!--                            <mat-icon color="accent" matSuffix>recent_actors</mat-icon>-->
+<!--                            <div *ngIf="f.submitted && avatar.invalid">-->
+<!--                                &lt;!&ndash;                                <div *ngIf="username.errors.required">Username is&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                    required&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </mat-form-field>-->
+                        <br>
+
+                        <mat-form-field style="width: 350px"  appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input  name="email" [(ngModel)]="form.email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+                            <mat-icon color="accent" matSuffix>attach_email</mat-icon>
+
+                            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                Please enter a valid email address!! Ex: chinhcomhut@gmail.com
+                            </mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                                Email is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <br>
+                        <button type="submit" style="color: green; text-decoration: none;"
+                                aria-label="Angular Audio Player"
+                                class="docs-button mat-button"
+                                mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
+                                src="../../../assets/images/icons/change-profile.png" height="30px" width="30px"/>Change Profile</b></span>
+                            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                            <div class="mat-button-focus-overlay"></div>
+                        </button>
+<!--                        <div class="col-4" style="margin-bottom: 10px">-->
+<!--                            &lt;!&ndash;                    <app-upload-file (giveURLtoCreate)="onChange($event)"></app-upload-file>&ndash;&gt;-->
+<!--                            <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>-->
+<!--                        </div>-->
+                    </form>
+                </ng-template>
+
+            </mat-card>
+        </div>
+    </div>
+</div>

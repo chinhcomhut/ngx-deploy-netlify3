@@ -69,7 +69,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTreeModule} from "@angular/material/tree";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {PortalModule} from "@angular/cdk/portal";
-import { AddAvatarComponent } from './form-login/add-avatar/add-avatar.component';
+import { ChangeProfileComponent } from './form-login/change-profile/change-profile.component';
 import { UploadFileComponent } from './content/upload/upload-file/upload-file.component';
 import { CreateSingerComponent } from './content/singerManage/create-singer/create-singer.component';
 import { AdminComponent } from './form-login/admin/admin.component';
@@ -80,6 +80,8 @@ import { httpInterceptorProviders} from "./auth/auth-interceptor";
 import {AuthGuard} from "./auth/auth.guard";
 import {AuthService} from "./auth/auth.service";
 import {ChangePassword} from "./auth/change-password";
+import {ChangeAvatarComponent} from "./form-login/change-avatar/change-avatar.component";
+
 
 
 
@@ -91,17 +93,18 @@ export const appRoutes: Routes = [
     {path: 'user', component: UserComponent, data: {title: 'User'}},
     {path: 'changepass', component: ChangePasswordComponent, data: {title: 'ChangePassword'}},
     {path: 'uploadAvatar', component: UploadAvatarComponent, data: {title: 'UploadAvatar'}},
-    {path: 'addAvatar',component: AddAvatarComponent, data: {title: 'AddAvatar'}},
+    {path: 'changeProfile',component: ChangeProfileComponent, data: {title: 'ChangeProfile'}},
     {path: 'admin',component: AdminComponent, data: {title: 'Admin'}},
     {path: 'detailSinger/:id', component: DetailSingerComponent, data:{title: 'DetailSinger'}},
     {path: 'createSinger', component: CreateSingerComponent, data: {title: 'CreateSinger' }},
     {path: 'editSinger/:id', component: EditSingerComponent, data: {title: 'EditSinger'}},
-    {path: 'singer', component: SingerComponent, data: {title: 'Singer'}}
+    {path: 'singer', component: SingerComponent, data: {title: 'Singer'}},
+    {path: 'changeAvatar', component: ChangeAvatarComponent, data:{title: 'ChangeAvatar'}}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, AddAvatarComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, SingerComponent, EditSingerComponent
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, SingerComponent, EditSingerComponent, ChangeAvatarComponent
     ],
     imports: [
         HttpClientModule,

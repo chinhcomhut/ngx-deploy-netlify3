@@ -63,6 +63,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class ChangePasswordComponent implements OnInit {
+    // emailFormControl = new FormControl('', [
+    //     Validators.required,
+    //     Validators.email,
+    // ]);
     //
     // title = 'Thay Đổi Mật Khẩu';
     // form: any = {};
@@ -148,8 +152,8 @@ export class ChangePasswordComponent implements OnInit {
         //     }
         // );
         this.myForm = this.formBuilder.group({
-                currentPassword: ['', [Validators.required]],
-                newPassword: ['', [Validators.required]],
+                currentPassword: ['', Validators.required],
+                newPassword: ['', Validators.required],
                 confirmPassword: ['']
             }, {validator: this.checkPasswords},
         );
@@ -172,8 +176,6 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-
-
         let newpass = group.controls.newPassword.value;
         let confirmPass = group.controls.confirmPassword.value;
 

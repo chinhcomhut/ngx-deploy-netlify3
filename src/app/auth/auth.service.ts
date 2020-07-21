@@ -32,12 +32,16 @@ export class AuthService {
   // private signupUrl = environment.URL_local+'signup';
   private signupUrl = environment.URL_server+'signup';
   // private signupUrl = 'https://backend-mp3.herokuapp.com/api/auth/signup'
-  private updateProfileUrl = environment.URL_local+'update-profile';
+  private changeProfileUrl= environment.URL_local+'update-profile';
 
   // private changePassUrl = environment.URL_local+'change-password';
   // private changePassUrl = 'http://localhost:8080/api/auth/change-pasword'
   private changePassUrl = environment.URL_server+'change-password';
   // private changePassUrl = 'https://backend-mp3.herokuapp.com/api/auth/change-password';
+
+  // private changeAvatarUrl = environment.URL_local+'change-avatar';
+  private changeAvatarUrl = environment.URL_server+'change-avatar';
+
   constructor(private http: HttpClient) {
   }
 
@@ -74,10 +78,13 @@ console.log("info",info)
 
     return this.http.put<JwtResponse>(this.changePassUrl,info, httpOptions);
   }
-    changePassword(passForm: ChangePassword): Observable<string> {
-    console.log("passForm"+passForm)
+    changeAvatar(info: any): Observable<JwtResponse> {
 
-      return this.http.put<string>(this.changePassUrl ,passForm);
+
+      return this.http.put<JwtResponse>(this.changeAvatarUrl ,info, httpOptions);
+    }
+    changeProfile(info: any): Observable<JwtResponse>{
+    return this.http.put<JwtResponse>(this.changeProfileUrl, info, httpOptions);
     }
   // updatePassword(passForm: PassForm): Observable<string> {
   //   return this.http.put<string>(this.svUpdatePasswordUrl + '/' + passForm.id , passForm);

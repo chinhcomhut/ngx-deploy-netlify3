@@ -1,9 +1,39 @@
 .example-card {
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 700px;
 }
 
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+.example-header-image:hover {
+   background-color: #0b84ff;
 }
+.circular--square:hover {
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+
+}
+.circular--square{
+    margin-left: 30px;
+}
+.image {
+    border-top-left-radius: 15% 15%;
+    border-top-right-radius: 15% 15%;
+    border-bottom-right-radius: 15% 15%;
+    border-bottom-left-radius: 15% 15%;
+}
+.information {
+    margin: 0 auto;
+    margin-left: 150px;
+}
+.username{
+    margin: 0 auto;
+    margin-left: 150px;
+}
+.example-card a:hover {
+    background-color: #0b84ff;
+    color: #3f51b5;
+}
+
+
+

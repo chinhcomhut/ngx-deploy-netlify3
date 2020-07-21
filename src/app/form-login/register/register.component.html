@@ -65,10 +65,13 @@
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px 0;">
-                <mat-card-title *ngIf="isSignedUp; else signupForm">
-                    Your registration is successfull! Please login!
-                </mat-card-title>
-                <ng-template #signupForm>
+<!--                <mat-card-title style="color: #f92672" *ngIf="isSignUpFailed else signupForm">-->
+<!--                    Your have successfully registered! Please login!-->
+<!--                </mat-card-title>-->
+
+                    <mat-error style="color: red" *ngIf="f.submitted " class="alert alert-warning">
+                        {{errorMessage}}
+                    </mat-error>
                     <form class="form-register" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"  novalidate>
                         <mat-form-field style="width: 350px" appearance="outline">
                             <mat-label>Enter your name ...</mat-label>
@@ -79,7 +82,7 @@
                         </mat-form-field>
                         <br>
                         <mat-form-field style="width: 350px" appearance="outline">
-                            <mat-label>Enter your account ...</mat-label>
+                            <mat-label>Enter your user account ...</mat-label>
                             <input matInput placeholder="Enter your account..."
                                    name="username" [(ngModel)]="form.username" #username="ngModel" required >
                             <mat-icon color="accent" matSuffix>recent_actors</mat-icon>
@@ -90,11 +93,11 @@
                             </div>
                         </mat-form-field>
                         <br>
-                        <form class="example-form">
                             <mat-form-field style="width: 350px"  appearance="outline">
                                 <mat-label>Email</mat-label>
                                 <input  name="email" [(ngModel)]="form.email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
                                 <mat-icon color="accent" matSuffix>attach_email</mat-icon>
+
                                 <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                                     Please enter a valid email address!! Ex: chinhcomhut@gmail.com
                                 </mat-error>
@@ -102,7 +105,7 @@
                                     Email is <strong>required</strong>
                                 </mat-error>
                             </mat-form-field>
-                        </form>
+
                         <br>
                         <mat-form-field style=" width: 350px" appearance="outline">
                             <mat-label>Enter your password</mat-label>
@@ -130,12 +133,10 @@
                             <div class="mat-button-ripple mat-ripple" matripple=""></div>
                             <div class="mat-button-focus-overlay"></div>
                         </button><span class="example-spacer"></span>
-                        <mat-error style="color: red" *ngIf="f.submitted " class="alert alert-warning">
-                                                                Status Signup: <br/>{{errorMessage}}
-                        </mat-error>
+
 
                     </form>
-                </ng-template>
+
             </mat-card>
         </div>
     </div>

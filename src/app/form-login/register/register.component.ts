@@ -17,13 +17,22 @@ export class RegisterComponent implements OnInit {
         Validators.email,
     ]);
     // @ts-ignore
-    password = new FormControl('');
+    // password = new FormControl('');
     hide = true;
     form: any = {};
     signupInfo: SignUpInfo;
-    isSignedUp = false;
+    isUser = false;
     isSignUpFailed = false;
     errorMessage = '';
+    error1: any = {
+        message: "nouser"
+    }
+    error2: any = {
+        message: "noemail"
+    }
+    error3: any = {
+        message: "yes"
+    }
 
     constructor(private authService: AuthService, private route: Router,
                 ) {
@@ -51,14 +60,30 @@ export class RegisterComponent implements OnInit {
             data => {
                 console.log("dang ky",data);
 
-                alert('Creat Account Success!!');
-                this.route.navigate(['login']);
             },
             error => {
                 console.log(error);
-                this.errorMessage = error.error.message;
-                this.isSignUpFailed = true;
-                console.log("dangkyloi",this.isSignUpFailed)
+                console.log("error",error.error.message);
+
+                console.log("error1",this.error1)
+                if(JSON.stringify(error.error.message)==JSON.stringify(this.error1.message)){
+                    // alert('Your username has been used! Please try again!')
+                    this.isUser = true;
+                    this.isSignUpFailed = false;
+                    this.errorMessage = 'Registration failed! Your username has been used! Please try again!'
+                }
+                if(JSON.stringify(error.error.message)==JSON.stringify(this.error2.message)){
+                    // alert('Your email has been used! Please try again!')
+                    this.isSignUpFailed = false;
+                    this.errorMessage = 'Registration failed! Your email has been used! Please try again'
+                }
+                if(JSON.stringify(error.error.message)==JSON.stringify(this.error3.message)){
+                    this.isSignUpFailed = true;
+                    this.errorMessage = 'Registration successfully! Please login!!!'
+                }
+                // this.errorMessage = error.error.message;
+                // this.isSignUpFailed = true;
+                // console.log("dangkyloi",this.isSignUpFailed)
                 // this.route.navigate(['login']);
 
             }
