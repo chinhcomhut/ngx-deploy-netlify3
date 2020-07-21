@@ -32,7 +32,9 @@ export class AuthService {
   // private signupUrl = environment.URL_local+'signup';
   private signupUrl = environment.URL_server+'signup';
   // private signupUrl = 'https://backend-mp3.herokuapp.com/api/auth/signup'
-  private changeProfileUrl= environment.URL_local+'update-profile';
+
+  // private changeProfileUrl= environment.URL_local+'update-profile';
+  private changeProfileUrl = environment.URL_server+'update-profile';
 
   // private changePassUrl = environment.URL_local+'change-password';
   // private changePassUrl = 'http://localhost:8080/api/auth/change-pasword'
