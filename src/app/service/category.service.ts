@@ -7,9 +7,13 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CategoryService {
   private List_Category_Pagination = environment.URL_local+'category/pagination';
+  private API_Category = environment.URL_local+'category';
   constructor(private http: HttpClient) { }
   getListCategory(request){
     const params = request;
     return  this.http.get(this.List_Category_Pagination,{params});
+  }
+  createCategory(){
+
   }
 }
