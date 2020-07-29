@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserAccount} from "../../model/userAccount/userAccount";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -29,12 +29,14 @@ export class ChangeProfileComponent implements OnInit {
     data3: any = {
         message: "yes"
     }
-    errormessage = '';
+    errormessage = 'Please complete the fields below';
     isCheckUser = false;
     isCheckEmail = false;
     isCheckSuccess = false;
     avatar: string;
-
+    submitted = false;
+    @Output()
+    change = new EventEmitter<string>();
     constructor(private route: Router,
                 private authService: AuthService,
                 private tokenStorageService: TokenStorageService) {
@@ -62,6 +64,7 @@ export class ChangeProfileComponent implements OnInit {
                 this.isCheckUser = true;
                 // alert('your username has been used')
                 this.errormessage = 'Your username has been used! Please try again!'
+                this.submitted = true;
             } else if (JSON.stringify(data) == JSON.stringify(this.data2)) {
                 this.isCheckEmail = true;
                 // alert('your email has been used')

@@ -3,33 +3,46 @@
     max-width: 700px;
 }
 
-.example-header-image:hover {
-   background-color: #0b84ff;
-}
-.circular--square:hover {
+/*.example-header-image:hover {*/
+/*   background-color: #0b84ff;*/
+/*}*/
+.circular--square {
     border-top-left-radius: 50% 50%;
     border-top-right-radius: 50% 50%;
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%;
 
 }
-.circular--square{
-    margin-left: 30px;
+.circular--square:hover{
+    /*background-color: #66d9ef;*/
+    width: 50%;
+    height: 50%;
 }
+/*.circular--square{*/
+/*    margin-left: 15px;*/
+/*}*/
+/*.circular--square{*/
+/*    margin-left: 15px;*/
+/*}*/
+/*.circular--square:hover{*/
+/*    background-color: #66d9ef;*/
+/*    width: 55px;*/
+/*    height: 55px;*/
+/*}*/
 .image {
     border-top-left-radius: 15% 15%;
     border-top-right-radius: 15% 15%;
     border-bottom-right-radius: 15% 15%;
     border-bottom-left-radius: 15% 15%;
 }
-.information {
-    margin: 0 auto;
-    margin-left: 150px;
-}
-.username{
-    margin: 0 auto;
-    margin-left: 150px;
-}
+/*.information {*/
+/*    margin: 0 auto;*/
+/*    margin-left: 150px;*/
+/*}*/
+/*.username{*/
+/*    margin: 0 auto;*/
+/*    margin-left: 150px;*/
+/*}*/
 .example-card a:hover {
     background-color: #0b84ff;
     color: #3f51b5;

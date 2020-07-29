@@ -22,27 +22,27 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
   providedIn: 'root'
 })
 export class AuthService {
-  // private getUserId = environment.URL_local+'user';
-  private getUserId = environment.URL_server+'user';
+  private getUserId = environment.URL_local+'user';
+  // private getUserId = environment.URL_server+'user';
 
-  // private loginUrl = environment.URL_local+'signin';
-  private loginUrl = environment.URL_server+'signin';
+  private loginUrl = environment.URL_local+'signin';
+  // private loginUrl = environment.URL_server+'signin';
   // private loginUrl = 'https://backend-mp3.herokuapp.com/api/auth/signin'
 
-  // private signupUrl = environment.URL_local+'signup';
-  private signupUrl = environment.URL_server+'signup';
+  private signupUrl = environment.URL_local+'signup';
+  // private signupUrl = environment.URL_server+'signup';
   // private signupUrl = 'https://backend-mp3.herokuapp.com/api/auth/signup'
 
-  // private changeProfileUrl= environment.URL_local+'update-profile';
-  private changeProfileUrl = environment.URL_server+'update-profile';
+  private changeProfileUrl= environment.URL_local+'update-profile';
+  // private changeProfileUrl = environment.URL_server+'update-profile';
 
-  // private changePassUrl = environment.URL_local+'change-password';
+  private changePassUrl = environment.URL_local+'change-password';
   // private changePassUrl = 'http://localhost:8080/api/auth/change-pasword'
-  private changePassUrl = environment.URL_server+'change-password';
+  // private changePassUrl = environment.URL_server+'change-password';
   // private changePassUrl = 'https://backend-mp3.herokuapp.com/api/auth/change-password';
 
-  // private changeAvatarUrl = environment.URL_local+'change-avatar';
-  private changeAvatarUrl = environment.URL_server+'change-avatar';
+  private changeAvatarUrl = environment.URL_local+'change-avatar';
+  // private changeAvatarUrl = environment.URL_server+'change-avatar';
 
   constructor(private http: HttpClient) {
   }

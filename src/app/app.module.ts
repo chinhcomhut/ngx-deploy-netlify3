@@ -81,9 +81,20 @@ import {AuthGuard} from "./auth/auth.guard";
 import {AuthService} from "./auth/auth.service";
 import {ChangePassword} from "./auth/change-password";
 import {ChangeAvatarComponent} from "./form-login/change-avatar/change-avatar.component";
+import {SingerService} from "./service/singer.service";
+import { CreateSongComponent } from './content/songManage/create-song/create-song.component';
+import { CreateCategoryComponent } from './content/categoryManage/create-category/create-category.component';
 
+// const config = new SocialAuthService([
+//     {
+//         id: FacebookLoginProvider.PROVIDER_ID,
+//         provider: new FacebookLoginProvider('2203659926599837')
+//     }
+// ]);
 
-
+// export function provideConfig() {
+//     return config;
+// }
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent, data: {title: 'Home'}},
@@ -99,12 +110,13 @@ export const appRoutes: Routes = [
     {path: 'createSinger', component: CreateSingerComponent, data: {title: 'CreateSinger' }},
     {path: 'editSinger/:id', component: EditSingerComponent, data: {title: 'EditSinger'}},
     {path: 'singer', component: SingerComponent, data: {title: 'Singer'}},
-    {path: 'changeAvatar', component: ChangeAvatarComponent, data:{title: 'ChangeAvatar'}}
+    {path: 'changeAvatar', component: ChangeAvatarComponent, data:{title: 'ChangeAvatar'}},
+    {path: 'createSong', component: CreateSongComponent, data: {title: 'CreateSong'}}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, SingerComponent, EditSingerComponent, ChangeAvatarComponent
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, SingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent
     ],
     imports: [
         HttpClientModule,
@@ -119,8 +131,15 @@ export const appRoutes: Routes = [
     ],
     // entryComponents: [UserComponent],
     providers: [
-        httpInterceptorProviders, AuthGuard//Doan code lay JWT cho Header gui request lien quan ChangePass//
+        httpInterceptorProviders, AuthGuard, SingerService//Doan code lay JWT cho Header gui request lien quan ChangePass//
+        // AuthSer,
+        //
+        // {
+        //     provide: SocialLoginModule,
+        //     useFactory: socialConfigs
+        // }
     ],
+
     bootstrap: [AppComponent],
     exports: [
         A11yModule,

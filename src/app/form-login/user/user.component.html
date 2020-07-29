@@ -3,25 +3,30 @@
         <div class="col-12" style="margin-top: 20px">
             <mat-card class="example-card">
                 <mat-card-header>
-                        <div class="circular--square">
+                    <div mat-card-avatar class="circular--square">
                         <img routerLink="/changeAvatar" class="circular--square" [src]=info.avatar height="50px"
                              width="50px"/>
-                        </div>
+                    </div>
 
                     <mat-card-title class="information" style="color: #2c8ebb"> YOUR INFOMATION</mat-card-title>
-                    <mat-card-title class="username" STYLE="color: fuchsia"><b style="color: #2b542c">User name:</b> {{info.username}}</mat-card-title>
+                    <mat-card-subtitle class="username" STYLE="color: fuchsia"><b style="color: #2b542c">User
+                        name:</b> {{info.username}}</mat-card-subtitle>
                 </mat-card-header>
                 <div *ngIf="info.token; else loggedOut"></div>
-                <img mat-card-image routerLink="/changeAvatar" class="image" [src]="info.avatar" height="300px" width="400px">
+                <img mat-card-image routerLink="/changeAvatar" class="image" [src]="info.avatar" height="300px"
+                     width="400px">
                 <mat-card-actions>
-                    <button (click)="logout()" routerLink="/" style="color: red; text-decoration: none;" aria-label="Angular Audio Player"
+                    <button (click)="logout()" routerLink="/" style="color: red; text-decoration: none;"
+                            aria-label="Angular Audio Player"
                             class="docs-button mat-button"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
-                            src="../../../assets/images/icons/logout2.png" height="30px" width="30px"/>LOG OUT </b></span>
+                            src="../../../assets/images/icons/logout2.png" height="30px"
+                            width="30px"/>LOG OUT </b></span>
                         <div class="mat-button-ripple mat-ripple" matripple=""></div>
                         <div class="mat-button-focus-overlay"></div>
-                    </button><span class="example-spacer"></span>
-<!--                    <button routerLink="/" class="btn btn-danger" (click)="logout()">Logout</button>-->
+                    </button>
+                    <span class="example-spacer"></span>
+                    <!--                    <button routerLink="/" class="btn btn-danger" (click)="logout()">Logout</button>-->
                     <button routerLink="/changepass" type="submit" style="color: rebeccapurple; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="docs-button mat-button"
@@ -31,7 +36,7 @@
                         <div class="mat-button-ripple mat-ripple" matripple=""></div>
                         <div class="mat-button-focus-overlay"></div>
                     </button>
-<!--                    <button class="btn btn-primary" routerLink="/changepass">Change Pass</button>-->
+                    <!--                    <button class="btn btn-primary" routerLink="/changepass">Change Pass</button>-->
                     <button routerLink="/changeProfile" type="submit" style="color: green; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="docs-button mat-button"
@@ -40,32 +45,37 @@
                         <div class="mat-button-ripple mat-ripple" matripple=""></div>
                         <div class="mat-button-focus-overlay"></div>
                     </button>
-<!--                    <button class="btn btn-danger" routerLink="/changeProfile">Change Profile</button>-->
+                    <!--                    <button class="btn btn-danger" routerLink="/changeProfile">Change Profile</button>-->
                     <button routerLink="/changeAvatar" type="submit" style="color: orangered; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="docs-button mat-button"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
-                            src="../../../assets/images/icons/change-avatar.png" height="24" width="24"/>Change Avatar</b></span>
+                            src="../../../assets/images/icons/change-avatar.png" height="24"
+                            width="24"/>Change Avatar</b></span>
                         <div class="mat-button-ripple mat-ripple" matripple=""></div>
                         <div class="mat-button-focus-overlay"></div>
                     </button>
-<!--                    <button class="btn btn-primary" routerLink="/changeAvatar">Change Avatar</button>-->
+                    <!--                    <button class="btn btn-primary" routerLink="/changeAvatar">Change Avatar</button>-->
                 </mat-card-actions>
                 <ng-template #loggedOut>
                     <b style="color: #f92672">Please login again!!!</b>
-                    <button routerLink="/login" style="color: springgreen; text-decoration: none;" aria-label="Angular Audio Player"
+                    <button routerLink="/login" style="color: springgreen; text-decoration: none;"
+                            aria-label="Angular Audio Player"
                             class="docs-button mat-button"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><img
                             width="30px;" alt="angular" class="docs-angular-logo"
-                            src="../../../assets/images/icons/login.png" height="30px" ><b>Login </b></span>
+                            src="../../../assets/images/icons/login.png" height="30px"><b>Login </b></span>
                         <div class="mat-button-ripple mat-ripple" matripple=""></div>
                         <div class="mat-button-focus-overlay"></div>
-                    </button><span class="example-spacer"></span>
+                    </button>
+                    <span class="example-spacer"></span>
                 </ng-template>
             </mat-card>
         </div>
     </div>
 </div>
+<button routerLink="/createSinger" class="btn btn-danger">Create Singer</button>
+<button routerLink="/createSong" class="btn btn-primary">Create Song</button>
 <!--            <mat-card>-->
 <!--                <mat-card-content>-->
 <!--                    <mat-list>-->

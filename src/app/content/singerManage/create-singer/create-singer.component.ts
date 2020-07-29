@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SingerInfo} from "../../../model/singer/singer-info";
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 
@@ -6,6 +6,8 @@ import {Router} from "@angular/router";
 import {SingerService} from "../../../service/singer.service";
 import {ErrorStateMatcher} from "@angular/material/core";
 import {error} from "ng-packagr/lib/utils/log";
+import {$e} from "codelyzer/angular/styles/chars";
+
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -13,27 +15,42 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
         return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
     }
 }
+
 @Component({
-  selector: 'app-create-singer',
-  templateUrl: './create-singer.component.html',
-  styleUrls: ['./create-singer.component.css']
+    selector: 'app-create-singer',
+    templateUrl: './create-singer.component.html',
+    styleUrls: ['./create-singer.component.css']
 })
 export class CreateSingerComponent implements OnInit {
-singer: SingerInfo = new SingerInfo();
-submitted = false;
+    singer: SingerInfo = new SingerInfo();
+
+
+
+    submitted = false;
+    favoriteSeason: string;
+    seasons: string[] = ['Male', 'Female'];
 
     constructor(
         private router: Router,
         private singerService: SingerService,
-        ) {}
+    ) {
+    }
+
+    // @Output()
+    // changeDate = new EventEmitter<string>();
     ngOnInit(): void {
 
     }
-    newSinger(): void {
-        this.submitted = false;
-        this.singer = new SingerInfo();
-    }
-    save(){
+
+
+
+
+    // newSinger(): void {
+    //     this.submitted = false;
+    //     this.singer = new SingerInfo();
+    // }
+
+    save() {
         this.singerService.createEmployee(this.singer).subscribe(data => {
             console.log(data)
             this.singer = new SingerInfo();
@@ -42,14 +59,21 @@ submitted = false;
             console.log(error1)
         })
     }
-    onSubmit(){
+
+    onSubmit() {
         this.submitted = true;
         this.save();
     }
-    gotoList(){
+
+    gotoList() {
         this.router.navigate(['/singer'])
     }
+
     onAvatar($event) {
-        this.singer.avatar = $event;
+        this.singer.avatarSinger = $event;
+    }
+
+    onDate($event) {
+        this.singer.birthday = $event;
     }
 }

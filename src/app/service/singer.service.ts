@@ -12,7 +12,9 @@ import {catchError, tap} from "rxjs/operators";
 export class SingerService {
 
   private API_SINGER = 'http://localhost:8080/api/auth/singer';
-
+  private API_SINGER_PAGINATION = 'http://localhost:8080/api/auth/singer/pagination'
+  private List_Singer_Pagination = environment.URL_local+'singer/pagination';
+  private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser'
   constructor(private http: HttpClient) { }
   getEmployee(id: number): Observable<SingerInfo> {
     return this.http.get<SingerInfo>(`${this.API_SINGER}/${id}`);
@@ -30,8 +32,13 @@ export class SingerService {
     return this.http.delete(`${this.API_SINGER}/${id}`, { responseType: 'text' });
   }
 
-  getEmployeesList(): Observable<SingerInfo> {
-    console.log("name"+SingerInfo.name)
-    return this.http.get<SingerInfo>(`${this.API_SINGER}`);
+  getEmployeesList() {
+    // const params = request;
+
+    return this.http.get(this.API_SINGER);
+  }
+  getSingerList(request){
+    const params = request;
+    return this.http.get(this.List_Singer_Pagination,{params});
   }
 }

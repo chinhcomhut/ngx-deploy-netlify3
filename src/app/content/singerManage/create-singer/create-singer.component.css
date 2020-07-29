@@ -24,3 +24,46 @@
 .mat-flat-button {
     margin: 5px;
 }
+/* CSS Gender */
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.example-radio-button {
+    margin: 5px;
+}
+input[type="date"]::-webkit-clear-button {
+    display: none;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: red;
+}
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    color: rosybrown;
+    font-family: "Helvetica", arial, sans-serif;
+    font-size: 30px;
+    border: solid 2px chocolate;
+    border-top-left-radius: 10% 10%;
+    border-top-right-radius: 10% 10%;
+    border-bottom-right-radius: 10% 10%;
+    border-bottom-left-radius: 10% 10%;
+    background:aquamarine;
+    padding:10px;
+    display: inline-block !important;
+    visibility: visible !important;
+}
+input[type="date"], focus {
+    color: red;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}

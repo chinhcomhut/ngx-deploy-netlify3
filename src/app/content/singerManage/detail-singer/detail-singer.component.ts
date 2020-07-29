@@ -11,10 +11,11 @@ import {Observable} from "rxjs";
     styleUrls: ['./detail-singer.component.css']
 })
 export class DetailSingerComponent implements OnInit {
-id: number;
-singer: SingerInfo;
+    id: number;
+    singer: SingerInfo;
 
-isLoadingResults = true;
+    isLoadingResults = true;
+
     constructor(private singerService: SingerService,
                 private router: Router,
                 private route: ActivatedRoute
@@ -23,8 +24,8 @@ isLoadingResults = true;
 
     ngOnInit() {
         this.singer = new SingerInfo();
-      this.id = this.route.snapshot.params['id']
-        console.log("id"+this.singer.id)
+        this.id = this.route.snapshot.params['id']
+        // console.log("id"+this.singer.id)
         this.singerService.getEmployee(this.id).subscribe(data => {
             console.log(data)
             this.singer = data;
@@ -32,7 +33,9 @@ isLoadingResults = true;
             console.log(error)
         })
     }
-  list(){
+
+    list() {
         this.router.navigate(['singer'])
-  }
+    }
+
 }
