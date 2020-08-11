@@ -1,1 +1,81 @@
-<p>create-category works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <form class="create-category" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <mat-error style="color: red" class="alert alert-success">
+                        Status: {{errorMessage}}
+                    </mat-error>
+                    <br>
+                    <mat-form-field style="width: 400px" appearance="outline">
+                        <mat-label> Music Genre ...</mat-label>
+                        <input name="nameCategory" matInput placeholder="Fill in the music Category ..."
+                               [(ngModel)]="category.nameCategory" #nameCategory="ngModel" required>
+                        <!-- Muon Validate Required bat buoc phai co name="nameCategory"-->
+                        <mat-icon color="accent" matSuffix>queue_music</mat-icon>
+                    </mat-form-field>
+                    <br>
+                    <mat-error *ngIf="f.submitted && nameCategory.invalid">
+                        <mat-error *ngIf="nameCategory.errors.required">
+                            Category is required! Please fill in the music Category!
+                        </mat-error>
+                    </mat-error><br>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+
+
+                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
+                                            width="40"/></b></span>
+                    </button>
+                </form>
+                <mat-error style="color:red;" *ngIf="!addAvatar">
+                    Please add Avatar!
+                </mat-error>
+                <app-upload-avatar class="add-avatar" (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-12" style="margin-top: 20px">-->
+<!--            <mat-card style="margin: 50px 0;">-->
+<!--                <form class="create-category" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>-->
+<!--                    <mat-error style="color: red" class="alert alert-success">-->
+<!--                        Status: {{errorMessage}}-->
+<!--                    </mat-error>-->
+<!--                    <br>-->
+<!--                    <mat-form-field  style="width: 400px" appearance="outline">-->
+<!--                        <mat-label>Music Category...</mat-label>-->
+<!--                        <input name="nameCategory" matInput placeholder="Fill in the music Category..."-->
+<!--                               [(ngModel)]="category.nameCategory" #nameCategory="ngModel" required>-->
+<!--                        <mat-icon color="accent" matSuffix>queue_music</mat-icon>-->
+<!--                    </mat-form-field> <br>-->
+<!--                    <mat-error *ngIf="f.submitted && nameCategory.invalid">-->
+<!--                        <mat-error *ngIf="nameCategory.errors.required">-->
+<!--                            Category is required! Please fill in the music Category!-->
+<!--                        </mat-error>-->
+<!--                    </mat-error><br>-->
+<!--                    <button type="submit" style="color: crimson; text-decoration: none;"-->
+<!--                            aria-label="Angular Audio Player"-->
+<!--                            class="mat-button-toggle-group btn-outline-success"-->
+<!--                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>-->
+<!--&lt;!&ndash;                        <mat-icon color="orchid" matSuffix>queue_music</mat-icon>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <img src="../../../assets/images/icons/change-avatar.png" height="24" width="24"/>&ndash;&gt;-->
+<!--                        <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+<!--                             width="40"/>-->
+<!--                        Create Category</b></span>-->
+<!--                    </button>-->
+<!--                    &lt;!&ndash;                    <input name="nameCategory" type="text" required [(ngModel)]="category.nameCategory">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <button type="submit" class="btn-primary">Create Category</button>&ndash;&gt;-->
+<!--                </form>-->
+<!--                <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>-->
+<!--            </mat-card>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+

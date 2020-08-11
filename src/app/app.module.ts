@@ -84,6 +84,10 @@ import {ChangeAvatarComponent} from "./form-login/change-avatar/change-avatar.co
 import {SingerService} from "./service/singer.service";
 import { CreateSongComponent } from './content/songManage/create-song/create-song.component';
 import { CreateCategoryComponent } from './content/categoryManage/create-category/create-category.component';
+import { PageCategoryComponent } from './content/categoryManage/page-category/page-category.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { EditCategoryComponent } from './content/categoryManage/edit-category/edit-category.component';
+
 
 // const config = new SocialAuthService([
 //     {
@@ -111,12 +115,15 @@ export const appRoutes: Routes = [
     {path: 'editSinger/:id', component: EditSingerComponent, data: {title: 'EditSinger'}},
     {path: 'singer', component: SingerComponent, data: {title: 'Singer'}},
     {path: 'changeAvatar', component: ChangeAvatarComponent, data:{title: 'ChangeAvatar'}},
-    {path: 'createSong', component: CreateSongComponent, data: {title: 'CreateSong'}}
+    {path: 'createSong', component: CreateSongComponent, data: {title: 'CreateSong'}},
+    {path: 'createCategory', component: CreateCategoryComponent, data: {title: 'CreateCategory'}},
+    {path: 'pageCategory', component: PageCategoryComponent, data: {title: 'PageCategory'}},
+    {path: 'editCategory/:id', component: EditCategoryComponent, data: {title: 'EditCategory'}}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, SingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, SingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent,
     ],
     imports: [
         HttpClientModule,
@@ -126,7 +133,7 @@ export const appRoutes: Routes = [
         NgxAudioPlayerModule,
         AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        RouterModule.forRoot(appRoutes, {useHash: false}), MatButtonModule, FormsModule, MatFormFieldModule, ReactiveFormsModule,
+        RouterModule.forRoot(appRoutes, {useHash: false}), MatButtonModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, Ng2SearchPipeModule,
 
     ],
     // entryComponents: [UserComponent],

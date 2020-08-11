@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Start searching music genre..."><br>
+                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
+                                            width="40"/></b></span>
+                    </button>
+                </div>
+
+<!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+<!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+<!--                          <mat-card>-->
+<!--                              <b>{{ctg.nameCategory}}</b>-->
+<!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+<!--                          </mat-card>-->
+<!--                    </mat-grid-tile>-->
+
+<!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let ctc of category|filter: searchText"[routerLink]="['/editCategory',ctc.id]">
+                        <div class="card" >
+                            <b class="title" style="color: crimson">{{ctc.nameCategory}}</b>
+                            <img class="image"  [src]="ctc.avatarCategory">
+                        </div>
+                       
+                    </div>
+                  
+                </div>
+
+
+                <mat-paginator #paginator [pageSizeOptions]="[30, 50, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
