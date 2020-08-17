@@ -20,8 +20,8 @@ export class SingerService {
     return this.http.get<SingerInfo>(`${this.API_SINGER}/${id}`);
   }
 
-  createEmployee(employee: Object): Observable<Object> {
-    return this.http.post(`${this.API_SINGER}`, employee);
+  createSinger(singer: SingerInfo): Observable<SingerInfo> {
+    return this.http.post<SingerInfo>(`${this.API_SINGER}`, singer);
   }
 
   updateEmployee(id: number, value: any): Observable<Object> {

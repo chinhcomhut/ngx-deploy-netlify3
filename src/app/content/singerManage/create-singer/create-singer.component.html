@@ -1,61 +1,117 @@
-<h3>Create Employee</h3>
-<div [hidden]="submitted" style="width: 400px;">
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="name">First Name</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="singer.nameSinger" name="name">
+<!--<h3>Create Employee</h3>-->
+<!--<div [hidden]="submitted" style="width: 400px;">-->
+<!--    <form (ngSubmit)="onSubmit()">-->
+<!--        <div class="form-group">-->
+<!--            <label for="name">First Name</label>-->
+<!--            <input type="text" class="form-control" id="name" required [(ngModel)]="singer.nameSinger" name="name">-->
+<!--        </div>-->
+<!--        &lt;!&ndash;        <mat-form-field>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="singer.birthday">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <mat-datepicker #picker [(ngModel)]="singer.birthday" ngDefaultControl (yearSelected)="onDate($event)"></mat-datepicker>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </mat-form-field>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <input type="date"[(ngModel)]="singer.birthday" >&ndash;&gt;-->
+
+<!--        <input type="date" [ngModel]="singer.birthday | date:'yyyy-MM-dd'" (ngModelChange)="singer.birthday = $event" (click)="onDate($event)"[ngModelOptions]="{standalone: true}">-->
+
+<!--        &lt;!&ndash;        <input type="date" ng-model="dateString" [ngModel]="singer.birthday"  />&ndash;&gt;-->
+<!--&lt;!&ndash;        <mat-form-field class="mr-sm-24" fxFlex (click)="open()" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <input [matDatepicker]="picker" matInput placeholder="Date" autocomplete="off" name="date" formControlName="birthday" [(ngModel)]="singer.birthday.value">&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-datepicker #picker></mat-datepicker>&ndash;&gt;-->
+<!--&lt;!&ndash;        </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="date"  [ngModel]="singer.birthday | date:'yyyy-MM-dd'"&ndash;&gt;-->
+<!--&lt;!&ndash;                (ngModelChange)="singer.birthday = $event">&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;        <mat-form-field appearance="fill">&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-label>Choose a date</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input  matInput [matDatepicker]="picker" [ngModel]="singer.birthday | date:'yyyy-MM-dd'" (ngModelChange)="singer.birthday = $event" (click)="onDate($event)"[ngModelOptions]="{standalone: true}" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-datepicker-toggle name = "birthday" matSuffix [for]="picker" ></mat-datepicker-toggle>&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-datepicker #picker ></mat-datepicker>&ndash;&gt;-->
+<!--&lt;!&ndash;        </mat-form-field>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;        <div class="form-group">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <label for="name">Last Name</label>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">&ndash;&gt;-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        <label id="example-radio-group-label">Pick your favorite season</label>-->
+<!--        <mat-radio-group name="chinh"-->
+<!--                aria-labelledby="example-radio-group-label"-->
+<!--                class="example-radio-group"-->
+<!--                [ngModel]="singer.gender"(ngModelChange)="singer.gender=$event">-->
+<!--            <mat-radio-button name="chinh" class="example-radio-button" *ngFor="let season of seasons" [value]="season">-->
+<!--                {{season}}-->
+<!--            </mat-radio-button>-->
+<!--        </mat-radio-group>-->
+<!--&lt;!&ndash;        <div>Your favorite season is: {{favoriteSeason}}</div>&ndash;&gt;-->
+
+
+<!--        <button type="submit" class="btn btn-success">Submit</button>-->
+<!--    </form>-->
+<!--    <div class="col-4" style="margin-bottom: 10px">-->
+<!--        <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div [hidden]="!submitted">-->
+<!--    <h4>You submitted successfully!</h4>-->
+<!--    &lt;!&ndash; <button class="btn btn-success" (click)="newEmployee()">Add</button> &ndash;&gt;-->
+<!--</div>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <mat-error class="alert alert-success">Status: {{errorMessage}}</mat-error>
+                <form class="create-singer" #f="ngForm" (ngSubmit)="createSinger()&&f.form.valid" novalidate>
+                    <mat-form-field style="width: 300px" appearance="outline">
+                        <mat-label>Name Singer:</mat-label>
+                        <input name="nameSinger" matInput placeholder="Please fill name Singer..."
+                               [(ngModel)]="singer.nameSinger" #nameSinger="ngModel" required>
+                        <mat-icon color="accent" matSuffix>contacts</mat-icon>
+                    </mat-form-field>
+                    <br>
+                    <mat-error *ngIf="f.submitted&&nameSinger.invalid">
+                        <mat-error *ngIf="nameSinger.errors"></mat-error>
+                    </mat-error>
+                    <mat-form-field style="width: 300px" appearance="fill">
+                        <mat-label>Information:</mat-label>
+                        <textarea name="information" matInput placeholder="Please fill information Singer ..."
+                                  [(ngModel)]="singer.information" #information="ngModel" required></textarea>
+                        <mat-icon color="accent" matSuffix>contact_mail</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="f.submitted&&information.invalid">
+                        <mat-error *ngIf="information.errors"></mat-error>
+                    </mat-error>
+                    <br>
+                    <input type="date" [ngModel]="singer.birthday | date:'yyyy-MM-dd'"
+                           (ngModelChange)="singer.birthday = $event" (click)="onDate($event)"
+                           [ngModelOptions]="{standalone: true}"><br>
+
+                    <mat-radio-group name="chinh"
+                                     aria-labelledby="example-radio-group-label"
+                                     class="example-radio-group"
+                                     [ngModel]="singer.gender" (ngModelChange)="singer.gender=$event">
+                        <mat-label style="color: #ff03cc">Gender:</mat-label>
+                        <mat-radio-button name="chinh" class="example-radio-button" *ngFor="let season of seasons"
+                                          [value]="season">
+                            {{season}}
+                        </mat-radio-button>
+                    </mat-radio-group><br>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+
+
+                        Create Singer
+                        <img src="../../../../assets/images/icons/create-singer.png" height="40" width="40"/></b></span>
+                    </button>
+                </form>
+                <mat-error *ngIf="!isUploadAvatar">Please upload Avatar</mat-error>
+                <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+            </mat-card>
         </div>
-        <!--        <mat-form-field>-->
-        <!--            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="singer.birthday">-->
-        <!--            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-        <!--            <mat-datepicker #picker [(ngModel)]="singer.birthday" ngDefaultControl (yearSelected)="onDate($event)"></mat-datepicker>-->
-        <!--        </mat-form-field>-->
-        <!--        <input type="date"[(ngModel)]="singer.birthday" >-->
-
-        <input type="date" [ngModel]="singer.birthday | date:'yyyy-MM-dd'" (ngModelChange)="singer.birthday = $event" (click)="onDate($event)"[ngModelOptions]="{standalone: true}">
-      
-        <!--        <input type="date" ng-model="dateString" [ngModel]="singer.birthday"  />-->
-<!--        <mat-form-field class="mr-sm-24" fxFlex (click)="open()" >-->
-<!--            <input [matDatepicker]="picker" matInput placeholder="Date" autocomplete="off" name="date" formControlName="birthday" [(ngModel)]="singer.birthday.value">-->
-<!--            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-<!--            <mat-datepicker #picker></mat-datepicker>-->
-<!--        </mat-form-field>-->
-<!--        <input type="date"  [ngModel]="singer.birthday | date:'yyyy-MM-dd'"-->
-<!--                (ngModelChange)="singer.birthday = $event">-->
-
-
-<!--        <mat-form-field appearance="fill">-->
-<!--            <mat-label>Choose a date</mat-label>-->
-<!--            <input  matInput [matDatepicker]="picker" [ngModel]="singer.birthday | date:'yyyy-MM-dd'" (ngModelChange)="singer.birthday = $event" (click)="onDate($event)"[ngModelOptions]="{standalone: true}" >-->
-<!--            <mat-datepicker-toggle name = "birthday" matSuffix [for]="picker" ></mat-datepicker-toggle>-->
-<!--            <mat-datepicker #picker ></mat-datepicker>-->
-<!--        </mat-form-field>-->
-
-        <!--        <div class="form-group">-->
-        <!--            <label for="name">Last Name</label>-->
-        <!--            <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">-->
-        <!--        </div>-->
-        <label id="example-radio-group-label">Pick your favorite season</label>
-        <mat-radio-group name="chinh"
-                aria-labelledby="example-radio-group-label"
-                class="example-radio-group"
-                [ngModel]="singer.gender"(ngModelChange)="singer.gender=$event">
-            <mat-radio-button name="chinh" class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-                {{season}}
-            </mat-radio-button>
-        </mat-radio-group>
-<!--        <div>Your favorite season is: {{favoriteSeason}}</div>-->
-
-
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-    <div class="col-4" style="margin-bottom: 10px">
-        <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
     </div>
 </div>
-
-<div [hidden]="!submitted">
-    <h4>You submitted successfully!</h4>
-    <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
-</div>
-

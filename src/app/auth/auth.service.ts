@@ -23,20 +23,20 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class AuthService {
   //SERVICE LOCAL
-  // private getUserId = environment.URL_local+'user';
-  // private signupUrl = environment.URL_local+'signup';
-  // private loginUrl = environment.URL_local+'signin';
-  // private changeProfileUrl= environment.URL_local+'update-profile';
-  // private changePassUrl = environment.URL_local+'change-password';
-  // private changeAvatarUrl = environment.URL_local+'change-avatar';
+  private getUserId = environment.URL_local+'user';
+  private signupUrl = environment.URL_local+'signup';
+  private loginUrl = environment.URL_local+'signin';
+  private changeProfileUrl= environment.URL_local+'update-profile';
+  private changePassUrl = environment.URL_local+'change-password';
+  private changeAvatarUrl = environment.URL_local+'change-avatar';
 
   //SERVICE SERVER
-  private getUserId = environment.URL_server+'user';
-  private loginUrl = environment.URL_server+'signin';
-  private signupUrl = environment.URL_server+'signup';
-  private changeProfileUrl = environment.URL_server+'update-profile';
-  private changePassUrl = environment.URL_server+'change-password';
-  private changeAvatarUrl = environment.URL_server+'change-avatar';
+  // private getUserId = environment.URL_server+'user';
+  // private loginUrl = environment.URL_server+'signin';
+  // private signupUrl = environment.URL_server+'signup';
+  // private changeProfileUrl = environment.URL_server+'update-profile';
+  // private changePassUrl = environment.URL_server+'change-password';
+  // private changeAvatarUrl = environment.URL_server+'change-avatar';
 
   constructor(private http: HttpClient) {
   }

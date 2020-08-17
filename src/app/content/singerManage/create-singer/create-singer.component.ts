@@ -23,53 +23,62 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class CreateSingerComponent implements OnInit {
     singer: SingerInfo = new SingerInfo();
-
-
-
-    submitted = false;
-    favoriteSeason: string;
     seasons: string[] = ['Male', 'Female'];
-
+    errorMessage = 'Please complete the form below!'
+    isUploadAvatar = false;
+    data1: any = {
+        message: "nosinger"
+    }
+    data2: any = {
+        message: "noinformation"
+    }
+    data3: any = {
+        message: "nobirthday"
+    }
+    data4: any = {
+        message: "nogender"
+    }
+    data5: any = {
+        message: "noavatar"
+    }
+    data6: any = {
+        message: "yes"
+    }
     constructor(
         private router: Router,
         private singerService: SingerService,
     ) {
     }
-
-    // @Output()
-    // changeDate = new EventEmitter<string>();
     ngOnInit(): void {
-
     }
-
-
-
-
-    // newSinger(): void {
-    //     this.submitted = false;
-    //     this.singer = new SingerInfo();
-    // }
-
-    save() {
-        this.singerService.createEmployee(this.singer).subscribe(data => {
-            console.log(data)
-            this.singer = new SingerInfo();
-            this.gotoList();
+    createSinger(){
+        this.singerService.createSinger(this.singer).subscribe(data =>{
+            if(JSON.stringify(data)==JSON.stringify(this.data1)){
+                this.errorMessage = 'Name Singer already exists! Please try again!'
+            }
+            if (JSON.stringify(data)==JSON.stringify(this.data2)){
+                this.errorMessage = 'Information is required! Please fill in form'
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.data3)){
+                this.errorMessage = 'Please choose birthday'
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.data4)){
+                this.errorMessage = 'Please choose gender'
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.data5)){
+                this.errorMessage = 'Please upload Avatar'
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.data6)){
+                this.errorMessage = 'Create sucessful Singer'
+                alert(this.errorMessage);
+            }
         }, error1 => {
-            console.log(error1)
+            this.errorMessage = 'Please login before create Singer.'
         })
     }
 
-    onSubmit() {
-        this.submitted = true;
-        this.save();
-    }
-
-    gotoList() {
-        this.router.navigate(['/singer'])
-    }
-
     onAvatar($event) {
+        this.isUploadAvatar = true;
         this.singer.avatarSinger = $event;
     }
 
