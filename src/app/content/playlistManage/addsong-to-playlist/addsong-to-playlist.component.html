@@ -22,11 +22,11 @@
                 <div class="search-hero">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                            placeholder="&#61442;  Start searching music genre..."><br>
-                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"
+                    <button [routerLink]="['/detailPlayList/',playList.id]" type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-success"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
-                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
+                        Back PlayList<img src="../../../../assets/images/icons/create-category.png" height="40"
                                             width="40"/></b></span>
                     </button>
                 </div>
