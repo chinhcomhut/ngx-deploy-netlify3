@@ -28,6 +28,7 @@ export class SingerService {
     return this.http.put(`${this.API_SINGER}/${id}`, value);
   }
 
+
   deleteEmployee(id: number): Observable<any> {
     return this.http.delete(`${this.API_SINGER}/${id}`, { responseType: 'text' });
   }
@@ -37,7 +38,7 @@ export class SingerService {
 
     return this.http.get(this.API_SINGER);
   }
-  getSingerList(request){
+  getPageSinger(request){
     const params = request;
     return this.http.get(this.List_Singer_Pagination,{params});
   }
