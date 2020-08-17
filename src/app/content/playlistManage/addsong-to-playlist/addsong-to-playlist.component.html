@@ -1,1 +1,66 @@
-<p>addsong-to-playlist works!</p>
+<!--<div class="container">-->
+<!--    <hr>-->
+<!--    <hr>-->
+<!--    <div class="row" *ngIf="songList">-->
+
+<!--        <div class="col-2" *ngFor="let song of songList">-->
+<!--            &lt;!&ndash;            <button (click)="addSongtoPlayList(song)">Them</button>&ndash;&gt;-->
+<!--            <button (click)="addSongtoPlayList(song)" mat-flat-button color="accent" ><mat-icon>queue music</mat-icon>Add Music</button>-->
+<!--            <h4 [routerLink]="['/detailSong/',song.id]" class="font-weight-bold mb-3" style="font-size: 80%">-->
+<!--                <strong>{{song.nameSong}}</strong></h4>-->
+<!--            <p>Ca sỹ - <a class="font-weight-bold">{{song.nameSinger}}</a></p>-->
+<!--            <p>Thể loại - <a class="font-weight-bold">{{song.nameCategory}}</a></p>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Start searching music genre..."><br>
+                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
+                                            width="40"/></b></span>
+                    </button>
+                </div>
+
+                <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                <!--                          <mat-card>-->
+                <!--                              <b>{{ctg.nameCategory}}</b>-->
+                <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                <!--                          </mat-card>-->
+                <!--                    </mat-grid-tile>-->
+
+                <!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let ctc of songList|filter: searchText"[routerLink]="['/detailSong/',ctc.id]">
+                        <button (click)="addSongtoPlayList(ctc)" mat-flat-button color="accent" ><mat-icon>queue music</mat-icon>Add Music</button>
+                        <div class="card">
+                            <b class="title" style="color: crimson">{{ctc.nameCategory}}</b>
+                            <img class="image" [src]="ctc.avatarCategory">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <mat-paginator #paginator [pageSizeOptions]="[10, 50, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+

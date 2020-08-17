@@ -1,61 +1,48 @@
-<!--<div class="panel panel-primary">-->
-<!--    <div class="panel-heading">-->
-<!--        <h2>Employee List</h2>-->
-<!--    </div>-->
-<!--    <div class="panel-body">-->
-<!--        <table class="table table-striped">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th>Firstname</th>-->
-<!--                <th>avatar</th>-->
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Start searching music genre..."><br>
+                    <button routerLink="/createSinger" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Singer
+                        <img src="../../../../assets/images/icons/create-singer.png" height="40" width="40"/></b></span>
+                    </button>
+                </div>
 
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr *ngFor="let employee of singerList, index as i">-->
-<!--                <th scope="row">{{i+1}}</th>-->
-<!--                <td><a>{{employee.nameSinger}}</a></td>-->
-<!--                <td><img style="height: 200px; width: 200px" [src]=employee.avatarSinger></td>-->
-<!--                &lt;!&ndash;                <td>{{employee.emailId}}</td>&ndash;&gt;-->
-<!--                <td>-->
-<!--                    <button [routerLink]="['/editSinger/',employee.id]" class="btn btn-primary">Edit</button>-->
-<!--                    <button (click)="singerDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">-->
-<!--                        Details-->
-<!--                    </button>-->
-<!--                    <button (click)="deleteEmployee(employee.id)" class="btn btn-danger" style="margin-left: 10px">-->
-<!--                        Delete-->
-<!--                    </button>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--</div>-->
-<div>
-    <table class="mat-table">
-        <thead>
-        <tr class="mat-header-row">
-            <th class='mat-header-cell'>Id</th>
-            <th class='mat-header-cell'>name</th>
-            <th class='mat-header-cell'>birthday</th>
-            <th class='mat-header-cell'>gender</th>
-            <th class='mat-header-cell'>avatar</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="mat-row" *ngFor="let todo of singers; let i = index">
-            <th scope="row">{{i + 1}}</th>
-            <td class="mat-cell">{{todo.id}}</td>
-            <td class="mat-cell">{{todo.nameSinger}}</td>
-            <td class="mat-cell">{{todo.birthday}}</td>
-            <td class="mat-cell">{{todo.gender}}</td>
-            <td class="mat-cell">{{todo.information}}</td>
-            <td class="mat-cell"><img [src]=todo.avatarSinger width="50px" height="50px"></td>
-        </tr>
-        </tbody>
-    </table>
-    <mat-paginator #paginator [pageSizeOptions]="[2, 5, 10, 100]" [pageSize]="5" [length]="totalElements"
-                   (page)="nextPage($event)">
+                <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                <!--                          <mat-card>-->
+                <!--                              <b>{{ctg.nameCategory}}</b>-->
+                <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                <!--                          </mat-card>-->
+                <!--                    </mat-grid-tile>-->
 
-    </mat-paginator>
+                <!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let singer of singers|filter: searchText">
+                        <div class="card" >
+                            <b  style="color: crimson">{{singer.nameSinger}}</b>
+                            <b  style="color: crimson">birthday:{{singer.birthday}}</b>
+                            <img class="image"  [src]="singer.avatarSinger">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <mat-paginator #paginator [pageSizeOptions]="[30, 50, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
 </div>
+
+

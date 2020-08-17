@@ -74,7 +74,7 @@ import { UploadFileComponent } from './content/upload/upload-file/upload-file.co
 import { CreateSingerComponent } from './content/singerManage/create-singer/create-singer.component';
 import { AdminComponent } from './form-login/admin/admin.component';
 import { DetailSingerComponent } from './content/singerManage/detail-singer/detail-singer.component';
-import { SingerComponent } from './content/singerManage/singer/singer.component';
+import { PageSingerComponent } from './content/singerManage/pageSinger/page-singer.component';
 import { EditSingerComponent } from './content/singerManage/edit-singer/edit-singer.component';
 import { httpInterceptorProviders} from "./auth/auth-interceptor";
 import {AuthGuard} from "./auth/auth.guard";
@@ -87,6 +87,10 @@ import { CreateCategoryComponent } from './content/categoryManage/create-categor
 import { PageCategoryComponent } from './content/categoryManage/page-category/page-category.component';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { EditCategoryComponent } from './content/categoryManage/edit-category/edit-category.component';
+import { CreatePlaylistComponent } from './content/playlistManage/create-playlist/create-playlist.component';
+import { EditPlaylistComponent } from './content/playlistManage/edit-playlist/edit-playlist.component';
+import { AddsongToPlaylistComponent } from './content/playlistManage/addsong-to-playlist/addsong-to-playlist.component';
+import { DetailPlaylistComponent } from './content/playlistManage/detail-playlist/detail-playlist.component';
 
 
 // const config = new SocialAuthService([
@@ -113,17 +117,20 @@ export const appRoutes: Routes = [
     {path: 'detailSinger/:id', component: DetailSingerComponent, data:{title: 'DetailSinger'}},
     {path: 'createSinger', component: CreateSingerComponent, data: {title: 'CreateSinger' }},
     {path: 'editSinger/:id', component: EditSingerComponent, data: {title: 'EditSinger'}},
-    {path: 'singer', component: SingerComponent, data: {title: 'Singer'}},
+    {path: 'singer', component: PageSingerComponent, data: {title: 'Singer'}},
     {path: 'changeAvatar', component: ChangeAvatarComponent, data:{title: 'ChangeAvatar'}},
     {path: 'createSong', component: CreateSongComponent, data: {title: 'CreateSong'}},
     {path: 'createCategory', component: CreateCategoryComponent, data: {title: 'CreateCategory'}},
     {path: 'pageCategory', component: PageCategoryComponent, data: {title: 'PageCategory'}},
-    {path: 'editCategory/:id', component: EditCategoryComponent, data: {title: 'EditCategory'}}
+    {path: 'editCategory/:id', component: EditCategoryComponent, data: {title: 'EditCategory'}},
+    {path: 'createPlayList', component: CreatePlaylistComponent, data: {title: 'CreatePlayList'}},
+    {path: 'detailPlayList/:id', component: DetailPlaylistComponent, data: {title: 'DetailPlayList'}},
+    {path: 'addSongToPlayList/:id', component: AddsongToPlaylistComponent, data: {title: 'AddSongToPlayList'}}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, SingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent,
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent,
     ],
     imports: [
         HttpClientModule,

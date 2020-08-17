@@ -25,7 +25,7 @@ export class DetailSingerComponent implements OnInit {
     ngOnInit() {
         this.singer = new SingerInfo();
         this.id = this.route.snapshot.params['id']
-        // console.log("id"+this.singer.id)
+        // console.log("id"+this.pageSinger.id)
         this.singerService.getEmployee(this.id).subscribe(data => {
             console.log(data)
             this.singer = data;

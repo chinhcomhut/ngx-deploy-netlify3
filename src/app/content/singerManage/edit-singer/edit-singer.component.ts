@@ -46,7 +46,7 @@ export class EditSingerComponent implements OnInit {
 
     gotoList() {
 
-        this.router.navigate(['/singer']);
+        this.router.navigate(['/pageSinger']);
 
     }
 

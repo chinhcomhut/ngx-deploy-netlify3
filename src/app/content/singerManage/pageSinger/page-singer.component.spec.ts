@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SingerComponent } from './singer.component';
+import { PageSingerComponent } from './page-singer.component';
 
 describe('SingerComponent', () => {
-  let component: SingerComponent;
-  let fixture: ComponentFixture<SingerComponent>;
+  let component: PageSingerComponent;
+  let fixture: ComponentFixture<PageSingerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SingerComponent ]
+      declarations: [ PageSingerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SingerComponent);
+    fixture = TestBed.createComponent(PageSingerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

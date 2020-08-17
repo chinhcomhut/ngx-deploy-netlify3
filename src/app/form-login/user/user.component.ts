@@ -12,6 +12,9 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ActivatedRouteSnapshot} from "@angular/router";
 import {UserAccount} from "../../model/userAccount/userAccount";
+import {PlaylistInfo} from "../../model/playlist-info";
+import {PlaylistService} from "../../service/playlist.service";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
     selector: 'app-user',
@@ -26,12 +29,16 @@ export class UserComponent implements OnInit {
     user: UserAccount
     info: any;
     returnUrl: string
-
+    searchText;
+    playList: PlaylistInfo[];
+    loading = false;
+    totalElements: number = 0;
     // songList: Song[] = [];
     constructor(private token: TokenStorageService,
                 private routes: ActivatedRoute,
                 private userService: UserService,
-                private route: Router
+                private route: Router,
+                private playListService: PlaylistService
     ) {
     }
 
@@ -56,6 +63,8 @@ export class UserComponent implements OnInit {
         };
         // console.log(this.info)
         console.log("token" + this.token.getToken())
+        this.getListResquest({page:'', size: ''})
+        console.log('listreques',this.getListResquest({page: '', size: ''}))
     }
 
     // changeMsbapDisplayTitle(event) {
@@ -103,5 +112,24 @@ export class UserComponent implements OnInit {
         window.sessionStorage.setItem("AuthUserId", user.id.toString());
         this.route.navigate(['/change-password' + user.id]);
     };
+     getListResquest(request) {
+        this.loading = true;
+        this.playListService.pagePlayListByUser(request)
+            .subscribe(data => {
+                this.playList = data['content'];
+                console.log('category', data);
+                this.totalElements = data['totalElements'];
+                this.loading = false;
+            }, error => {
+                this.loading = false;
+            });
+    }
+
+    nextPage(event: PageEvent) {
+        const request = {};
+        request['page'] = event.pageIndex.toString();
+        request['size'] = event.pageSize.toString();
+        this.getListResquest(request);
+    }
 
 }

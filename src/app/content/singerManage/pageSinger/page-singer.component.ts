@@ -11,13 +11,14 @@ import {count, tap} from "rxjs/operators";
 
 @Component({
     selector: 'app-singer',
-    templateUrl: './singer.component.html',
-    styleUrls: ['./singer.component.css']
+    templateUrl: './page-singer.component.html',
+    styleUrls: ['./page-singer.component.css']
 })
-export class SingerComponent implements OnInit {
+export class PageSingerComponent implements OnInit {
     totalElements: number = 0;
     singers: Singer[] = [];
     loading: boolean;
+    searchText;
     constructor(private singerService: SingerService,
                 private router: Router) {
     }
@@ -35,7 +36,7 @@ export class SingerComponent implements OnInit {
     }
     private getListResquest(request) {
         this.loading = true;
-        this.singerService.getSingerList(request)
+        this.singerService.getPageSinger(request)
             .subscribe(data => {
                 this.singers = data['content'];
                 this.totalElements = data['totalElements'];
