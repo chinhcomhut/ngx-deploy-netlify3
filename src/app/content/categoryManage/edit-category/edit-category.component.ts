@@ -46,7 +46,7 @@ export class EditCategoryComponent implements OnInit {
   }
 
   updateCategory() {
-    this.categoryService.updateCategory(this.id, this.category).subscribe(data => {
+    this.categoryService.updateCategory(this.category).subscribe(data => {
       if (JSON.stringify(data) == JSON.stringify(this.data1)) {
         console.log('th1', data);
         this.errorMessage = 'The Category already exists! Please try again!';
