@@ -25,7 +25,7 @@ export class DetailPlaylistComponent implements OnInit {
   msbapDisplayVolumeControls = true;
   pageSizeOptions = [2, 4, 6];
   dataSource: any;
-  displayedColumns: string[] = ['id','nameSong']
+  displayedColumns: string[] = ['id','nameSong','mp3Url']
   @ViewChild(MatSort) sort: MatSort;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -55,6 +55,24 @@ export class DetailPlaylistComponent implements OnInit {
     }
     this.msMapPlayList = this.playlist2;
   }
+  deleteSong(mp3Url: string) {
+    console.log('lenth',this.playList.songList)
+    for (let i = 0; i < this.playList.songList.length; i++) {
+      if (this.playList.songList[i].mp3Url === mp3Url) {
+        this.playList.songList.splice(i, 1);
+        console.log('leng in if',this.playList.songList.length)
+      }
+      // console.log(this.song.length);
+    }
+
+    this.playListService.updatePlaylist(this.playList).subscribe( () => {
+      console.log('success', this.playList.songList.length);
+    }, error => {
+      console.log('error');
+    });
+    window.location.reload();
+  }
+
 
   changeMsbapDisplayTitle(event) {
     this.msbapDisplayTitle = event.checked;
@@ -85,31 +103,4 @@ export class DetailPlaylistComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-
-}
-const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
 }

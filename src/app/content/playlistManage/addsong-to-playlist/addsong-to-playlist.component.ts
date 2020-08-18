@@ -12,11 +12,13 @@ import {SongService} from "../../../service/song.service";
   styleUrls: ['./addsong-to-playlist.component.css']
 })
 export class AddsongToPlaylistComponent implements OnInit {
-  songList: SongInfo[];
+  songs: SongInfo[];
   playList: PlaylistInfo;
   loading = false;
   totalElements: number = 0;
   searchText;
+  isCheck = false;
+  errorMessage = '';
   constructor(private playListService: PlaylistService,
               private routes: ActivatedRoute,
               private songService: SongService) { }
@@ -31,26 +33,42 @@ export class AddsongToPlaylistComponent implements OnInit {
     this.getListResquest({page: '', size: ''});
   }
   addSongtoPlayList(song: SongInfo) {
-    // alert('vao day')
-    console.log('song truoc khi push',song)
-    // this.playlist.songList = new Array();
-    this.playList.songList.push(song);
-    console.log('this.playlist', this.playList)
-    // alert('xuong day')
-    console.log('songpush',song)
-    // const url = '/playList/' + this.id;
+    console.log('leng', this.playList.songList.length)
+    if (this.playList.songList.length == 0) {
+      this.isCheck = false;
+    } else {
+      for (let i = 0; i < this.playList.songList.length; i++) {
+        console.log('song.id', song.id)
+        console.log('songlist.id', this.playList.songList[i].id)
+        if (song.id != this.playList.songList[i].id) {
+          continue;
+        } else {
+          this.isCheck = true;
+          break;
+        }
+      }
+    }
+    if (this.isCheck) {
+      alert('Bai hat da ton tai')
+      this.errorMessage = 'The Song already exists in your play list! Please check your play list!'
+    } else {
+      this.playList.songList.push(song);
+      this.errorMessage = 'add successful Song!'
+      alert('add song success!')
+    }
+
     this.playListService.updatePlaylist(this.playList).subscribe(next => {
-      console.log('next',next);
+      console.log('next', next);
       // alert('co vao day khong')
       // this.router.navigate([url]);
-      alert('add song success!')
+      // alert('add song success!')
     });
   }
   private getListResquest(request) {
     this.loading = true;
     this.songService.getPageSong(request)
         .subscribe(data => {
-          this.songList = data['content'];
+          this.songs = data['content'];
           console.log('category', data);
           this.totalElements = data['totalElements'];
           this.loading = false;

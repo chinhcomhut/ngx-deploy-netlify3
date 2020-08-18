@@ -26,4 +26,10 @@
     overflow: auto;
     max-height: 500px;
 }
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 70px;
+}
+
 
