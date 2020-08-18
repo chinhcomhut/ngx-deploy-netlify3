@@ -46,7 +46,7 @@
                         <button (click)="addSongtoCategory(ctc)" mat-flat-button color="accent" ><mat-icon>queue music</mat-icon>Add</button>
                         <div class="card">
                             <b [routerLink]="['/detailSong/',ctc.id]" class="title" style="color: crimson">{{ctc.nameSong}}</b>
-                                                                                    <b>{{ctc.id}}</b>
+<!--                                                                                    <b>{{ctc.id}}</b>-->
                             <img [routerLink]="['/detailSong/',ctc.id]" class="image" [src]="ctc.avatarSong">
                         </div>
 
