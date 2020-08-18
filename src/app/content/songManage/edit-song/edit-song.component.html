@@ -1,15 +1,64 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;" *ngIf="song">
+                <h1 style="color: #ff03cc"> Old Song</h1>
+                <!--                <button [routerLink]="['/editSong',song.id]" type="submit" style="color: crimson; text-decoration: none;"-->
+                <!--                        aria-label="Angular Audio Player"-->
+                <!--                        class="mat-button-toggle-group btn-outline-success"-->
+                <!--                        mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>-->
+                <!--                        Edit Song <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                <!--                                       width="40"/></b></span>-->
+                <!--                </button>-->
+                <img class="img" [src]="song.avatarSong" alt="">
+                <mat-card-header>
+                    <mat-card-title style="color: #ff03cc"><b style="color: green">Name Song:</b>  {{song.nameSong}}</mat-card-title>
+                    <mat-card-subtitle style="color: #ff03cc"><b style="color: green">Singer's:</b>  {{song.nameSinger}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content class="row justify-contents-around mat-basic-player">
+                    <div class="col py-3 pl-5">
+                        <h6>Controls</h6>
+                        <div class="d-flex flex-row px-3">
+                            displayTitle:
+                            <mat-checkbox style="color: #ff03cc" class="px-3 mat-basic-player-display-title" [checked]="msbapDisplayTitle"
+                                          (change)="changeMsbapDisplayTitle($event)">{{msbapDisplayTitle}}</mat-checkbox>
+                        </div>
+                        <div class="d-flex flex-row px-3">
+                            displayVolumeControls:
+                            <mat-checkbox class="px-3 mat-basic-player-display-title"
+                                          [checked]="msbapDisplayVolumeControls"
+                                          (change)="changeMsbapDisplayVolumeControls($event)">{{msbapDisplayVolumeControls}}</mat-checkbox>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <mat-basic-audio-player  class="col-12 col-md-6" [audioUrl]="song.mp3Url" [title]="song.lyrics"
+                                                 [displayTitle]="msbapDisplayTitle"
+                                                 [displayVolumeControls]="msbapDisplayVolumeControls"
+                                                 [autoPlay]="true" muted="muted"
+                        ></mat-basic-audio-player>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
-                <form class="create-song" #f="ngForm" (ngSubmit)="f.form.valid&& createSong()" novalidate>
+                <h1 style="color: #ffa100">FORM EDIT SONG</h1>
+                <form class="edit-song" #f="ngForm" (ngSubmit)="f.form.valid&& updateSong()" novalidate>
                     <mat-error class="alert alert-success">
                         Status: {{errorMessage}}
                     </mat-error>
                     <mat-form-field style="width: 300px;" appearance="outline">
                         <mat-label style="color: #bd4147">Name Song:</mat-label>
-                        <input name="nameSong" matInput placeholder="Fill the name Song ..."
-                               [(ngModel)]="song.nameSong" #nameSong="ngModel" required>
+                        <label>
+                            <input name="nameSong" matInput placeholder="Fill the name Song ..."
+                                   [(ngModel)]="song.nameSong" #nameSong="ngModel" required>
+                        </label>
                         <mat-icon color="accent" matSuffix>library_music</mat-icon>
                         <!--matSuffix de icon ngang hang voi input -->
                     </mat-form-field>
@@ -21,8 +70,10 @@
                     </mat-error>
                     <mat-form-field style="width: 300px" appearance="fill">
                         <mat-label STYLE="color: crimson">Lyrics:</mat-label>
-                        <textarea name="lyrics" matInput placeholder="Fill the lyrics of song..."
-                                  [(ngModel)]="song.lyrics" #lyrics="ngModel" required></textarea>
+                        <label>
+<textarea name="lyrics" matInput placeholder="Fill the lyrics of song..."
+          [(ngModel)]="song.lyrics" #lyrics="ngModel" required></textarea>
+                        </label>
                         <mat-error *ngIf="f.submitted&&lyrics.invalid">
                             <mat-error *ngIf="lyrics.errors">
                                 Lyrics is required! Please fill in form!
@@ -31,6 +82,7 @@
                         <mat-icon color="accent" matSuffix>edit</mat-icon>
                     </mat-form-field><br>
                     <!-- SELECT SINGER -->
+                    <mat-card-subtitle>Old Singer: {{song.nameSinger}}</mat-card-subtitle>
                     <mat-form-field style="width: 300px">
                         <mat-select style="width: 300px" placeholder="Select Singers" [formControl]="toppings"
                                     [ngModel]="song.nameSinger" (ngModelChange)="song.nameSinger=$event" multiple>
@@ -45,7 +97,7 @@
                                     <!-- + = leng - 4 (dong da hien) vs = 5 thi 'other' #5 thi 'others'-->
       </span>
                             </mat-select-trigger>
-                            <mat-option *ngFor="let topping of singers"
+                            <mat-option *ngFor="let topping of singer"
                                         [value]="topping.nameSinger">{{topping.nameSinger}}</mat-option>
                         </mat-select>
                     </mat-form-field><br>
@@ -53,9 +105,9 @@
                     <!-- SELECT CATEGORY -->
                     <mat-form-field style="width: 300px">
                         <mat-label>Select Music genre</mat-label>
-                        <mat-select [(value)]="selectCategory" [ngModel]="song.nameCategory"
+                        <mat-select [ngModel]="song.nameCategory"
                                     (ngModelChange)="song.nameCategory=$event" [ngModelOptions]="{standalone: true}">
-                            <mat-option *ngFor="let p of categorys" [value]="p.nameCategory">
+                            <mat-option *ngFor="let p of category" [value]="p.nameCategory">
                                 {{ p.nameCategory }}
                             </mat-option>
                         </mat-select>
@@ -66,31 +118,22 @@
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">
 <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
                         <!--                              width="40"/>-->
-                        <b>Create Song
-                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>
+                        <b>Edit Song
+                        <img src="../../../../assets/images/icons/edit-song1.png" height="40" width="40"/></b></span>
                     </button>
                 </form>
 
                 <mat-card  class="upload-file" >
                     <mat-error *ngIf="!addFileMp3">
-                        Please upload File MP3
+                        If Change File MP3, please upload file again!
                     </mat-error>
                     <app-upload-file (giveURLtoCreate)="onChange($event)"></app-upload-file> <br>
                     <mat-error *ngIf="!addAvatar">
-                        Please upload Avatar
+                        If Change Avatar, please upload avatar again!
                     </mat-error>
                     <mat-card>
                         <app-upload-avatar class="upload-avatar" (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
                     </mat-card>
-                </mat-card>
-                <mat-card>
-
-
-
-                    <mat-card-title class="title-card-right">
-
-                    </mat-card-title>
-
                 </mat-card>
             </mat-card>
         </div>

@@ -91,6 +91,9 @@ import { CreatePlaylistComponent } from './content/playlistManage/create-playlis
 import { EditPlaylistComponent } from './content/playlistManage/edit-playlist/edit-playlist.component';
 import { AddsongToPlaylistComponent } from './content/playlistManage/addsong-to-playlist/addsong-to-playlist.component';
 import { DetailPlaylistComponent } from './content/playlistManage/detail-playlist/detail-playlist.component';
+import { PageSongComponent } from './content/songManage/page-song/page-song.component';
+import { DetailSongComponent } from './content/songManage/detail-song/detail-song.component';
+import { EditSongComponent } from './content/songManage/edit-song/edit-song.component';
 
 
 // const config = new SocialAuthService([
@@ -125,12 +128,15 @@ export const appRoutes: Routes = [
     {path: 'editCategory/:id', component: EditCategoryComponent, data: {title: 'EditCategory'}},
     {path: 'createPlayList', component: CreatePlaylistComponent, data: {title: 'CreatePlayList'}},
     {path: 'detailPlayList/:id', component: DetailPlaylistComponent, data: {title: 'DetailPlayList'}},
-    {path: 'addSongToPlayList/:id', component: AddsongToPlaylistComponent, data: {title: 'AddSongToPlayList'}}
+    {path: 'addSongToPlayList/:id', component: AddsongToPlaylistComponent, data: {title: 'AddSongToPlayList'}},
+    {path: 'pageSong', component: PageSongComponent, data: {title: 'PageSong'}},
+    {path: 'detailSong/:id',component: DetailSongComponent, data: {title: 'DetailSong'}},
+    {path: 'editSong/:id', component: EditSongComponent, data: {title: 'EditSong'}}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent,
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent,
     ],
     imports: [
         HttpClientModule,

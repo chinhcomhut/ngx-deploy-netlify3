@@ -49,7 +49,7 @@ export class AddsongToPlaylistComponent implements OnInit {
       }
     }
     if (this.isCheck) {
-      alert('Bai hat da ton tai')
+      // alert('The Song already exists in your play list')
       this.errorMessage = 'The Song already exists in your play list! Please check your play list!'
     } else {
       this.playList.songList.push(song);
@@ -58,7 +58,7 @@ export class AddsongToPlaylistComponent implements OnInit {
     }
 
     this.playListService.updatePlaylist(this.playList).subscribe(next => {
-      console.log('next', next);
+      // console.log('next', next);
       // alert('co vao day khong')
       // this.router.navigate([url]);
       // alert('add song success!')

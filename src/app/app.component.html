@@ -6,19 +6,28 @@
         <div class="mat-button-ripple mat-ripple" matripple=""></div>
         <div class="mat-button-focus-overlay"></div>
     </a><span class="example-spacer"></span>
-    <a style="color: yellow; text-decoration: none;" aria-label="Angular Audio Player" class="docs-button mat-button"
+    <a style="color: darkgreen; text-decoration: none;" aria-label="Angular Audio Player" class="docs-button mat-button"
        mat-button tabindex="0" aria-disabled="false" routerLink="/singer"><span class="mat-button-wrapper">
         <img src="../assets/images/icons/list-singer.png" height="40" width="40"/><b>List Singer</b></span>
         <div class="mat-button-ripple mat-ripple" matripple=""></div>
         <div class="mat-button-focus-overlay"></div>
     </a><span class="example-spacer"></span>
+<!--    <a style="color: #0b84ff; text-decoration: none;" aria-label="Angular Audio Player" class="docs-button mat-button"-->
+<!--       mat-button tabindex="0" aria-disabled="false" routerLink="/pageSong"><span class="mat-button-wrapper">-->
+<!--        <img src="../assets/images/icons/list-song.png" height="40" width="40"/><b>Store Music</b></span>-->
+<!--    </a><span class="example-spacer"></span>-->
     <!-- List Category -->
-    <a style="color: greenyellow; text-decoration: none;" aria-label="Angular Audio Player" class="docs-button mat-button"
+    <a style="color: greenyellow; text-decoration: none;" aria-label="Angular Audio Player"
+       class="docs-button mat-button"
        mat-button tabindex="0" aria-disabled="false" routerLink="/pageCategory"><span class="mat-button-wrapper">
         <img src="../assets/images/icons/list-category.png" height="30" width="30"/>
         <b>Music Genre</b></span>
     </a><span class="example-spacer"></span>
-
+    <a style="color: midnightblue; text-decoration: none;" aria-label="Angular Audio Player"
+       class="docs-button mat-button"
+       mat-button tabindex="0" aria-disabled="false" routerLink="/pageSong"><span class="mat-button-wrapper">
+        <img src="../assets/images/icons/list-song.png" height="40" width="40"/><b>Store Music</b></span>
+    </a><span class="example-spacer"></span>
     <a *ngIf="!authority" style="color: springgreen; text-decoration: none;" aria-label="Angular Audio Player"
        class="docs-button mat-button"
        mat-button tabindex="0" aria-disabled="false" routerLink="/register"><span class="mat-button-wrapper"><img
@@ -36,8 +45,9 @@
         <div class="mat-button-ripple mat-ripple" matripple=""></div>
         <div class="mat-button-focus-overlay"></div>
     </a><span class="example-spacer"></span>
-<!-- ADMIN -->
-    <a *ngIf="authority === 'admin'" style="color: springgreen; text-decoration: none;" aria-label="Angular Audio Player"
+    <!-- ADMIN -->
+    <a *ngIf="authority === 'admin'" style="color: springgreen; text-decoration: none;"
+       aria-label="Angular Audio Player"
        class="docs-button mat-button"
        mat-button tabindex="0" aria-disabled="false" routerLink="/admin"><span class="mat-button-wrapper"><img
             width="30px;" alt="angular" class="docs-angular-logo"
@@ -51,26 +61,27 @@
        mat-button tabindex="0" aria-disabled="false" routerLink="/login"><span class="mat-button-wrapper"><img
             width="30px;" alt="angular" class="docs-angular-logo"
             src="../assets/images/icons/login.png"
-                                                                         width="30px"/><b>Login</b></span>
+            width="30px"/><b>Login</b></span>
         <div class="mat-button-ripple mat-ripple" matripple=""></div>
         <div class="mat-button-focus-overlay"></div>
     </a><span class="example-spacer"></span>
-<!--    <a>-->
-<!--        <span class="mat-button-wrapper">-->
-<!--            <img  class="image" *ngIf="authority==='user'"[src]=info.avatar width="50px" height="50px" routerLink="/changeAvatar"></span>-->
-<!--        <div class="mat-button-ripple mat-ripple" matripple=""></div>-->
-<!--        <div class="mat-button-focus-overlay"></div>-->
-<!--    </a><span class="example-spacer"></span>-->
-    <a class="image" *ngIf="authority==='user'" style="color: springgreen; text-decoration: none;" aria-label="Angular Audio Player"
+    <!--    <a>-->
+    <!--        <span class="mat-button-wrapper">-->
+    <!--            <img  class="image" *ngIf="authority==='user'"[src]=info.avatar width="50px" height="50px" routerLink="/changeAvatar"></span>-->
+    <!--        <div class="mat-button-ripple mat-ripple" matripple=""></div>-->
+    <!--        <div class="mat-button-focus-overlay"></div>-->
+    <!--    </a><span class="example-spacer"></span>-->
+    <a class="image" *ngIf="authority==='user'" style="color: springgreen; text-decoration: none;"
+       aria-label="Angular Audio Player"
        mat-button tabindex="0" aria-disabled="false" routerLink="/changeAvatar"><span class="mat-button-wrapper">
-        <img  alt="angular" class="image" [src]=info.avatar width="50px" height="50px"></span>
+        <img alt="angular" class="image" [src]=info.avatar width="50px" height="50px"></span>
         <div class="mat-button-ripple mat-ripple" matripple=""></div>
         <div class="mat-button-focus-overlay"></div>
     </a><span class="example-spacer"></span>
 
-<!--    <a href="#news">News</a>-->
-<!--    <a href="#contact">Contact</a>-->
-<!--    <a href="#about">About</a>-->
+    <!--    <a href="#news">News</a>-->
+    <!--    <a href="#contact">Contact</a>-->
+    <!--    <a href="#about">About</a>-->
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
     </a>

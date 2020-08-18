@@ -1,6 +1,11 @@
-.create-song {
+.img{
+    width: 100%;
+    height: 300px;
+}
+.edit-song{
     text-align: center;
 }
+
 .upload-file {
     /*  not needed styles to reflect it */
     background: lightskyblue;
@@ -12,5 +17,4 @@
     /*display: inline-flex;*/
     /*justify-content: space-between;*/
 }
-
 

@@ -19,6 +19,10 @@ export class CategoryService {
     return this.http.get(this.List_Category_Pagination, {params});
   }
 
+  getListCategory(): Observable<CategoryInfo[]> {
+    return this.http.get<CategoryInfo[]>(this.API_Category);
+  }
+
   createCategory(category: Object): Observable<Object> {
     return this.http.post(this.API_Category, category);
   }
@@ -26,10 +30,12 @@ export class CategoryService {
   getCategoryById(id: number): Observable<CategoryInfo> {
     return this.http.get<CategoryInfo>(`${this.API_Category}/${id}`);
   }
-  updateCategory(id: number, value: any): Observable<Object>{
-    return this.http.put(`${this.API_Category}/${id}`, value)
+
+  updateCategory(id: number, value: any): Observable<Object> {
+    return this.http.put(`${this.API_Category}/${id}`, value);
   }
-  deleteCategory(id: number): Observable<CategoryInfo>{
-    return this.http.delete<CategoryInfo>(`${this.API_Category}/${id}`)
+
+  deleteCategory(id: number): Observable<CategoryInfo> {
+    return this.http.delete<CategoryInfo>(`${this.API_Category}/${id}`);
   }
 }

@@ -32,11 +32,8 @@ export class SingerService {
   deleteEmployee(id: number): Observable<any> {
     return this.http.delete(`${this.API_SINGER}/${id}`, { responseType: 'text' });
   }
-
-  getEmployeesList() {
-    // const params = request;
-
-    return this.http.get(this.API_SINGER);
+  getListSinger():Observable<SingerInfo[]>{
+    return this.http.get<SingerInfo[]>(this.API_SINGER)
   }
   getPageSinger(request){
     const params = request;
