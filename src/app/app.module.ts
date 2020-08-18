@@ -94,6 +94,7 @@ import { DetailPlaylistComponent } from './content/playlistManage/detail-playlis
 import { PageSongComponent } from './content/songManage/page-song/page-song.component';
 import { DetailSongComponent } from './content/songManage/detail-song/detail-song.component';
 import { EditSongComponent } from './content/songManage/edit-song/edit-song.component';
+import { AddsongToCategoryComponent } from './content/categoryManage/addsong-to-category/addsong-to-category.component';
 
 
 // const config = new SocialAuthService([
@@ -131,12 +132,13 @@ export const appRoutes: Routes = [
     {path: 'addSongToPlayList/:id', component: AddsongToPlaylistComponent, data: {title: 'AddSongToPlayList'}},
     {path: 'pageSong', component: PageSongComponent, data: {title: 'PageSong'}},
     {path: 'detailSong/:id',component: DetailSongComponent, data: {title: 'DetailSong'}},
-    {path: 'editSong/:id', component: EditSongComponent, data: {title: 'EditSong'}}
+    {path: 'editSong/:id', component: EditSongComponent, data: {title: 'EditSong'}},
+    {path: 'addSongToCategory/:id', component: AddsongToCategoryComponent, data: {title: 'AddSongToCategory'}}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent,
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, AddsongToCategoryComponent,
     ],
     imports: [
         HttpClientModule,

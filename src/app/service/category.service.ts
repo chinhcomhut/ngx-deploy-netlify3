@@ -10,7 +10,7 @@ import {CategoryInfo} from '../model/category-info';
 export class CategoryService {
   private List_Category_Pagination = environment.URL_local + 'category/pagination';
   private API_Category = environment.URL_local + 'category';
-
+  private API_Category_Update = environment.URL_local+'update-category'
   constructor(private http: HttpClient) {
   }
 
@@ -31,8 +31,8 @@ export class CategoryService {
     return this.http.get<CategoryInfo>(`${this.API_Category}/${id}`);
   }
 
-  updateCategory(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.API_Category}/${id}`, value);
+  updateCategory(category: CategoryInfo): Observable<CategoryInfo> {
+    return this.http.put<CategoryInfo>(`${this.API_Category_Update}`, category);
   }
 
   deleteCategory(id: number): Observable<CategoryInfo> {

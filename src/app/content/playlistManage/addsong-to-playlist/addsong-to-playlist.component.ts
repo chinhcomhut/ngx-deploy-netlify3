@@ -34,6 +34,7 @@ export class AddsongToPlaylistComponent implements OnInit {
   }
   addSongtoPlayList(song: SongInfo) {
     console.log('leng', this.playList.songList.length)
+    this.isCheck = false;
     if (this.playList.songList.length == 0) {
       this.isCheck = false;
     } else {

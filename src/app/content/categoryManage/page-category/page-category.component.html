@@ -24,7 +24,11 @@
 
 <!--                </mat-grid-list>-->
                 <div class="row">
-                    <div class="column" *ngFor="let ctc of category|filter: searchText"[routerLink]="['/editCategory',ctc.id]">
+                    <div class="column" *ngFor="let ctc of category|filter: searchText">
+                        <button [routerLink]="['/addSongToCategory/',ctc.id]" mat-flat-button color="accent">
+                            <mat-icon>queue music</mat-icon>
+                            Add Music
+                        </button>
                         <div class="card" >
                             <b class="title" style="color: crimson">{{ctc.nameCategory}}</b>
                             <img class="image"  [src]="ctc.avatarCategory">
