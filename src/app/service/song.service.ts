@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 export class SongService {
 private API_Page_Song = environment.URL_local+'song/pagination';
 private API_Song = environment.URL_local+'song'
+  private API_Song_By_Category = environment.URL_local+'song-by-category-id'
   constructor(private http: HttpClient) { }
   getPageSong(request){
     const params = request;
@@ -24,4 +25,9 @@ private API_Song = environment.URL_local+'song'
   updateSong(id: number, value: any): Observable<Object>{
     return this.http.put<Object>(`${this.API_Song}/${id}`, value)
   }
+  getPageSongByCategory(request) {
+    const params = request;
+    return this.http.get(this.API_Song_By_Category, {params});
+  }
+
 }

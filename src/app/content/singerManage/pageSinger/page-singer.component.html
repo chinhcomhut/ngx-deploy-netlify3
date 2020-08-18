@@ -25,6 +25,10 @@
                 <!--                </mat-grid-list>-->
                 <div class="row">
                     <div class="column" *ngFor="let singer of singers|filter: searchText">
+                        <button [routerLink]="['/addSongToSinger/',singer.id]" mat-flat-button color="accent">
+                            <mat-icon>queue music</mat-icon>
+                            Add Music
+                        </button>
                         <div class="card" >
                             <b  style="color: crimson">{{singer.nameSinger}}</b>
                             <b  style="color: crimson">birthday:{{singer.birthday}}</b>

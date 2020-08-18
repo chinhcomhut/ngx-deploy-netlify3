@@ -95,6 +95,8 @@ import { PageSongComponent } from './content/songManage/page-song/page-song.comp
 import { DetailSongComponent } from './content/songManage/detail-song/detail-song.component';
 import { EditSongComponent } from './content/songManage/edit-song/edit-song.component';
 import { AddsongToCategoryComponent } from './content/categoryManage/addsong-to-category/addsong-to-category.component';
+import { DetailCategoryComponent } from './content/categoryManage/detail-category/detail-category.component';
+import { AddsongToSingerComponent } from './content/singerManage/addsong-to-singer/addsong-to-singer.component';
 
 
 // const config = new SocialAuthService([
@@ -133,12 +135,14 @@ export const appRoutes: Routes = [
     {path: 'pageSong', component: PageSongComponent, data: {title: 'PageSong'}},
     {path: 'detailSong/:id',component: DetailSongComponent, data: {title: 'DetailSong'}},
     {path: 'editSong/:id', component: EditSongComponent, data: {title: 'EditSong'}},
-    {path: 'addSongToCategory/:id', component: AddsongToCategoryComponent, data: {title: 'AddSongToCategory'}}
+    {path: 'addSongToCategory/:id', component: AddsongToCategoryComponent, data: {title: 'AddSongToCategory'}},
+    {path: 'detailCategory/:id',component: DetailCategoryComponent, data: {title: 'DetailCategory'}},
+    {path: 'addSongToSinger/:id', component: AddsongToSingerComponent, data: {title: 'AddSongToSinger'}}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, AddsongToCategoryComponent,
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, AddsongToCategoryComponent, DetailCategoryComponent, AddsongToSingerComponent,
     ],
     imports: [
         HttpClientModule,

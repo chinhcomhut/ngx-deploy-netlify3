@@ -20,15 +20,15 @@ export class EditSingerComponent implements OnInit {
 
 
     ngOnInit() {
-        this.singer = new SingerInfo();
-
-        this.id = this.route.snapshot.params['id'];
-
-        this.singerService.getEmployee(this.id)
-            .subscribe(data => {
-                console.log(data)
-                this.singer = data;
-            }, error => console.log(error));
+        // this.singer = new SingerInfo();
+        //
+        // this.id = this.route.snapshot.params['id'];
+        //
+        // this.singerService.getEmployee(this.id)
+        //     .subscribe(data => {
+        //         console.log(data)
+        //         this.singer = data;
+        //     }, error => console.log(error));
     }
 
     updateEmployee() {

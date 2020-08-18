@@ -30,8 +30,8 @@
                             Add Music
                         </button>
                         <div class="card" >
-                            <b class="title" style="color: crimson">{{ctc.nameCategory}}</b>
-                            <img class="image"  [src]="ctc.avatarCategory">
+                            <b [routerLink]="['/detailCategory/',ctc.id]" class="title" style="color: crimson">{{ctc.nameCategory}}</b>
+                            <img [routerLink]="['/detailCategory/',ctc.id]" class="image"  [src]="ctc.avatarCategory">
                         </div>
                        
                     </div>

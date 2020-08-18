@@ -1,0 +1,69 @@
+<!--<div *ngIf="category">-->
+<!--    <div>-->
+<!--        <label><b>First Name: </b></label> {{category.nameCategory}}-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label><b>Last Name: </b></label>-->
+<!--        <img [src]=category.avatarCategory>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    <button [routerLink]="['/addSongToCategory/',category.id]" mat-flat-button color="accent">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <mat-icon>queue music</mat-icon>&ndash;&gt;-->
+<!--    &lt;!&ndash;        Add Music&ndash;&gt;-->
+<!--    &lt;!&ndash;    </button>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <button [routerLink]="['/editCategory/',category.id]" mat-flat-button color="accent">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <mat-icon>queue music</mat-icon>&ndash;&gt;-->
+<!--    &lt;!&ndash;        Add Music&ndash;&gt;-->
+<!--    &lt;!&ndash;    </button>&ndash;&gt;-->
+<!--</div>-->
+<div class="container" *ngIf="category">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <img class="image" [src]="category.avatarCategory"> <br><br>
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Start searching music genre..."><br>
+                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
+                                            width="40"/></b></span>
+                    </button>
+                </div>
+
+                <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                <!--                          <mat-card>-->
+                <!--                              <b>{{ctg.nameCategory}}</b>-->
+                <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                <!--                          </mat-card>-->
+                <!--                    </mat-grid-tile>-->
+
+                <!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let ctc of category.songList|filter: searchText"[routerLink]="['/song-by-category-id',ctc.id]">
+                        <div class="card">
+                            <b [routerLink]="['/detailSong/',ctc.id]" class="title" style="color: crimson">{{ctc.nameSong}}</b>
+                            <img [routerLink]="['/detailSong/',ctc.id]" class="image1" [src]="ctc.avatarSong">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <mat-paginator #paginator [pageSizeOptions]="[10, 50, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

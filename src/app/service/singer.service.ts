@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import {environment} from "../../environments/environment.prod";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable, of} from "rxjs";
-import {SingerInfo} from "../model/singer/singer-info";
-import {catchError, tap} from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment.prod';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
+import {SingerInfo} from '../model/singer/singer-info';
+import {catchError, tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,11 +12,14 @@ import {catchError, tap} from "rxjs/operators";
 export class SingerService {
 
   private API_SINGER = 'http://localhost:8080/api/auth/singer';
-  private API_SINGER_PAGINATION = 'http://localhost:8080/api/auth/singer/pagination'
-  private List_Singer_Pagination = environment.URL_local+'singer/pagination';
-  private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser'
-  constructor(private http: HttpClient) { }
-  getEmployee(id: number): Observable<SingerInfo> {
+  private API_SINGER_PAGINATION = 'http://localhost:8080/api/auth/singer/pagination';
+  private List_Singer_Pagination = environment.URL_local + 'singer/pagination';
+  private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser';
+  private API_Put_Singer = environment.URL_local+'update-singer'
+  constructor(private http: HttpClient) {
+  }
+
+  getSingerById(id: number): Observable<SingerInfo> {
     return this.http.get<SingerInfo>(`${this.API_SINGER}/${id}`);
   }
 
@@ -28,15 +31,19 @@ export class SingerService {
     return this.http.put(`${this.API_SINGER}/${id}`, value);
   }
 
-
+updateSinger(singer: SingerInfo): Observable<SingerInfo>{
+    return this.http.put<SingerInfo>(this.API_Put_Singer, singer)
+}
   deleteEmployee(id: number): Observable<any> {
-    return this.http.delete(`${this.API_SINGER}/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.API_SINGER}/${id}`, {responseType: 'text'});
   }
-  getListSinger():Observable<SingerInfo[]>{
-    return this.http.get<SingerInfo[]>(this.API_SINGER)
+
+  getListSinger(): Observable<SingerInfo[]> {
+    return this.http.get<SingerInfo[]>(this.API_SINGER);
   }
-  getPageSinger(request){
+
+  getPageSinger(request) {
     const params = request;
-    return this.http.get(this.List_Singer_Pagination,{params});
+    return this.http.get(this.List_Singer_Pagination, {params});
   }
 }
