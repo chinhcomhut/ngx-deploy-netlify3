@@ -27,6 +27,7 @@ export class DetailCategoryComponent implements OnInit {
         this.category = rusult;
       })
     })
+    this.getListResquest({page: '', size: ''});
   }
   private getListResquest(request) {
     this.loading = true;
@@ -39,7 +40,6 @@ export class DetailCategoryComponent implements OnInit {
       }, error => {
         this.loading = false;
       });
-    this.getListResquest({page: '', size: ''});
   }
 
   nextPage(event: PageEvent) {

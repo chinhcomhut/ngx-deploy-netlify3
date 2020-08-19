@@ -26,6 +26,7 @@ export class DetailPlaylistComponent implements OnInit {
   pageSizeOptions = [2, 4, 6];
   dataSource: any;
   displayedColumns: string[] = ['id','nameSong','mp3Url']
+  panelOpenState = false;
   @ViewChild(MatSort) sort: MatSort;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

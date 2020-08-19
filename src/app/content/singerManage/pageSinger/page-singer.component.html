@@ -30,9 +30,10 @@
                             Add Music
                         </button>
                         <div class="card" >
-                            <b  style="color: crimson">{{singer.nameSinger}}</b>
-                            <b  style="color: crimson">birthday:{{singer.birthday}}</b>
-                            <img class="image"  [src]="singer.avatarSinger">
+                            <b  [routerLink]="['/detailSinger/',singer.id]" style="color: crimson">{{singer.nameSinger}}</b>
+                            <b  [routerLink]="['/detailSinger/',singer.id]" style="color: crimson">birthday:{{singer.birthday}}</b>
+                            <img [routerLink]="['/detailSinger/',singer.id]" class="image"  [src]="singer.avatarSinger">
+                            <b>{{singer.id}}</b>
                         </div>
 
                     </div>

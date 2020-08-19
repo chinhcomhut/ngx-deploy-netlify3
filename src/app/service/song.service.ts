@@ -11,6 +11,7 @@ export class SongService {
 private API_Page_Song = environment.URL_local+'song/pagination';
 private API_Song = environment.URL_local+'song'
   private API_Song_By_Category = environment.URL_local+'song-by-category-id'
+  private API_Song_By_Singer = environment.URL_local+'song-by-singer'
   constructor(private http: HttpClient) { }
   getPageSong(request){
     const params = request;
@@ -28,6 +29,10 @@ private API_Song = environment.URL_local+'song'
   getPageSongByCategory(request) {
     const params = request;
     return this.http.get(this.API_Song_By_Category, {params});
+  }
+  getPageSongBySinger(request){
+  const params = request;
+  return this.http.get(this.API_Song_By_Singer)
   }
 
 }

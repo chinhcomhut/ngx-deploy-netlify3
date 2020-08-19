@@ -137,7 +137,7 @@ export const appRoutes: Routes = [
     {path: 'editSong/:id', component: EditSongComponent, data: {title: 'EditSong'}},
     {path: 'addSongToCategory/:id', component: AddsongToCategoryComponent, data: {title: 'AddSongToCategory'}},
     {path: 'detailCategory/:id',component: DetailCategoryComponent, data: {title: 'DetailCategory'}},
-    {path: 'addSongToSinger/:id', component: AddsongToSingerComponent, data: {title: 'AddSongToSinger'}}
+    {path: 'addSongToSinger/:id', component: AddsongToSingerComponent, data: {title: 'AddSongToSinger'}},
 ];
 
 @NgModule({

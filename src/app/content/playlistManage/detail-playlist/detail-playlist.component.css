@@ -31,5 +31,8 @@
     justify-content: center;
     width: 70px;
 }
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+}
 
 

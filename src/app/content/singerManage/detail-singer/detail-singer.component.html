@@ -1,21 +1,126 @@
-<h2>Employee Details</h2>
+<!--<div *ngIf="category">-->
+<!--    <div>-->
+<!--        <label><b>First Name: </b></label> {{category.nameCategory}}-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label><b>Last Name: </b></label>-->
+<!--        <img [src]=category.avatarCategory>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    <button [routerLink]="['/addSongToCategory/',category.id]" mat-flat-button color="accent">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <mat-icon>queue music</mat-icon>&ndash;&gt;-->
+<!--    &lt;!&ndash;        Add Music&ndash;&gt;-->
+<!--    &lt;!&ndash;    </button>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <button [routerLink]="['/editCategory/',category.id]" mat-flat-button color="accent">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <mat-icon>queue music</mat-icon>&ndash;&gt;-->
+<!--    &lt;!&ndash;        Add Music&ndash;&gt;-->
+<!--    &lt;!&ndash;    </button>&ndash;&gt;-->
+<!--</div>-->
+<div class="container" *ngIf="singer">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <img class="image" [src]="singer.avatarSinger"> <br><br>
+                <mat-accordion>
+                    <!--    <mat-expansion-panel hideToggle>-->
+                    <!--        <mat-expansion-panel-header>-->
+                    <!--            <mat-panel-title>-->
+                    <!--                This is the expansion title-->
+                    <!--            </mat-panel-title>-->
+                    <!--            <mat-panel-description>-->
+                    <!--                This is a summary of the content-->
+                    <!--            </mat-panel-description>-->
+                    <!--        </mat-expansion-panel-header>-->
+                    <!--        <p>This is the primary content of the panel.</p>-->
+                    <!--    </mat-expansion-panel>-->
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title style="color: blue;">
+                                INFORMATION:
+                            </mat-panel-title>
+                            <mat-panel-description style="color: red;">
+                                Click View {{panelOpenState ? 'open!' : 'closed!'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p style="color: #ff03cc">{{singer.information}}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <br>
 
-<hr/>
-<div *ngIf="singer">
-    <div>
-        <label><b>First Name: </b></label> {{singer.nameSinger}}
-    </div>
-    <div>
-        <label><b>Last Name: </b></label>
-        <img [src]=singer.avatarSinger>
-    </div>
-    <div>
-        <label><b>Birth Day: </b></label>
-     {{singer.birthday}}
-    </div>
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Search Song in one page ..."><br>
+                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
+                                            width="40"/></b></span>
+                    </button>
+                </div>
 
+                <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                <!--                          <mat-card>-->
+                <!--                              <b>{{ctg.nameCategory}}</b>-->
+                <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                <!--                          </mat-card>-->
+                <!--                    </mat-grid-tile>-->
+
+                <!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let ctc of singer.songList|filter: searchText"
+                         [routerLink]="['/song-by-singer/',ctc.id]">
+                        <div class="card">
+                            <b [routerLink]="['/detailSong/',ctc.id]" class="title"
+                               style="color: crimson">{{ctc.nameSong}}</b>
+                            <img [routerLink]="['/detailSong/',ctc.id]" class="image1" [src]="ctc.avatarSong">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <mat-paginator #paginator [pageSizeOptions]="[10, 50, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
 </div>
 
-<br>
-<br>
-<button (click)="list()" class="btn btn-primary">Back to Employee List</button><br>
+
+<!--<mat-accordion>-->
+<!--&lt;!&ndash;    <mat-expansion-panel hideToggle>&ndash;&gt;-->
+<!--&lt;!&ndash;        <mat-expansion-panel-header>&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-panel-title>&ndash;&gt;-->
+<!--&lt;!&ndash;                This is the expansion title&ndash;&gt;-->
+<!--&lt;!&ndash;            </mat-panel-title>&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-panel-description>&ndash;&gt;-->
+<!--&lt;!&ndash;                This is a summary of the content&ndash;&gt;-->
+<!--&lt;!&ndash;            </mat-panel-description>&ndash;&gt;-->
+<!--&lt;!&ndash;        </mat-expansion-panel-header>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>This is the primary content of the panel.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    </mat-expansion-panel>&ndash;&gt;-->
+<!--    <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                         (closed)="panelOpenState = false">-->
+<!--        <mat-expansion-panel-header>-->
+<!--            <mat-panel-title>-->
+<!--                Self aware panel-->
+<!--            </mat-panel-title>-->
+<!--            <mat-panel-description>-->
+<!--                Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+<!--            </mat-panel-description>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <p>I'm visible because I am open</p>-->
+<!--    </mat-expansion-panel>-->
+<!--</mat-accordion>-->
+
+
+
+
+
+
+
