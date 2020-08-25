@@ -76,7 +76,6 @@ console.log("info",info)
   }
     changeAvatar(info: any): Observable<JwtResponse> {
 
-
       return this.http.put<JwtResponse>(this.changeAvatarUrl ,info, httpOptions);
     }
     changeProfile(info: any): Observable<JwtResponse>{

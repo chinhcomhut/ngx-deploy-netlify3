@@ -63,7 +63,6 @@ export class TokenStorageService {
     window.sessionStorage.removeItem(AVATAR_KEY);
     window.sessionStorage.setItem(AVATAR_KEY, avatar);
   }
-
   public getAvatar() {
     return sessionStorage.getItem(AVATAR_KEY);
   }

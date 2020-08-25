@@ -10,12 +10,15 @@ import {TokenStorageService} from "../../auth/token-storage.service";
     styleUrls: ['./change-avatar.component.css']
 })
 export class ChangeAvatarComponent implements OnInit {
-    form: any = {}
+    form: any = {};
     changeAvatar: ChangeAvatar;
-    data: any = {
-        message: "no"
-    }
-    message = '';
+    data1: any = {
+        message: 'noavatar'
+    };
+    data2: any = {
+        message: 'yes'
+    };
+    messageError = 'Please Choose an image and click Upload';
     isChange = false;
     constructor(private authService: AuthService,
                 private router: Router,
@@ -27,27 +30,27 @@ export class ChangeAvatarComponent implements OnInit {
 
     onSubmit() {
         this.changeAvatar = new ChangeAvatar(
-            this.form.avatar
-        )
+          this.form.avatar
+        );
         this.authService.changeAvatar(this.changeAvatar).subscribe(data => {
-            if (JSON.stringify(data) == JSON.stringify(this.data)) {
-                // alert('Bạn hãy upload 1 tấm ảnh yêu thích của bạn')
-                this.message = 'Please wait for the image to be uploaded and click on Change Avatar';
-                this.isChange = true;
-            } else {
-                alert('change avatar success!!')
-                this.message = 'change avatar success!!'
-                this.tokenStorageService.saveAvatar(this.form.avatar)
+            if (JSON.stringify(data) == JSON.stringify(this.data1)) {
+                this.messageError = 'please upload Avatar!';
+            }
+            if (JSON.stringify(data) == JSON.stringify(this.data2)) {
+                this.messageError = 'Successful Avatar upload!';
+                alert(this.messageError);
+                this.tokenStorageService.saveAvatar(this.form.avatar);
                 // this.router.navigate(['user'])
-                window.location.reload()
+                window.location.reload();
             }
         }, error => {
-            alert('change avatar failled!')
+            alert('change avatar failled!');
 
-        })
+        });
     }
 
     onAvatar($event) {
+        this.isChange = true;
         this.form.avatar = $event;
     }
 }

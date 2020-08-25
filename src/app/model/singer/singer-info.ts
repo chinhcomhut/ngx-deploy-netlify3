@@ -8,4 +8,5 @@ export class SingerInfo {
     information: string;
     gender: string;
     songList: SongInfo[] = [];
+    createBy: string;
 }

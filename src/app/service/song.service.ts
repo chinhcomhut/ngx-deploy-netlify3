@@ -11,11 +11,16 @@ export class SongService {
 private API_Page_Song = environment.URL_local+'song/pagination';
 private API_Song = environment.URL_local+'song'
   private API_Song_By_Category = environment.URL_local+'song-by-category-id'
-  private API_Song_By_Singer = environment.URL_local+'song-by-singer'
+  private API_Song_By_Singer = environment.URL_local+'song-by-singer';
+private API_Page_Song_By_User = environment.URL_local+'song-by-user';
   constructor(private http: HttpClient) { }
   getPageSong(request){
     const params = request;
     return this.http.get(this.API_Page_Song, {params})
+  }
+  getPageSongByUser(request){
+    const params = request;
+    return this.http.get(this.API_Page_Song_By_User, {params})
   }
   createSong(song: SongInfo): Observable<SongInfo>{
     return this.http.post<SongInfo>(this.API_Song, song)
@@ -33,6 +38,10 @@ private API_Song = environment.URL_local+'song'
   getPageSongBySinger(request){
   const params = request;
   return this.http.get(this.API_Song_By_Singer)
+  }
+
+  deleteSong(id: number): Observable<SongInfo> {
+    return this.http.delete<SongInfo>(`${this.API_Song}/${id}`);
   }
 
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { TokenStorageService} from './auth/token-storage.service';
 import {UserAccount} from "./model/userAccount/userAccount";
+import {UserService} from './service/user.service';
+import {ActivatedRoute} from '@angular/router';
 // import {Song} from './model/song/song';
 // import {SongService} from './services/song/song.service';
 
@@ -12,15 +14,26 @@ import {UserAccount} from "./model/userAccount/userAccount";
 export class AppComponent implements OnInit {
   title = 'ngx-audio-player-demo';
    roles: string[];
-authority: string;
+  authority: string;
   // songList: Song[] = [];
   user: UserAccount;
   info: any;
-  constructor(private tokenStorage: TokenStorageService
+  constructor(private tokenStorage: TokenStorageService,
+              private userService: UserService,
+              private routes: ActivatedRoute
               // private songService: SongService
   ) {
   }
   ngOnInit(): void {
+    // this.routes.paramMap.subscribe(userId=>{
+    //   const id = +userId.get('id')
+    //   this.userService.getUserById(id).subscribe(result=>{
+    //     this.user = result;
+    //     console.log('userId', result)
+    //   })
+    // })
+    this.tokenStorage.getUserId();
+    console.log('id',this.tokenStorage.getUserId())
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
       console.log('authority '+this.roles)
@@ -43,8 +56,8 @@ authority: string;
       token: this.tokenStorage.getToken(),
       username: this.tokenStorage.getUsername(),
       avatar: this.tokenStorage.getAvatar(),
-      authorities: this.tokenStorage.getAuthorities()
-
+      authorities: this.tokenStorage.getAuthorities(),
+      id: this.tokenStorage.getUserId()
     };
     // this.songService.getSong()
     //     .subscribe(next => {

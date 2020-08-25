@@ -5,4 +5,5 @@ export class CategoryInfo {
     nameCategory: string;
     avatarCategory: string;
     songList: SongInfo[] = [];
+    createBy: string;
 }

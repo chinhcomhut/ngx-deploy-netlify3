@@ -1,22 +1,96 @@
-<h3>Update Employee</h3>
-<div [hidden]="submitted" style="width: 400px;">
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="name">First Name</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="singer.name" name="name">
+<div class="container" *ngIf="singer">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <mat-card-title class="text1" style="color: #ff03cc">OLD SINGER</mat-card-title>
+                            <b style="color: #ff03cc">{{singer.nameSinger}}</b>
+                            <img class="image" [src]="singer.avatarSinger"> <br><br>
+                            <mat-accordion>
+                                <!--    <mat-expansion-panel hideToggle>-->
+                                <!--        <mat-expansion-panel-header>-->
+                                <!--            <mat-panel-title>-->
+                                <!--                This is the expansion title-->
+                                <!--            </mat-panel-title>-->
+                                <!--            <mat-panel-description>-->
+                                <!--                This is a summary of the content-->
+                                <!--            </mat-panel-description>-->
+                                <!--        </mat-expansion-panel-header>-->
+                                <!--        <p>This is the primary content of the panel.</p>-->
+                                <!--    </mat-expansion-panel>-->
+                                <mat-expansion-panel (opened)="panelOpenState = true"
+                                                     (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title style="color: blue;">
+                                            INFORMATION:
+                                        </mat-panel-title>
+                                        <mat-panel-description style="color: red;">
+                                            Click View {{panelOpenState ? 'open!' : 'closed!'}}
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <b style="color: #2b542c">Birth day: yyyy-MM-dd: {{singer.birthday}}</b>
+                                    <p style="color: #ff03cc">{{singer.information}}</p>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+            </mat-card>
         </div>
-        <div class="form-group">
-            <label for="avatar">First Name</label>
-            <img style="height: 200px"  class="form-control" id="avatar" required [src]=singer.avatar name="avatar">
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-    <div class="col-4" style="margin-bottom: 10px">
-        <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
     </div>
 </div>
-<button (click)="gotoList()" type="submit" class="btn btn-success">Back List</button>
-<div [hidden]="!submitted">
-    <h4>You submitted successfully!</h4>
-    <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <h1 class="text2" style="color: orange">FORM EDIT SINGER</h1>
+                <mat-error class="alert alert-success">Status: {{errorMessage}}</mat-error>
+                <form class="create-singer" #f="ngForm" (ngSubmit)="createSinger()&&f.form.valid" novalidate>
+                    <mat-form-field style="width: 300px" appearance="outline">
+                        <mat-label>Name Singer:</mat-label>
+                        <input name="nameSinger" matInput placeholder="Please fill name Singer..."
+                               [(ngModel)]="singer.nameSinger" #nameSinger="ngModel" required>
+                        <mat-icon color="accent" matSuffix>contacts</mat-icon>
+                    </mat-form-field>
+                    <br>
+                    <mat-error *ngIf="f.submitted&&nameSinger.invalid">
+                        <mat-error *ngIf="nameSinger.errors"></mat-error>
+                    </mat-error>
+                    <mat-form-field style="width: 300px" appearance="fill">
+                        <mat-label>Information:</mat-label>
+                        <textarea name="information" matInput placeholder="Please fill information Singer ..."
+                                  [(ngModel)]="singer.information" #information="ngModel" required></textarea>
+                        <mat-icon color="accent" matSuffix>contact_mail</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="f.submitted&&information.invalid">
+                        <mat-error *ngIf="information.errors"></mat-error>
+                    </mat-error>
+                    <br>
+                    <input type="date" [ngModel]="singer.birthday | date:'yyyy-MM-dd'"
+                           (ngModelChange)="singer.birthday = $event" (click)="onDate($event)"
+                           [ngModelOptions]="{standalone: true}"><br>
+
+                    <mat-radio-group name="chinh"
+                                     aria-labelledby="example-radio-group-label"
+                                     class="example-radio-group"
+                                     [ngModel]="singer.gender" (ngModelChange)="singer.gender=$event">
+                        <mat-label style="color: #ff03cc">Gender:</mat-label>
+                        <mat-radio-button name="chinh" class="example-radio-button" *ngFor="let season of seasons"
+                                          [value]="season">
+                            {{season}}
+                        </mat-radio-button>
+                    </mat-radio-group><br>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+
+
+                        Edit Singer
+                        <img src="../../../../assets/images/icons/create-singer.png" height="40" width="40"/></b></span>
+                    </button>
+                </form>
+                <mat-error *ngIf="!isUploadAvatar">If change Avatar, please upload!</mat-error>
+                <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+            </mat-card>
+        </div>
+    </div>
 </div>
+

@@ -1,50 +1,142 @@
-
 <div class="container">
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card class="example-card">
                 <mat-card-header>
-                    <div mat-card-avatar>{{info._avatar}}</div>
-                    <mat-card-title style="color: #2c8ebb"> Your Information</mat-card-title>
-                    <!--                                <h5 class="text-primary">Your Information</h5>-->
-                    <mat-card-title STYLE="color: fuchsia">User name: {{info.username}}</mat-card-title>
+                    <div mat-card-avatar class="circular--square">
+                        <img routerLink="/changeAvatar" class="circular--square" [src]=info.avatar height="50px"
+                             width="50px"/>
+                    </div>
+
+                    <mat-card-title class="information" style="color: #2c8ebb"> YOUR INFOMATION</mat-card-title>
+                    <mat-card-subtitle class="username" STYLE="color: fuchsia"><b style="color: #2b542c">User
+                        name:</b> {{info.username}}</mat-card-subtitle>
                 </mat-card-header>
-                <!--                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
-                <!--                            <mat-card-content>-->
-                <!--                                <p>-->
-                <!--                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
-                <!--                                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
-                <!--                                    bred for hunting.-->
-                <!--                                </p>-->
-                <!--                            </mat-card-content>-->
-                <!--                            <mat-card-actions>-->
-                <!--                                <button mat-button>LIKE</button>-->
-                <!--                                <button mat-button>SHARE</button>-->
-                <!--                            </mat-card-actions>-->
-
-                <!--                                <div class="example-box" style="margin: auto" cdkDrag>-->
-
-                <div *ngIf="info.token; else loggedOut">
-
-                    <!--                                        <p>-->
-                    <!--                                            <strong>Username:</strong> {{info.username}}<br/>-->
-                    <!--                                            &lt;!&ndash;                    <strong>Roles:</strong> {{info.roles}}<br/>&ndash;&gt;-->
-                    <!--                                            &lt;!&ndash;                    <strong>Token:</strong> {{info.token}}.&ndash;&gt;-->
-                    <!--                                        </p>-->
-                    <button routerLink="/" class="btn btn-danger" (click)="logout()">Logout</button>
-                    <button class="btn btn-primary"routerLink="/changepassword">Change Pass</button>
-                    <button class="btn btn-danger"routerLink="/detailSinger">Detail Singer</button>
-
-                </div>
+                <div *ngIf="info.token; else loggedOut"></div>
+                <img mat-card-image routerLink="/changeAvatar" class="image" [src]="info.avatar" height="300px"
+                     width="400px">
+                <mat-card-actions>
+                    <button (click)="logout()" routerLink="/" style="color: red; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="docs-button mat-button"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
+                            src="../../../assets/images/icons/logout2.png" height="30px"
+                            width="30px"/>LOG OUT </b></span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button>
+                    <span class="example-spacer"></span>
+                    <!--                    <button routerLink="/" class="btn btn-danger" (click)="logout()">Logout</button>-->
+                    <button routerLink="/changepass" type="submit" style="color: rebeccapurple; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="docs-button mat-button"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><img
+                            src="../../../assets/images/icons/changePassword.png" height="30px"
+                            width="30px"/><b>Change Password</b></span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button>
+                    <!--                    <button class="btn btn-primary" routerLink="/changepass">Change Pass</button>-->
+                    <button routerLink="/changeProfile" type="submit" style="color: green; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="docs-button mat-button"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
+                            src="../../../assets/images/icons/change-profile.png" height="30px" width="30px"/>Change Profile</b></span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button>
+                    <!--                    <button class="btn btn-danger" routerLink="/changeProfile">Change Profile</button>-->
+                    <button routerLink="/changeAvatar" type="submit" style="color: orangered; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="docs-button mat-button"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
+                            src="../../../assets/images/icons/change-avatar.png" height="24"
+                            width="24"/>Change Avatar</b></span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button>
+                    <!--                    <button class="btn btn-primary" routerLink="/changeAvatar">Change Avatar</button>-->
+                </mat-card-actions>
                 <ng-template #loggedOut>
-                    <h1 style="color: #f92672">Please login!!!</h1>
+                    <b style="color: #f92672">Please login again!!!</b>
+                    <button routerLink="/login" style="color: springgreen; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="docs-button mat-button"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><img
+                            width="30px;" alt="angular" class="docs-angular-logo"
+                            src="../../../assets/images/icons/login.png" height="30px"><b>Login </b></span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button>
+                    <span class="example-spacer"></span>
                 </ng-template>
-                <!--                                </div>-->
-
-
             </mat-card>
-
         </div>
     </div>
 </div>
-<app-create-singer></app-create-singer>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <mat-card-title class="alert alert-success">Manage Play List</mat-card-title>
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Start searching music genre..."><br>
+                    <button routerLink="/pageUser" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">
+<!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+                        <b>Manage User Account
+                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>
+                    </button>
+                    <button routerLink="/createPlayList" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">
+<!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+                        <b>Create Play List
+                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>
+                    </button>
+                </div>
+
+                <div class="row">
+                    <div class="column" *ngFor="let playlist of playLists|filter: searchText">
+                        <button *ngIf="isCheck" routerLink="/createSong" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
+                            <mat-icon>queue music</mat-icon>
+                        </button>
+                        <button *ngIf="isCheck" [routerLink]="['/editSong/',playlist.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                 (click)="deleteSong(playlist.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <div class="card">
+                            <mat-card-subtitle [routerLink]="['/detailPlayList/',playlist.id]"style="color: #2b542c">Name Song: <b class="title"
+                                                                                                                           style="color: crimson">{{playlist.namePlayList}}</b>
+                            </mat-card-subtitle>
+                            <mat-card-subtitle [routerLink]="['/detailPlayList/',playlist.id]"style="color: #2b542c">CreateBy: <b class="title"
+                                                                                                                          style="color: crimson">{{playlist.createBy}}</b>
+                            </mat-card-subtitle>
+<!--                            <mat-card-subtitle [routerLink]="['/detailPlayList/',song.id]" style="color: #2b542c">Music Genre: <b class="title"-->
+<!--                                                                                                                              style="color: crimson">{{song.nameCategory}}</b>-->
+<!--                            </mat-card-subtitle>-->
+                            <img [routerLink]="['/detailPlayList/',playlist.id]"class="img" [src]="playlist.avatarPlayList">
+                        </div>
+
+                    </div>
+
+                </div>
+                <mat-paginator #paginator [pageSizeOptions]="[5, 10, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+

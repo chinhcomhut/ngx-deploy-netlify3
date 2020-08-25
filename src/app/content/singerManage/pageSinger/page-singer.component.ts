@@ -8,6 +8,7 @@ import {Singer, SingerListRespone} from "../../../model/singerListRespone";
 
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {count, tap} from "rxjs/operators";
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
     selector: 'app-singer',
@@ -19,8 +20,11 @@ export class PageSingerComponent implements OnInit {
     singers: Singer[] = [];
     loading: boolean;
     searchText;
+    isCheck = false;
+    data : any = ["ADMIN"];
     constructor(private singerService: SingerService,
-                private router: Router) {
+                private router: Router,
+                private tokenService: TokenStorageService) {
     }
 
     ngOnInit() {
@@ -33,6 +37,9 @@ export class PageSingerComponent implements OnInit {
         //     }
         // )
        this.getListResquest({page: "", size: ""})
+        if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.data)){
+            this.isCheck = true;
+        }
     }
     private getListResquest(request) {
         this.loading = true;
@@ -51,6 +58,12 @@ export class PageSingerComponent implements OnInit {
         request['page'] = event.pageIndex.toString();
         request['size'] = event.pageSize.toString();
         this.getListResquest(request);
+    }
+    deleteSinger(id: number){
+        this.singerService.deleteSinger(id).subscribe(()=>{
+            alert('Delete success!')
+            window.location.reload();
+        })
     }
     // ngAfterViewInit(){
     //     this.todoDatasource.counter$.pipe(

@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
@@ -13,15 +12,18 @@
                 <!--                </button>-->
                 <img class="img" [src]="song.avatarSong" alt="">
                 <mat-card-header>
-                    <mat-card-title style="color: #ff03cc"><b style="color: green">Name Song:</b>  {{song.nameSong}}</mat-card-title>
-                    <mat-card-subtitle style="color: #ff03cc"><b style="color: green">Singer's:</b>  {{song.nameSinger}}</mat-card-subtitle>
+                    <mat-card-title style="color: #ff03cc"><b style="color: green">Name Song:</b>  {{song.nameSong}}
+                    </mat-card-title>
+                    <mat-card-subtitle style="color: #ff03cc"><b style="color: green">Singer's:</b>  {{song.nameSinger}}
+                    </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content class="row justify-contents-around mat-basic-player">
                     <div class="col py-3 pl-5">
                         <h6>Controls</h6>
                         <div class="d-flex flex-row px-3">
                             displayTitle:
-                            <mat-checkbox style="color: #ff03cc" class="px-3 mat-basic-player-display-title" [checked]="msbapDisplayTitle"
+                            <mat-checkbox style="color: #ff03cc" class="px-3 mat-basic-player-display-title"
+                                          [checked]="msbapDisplayTitle"
                                           (change)="changeMsbapDisplayTitle($event)">{{msbapDisplayTitle}}</mat-checkbox>
                         </div>
                         <div class="d-flex flex-row px-3">
@@ -32,10 +34,10 @@
                         </div>
                     </div>
                     <div class="col">
-                        <mat-basic-audio-player  class="col-12 col-md-6" [audioUrl]="song.mp3Url" [title]="song.lyrics"
-                                                 [displayTitle]="msbapDisplayTitle"
-                                                 [displayVolumeControls]="msbapDisplayVolumeControls"
-                                                 [autoPlay]="true" muted="muted"
+                        <mat-basic-audio-player class="col-12 col-md-6" [audioUrl]="song.mp3Url" [title]="song.lyrics"
+                                                [displayTitle]="msbapDisplayTitle"
+                                                [displayVolumeControls]="msbapDisplayVolumeControls"
+                                                [autoPlay]="true" muted="muted"
                         ></mat-basic-audio-player>
                     </div>
                 </mat-card-content>
@@ -80,7 +82,8 @@
                             </mat-error>
                         </mat-error>
                         <mat-icon color="accent" matSuffix>edit</mat-icon>
-                    </mat-form-field><br>
+                    </mat-form-field>
+                    <br>
                     <!-- SELECT SINGER -->
                     <mat-card-subtitle>Old Singer: {{song.nameSinger}}</mat-card-subtitle>
                     <mat-form-field style="width: 300px">
@@ -100,7 +103,8 @@
                             <mat-option *ngFor="let topping of singer"
                                         [value]="topping.nameSinger">{{topping.nameSinger}}</mat-option>
                         </mat-select>
-                    </mat-form-field><br>
+                    </mat-form-field>
+                    <br>
 
                     <!-- SELECT CATEGORY -->
                     <mat-form-field style="width: 300px">
@@ -111,7 +115,8 @@
                                 {{ p.nameCategory }}
                             </mat-option>
                         </mat-select>
-                    </mat-form-field> <br>
+                    </mat-form-field>
+                    <br>
                     <button type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-success"
@@ -123,16 +128,18 @@
                     </button>
                 </form>
 
-                <mat-card  class="upload-file" >
+                <mat-card class="upload-file">
                     <mat-error *ngIf="!addFileMp3">
                         If Change File MP3, please upload file again!
                     </mat-error>
-                    <app-upload-file (giveURLtoCreate)="onChange($event)"></app-upload-file> <br>
+                    <app-upload-file (giveURLtoCreate)="onChange($event)"></app-upload-file>
+                    <br>
                     <mat-error *ngIf="!addAvatar">
                         If Change Avatar, please upload avatar again!
                     </mat-error>
                     <mat-card>
-                        <app-upload-avatar class="upload-avatar" (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+                        <app-upload-avatar class="upload-avatar"
+                                           (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
                     </mat-card>
                 </mat-card>
             </mat-card>

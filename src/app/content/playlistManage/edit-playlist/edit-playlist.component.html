@@ -1,1 +1,42 @@
-<p>edit-playlist works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <mat-card-title style="color: #bd4147" class="alert alert-primary">Old Play List</mat-card-title><br><br>
+                <mat-card-title style="color: #ff03cc"><b style="color: darkgreen">Name Play List:</b> {{playlist.namePlayList}}</mat-card-title>
+                <img class="image" [src]="playlist.avatarPlayList">
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 0px 0;">
+                <mat-card-title style="color: darkgreen" class="alert alert-warning">Form Edit Play List</mat-card-title>
+                <form class="edit-play-list" #f="ngForm" (ngSubmit)="updatePlayList()&&f.form.valid" novalidate>
+                    <mat-form-field style="width: 300px"appearance="outline">
+                        <mat-label>Name Play List:</mat-label>
+                        <input name="namePlayList" matInput [(ngModel)]="playlist.namePlayList"#namePlayList="ngModel" required>
+                        <mat-icon color="accent"matSuffix>video_settings</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="f.submitted&&namePlayList.invalid">{{errorMessage}}
+                        <mat-error *ngIf="namePlayList.errors"></mat-error>
+                    </mat-error><br>
+                    <mat-error>{{errorMessage}}</mat-error>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">
+<!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+                        <b>Edit Play List
+                       <img src="../../../../assets/images/icons/edit-play-list.png" height="40" width="40"/></b></span>
+                    </button>
+                </form><br>
+                <mat-error *ngIf="!addAvatar"> If you want change avatar! Please upload!</mat-error>
+                <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+            </mat-card>
+        </div>
+    </div>
+</div>

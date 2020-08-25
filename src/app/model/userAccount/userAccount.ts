@@ -1,4 +1,5 @@
 export class UserAccount {
     id?: string;
-    name?: string;
+    username?: string;
+    email?: string;
 }

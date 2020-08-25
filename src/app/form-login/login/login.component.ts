@@ -4,6 +4,7 @@ import {AuthService} from "../../auth/auth.service";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActivatedRouteSnapshot} from "@angular/router";
+import {UserAccount} from '../../model/userAccount/userAccount';
 
 @Component({
     selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     errorMessage = 'Login failled! Please Check username or Password';
     roles: string[] = [];
     userName: String;
+    // user: UserAccount;
     private loginInfo: AuthLoginInfo;
 
     constructor(private authService: AuthService, private route: Router,
@@ -50,6 +52,7 @@ export class LoginComponent implements OnInit {
                 this.tokenStorage.saveUsername(data.username);
                 this.tokenStorage.saveAuthorities(data.roles);
                 this.tokenStorage.saveAvatar(data.avatar);
+                this.tokenStorage.saveUserId(data.id)
                 this.isLoginFailed = false;
                 this.isLoggedIn = true;
                 this.roles = this.tokenStorage.getAuthorities()

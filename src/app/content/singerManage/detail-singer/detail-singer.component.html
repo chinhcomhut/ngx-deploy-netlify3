@@ -19,7 +19,9 @@
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
+                <b style="color: #ff03cc">{{singer.nameSinger}}</b>
                 <img class="image" [src]="singer.avatarSinger"> <br><br>
+
                 <mat-accordion>
                     <!--    <mat-expansion-panel hideToggle>-->
                     <!--        <mat-expansion-panel-header>-->
@@ -42,6 +44,7 @@
                                 Click View {{panelOpenState ? 'open!' : 'closed!'}}
                             </mat-panel-description>
                         </mat-expansion-panel-header>
+                        <b style="color: #2b542c">Birth day: yyyy-MM-dd: {{singer.birthday}}</b>
                         <p style="color: #ff03cc">{{singer.information}}</p>
                     </mat-expansion-panel>
                 </mat-accordion>
@@ -50,11 +53,11 @@
                 <div class="search-hero">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                            placeholder="&#61442;  Search Song in one page ..."><br>
-                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"
+                    <button [routerLink]="['/editSinger/',singer.id]" type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-success"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
-                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
+                        Edit Singer<img src="../../../../assets/images/icons/create-category.png" height="40"
                                             width="40"/></b></span>
                     </button>
                 </div>
@@ -70,7 +73,11 @@
                 <!--                </mat-grid-list>-->
                 <div class="row">
                     <div class="column" *ngFor="let ctc of singer.songList|filter: searchText"
-                         [routerLink]="['/song-by-singer/',ctc.id]">
+                         >
+                        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                (click)="deleteSongBySinger(ctc.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                         <div class="card">
                             <b [routerLink]="['/detailSong/',ctc.id]" class="title"
                                style="color: crimson">{{ctc.nameSong}}</b>

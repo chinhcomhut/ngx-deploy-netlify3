@@ -4,7 +4,7 @@
             <mat-card class="example-card">
                 <mat-card-header>
                     <div mat-card-avatar class="circular--square">
-                        <img routerLink="/changeAvatar" class="circular--square" [src]=info.avatar height="50px"
+                        <img class="image2" routerLink="/changeAvatar" [src]=info.avatar height="50px"
                              width="50px"/>
                     </div>
 
@@ -13,50 +13,72 @@
                         name:</b> {{info.username}}</mat-card-subtitle>
                 </mat-card-header>
                 <div *ngIf="info.token; else loggedOut"></div>
-                <img mat-card-image routerLink="/changeAvatar" class="image" [src]="info.avatar" height="300px"
+                <img mat-card-image routerLink="/changeAvatar" class="image1" [src]="info.avatar" height="300px"
                      width="400px">
-                <mat-card-actions>
-                    <button (click)="logout()" routerLink="/" style="color: red; text-decoration: none;"
+                <mat-card>
+                    <mat-card-title style="color: blue" class="alert alert-danger">Profile Manage</mat-card-title>
+                    <mat-card-actions>
+                        <button (click)="logout()" routerLink="/" style="color: red; text-decoration: none;"
+                                aria-label="Angular Audio Player"
+                                class="mat-button-toggle-group btn-outline-danger"
+                                mat-button tabindex="0" aria-disabled="false"><span class="mat-button-outline-primary"><b><img
+                                src="../../../assets/images/icons/logout2.png" height="30px"
+                                width="30px"/>LOG OUT </b></span>
+                        </button>
+                        <span class="example-spacer"></span>
+                        <!--                    <button routerLink="/" class="btn btn-danger" (click)="logout()">Logout</button>-->
+                        <button routerLink="/changepass" type="submit" style="color: rebeccapurple; text-decoration: none;"
+                                aria-label="Angular Audio Player"
+                                class="mat-button-toggle-group btn-outline-primary"
+                                mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><img
+                                src="../../../assets/images/icons/changePassword.png" height="30px"
+                                width="30px"/><b>Change Password</b></span>
+                        </button>
+                        <!--                    <button class="btn btn-primary" routerLink="/changepass">Change Pass</button>-->
+                        <button routerLink="/changeProfile" type="submit" style="color: green; text-decoration: none;"
+                                aria-label="Angular Audio Player"
+                                class="mat-button-toggle-group btn-outline-success"
+                                mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
+                                src="../../../assets/images/icons/change-profile.png" height="30px" width="30px"/>Change Profile</b></span>
+                        </button>
+                        <!--                    <button class="btn btn-danger" routerLink="/changeProfile">Change Profile</button>-->
+                        <button routerLink="/changeAvatar" type="submit" style="color: orangered; text-decoration: none;"
+                                aria-label="Angular Audio Player"
+                                class="mat-button-toggle-group btn-outline-warning"
+                                mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
+                                src="../../../assets/images/icons/change-avatar.png" height="24"
+                                width="24"/>Change Avatar</b></span>
+                        </button>
+                        <!--                    <button class="btn btn-primary" routerLink="/changeAvatar">Change Avatar</button>-->
+                    </mat-card-actions>
+                </mat-card>
+                <mat-card class="button">
+                    <mat-card-title style="color: firebrick" class="alert alert-success">Manage All Your Create</mat-card-title>
+                    <button routerLink="/pageCategoryByUser" type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
-                            class="docs-button mat-button"
-                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
-                            src="../../../assets/images/icons/logout2.png" height="30px"
-                            width="30px"/>LOG OUT </b></span>
-                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
-                        <div class="mat-button-focus-overlay"></div>
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        The Music of genre you have created
+                        <img src="../../../../assets/images/icons/create-category.png" height="40"
+                                            width="40"/>
+                    </b></span>
                     </button>
-                    <span class="example-spacer"></span>
-                    <!--                    <button routerLink="/" class="btn btn-danger" (click)="logout()">Logout</button>-->
-                    <button routerLink="/changepass" type="submit" style="color: rebeccapurple; text-decoration: none;"
+                    <button routerLink="/pageSingerByUser" type="submit" style="color: mediumvioletred; text-decoration: none;"
                             aria-label="Angular Audio Player"
-                            class="docs-button mat-button"
-                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><img
-                            src="../../../assets/images/icons/changePassword.png" height="30px"
-                            width="30px"/><b>Change Password</b></span>
-                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
-                        <div class="mat-button-focus-overlay"></div>
-                    </button>
-                    <!--                    <button class="btn btn-primary" routerLink="/changepass">Change Pass</button>-->
-                    <button routerLink="/changeProfile" type="submit" style="color: green; text-decoration: none;"
+                            class="mat-button-toggle-group btn-outline-primary"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        The Singer you have created
+                    <img src="../../../assets/images/icons/create-singer.png" height="40" width="40"/></b></span>
+                    </button><br><br>
+                    <button routerLink="/pageSongByUser" type="submit" style="color: darkgreen; text-decoration: none;"
                             aria-label="Angular Audio Player"
-                            class="docs-button mat-button"
-                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
-                            src="../../../assets/images/icons/change-profile.png" height="30px" width="30px"/>Change Profile</b></span>
-                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
-                        <div class="mat-button-focus-overlay"></div>
+                            class="mat-button-toggle-group btn-outline-warning"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        The Song you have created
+                    <img src="../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>
                     </button>
-                    <!--                    <button class="btn btn-danger" routerLink="/changeProfile">Change Profile</button>-->
-                    <button routerLink="/changeAvatar" type="submit" style="color: orangered; text-decoration: none;"
-                            aria-label="Angular Audio Player"
-                            class="docs-button mat-button"
-                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b><img
-                            src="../../../assets/images/icons/change-avatar.png" height="24"
-                            width="24"/>Change Avatar</b></span>
-                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
-                        <div class="mat-button-focus-overlay"></div>
-                    </button>
-                    <!--                    <button class="btn btn-primary" routerLink="/changeAvatar">Change Avatar</button>-->
-                </mat-card-actions>
+                </mat-card>
+
                 <ng-template #loggedOut>
                     <b style="color: #f92672">Please login again!!!</b>
                     <button routerLink="/login" style="color: springgreen; text-decoration: none;"
@@ -74,10 +96,11 @@
         </div>
     </div>
 </div>
-<button routerLink="/createSinger" class="btn btn-danger">Create Singer</button>
-<button routerLink="/createSong" class="btn btn-primary">Create Song</button>
-<button routerLink="/createCategory" class="btn btn-outline-primary">Create Category</button>
-<button routerLink="/createPlayList" class="btn btn-outline-primary">Create Playlist</button>
+<!--<button routerLink="/createSinger" class="btn btn-danger">Create Singer</button>-->
+<!--<button routerLink="/createSong" class="btn btn-primary">Create Song</button>-->
+<!--<button routerLink="/createCategory" class="btn btn-outline-primary">Create Category</button>-->
+<!--<button routerLink="/createPlayList" class="btn btn-outline-primary">Create Playlist</button>-->
+<!--<button routerLink="/createSongByUser" class="btn btn-outline-primary">Create Your Song</button>-->
 <!--            <mat-card>-->
 <!--                <mat-card-content>-->
 <!--                    <mat-list>-->
@@ -116,14 +139,16 @@
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
+                <mat-card-title class="alert alert-primary">
+                    Play list of your favorites</mat-card-title>
                 <div class="search-hero">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                           placeholder="&#61442;  Start searching music genre..."><br>
-                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"
+                           placeholder="&#61442; Searching play list in one page..."><br>
+                    <button routerLink="/createPlayList" type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-success"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
-                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
+                        Create Play List<img src="../../../../assets/images/icons/create-category.png" height="40"
                                             width="40"/></b></span>
                     </button>
                 </div>
@@ -138,10 +163,20 @@
 
                 <!--                </mat-grid-list>-->
                 <div class="row">
-                    <div class="column" *ngFor="let ctc of playList|filter: searchText"[routerLink]="['/detailPlayList/',ctc.id]">
+                    <div class="column" *ngFor="let plist of playList|filter: searchText">
+                        <button  [routerLink]="['/addSongToPlayList/',plist.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
+                            <mat-icon>queue music</mat-icon>
+                        </button>
+                        <button [routerLink]="['/editPlayList/',plist.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                 (click)="deletePlayList(plist.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                         <div class="card" >
-                            <b class="title" style="color: crimson">{{ctc.namePlayList}}</b>
-                            <img class="image"  [src]="ctc.avatarPlayList">
+                            <b [routerLink]="['/detailPlayList/',plist.id]" class="title" style="color: crimson">{{plist.namePlayList}}</b>
+                            <img [routerLink]="['/detailPlayList/',plist.id]" class="image"  [src]="plist.avatarPlayList">
                         </div>
 
                     </div>
@@ -149,7 +184,7 @@
                 </div>
 
 
-                <mat-paginator #paginator [pageSizeOptions]="[30, 50, 100]" [pageSize]="5" [length]="totalElements"
+                <mat-paginator #paginator [pageSizeOptions]="[10, 30, 100]" [pageSize]="5" [length]="totalElements"
                                (page)="nextPage($event)">
 
                 </mat-paginator>

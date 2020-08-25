@@ -6,6 +6,7 @@ import {SongInfo} from '../../../model/song-info';
 import {CategoryService} from '../../../service/category.service';
 import {SingerService} from '../../../service/singer.service';
 import {SongService} from '../../../service/song.service';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-create-song',
@@ -45,7 +46,8 @@ export class CreateSongComponent implements OnInit {
   private a: string[];
   constructor(private categoryService: CategoryService,
               private singerService: SingerService,
-              private songService: SongService) { }
+              private songService: SongService,
+              private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.categoryService.getListCategory().subscribe(listCategory=>{
@@ -62,7 +64,8 @@ export class CreateSongComponent implements OnInit {
       lyrics: '',
       nameCategory: '',
       mp3Url: '',
-      avatarSong: ''
+      avatarSong: '',
+      createBy: ''
     };
     console.log('song', this.song);
     this.a = new Array(this.song.nameSinger);
@@ -74,6 +77,7 @@ export class CreateSongComponent implements OnInit {
     this.form1.nameCategory = this.song.nameCategory;
     this.form1.mp3Url = this.song.mp3Url;
     this.form1.avatarSong = this.song.avatarSong;
+    this.form1.createBy = this.song.createBy = this.tokenService.getUsername();
     console.log('this.form1', this.form1);
     this.songService.createSong(this.form1).subscribe(data => {
       console.log('data',data)

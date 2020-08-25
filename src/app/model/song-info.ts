@@ -7,4 +7,5 @@ export class SongInfo {
     nameSinger: string;
     nameCategory: string;
     avatarSong: string;
+    createBy: string;
 }

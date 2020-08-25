@@ -13,6 +13,7 @@ export class SignUpInfo {
         // this.avatarUrl = avatarUrl;
         this.password = password;
 
-        this.role = ['user'];
+        // this.role = ['user'];       //Neu de 'admin', 'pm' thi se dang ki form thanh ADMIN vs PM
+        this.role = ['admin'];
     }
 }

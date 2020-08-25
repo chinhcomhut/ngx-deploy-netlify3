@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Start searching music genre..."><br>
+                    <button routerLink="/createSong" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">
+<!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+                        <b>Create Song
+                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>
+                    </button>
+                </div>
+
+                <div class="row">
+                    <div class="column" *ngFor="let user of users|filter: searchText">
+                        <button *ngIf="isCheck" routerLink="/createSong" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
+                            <mat-icon>queue music</mat-icon>
+                        </button>
+<!--                        <button *ngIf="isCheck" [routerLink]="['/editSong/',song.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">-->
+<!--                            <mat-icon>edit</mat-icon>-->
+<!--                        </button>-->
+                        <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                 (click)="deleteUser(user.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <div class="card">
+                            <mat-card-subtitle style="color: #2b542c">Name Song: <b class="title"
+                                                                                                                           style="color: crimson">{{user.username}}</b>
+                            </mat-card-subtitle>
+                            <mat-card-subtitle style="color: #2b542c">Singer's: <b class="title" style="color: crimson">
+                                {{user.id}}</b>
+                            </mat-card-subtitle>
+<!--                            <mat-card-subtitle  style="color: #2b542c">Music Genre: <b class="title"-->
+<!--                                                                                                                              style="color: crimson">{{song.nameCategory}}</b>-->
+<!--                            </mat-card-subtitle>-->
+                            <img [routerLink]="['/detailUser/',user.id]" class="img" [src]="user.avatar">
+                        </div>
+
+                    </div>
+
+                </div>
+                <mat-paginator #paginator [pageSizeOptions]="[2,5, 10, 50]" [pageSize]="2" [length]="totalElements"
+                               (page)="nextPage($event)">
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+

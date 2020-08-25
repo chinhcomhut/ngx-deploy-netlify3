@@ -54,6 +54,18 @@ export class DetailSingerComponent implements OnInit {
     request['size'] = event.pageSize.toString();
     this.getListResquest(request);
   }
-
+  deleteSongBySinger(id: number) {
+    console.log('lenth', this.singer.songList);
+    for (let i = 0; i < this.singer.songList.length; i++) {
+      if (this.singer.songList[i].id === id) {
+        this.singer.songList.splice(i, 1);
+        console.log('leng in if', this.singer.songList.length);
+      }
+      // console.log(this.song.length);
+    }
+    this.singerService.updateSinger(this.singer).subscribe(()=>{
+      alert('delete successful Song!')
+    })
+  }
 
 }

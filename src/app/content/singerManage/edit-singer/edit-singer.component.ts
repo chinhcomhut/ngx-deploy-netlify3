@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SingerInfo} from "../../../model/singer/singer-info";
 import {SingerService} from "../../../service/singer.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {J} from '@angular/cdk/keycodes';
 
 @Component({
     selector: 'app-edit-singer',
@@ -9,48 +10,54 @@ import {ActivatedRoute, Router} from "@angular/router";
     styleUrls: ['./edit-singer.component.css']
 })
 export class EditSingerComponent implements OnInit {
-    id: number;
-    singer: SingerInfo;
-    submitted = false;
-
+    singer: SingerInfo = new SingerInfo();
+    seasons: string[] = ['Male', 'Female'];
+    errorMessage = 'Please complete the form below!'
+    isUploadAvatar = false;
+    data1: any = {
+        message: "nosinger"
+    }
+    data2: any = {
+        message: "yes"
+    }
+    panelOpenState = false;
     constructor(private singerService: SingerService,
                 private router: Router,
-                private route: ActivatedRoute) {
+                private routes: ActivatedRoute) {
     }
 
 
     ngOnInit() {
-        // this.singer = new SingerInfo();
-        //
-        // this.id = this.route.snapshot.params['id'];
-        //
-        // this.singerService.getEmployee(this.id)
-        //     .subscribe(data => {
-        //         console.log(data)
-        //         this.singer = data;
-        //     }, error => console.log(error));
+    this.routes.paramMap.subscribe(singerId =>{
+        const id = +singerId.get('id');
+        this.singerService.getSingerById(id).subscribe(result=>{
+            this.singer = result;
+        })
+    })
     }
-
-    updateEmployee() {
-        this.singerService.updateEmployee(this.id, this.singer)
-            .subscribe(data => console.log(data), error => console.log(error));
-        this.singer = new SingerInfo();
-        this.gotoList();
-    }
-
-    onSubmit() {
-        this.updateEmployee();
-        alert('update success!!')
-        window.location.reload()
-    }
-
-    gotoList() {
-
-        this.router.navigate(['/pageSinger']);
-
+    createSinger(){
+        this.singerService.updateSingerId(this.singer.id, this.singer).subscribe(data =>{
+            if(JSON.stringify(data)==JSON.stringify(this.data1)){
+                this.errorMessage = 'Name Singer already exists! Please try again!'
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.data2)){
+                this.errorMessage = 'Update successful Singer!'
+                alert(this.errorMessage)
+                window.location.reload()
+            }
+        }, error1 => {
+            this.errorMessage = 'Please login before create Singer.'
+        })
     }
 
     onAvatar($event) {
+        this.isUploadAvatar = true;
         this.singer.avatarSinger = $event;
     }
+
+    onDate($event) {
+        this.singer.birthday = $event;
+    }
+
+
 }

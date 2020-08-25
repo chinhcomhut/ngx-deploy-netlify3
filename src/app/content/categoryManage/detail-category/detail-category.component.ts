@@ -55,6 +55,20 @@ export class DetailCategoryComponent implements OnInit {
       window.location.reload();
     });
   }
+
+  deleteSongByCategory(id: number) {
+    console.log('lenth', this.category.songList);
+    for (let i = 0; i < this.category.songList.length; i++) {
+      if (this.category.songList[i].id === id) {
+        this.category.songList.splice(i, 1);
+        console.log('leng in if', this.category.songList.length);
+      }
+      // console.log(this.song.length);
+    }
+    this.categoryService.updateCategory(this.category).subscribe(()=>{
+      alert('delete successful Song!')
+    })
+  }
   // addSongToCategory(song: SongInfo){
   //   console.log("vao day");
   //   console.log('xuong song',song)
@@ -65,5 +79,14 @@ export class DetailCategoryComponent implements OnInit {
   //     alert('success!')
   //   })
   // }
+
+  // deleteSongByCategory(id: number) {
+  //   this.categoryService.deleteCategory(id).subscribe(data => {
+  //     console.log(data);
+  //     this.categoryService.updateCategory(this.category).subscribe(()=>{
+  //
+  //     })
+  //     window.location.reload();
+  //   });
 
 }

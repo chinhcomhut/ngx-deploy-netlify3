@@ -10,6 +10,10 @@
                         Edit Song <img src="../../../../assets/images/icons/create-category.png" height="40"
                                        width="40"/></b></span>
                 </button>
+                <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                        (click)="deleteSong(song.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
                 <img class="img" [src]="song.avatarSong">
                 <mat-card-header>
                     <mat-card-title style="color: #ff03cc"><b style="color: green">Name Song:</b>  {{song.nameSong}}</mat-card-title>

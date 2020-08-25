@@ -19,6 +19,9 @@ export class DetailSongComponent implements OnInit {
   msaapDisplayVolumeControls = true;
   id: any;
   i = 0;
+  data: any = {
+    message: "yes"
+  }
   changeMsbapDisplayTitle(event) {
     this.msbapDisplayTitle = event.checked;
     console.log('title',event)
@@ -51,6 +54,20 @@ export class DetailSongComponent implements OnInit {
       console.log('dem',this.i);
     }
     console.log('even',$event)
+  }
+  deleteSong(id: number){
+    this.songService.deleteSong(id).subscribe(data=>{
+      if(JSON.stringify(data)==JSON.stringify(this.data)){
+        alert('Delete Successful Song!')
+      }
+      // this.songService.updateSong(this.song.id, this.song).subscribe(()=>{
+      // alert('delete successful Song!')
+      //   window.location.reload()
+      // })
+      window.location.reload();
+    }, error => {
+      alert('Can phai xoa o cho khac truoc')
+    })
   }
   ngOnInit(): void {
     this.routes.paramMap.subscribe(paramMap => {

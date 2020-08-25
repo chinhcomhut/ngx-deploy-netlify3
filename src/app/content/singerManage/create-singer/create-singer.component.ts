@@ -7,6 +7,7 @@ import {SingerService} from "../../../service/singer.service";
 import {ErrorStateMatcher} from "@angular/material/core";
 import {error} from "ng-packagr/lib/utils/log";
 import {$e} from "codelyzer/angular/styles/chars";
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -47,11 +48,13 @@ export class CreateSingerComponent implements OnInit {
     constructor(
         private router: Router,
         private singerService: SingerService,
+        private tokenService: TokenStorageService
     ) {
     }
     ngOnInit(): void {
     }
     createSinger(){
+        this.singer.createBy = this.tokenService.getUsername();
         this.singerService.createSinger(this.singer).subscribe(data =>{
             if(JSON.stringify(data)==JSON.stringify(this.data1)){
                 this.errorMessage = 'Name Singer already exists! Please try again!'

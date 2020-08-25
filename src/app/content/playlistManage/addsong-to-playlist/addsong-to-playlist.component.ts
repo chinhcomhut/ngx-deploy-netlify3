@@ -58,7 +58,7 @@ export class AddsongToPlaylistComponent implements OnInit {
       alert('add song success!')
     }
 
-    this.playListService.updatePlaylist(this.playList).subscribe(next => {
+    this.playListService.updatePlaylist(this.playList.id, this.playList).subscribe(next => {
       // console.log('next', next);
       // alert('co vao day khong')
       // this.router.navigate([url]);

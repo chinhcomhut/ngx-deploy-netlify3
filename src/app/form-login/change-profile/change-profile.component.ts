@@ -76,12 +76,13 @@ export class ChangeProfileComponent implements OnInit {
                 // this.tokenStorageService.saveAvatar(this.form.avatar);
                 this.tokenStorageService.saveEmail(this.form.email);
                 this.isCheckSuccess = true;
+                alert('Change successful profile!')
                 this.tokenStorageService.signOut();
                 // this.route.navigate(['/login'])
 
             }
         }, error1 => {
-            alert('Change Profile Failled!');
+            alert('Change Profile Failled! Please login before change!');
         })
     }
 

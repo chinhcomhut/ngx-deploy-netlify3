@@ -7,6 +7,7 @@ import {UserAccount} from "../model/userAccount/userAccount";
 import {catchError, tap, map} from "rxjs/operators";
 import {SingerInfo} from "../model/singer/singer-info";
 import {JwtResponse} from "../auth/jwt-response";
+import {SongInfo} from '../model/song-info';
 // import {UpdateInfo} from '../model/userManager/UpdateInfo';
 const httpOption = {
   header: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,8 +18,9 @@ const httpOption = {
 
 export class UserService {
 
-  // public USER_API = environment.URL_local+'user';
-  public USER_API = environment.URL_server+'user';
+  public USER_API = environment.URL_local+'user';
+  // public USER_API = environment.URL_server+'user';
+  private API_Page_User = environment.URL_local+'user/pagination'
   // private pmUrl = environment.URL+'/api/test/pm';
   // private adminUrl = environment.URL+'/api/test/admin';
   // private updateUserUrl = environment.URL+'/api/auth/updateuser';
@@ -42,14 +44,13 @@ export class UserService {
   // getPMBoard(): Observable<string> {
   //   return this.http.get(this.pmUrl, { responseType: 'text' });
   // }
-  // getUserById(userId: string): Observable<UserAccount> {
-  //   console.log("userId"+userId)
-  //   return this.http.get<UserAccount>(this.userUrl + userId);
-  // }
-  getUserById(id: string) {
-    console.log("userId"+id)
-    return this.http.get(this.USER_API+'/'+id);
+  getUserById(userId: number): Observable<UserAccount> {
+    console.log("userId1 = "+userId)
+    return this.http.get<UserAccount>(`${this.USER_API}/${userId}`);
   }
+  // getUserById(id: number): Observable<UserAccount> {
+  //  return this.http.get<UserAccount>(`${this.USER_API}/${id}`)
+  // }
   // getAdminBoard(): Observable<string> {
   //   return this.http.get(this.adminUrl, { responseType: 'text' });
   // }
@@ -68,5 +69,12 @@ export class UserService {
   }
   remove (href: string){
     return this.http.delete(href)
+  }
+  getPageUser(request){
+    const params = request;
+    return this.http.get<any>(this.API_Page_User,{params})
+  }
+  deleteUser(id: number): Observable<any>{
+    return this.http.delete<any>(`${this.USER_API}/${id}`)
   }
 }

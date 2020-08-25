@@ -10,13 +10,18 @@ import {CategoryInfo} from '../model/category-info';
 export class CategoryService {
   private List_Category_Pagination = environment.URL_local + 'category/pagination';
   private API_Category = environment.URL_local + 'category';
-  private API_Category_Update = environment.URL_local+'update-category'
+  private API_Category_Update = environment.URL_local+'update-category';
+  private API_Category_By_User = environment.URL_local+'category-by-user';
   constructor(private http: HttpClient) {
   }
 
   getPageCategory(request) {
     const params = request;
     return this.http.get(this.List_Category_Pagination, {params});
+  }
+  getPageCategoryByUser(request){
+    const params = request;
+    return this.http.get(this.API_Category_By_User, {params})
   }
 
   getListCategory(): Observable<CategoryInfo[]> {

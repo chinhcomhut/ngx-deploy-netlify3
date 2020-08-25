@@ -32,7 +32,7 @@
                     </button><span class="example-spacer"></span>
                 </mat-card-title>
                 <ng-template #changeProfile>
-                    <mat-error style="color: red" *ngIf="f.submitted " class="alert alert-warning">
+                    <mat-error class="alert alert-success">
                         {{errormessage}}
                     </mat-error>
                     <form class="change-profile" (ngSubmit)="f.form.valid && ngSubmit()" #f="ngForm" novalidate>
