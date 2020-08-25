@@ -9,72 +9,49 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./edit-category.component.css']
 })
 export class EditCategoryComponent implements OnInit {
-  id: number;
-  category: CategoryInfo;
+  category: CategoryInfo = new CategoryInfo();
   data1: any = {
-    message: 'nocategory'
+    message: "noname"
   };
-  errorMessage = 'Please fill of the change name genre in form below!';
+  errorMessage = '';
   data2: any = {
-    message: 'yes'
+    message: "nocategory"
   };
   data3: any = {
-    message: 'noavatar'
+    message: "yes"
   };
-  changeAvatar = false;
-  changeNameGenre = false;
-
+  addAvatar = false;
   constructor(private categoryService: CategoryService,
-              private routes: ActivatedRoute,
-              private route: Router) {
+              private routes: ActivatedRoute,) {
   }
 
   ngOnInit(): void {
-    this.id = this.routes.snapshot.params['id'];
-    console.log('id', this.id);
-    this.categoryService.getCategoryById(this.id).subscribe(data => {
-      this.category = data;
-    }, error => console.log(error));
-    // this.routes.paramMap.subscribe(paramMap => {
-    //   const id = +paramMap.get('id');
-    //   this.categoryService.getCategoryById(id).subscribe(data => {
-    //     this.category = data;
-    //     console.log('playlist', data);
-    //   });
-    // });
-
+    this.routes.paramMap.subscribe(categoryId =>{
+      const id = +categoryId.get('id');
+      this.categoryService.getCategoryById(id).subscribe(result=>{
+        this.category = result;
+      })
+    })
   }
 
   updateCategory() {
-    this.categoryService.updateCategory(this.category).subscribe(data => {
+    this.categoryService.updateCategory(this.category.id, this.category).subscribe(data => {
       if (JSON.stringify(data) == JSON.stringify(this.data1)) {
-        console.log('th1', data);
-        this.errorMessage = 'The Category already exists! Please try again!';
-      }
-      if (JSON.stringify(data) == JSON.stringify(this.data3)) {
-        this.errorMessage = 'The Avatar is the same as the old one! Please again!';
+        this.errorMessage = 'The name Music genre is required! Please fill in form!';
       }
       if (JSON.stringify(data) == JSON.stringify(this.data2)) {
-        this.changeAvatar = true;
-        this.changeNameGenre = true;
+        this.errorMessage = 'The name Music genre already exists! Please try again!';
+      }
+      if (JSON.stringify(data) == JSON.stringify(this.data3)) {
         alert('Update successful categories');
-        // this.errorMessage='success!!'
-        this.route.navigate(['/pageCategory']);
+        window.location.reload();
       }
     }, error => {
-      this.errorMessage = error.error.message;
+      alert('Please login before update!')
     });
   }
-
   onAvatar($event) {
-    this.changeAvatar = true;
+    this.addAvatar = true;
     this.category.avatarCategory = $event;
-  }
-  deleteCategory(id: number){
-    this.categoryService.deleteCategory(id).subscribe(data=>{
-      console.log(data)
-      alert('Ban da xoa thanh cong!')
-      window.location.reload();
-    })
   }
 }

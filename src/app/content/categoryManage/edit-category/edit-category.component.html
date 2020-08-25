@@ -1,55 +1,43 @@
-<div class="container">
+<div class="container" *ngIf="category">
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
-            <mat-card style="margin: 50px">
-                    <b>Category Old:</b> <b style="color:crimson">{{category.nameCategory}}</b> <br>
-                    <b>Avatar Old:</b><img [src]="category.avatarCategory" height="100px" width="100px">
-                <form class="edit-category" (ngSubmit)="f.form.valid && updateCategory()" #f="ngForm" novalidate>
-                    <mat-error style="color: red" class="alert alert-success">
-                        Status: {{errorMessage}}
-                    </mat-error>
-                    <mat-form-field style="width: 300px;" class="input" appearance="outline">
-                        <mat-label>Fill the New name genre:</mat-label>
-                        <input name="nameCategory" matInput placeholder="Fill the change of genre name..."
-                               [(ngModel)]="category.nameCategory" #nameCategory="ngModel" required>
-                        <mat-icon color="accent" matSuffix>queue_music</mat-icon>
-                    </mat-form-field>
-                    <br>
-                    <mat-error *ngIf="f.submitted && nameCategory.invalid">
-                        <mat-error *ngIf="nameCategory.errors.required">
-                            Name genre is required! Please fill change of genre name!
-                        </mat-error>
-                    </mat-error>
-                    <br>
-                    <button type="submit" style="color: crimson; text-decoration: none;"
-                            aria-label="Angular Audio Player"
-                            class="mat-button-toggle-group btn-outline-success"
-                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
-                        Change Category
-                        <!--                        <img src="../../../../assets/images/icons/create-category.png" height="40"-->
-                        <!--                                            width="40"/>-->
-                    
-                    <img src="../../../../assets/images/icons/change-genre.png" height="30" width="30"/></b></span>
-                    </button>
-                  
-                </form>
-                <br>
-                <mat-error *ngIf="!changeAvatar">
-                    Please change Avatar!
-                </mat-error>
-                <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
-                <button (click)="deleteCategory(category.id)" type="submit" style="color: crimson; text-decoration: none;"
-                        aria-label="Angular Audio Player"
-                        class="mat-button-toggle-group btn-outline-success"
-                        mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
-                      Delete Category
-                    <!--                        <img src="../../../../assets/images/icons/create-category.png" height="40"-->
-                    <!--                                            width="40"/>-->
-                    
-                    <img src="../../../../assets/images/icons/change-genre.png" height="30" width="30"/></b></span>
-                </button>
+            <mat-card style="margin: 50px 0;">
+                <mat-card-title style="color: #bd4147" class="alert alert-primary">Old Music Genre</mat-card-title>
+                <mat-card-title style="color: #ff03cc"><b style="color: #2b542c">Name
+                    Category:</b>{{category.nameCategory}}</mat-card-title>
+                <img class="image" [src]="category.avatarCategory">
             </mat-card>
         </div>
     </div>
 </div>
-
+<div class="contianer">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <form class="edit-category" #f="ngForm" (ngSubmit)="updateCategory()&&f.form.valid" novalidate>
+                    <mat-card-title style="color: #2b542c" class="alert alert-warning">Form Edit Music Genre
+                    </mat-card-title>
+                    <mat-form-field style="width: 300px;" appearance="outline">
+                        <mat-label>Name Category:</mat-label>
+                        <input name="nameCategory" matInput placeholder="Fill name category in the form ..."
+                               [(ngModel)]="category.nameCategory" #nameCategory="ngModel" required>
+                        <mat-icon color="accent" matSuffix>edit</mat-icon>
+                    </mat-form-field>
+<!--                    <mat-error *ngIf="f.submitted&&nameCategory.invalid">-->
+<!--                        <mat-error *ngIf="nameCategory.errors.required">{{errorMessage}}</mat-error>-->
+<!--                    </mat-error>-->
+                    <mat-error>{{errorMessage}}</mat-error><br>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-warning"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                       Edit Music Genre
+                        <img src="../../../../assets/images/edit-category.png" height="40" width="40"/></b></span>
+                    </button>
+                </form>
+                <mat-error *ngIf="!addAvatar">If you want change avatar, please upload!</mat-error>
+                <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+            </mat-card>
+        </div>
+    </div>
+</div>

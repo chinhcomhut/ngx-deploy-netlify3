@@ -17,6 +17,12 @@ export class EditSingerComponent implements OnInit {
     data1: any = {
         message: "nosinger"
     }
+    data3: any = {
+        message: "noname"
+    }
+    data4: any = {
+        message: "noinformation"
+    }
     data2: any = {
         message: "yes"
     }
@@ -39,6 +45,12 @@ export class EditSingerComponent implements OnInit {
         this.singerService.updateSingerId(this.singer.id, this.singer).subscribe(data =>{
             if(JSON.stringify(data)==JSON.stringify(this.data1)){
                 this.errorMessage = 'Name Singer already exists! Please try again!'
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.data3)){
+                this.errorMessage = 'The name Singer is required! Please fill in form!'
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.data4)){
+                this.errorMessage = 'The information is required! Please fill in form!'
             }
             if(JSON.stringify(data)==JSON.stringify(this.data2)){
                 this.errorMessage = 'Update successful Singer!'
