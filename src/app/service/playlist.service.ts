@@ -27,8 +27,11 @@ export class PlaylistService {
   getPlayListById(id: number): Observable<PlaylistInfo>{
     return this.http.get<PlaylistInfo>(`${this.API_Play_List}/${id}`)
   }
-  updatePlaylist(id: number, playlist: PlaylistInfo): Observable<PlaylistInfo>{
+  updatePlaylistById(id: number, playlist: PlaylistInfo): Observable<PlaylistInfo>{
     return this.http.put<PlaylistInfo>(`${this.API_Update_PlayList}/${id}`, playlist)
+  }
+  updatePlayList(playlist: PlaylistInfo): Observable<PlaylistInfo>{
+    return this.http.put<PlaylistInfo>(this.API_Update_PlayList, playlist)
   }
   deletePlayList(id: number): Observable<PlaylistInfo>{
     return this.http.delete<PlaylistInfo>(`${this.API_Play_List}/${id}`)

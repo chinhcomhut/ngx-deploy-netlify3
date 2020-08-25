@@ -100,7 +100,7 @@ export class CreateSongComponent implements OnInit {
         this.errorMessage = 'Create successful the songs!'
         alert(this.errorMessage);
         // this.router.navigate(['/
-        // window.location.reload();
+       window.location.reload();
       }
     }, error => {
       this.errorMessage = 'please login before creating music!';
