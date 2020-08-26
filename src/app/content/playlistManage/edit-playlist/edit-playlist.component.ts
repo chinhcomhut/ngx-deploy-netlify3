@@ -35,7 +35,7 @@ export class EditPlaylistComponent implements OnInit {
   }
   updatePlayList(){
     console.log('playlist', this.playlist)
-    this.playListService.updatePlaylist(this.playlist.id, this.playlist).subscribe(data =>{
+    this.playListService.updatePlaylistById(this.playlist.id, this.playlist).subscribe(data =>{
       console.log('data',data)
       if(JSON.stringify(data)==JSON.stringify(this.data1)){
         this.errorMessage = 'Name Play List is required! Please fill in form'

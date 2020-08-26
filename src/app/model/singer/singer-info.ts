@@ -1,4 +1,5 @@
 import {SongInfo} from '../song-info';
+import {PlaylistInfo} from '../playlist-info';
 
 export class SingerInfo {
     id: number;
@@ -8,5 +9,6 @@ export class SingerInfo {
     information: string;
     gender: string;
     songList: SongInfo[] = [];
+    playlists: PlaylistInfo[] = [];
     createBy: string;
 }

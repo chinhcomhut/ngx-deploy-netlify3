@@ -36,10 +36,12 @@ export class CategoryService {
     return this.http.get<CategoryInfo>(`${this.API_Category}/${id}`);
   }
 
-  updateCategory(id: number, category: CategoryInfo): Observable<CategoryInfo> {
-    return this.http.put<CategoryInfo>(`${this.API_Category}/${id}`, category);
+  updateCategory(category: CategoryInfo): Observable<CategoryInfo> {
+    return this.http.put<CategoryInfo>(this.API_Category_Update, category);
   }
-
+  updateCategoryById(id: number, category: CategoryInfo): Observable<CategoryInfo>{
+    return this.http.put<CategoryInfo>(`${this.API_Category}/${id}`, category)
+  }
   deleteCategory(id: number): Observable<CategoryInfo> {
     return this.http.delete<CategoryInfo>(`${this.API_Category}/${id}`);
   }

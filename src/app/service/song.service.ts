@@ -37,7 +37,7 @@ private API_Page_Song_By_User = environment.URL_local+'song-by-user';
   }
   getPageSongBySinger(request){
   const params = request;
-  return this.http.get(this.API_Song_By_Singer)
+  return this.http.get(this.API_Song_By_Singer, {params})
   }
 
   deleteSong(id: number): Observable<SongInfo> {

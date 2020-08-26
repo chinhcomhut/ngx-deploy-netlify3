@@ -20,17 +20,7 @@
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
                 <img class="image" [src]="category.avatarCategory"> <br><br>
-                <div class="search-hero">
-                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                           placeholder="&#61442;  Start searching music genre..."><br>
-                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"
-                            aria-label="Angular Audio Player"
-                            class="mat-button-toggle-group btn-outline-success"
-                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
-                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"
-                                            width="40"/></b></span>
-                    </button>
-                </div>
+
 
                 <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
                 <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
@@ -41,30 +31,108 @@
                 <!--                    </mat-grid-tile>-->
 
                 <!--                </mat-grid-list>-->
-                <div class="row">
-                    <div class="column" *ngFor="let ctc of category.songList|filter: searchText"[routerLink]="['/song-by-category-id',ctc.id]">
-                        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
-                                (click)="deleteSongByCategory(ctc.id)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <div class="card">
-                            <b [routerLink]="['/detailSong/',ctc.id]" class="title" style="color: crimson">{{ctc.nameSong}}</b>
-                            <img [routerLink]="['/detailSong/',ctc.id]" class="image1" [src]="ctc.avatarSong">
+                <mat-card>
+                    <mat-card-title style="color:crimson;" class="alert alert-success">
+                        <img src="../../../../assets/images/icons/edit-song1.png" height="48" width="48"/>
+                        Typical Songs
+                    </mat-card-title>
+                    <div class="search-hero">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchSong" autocomplete="off"
+                               placeholder="&#61442;  Search Song in one page..."><br>
+                        <!--                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"-->
+                        <!--                            aria-label="Angular Audio Player"-->
+                        <!--                            class="mat-button-toggle-group btn-outline-success"-->
+                        <!--                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>-->
+                        <!--                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                                            width="40"/></b></span>-->
+                        <!--                    </button>-->
+                    </div>
+                    <div class="row">
+
+                        <div class="column" *ngFor="let ctc of category.songList|filter: searchSong"[routerLink]="['/song-by-category-id',ctc.id]">
+                            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                    (click)="deleteSongByCategory(ctc.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <div class="card">
+                                <b [routerLink]="['/detailSong/',ctc.id]" class="title" style="color: crimson">{{ctc.nameSong}}</b>
+                                <img [routerLink]="['/detailSong/',ctc.id]" class="image1" [src]="ctc.avatarSong">
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
+
+                    <mat-paginator #paginator [pageSizeOptions]="[10, 50, 100]" [pageSize]="5" [length]="totalElements"
+                                   (page)="nextPage($event)">
+
+                    </mat-paginator>
+                </mat-card><hr>
+                <mat-card>
+                    <mat-card-title style="color: mediumvioletred;" class="alert alert-primary">
+                        <img src="../../../../assets/images/icons/create-song2.png" height="50" width="50"/>
+                        Typical Albums
+                       </mat-card-title>
+                    <div class="search-hero">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                               placeholder="&#61442;  Search album in one page..."><br>
+<!--                        <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"-->
+<!--                                aria-label="Angular Audio Player"-->
+<!--                                class="mat-button-toggle-group btn-outline-success"-->
+<!--                                mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>-->
+<!--                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"-->
+<!--                                            width="40"/></b></span>-->
+<!--                        </button>-->
+                    </div>
+
+                    <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                    <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                    <!--                          <mat-card>-->
+                    <!--                              <b>{{ctg.nameCategory}}</b>-->
+                    <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                    <!--                          </mat-card>-->
+                    <!--                    </mat-grid-tile>-->
+
+                    <!--                </mat-grid-list>-->
+                    <div class="row">
+                        <div class="column" *ngFor="let ctc of category.playlists|filter: searchText">
+                            <!--                        <button *ngIf="isCheck" [routerLink]="['/addPlayListToCategory/',ctc.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+                            <!--                            <mat-icon>playlist_add</mat-icon>-->
+                            <!--                        </button>-->
+                                                    <button  [routerLink]="['/addSongToPlayList/',ctc.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
+                                                        <mat-icon>queue music</mat-icon>
+                                                    </button>
+                                                    <button [routerLink]="['/editPlayList/',ctc.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                                                        <mat-icon>edit</mat-icon>
+                                                    </button>
+                                                    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                                            (click)="deletePlayListByCategory(ctc.id)">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                            <div class="card" >
+                                <b [routerLink]="['/detailPlayList/',ctc.id]" class="title" style="color: crimson">{{ctc.namePlayList}}</b>
+                                <img [routerLink]="['/detailPlayList/',ctc.id]" class="image1"  [src]="ctc.avatarPlayList">
+                            </div>
+
+                        </div>
+
+                    </div>
 
 
-                <mat-paginator #paginator [pageSizeOptions]="[10, 50, 100]" [pageSize]="5" [length]="totalElements"
-                               (page)="nextPage($event)">
+                    <mat-paginator #paginator [pageSizeOptions]="[30, 50, 100]" [pageSize]="5" [length]="totalElements"
+                                   (page)="nextPage($event)">
 
-                </mat-paginator>
+                    </mat-paginator>
+                </mat-card>
+
             </mat-card>
         </div>
     </div>
 </div>
+
+
+
 
 
 

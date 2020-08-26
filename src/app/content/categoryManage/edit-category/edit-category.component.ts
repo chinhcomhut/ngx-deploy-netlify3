@@ -35,7 +35,7 @@ export class EditCategoryComponent implements OnInit {
   }
 
   updateCategory() {
-    this.categoryService.updateCategory(this.category.id, this.category).subscribe(data => {
+    this.categoryService.updateCategoryById(this.category.id, this.category).subscribe(data => {
       if (JSON.stringify(data) == JSON.stringify(this.data1)) {
         this.errorMessage = 'The name Music genre is required! Please fill in form!';
       }

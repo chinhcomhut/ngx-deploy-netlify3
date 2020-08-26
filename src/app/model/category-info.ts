@@ -1,4 +1,5 @@
 import {SongInfo} from './song-info';
+import {PlaylistInfo} from './playlist-info';
 
 export class CategoryInfo {
     id: number;
@@ -6,4 +7,5 @@ export class CategoryInfo {
     avatarCategory: string;
     songList: SongInfo[] = [];
     createBy: string;
+    playlists: PlaylistInfo[] = [];
 }

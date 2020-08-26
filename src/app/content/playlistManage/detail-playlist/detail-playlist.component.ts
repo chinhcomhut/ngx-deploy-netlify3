@@ -66,7 +66,7 @@ export class DetailPlaylistComponent implements OnInit {
       // console.log(this.song.length);
     }
 
-    this.playListService.updatePlaylist(this.playList.id, this.playList).subscribe( () => {
+    this.playListService.updatePlaylistById(this.playList.id, this.playList).subscribe( () => {
       console.log('success', this.playList.songList.length);
     }, error => {
       console.log('error');
