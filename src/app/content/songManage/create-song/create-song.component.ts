@@ -7,6 +7,8 @@ import {CategoryService} from '../../../service/category.service';
 import {SingerService} from '../../../service/singer.service';
 import {SongService} from '../../../service/song.service';
 import {TokenStorageService} from '../../../auth/token-storage.service';
+import {BandInfo} from '../../../model/band-info';
+import {BandService} from '../../../service/band.service';
 
 @Component({
   selector: 'app-create-song',
@@ -19,7 +21,10 @@ export class CreateSongComponent implements OnInit {
   loading: boolean;
   singers: SingerInfo[];
   categorys: CategoryInfo[] = [];
+  bands: BandInfo[] = [];
   selectCategory = this.categorys[0];
+  selectBand = this.bands[0];
+  panelOpenState = false;
   song: SongInfo = new SongInfo();
   form1: any = {};
   data1: any = {
@@ -47,7 +52,8 @@ export class CreateSongComponent implements OnInit {
   constructor(private categoryService: CategoryService,
               private singerService: SingerService,
               private songService: SongService,
-              private tokenService: TokenStorageService) { }
+              private tokenService: TokenStorageService,
+              private bandService: BandService) { }
 
   ngOnInit(): void {
     this.categoryService.getListCategory().subscribe(listCategory=>{
@@ -55,6 +61,9 @@ export class CreateSongComponent implements OnInit {
     })
     this.singerService.getListSinger().subscribe(listSinger=>{
       this.singers = listSinger;
+    })
+    this.bandService.getListBand().subscribe(listBand=>{
+      this.bands = listBand;
     })
   }
   createSong() {
@@ -65,7 +74,8 @@ export class CreateSongComponent implements OnInit {
       nameCategory: '',
       mp3Url: '',
       avatarSong: '',
-      createBy: ''
+      createBy: '',
+      nameBand: '',
     };
     console.log('song', this.song);
     this.a = new Array(this.song.nameSinger);
@@ -77,6 +87,7 @@ export class CreateSongComponent implements OnInit {
     this.form1.nameCategory = this.song.nameCategory;
     this.form1.mp3Url = this.song.mp3Url;
     this.form1.avatarSong = this.song.avatarSong;
+    this.form1.nameBand = this.song.nameBand;
     this.form1.createBy = this.song.createBy = this.tokenService.getUsername();
     console.log('this.form1', this.form1);
     this.songService.createSong(this.form1).subscribe(data => {

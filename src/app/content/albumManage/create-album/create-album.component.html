@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <mat-error class="alert alert-success">{{errorMessage}}</mat-error>
+                <form class="create-album" #f="ngForm" (ngSubmit)="f.form.valid&&createAlbum()" novalidate>
+                    <mat-form-field style="width: 300px" appearance="outline">
+                        <mat-label>Name Album:</mat-label>
+                        <input name="nameAlbum" matInput placeholder="Fill the name album..."
+                        [(ngModel)]="album.nameAlbum"#nameAlbum="ngModel"required>
+                        <mat-icon color="accent" matSuffix>album</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="f.submitted&&nameAlbum.invalid">
+                        <mat-error *ngIf="nameAlbum.errors">Please fill name album in form</mat-error>
+                    </mat-error><br>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-primary"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Album
+                       <img src="../../../../assets/images/icons/create-album.png" height="40" width="40"/></b></span>
+                    </button>
+                </form>
+                <mat-error *ngIf="!addAvatar">Please upload avatar</mat-error>
+                <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+            </mat-card>
+        </div>
+    </div>
+</div>

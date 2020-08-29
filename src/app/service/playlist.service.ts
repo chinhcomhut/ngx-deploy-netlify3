@@ -13,7 +13,8 @@ export class PlaylistService {
   private API_Update_PlayList = environment.URL_local + 'update-playlist'
   private API_Page_PlayList = environment.URL_local + 'playlist/pagination'
   private API_Create_PlayList_For_Singer = environment.URL_local+'playlist-singer'
-  private API_Page_Play_List_OF_Singer = environment.URL_local+'playlist-by-singer'
+  private API_Page_Play_List_OF_Singer = environment.URL_local+'playlist-by-singer';
+  private API_Page_Play_List_Of_Album = environment.URL_local+'playlist-by-album';
   constructor(private http: HttpClient) {
   }
 
@@ -31,6 +32,10 @@ export class PlaylistService {
   getPagePlayList(request) {
     const params = request;
     return this.http.get<any>(this.API_Page_PlayList, {params})
+  }
+  getPagePlayListByAlbum(id: number, request){
+    const params = request;
+    return this.http.get(`${this.API_Page_Play_List_Of_Album}/${id}`,{params})
   }
   getPagePlayListOfSinger(request){
     const params = request;

@@ -15,14 +15,14 @@
 <!--    </div>-->
 <!--</div>-->
 
-<div class="container">
+<div class="container" *ngIf="band">
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
                 <div class="search-hero">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                            placeholder="&#61442;  Search Song in one page ..."><br>
-<!--                    <button [routerLink]="['/detailPlayList/',playList.id]" type="submit" style="color: crimson; text-decoration: none;"-->
+<!--                    <button [routerLink]="['/detailCategory/',category.id]" type="submit" style="color: crimson; text-decoration: none;"-->
 <!--                            aria-label="Angular Audio Player"-->
 <!--                            class="mat-button-toggle-group btn-outline-success"-->
 <!--                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>-->
@@ -42,12 +42,12 @@
                 <!--                </mat-grid-list>-->
                 <mat-error class="alert alert-success">{{errorMessage}}</mat-error>
                 <div class="row">
-                    <div class="column" *ngFor="let pl of playLists|filter: searchText">
-                        <button (click)="addPlayListToCategory(pl)" mat-flat-button color="accent" ><mat-icon>queue</mat-icon>Add</button>
+                    <div class="column" *ngFor="let ctc of songs|filter: searchText">
+                        <button (click)="addSongtoCategory(ctc)" mat-flat-button color="accent" ><mat-icon>queue music</mat-icon>Add</button>
                         <div class="card">
-                            <b [routerLink]="['/detailPlayList/',pl.id]" class="title" style="color: crimson">{{pl.namePlayList}}</b>
-                            <!--                                                        <b>{{ctc.id}}</b>-->
-                            <img [routerLink]="['/detailPlayList/',pl.id]" class="image" [src]="pl.avatarPlayList">
+                            <b [routerLink]="['/detailSong/',ctc.id]" class="title" style="color: crimson">{{ctc.nameSong}}</b>
+                            <!--                                                                                    <b>{{ctc.id}}</b>-->
+                            <img [routerLink]="['/detailSong/',ctc.id]" class="image" [src]="ctc.avatarSong">
                         </div>
 
                     </div>
@@ -55,7 +55,7 @@
                 </div>
 
 
-                <mat-paginator #paginator [pageSizeOptions]="[10, 50, 100]" [pageSize]="5" [length]="totalElements"
+                <mat-paginator #paginator [pageSizeOptions]="[5,10, 50, 100]" [pageSize]="5" [length]="totalElements"
                                (page)="nextPage($event)">
 
                 </mat-paginator>

@@ -5,6 +5,7 @@ export class SongInfo {
     lyrics: string;
     likeSong: number;
     nameSinger: string;
+    nameBand: string;
     nameCategory: string;
     avatarSong: string;
     createBy: string;

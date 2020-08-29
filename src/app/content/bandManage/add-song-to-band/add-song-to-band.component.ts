@@ -1,49 +1,50 @@
 import {Component, OnInit} from '@angular/core';
+import {BandService} from '../../../service/band.service';
 import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
-import {CategoryService} from '../../../service/category.service';
-import {CategoryInfo} from '../../../model/category-info';
-import {SongInfo} from '../../../model/song-info';
+import {BandInfo} from '../../../model/band-info';
 import {PageEvent} from '@angular/material/paginator';
+import {SongInfo} from '../../../model/song-info';
 
 @Component({
-  selector: 'app-addsong-to-category',
-  templateUrl: './addsong-to-category.component.html',
-  styleUrls: ['./addsong-to-category.component.css']
+  selector: 'app-add-song-to-band',
+  templateUrl: './add-song-to-band.component.html',
+  styleUrls: ['./add-song-to-band.component.css']
 })
-export class AddsongToCategoryComponent implements OnInit {
-  category: CategoryInfo;
-  songs: SongInfo[];
+export class AddSongToBandComponent implements OnInit {
+  band: BandInfo;
   loading = false;
   totalElements: number = 0;
+  songs: SongInfo[];
   searchText;
+  errorMessage = '';
   isCheck = false;
-  errorMessage = ''
-  constructor(private songService: SongService,
-              private routes: ActivatedRoute,
-              private categoryService: CategoryService) {
+  constructor(private bandService: BandService,
+              private songService: SongService,
+              private routes: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.routes.paramMap.subscribe(categoryId=>{
-      const id = +categoryId.get('id');
-      this.categoryService.getCategoryById(id).subscribe(result=>{
-        this.category = result;
-        console.log('categoryaaa',result)
-      })
-    })
-    this.getListResquest({page: '', size: ''});
+    this.routes.paramMap.subscribe(bandId => {
+      const id = +bandId.get('id');
+      this.bandService.getBandById(id).subscribe(result => {
+        this.band = result;
+        console.log('result',result)
+        this.getListResquest({page:'', size:''}, this.band.id)
+      });
+    });
+
   }
   addSongtoCategory(song: SongInfo) {
-    console.log('leng', this.category.songList.length)
+    console.log('leng', this.band.songList.length)
     this.isCheck = false;
-    if (this.category.songList.length == 0) {
+    if (this.band.songList.length == 0) {
       this.isCheck = false;
     } else {
-      for (let i = 0; i < this.category.songList.length; i++) {
+      for (let i = 0; i < this.band.songList.length; i++) {
         console.log('song.id', song.id)
-        console.log('songlist.id', this.category.songList[i].id)
-        if (song.id != this.category.songList[i].id) {
+        console.log('songlist.id', this.band.songList[i].id)
+        if (song.id != this.band.songList[i].id) {
           continue;
         } else {
           this.isCheck = true;
@@ -55,23 +56,25 @@ export class AddsongToCategoryComponent implements OnInit {
       // alert('The Song already exists in your play list')
       this.errorMessage = 'The Song already exists in Music Genre!'
     } else {
-      this.category.songList.push(song);
+      this.band.songList.push(song);
       this.errorMessage = 'add successful Song!'
       alert('add song success!')
     }
     // console.log('song',song)
     // this.category.songList.push(song);
 
-    this.categoryService.updateCategory(this.category).subscribe(next => {
+    this.bandService.updateBand(this.band).subscribe(next => {
       console.log('next', next);
       // alert('co vao day khong')
       // this.router.navigate([url]);
       // alert('add song success!')
     });
   }
-  private getListResquest(request) {
+  private getListResquest(request, id: number) {
     this.loading = true;
-    this.songService.getPageSong(request)
+    console.log('idband',this.band.id)
+    id = this.band.id;
+    this.songService.getPageSongByBand(request, id)
       .subscribe(data => {
         this.songs = data['content'];
         console.log('category', data);
@@ -86,7 +89,7 @@ export class AddsongToCategoryComponent implements OnInit {
     const request = {};
     request['page'] = event.pageIndex.toString();
     request['size'] = event.pageSize.toString();
-    this.getListResquest(request);
+    this.getListResquest(request, this.band.id);
   }
 
 }

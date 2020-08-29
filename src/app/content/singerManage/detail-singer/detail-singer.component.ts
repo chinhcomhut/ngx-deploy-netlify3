@@ -40,16 +40,17 @@ export class DetailSingerComponent implements OnInit {
       const id = +singerId.get('id');
       this.singerService.getSingerById(id).subscribe(result=>{
         this.singer = result;
+        this.getListResquest({page: '', size: ''});
       })
     })
-    this.getListResquest({page: '', size: ''});
+
     console.log('request1',this.getListResquest({page:'', size: ''}))
     // this.getPagePlayListRequest({page:'', size: ''});
     // console.log('request',this.getPagePlayListRequest({page:'', size: ''}))
   }
   private getListResquest(request) {
     this.loading = true;
-    this.songService.getPageSongBySinger(request)
+    this.songService.getPageSongBySinger(this.singer.id,request)
       .subscribe(data => {
         this.songs = data['content'];
         console.log('listSong',this.songs);

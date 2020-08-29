@@ -1,0 +1,15 @@
+.create-song-for-band{
+    text-align: center;
+}
+.upload-file {
+    /*  not needed styles to reflect it */
+    background: lightskyblue;
+    padding: 10px;
+    color: white;
+    width: 300px;
+    text-align: center;
+    /* needed styles below */
+    /*display: inline-flex;*/
+    /*justify-content: space-between;*/
+}
+

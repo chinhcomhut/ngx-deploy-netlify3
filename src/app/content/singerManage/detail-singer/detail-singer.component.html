@@ -72,7 +72,7 @@
 
                 <!--                </mat-grid-list>-->
                 <div class="row">
-                    <div class="column" *ngFor="let ctc of singer.songList|filter: searchText"
+                    <div class="column" *ngFor="let ctc of songs|filter: searchText"
                          >
                         <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
                                 (click)="deleteSongBySinger(ctc.id)">

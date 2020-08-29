@@ -60,6 +60,34 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field> <br>
+
+<!--                    <mat-accordion style="width: 300px">-->
+                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                             (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header  class="alert alert-success">
+                                <mat-panel-title  style="color: mediumvioletred;">
+                                    Band:
+                                </mat-panel-title>
+                                <mat-panel-description style="color: red;">
+                                    Click View {{panelOpenState ? 'open!' : 'closed!'}}
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <mat-panel-title style="color: #2b542c" class="alert alert-warning">
+                                Nếu bạn tạo bài hát cho nhóm nhạc hãy chọn nhóm nhạc ở đây!
+                                Nếu nhóm nhạc chưa tồn tại, bạn có thể vào Band để tạo thêm nhóm nhạc của bạn!</mat-panel-title>
+                            <mat-panel-title style="color: red" class="alert alert-warning">
+                                Nếu không phải nhóm nhạc bạn có thể bỏ trống trường này!</mat-panel-title>
+                            <mat-form-field style="width: 300px">
+                                <mat-label>Select Band</mat-label>
+                                <mat-select [(value)]="selectBand" [ngModel]="song.nameBand"
+                                            (ngModelChange)="song.nameBand=$event" [ngModelOptions]="{standalone: true}">
+                                    <mat-option *ngFor="let p of bands" [value]="p.nameBand">
+                                        {{ p.nameBand }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-expansion-panel><br>
+<!--                    </mat-accordion><br>-->
                     <button type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-success"
@@ -69,7 +97,7 @@
                         <b>Create Song
                         <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>
                     </button>
-                </form>
+                </form><br>
 
                 <mat-card  class="upload-file" >
                     <mat-error *ngIf="!addFileMp3">

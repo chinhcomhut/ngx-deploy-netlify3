@@ -14,7 +14,7 @@ export class PageSongComponent implements OnInit {
   loading: boolean;
   searchText;
   isCheck = false;
-  data: any = ['ADMIN'];
+  data: any = ["ADMIN"];
   songs: SongInfo[];
 
   constructor(private songService: SongService,

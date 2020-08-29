@@ -32,39 +32,39 @@ export class DetailCategoryComponent implements OnInit {
         this.category = rusult;
       })
     })
-    this.getListResquest({page: '', size: ''});
-    this.getPagePlayListResquest({page: '', size: ''});
+    // this.getListResquest({page: '', size: ''});
+    // this.getPagePlayListResquest({page: '', size: ''});
   }
-  private getListResquest(request) {
-    this.loading = true;
-    this.songService.getPageSongByCategory(request)
-      .subscribe(data => {
-        this.category = data['content'];
-        console.log('listSong', data);
-        this.totalElements = data['totalElements'];
-        this.loading = false;
-      }, error => {
-        this.loading = false;
-      });
-  }
-  private getPagePlayListResquest(request){
-    this.loading = true;
-    this.playListService.getPagePlayListOfSinger(request).subscribe(data=>{
-      this.playLists = data['content'];
-      this.totalElements = data['totalElements'];
-      this.loading = false;
-    }, error => {
-      this.loading = false;
-    })
-  }
+  // private getListResquest(request) {
+  //   this.loading = true;
+  //   this.songService.getPageSongByCategory(request)
+  //     .subscribe(data => {
+  //       this.category = data['content'];
+  //       console.log('listSong', data);
+  //       this.totalElements = data['totalElements'];
+  //       this.loading = false;
+  //     }, error => {
+  //       this.loading = false;
+  //     });
+  // }
+  // private getPagePlayListResquest(request){
+  //   this.loading = true;
+  //   this.playListService.getPagePlayListOfSinger(request).subscribe(data=>{
+  //     this.playLists = data['content'];
+  //     this.totalElements = data['totalElements'];
+  //     this.loading = false;
+  //   }, error => {
+  //     this.loading = false;
+  //   })
+  // }
 
-  nextPage(event: PageEvent) {
-    const request = {};
-    request['page'] = event.pageIndex.toString();
-    request['size'] = event.pageSize.toString();
-    this.getListResquest(request);
-    this.getPagePlayListResquest(request);
-  }
+  // nextPage(event: PageEvent) {
+  //   const request = {};
+  //   request['page'] = event.pageIndex.toString();
+  //   request['size'] = event.pageSize.toString();
+  //   this.getListResquest(request);
+  //   this.getPagePlayListResquest(request);
+  // }
 
   deleteCategory(id: number) {
     this.categoryService.deleteCategory(id).subscribe(data => {

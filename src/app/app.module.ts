@@ -94,7 +94,6 @@ import { DetailPlaylistComponent } from './content/playlistManage/detail-playlis
 import { PageSongComponent } from './content/songManage/page-song/page-song.component';
 import { DetailSongComponent } from './content/songManage/detail-song/detail-song.component';
 import { EditSongComponent } from './content/songManage/edit-song/edit-song.component';
-import { AddsongToCategoryComponent } from './content/categoryManage/addsong-to-category/addsong-to-category.component';
 import { DetailCategoryComponent } from './content/categoryManage/detail-category/detail-category.component';
 import { AddsongToSingerComponent } from './content/singerManage/addsong-to-singer/addsong-to-singer.component';
 import { PageUserComponent } from './form-login/page-user/page-user.component';
@@ -102,8 +101,16 @@ import { DetailUserComponent } from './form-login/detail-user/detail-user.compon
 import { SongByUserComponent } from './content/userCreateManage/song-by-user/song-by-user.component';
 import { SingerByUserComponent } from './content/userCreateManage/singer-by-user/singer-by-user.component';
 import { CategoryByUserComponent } from './content/userCreateManage/category-by-user/category-by-user.component';
-import { AddPlayListToCategoryComponent } from './content/categoryManage/add-play-list-to-category/add-play-list-to-category.component';
 import { AddPlayListToSingerComponent } from './content/singerManage/add-play-list-to-singer/add-play-list-to-singer.component';
+import { CreateBandComponent } from './content/bandManage/create-band/create-band.component';
+import { PageBandComponent } from './content/bandManage/page-band/page-band.component';
+import { CreateSongForBandComponent } from './content/bandManage/create-song-for-band/create-song-for-band.component';
+import { DetailBandComponent } from './content/bandManage/detail-band/detail-band.component';
+import { AddSongToBandComponent } from './content/bandManage/add-song-to-band/add-song-to-band.component';
+import { CreateAlbumComponent } from './content/albumManage/create-album/create-album.component';
+import { PageAlbumComponent } from './content/albumManage/page-album/page-album.component';
+import { DetailAlbumComponent } from './content/albumManage/detail-album/detail-album.component';
+
 
 // const config = new SocialAuthService([
 //     {
@@ -141,7 +148,6 @@ export const appRoutes: Routes = [
     {path: 'pageSong', component: PageSongComponent, data: {title: 'PageSong'}},
     {path: 'detailSong/:id',component: DetailSongComponent, data: {title: 'DetailSong'}},
     {path: 'editSong/:id', component: EditSongComponent, data: {title: 'EditSong'}},
-    {path: 'addSongToCategory/:id', component: AddsongToCategoryComponent, data: {title: 'AddSongToCategory'}},
     {path: 'detailCategory/:id',component: DetailCategoryComponent, data: {title: 'DetailCategory'}},
     {path: 'addSongToSinger/:id', component: AddsongToSingerComponent, data: {title: 'AddSongToSinger'}},
     {path: 'pageUser', component: PageUserComponent, data: {title: 'PageUser'}},
@@ -150,13 +156,19 @@ export const appRoutes: Routes = [
     {path: 'pageSongByUser', component: SongByUserComponent, data: {title: 'PageSongByUser'}},
     {path: 'pageSingerByUser', component: SingerByUserComponent, data: {title: 'SingerByUser'}},
     {path: 'editPlayList/:id', component: EditPlaylistComponent, data: {title: 'EditPlayList'}},
-    {path: 'addPlayListToCategory/:id', component: AddPlayListToCategoryComponent, data: {title: 'AddPlayListToCategory'}},
     {path: 'addPlayListToSinger/:id', component: AddPlayListToSingerComponent, data: {title: 'AddPlayListToSinger'}},
+    {path: 'createBand', component: CreateBandComponent, data: {title: 'CreateBand'}},
+    {path: 'pageBand', component: PageBandComponent, data: {title: 'PageBand'}},
+    {path: 'createSongForBand', component: CreateSongForBandComponent, data: {title: 'CreateSongForBand'}},
+    {path: 'addSongToBand/:id', component: AddSongToBandComponent, data:{title: 'AddSongToBand'}},
+    {path: 'createAlbum', component: CreateAlbumComponent, data:{title: 'CreateAlbum'}},
+    {path: 'pageAlbum', component: PageAlbumComponent, data: {title: 'PageAlbum'}},
+    {path: 'detailAlbum/:id',component: DetailAlbumComponent, data: {title: 'DetailAlbum'}},
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, AddsongToCategoryComponent, DetailCategoryComponent, AddsongToSingerComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent, AddPlayListToCategoryComponent, AddPlayListToSingerComponent,
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, AddsongToSingerComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,AddPlayListToSingerComponent, CreateBandComponent, PageBandComponent, CreateSongForBandComponent, DetailBandComponent, AddSongToBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent,
     ],
     imports: [
         HttpClientModule,
