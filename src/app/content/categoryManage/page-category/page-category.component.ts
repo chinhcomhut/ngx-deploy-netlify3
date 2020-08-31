@@ -24,7 +24,7 @@ export class PageCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getListResquest({page: '', size: ''});
+    this.getListResquest({page: "", size: ""});
     if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.data)){
       this.isCheck = true;
     }
@@ -42,9 +42,9 @@ deleteCategory(id: number){
     this.loading = true;
     this.categoryService.getPageCategory(request)
       .subscribe(data => {
-        this.category = data['content'];
+        this.category = data["content"];
         console.log('category', data);
-        this.totalElements = data['totalElements'];
+        this.totalElements = data["totalElements"];
         this.loading = false;
       }, error => {
         this.loading = false;
@@ -53,8 +53,8 @@ deleteCategory(id: number){
 
   nextPage(event: PageEvent) {
     const request = {};
-    request['page'] = event.pageIndex.toString();
-    request['size'] = event.pageSize.toString();
+    request["page"] = event.pageIndex.toString();
+    request["size"] = event.pageSize.toString();
     this.getListResquest(request);
   }
 

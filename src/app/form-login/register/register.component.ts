@@ -56,37 +56,50 @@ export class RegisterComponent implements OnInit {
             this.form.email,
             this.form.password)
             console.log("chinh",this.signupInfo)
-        this.authService.signUp(this.signupInfo).subscribe(
-            data => {
-                console.log("dang ky",data);
-
-            },
-            error => {
-                console.log(error);
-                console.log("error",error.error.message);
-
-                console.log("error1",this.error1)
-                if(JSON.stringify(error.error.message)==JSON.stringify(this.error1.message)){
-                    // alert('Your username has been used! Please try again!')
-                    this.isUser = true;
-                    this.isSignUpFailed = false;
-                    this.errorMessage = 'Registration failed! Your username has been used! Please try again!'
-                }
-                if(JSON.stringify(error.error.message)==JSON.stringify(this.error2.message)){
-                    // alert('Your email has been used! Please try again!')
-                    this.isSignUpFailed = false;
-                    this.errorMessage = 'Registration failed! Your email has been used! Please try again'
-                }
-                if(JSON.stringify(error.error.message)==JSON.stringify(this.error3.message)){
-                    this.isSignUpFailed = true;
-                    this.errorMessage = 'Registration successfully! Please login!!!'
-                }
-                // this.errorMessage = error.error.message;
-                // this.isSignUpFailed = true;
-                // console.log("dangkyloi",this.isSignUpFailed)
-                // this.route.navigate(['login']);
-
+        this.authService.signUp(this.signupInfo).subscribe(data=>{
+            console.log('data',data)
+            if(JSON.stringify(data)==JSON.stringify(this.error1)){
+                this.errorMessage = 'Username already exists! Please try again!'
             }
-        );
+            if(JSON.stringify(data)==JSON.stringify(this.error2)){
+                this.errorMessage = 'The Email already exists! Please try again!'
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.error3)){
+                this.errorMessage = 'Create successful account!! Please login!'
+                alert(this.errorMessage)
+                this.route.navigate(['login'])
+            }
+        })
+
+        // this.authService.signUp(this.signupInfo).subscribe(
+        //     data => {
+        //         console.log("dang ky",data);
+        //
+        //     },
+        //     error => {
+        //         console.log(error);
+        //         console.log("error",error.error.message);
+        //         if(JSON.stringify(error.error.message)==JSON.stringify(this.error1.message)){
+        //             // alert('Your username has been used! Please try again!')
+        //             this.isUser = true;
+        //             this.isSignUpFailed = false;
+        //             this.errorMessage = 'Registration failed! Your username has been used! Please try again!'
+        //         }
+        //         if(JSON.stringify(error.error.message)==JSON.stringify(this.error2.message)){
+        //             // alert('Your email has been used! Please try again!')
+        //             this.isSignUpFailed = false;
+        //             this.errorMessage = 'Registration failed! Your email has been used! Please try again'
+        //         }
+        //         if(JSON.stringify(error.error.message)==JSON.stringify(this.error3.message)){
+        //             this.isSignUpFailed = true;
+        //             this.errorMessage = 'Registration successfully! Please login!!!'
+        //         }
+        //         // this.errorMessage = error.error.message;
+        //         // this.isSignUpFailed = true;
+        //         // console.log("dangkyloi",this.isSignUpFailed)
+        //         // this.route.navigate(['login']);
+        //
+        //     }
+        // );
     }
 }

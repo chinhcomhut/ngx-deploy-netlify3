@@ -3,10 +3,10 @@ export class ChangeProfile {
     username: string;
     // avatar: string;
     email: string;
-    constructor(name: string, username: string, email: string) {
-        this.name = name;
-        this.username = username;
-        // this.avatar = avatar;
-        this.email = email;
-    }
+    // constructor(name: string, username: string, email: string) {
+    //     this.name = name;
+    //     this.username = username;
+    //     // this.avatar = avatar;
+    //     this.email = email;
+    // }
 }

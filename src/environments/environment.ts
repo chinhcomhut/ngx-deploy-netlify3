@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   URL_local: 'http://localhost:8080/api/auth/',
-  URL_server: 'https://backend-mp3.herokuapp.com/api/auth/',
+  URL_server: 'https://backend-lamlai.herokuapp.com/api/auth/',
   firebaseConfig: {
     apiKey: 'AIzaSyAHbXIdiO5i-nOweX-szmiNn4JSyrOjDi4',
     authDomain: 'chinhbeo-18d3b.firebaseapp.com',

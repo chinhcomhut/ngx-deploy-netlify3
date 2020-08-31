@@ -58,6 +58,7 @@ export class CreateSongComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getListCategory().subscribe(listCategory=>{
       this.categorys = listCategory;
+      console.log('listCategory', listCategory)
     })
     this.singerService.getListSinger().subscribe(listSinger=>{
       this.singers = listSinger;

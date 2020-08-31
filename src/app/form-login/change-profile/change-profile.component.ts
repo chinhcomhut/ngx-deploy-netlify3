@@ -18,7 +18,8 @@ export class ChangeProfileComponent implements OnInit {
         Validators.email,
     ]);
     changeProfileForm: FormGroup;
-    changeProfile: ChangeProfile;
+    isCheckSuccess = false;
+    changeProfile: ChangeProfile = new ChangeProfile();
     form: any = {};
     data1: any = {
         message: "nouser"
@@ -29,10 +30,13 @@ export class ChangeProfileComponent implements OnInit {
     data3: any = {
         message: "yes"
     }
+    data4: any = {
+        message: "excetion"
+    }
     errormessage = 'Please complete the fields below';
-    isCheckUser = false;
-    isCheckEmail = false;
-    isCheckSuccess = false;
+    // isCheckUser = false;
+    // isCheckEmail = false;
+    // isCheckSuccess = false;
     avatar: string;
     submitted = false;
     @Output()
@@ -53,34 +57,43 @@ export class ChangeProfileComponent implements OnInit {
     }
 
     ngSubmit() {
-        this.changeProfile = new ChangeProfile(
-            this.form.name,
-            this.form.username,
-            // this.form.avatar,
-            this.form.email
-        )
+        // this.changeProfile = new ChangeProfile(
+        //     this.form.name,
+        //     this.form.username,
+        //     // this.form.avatar,
+        //     this.form.email
+        // )
+        console.log('truyen vaof',this.changeProfile)
         this.authService.changeProfile(this.changeProfile).subscribe(data => {
+            console.log('data',data)
             if (JSON.stringify(data) == JSON.stringify(this.data1)) {
-                this.isCheckUser = true;
+
+                // this.isCheckUser = true;
                 // alert('your username has been used')
                 this.errormessage = 'Your username has been used! Please try again!'
                 this.submitted = true;
-            } else if (JSON.stringify(data) == JSON.stringify(this.data2)) {
-                this.isCheckEmail = true;
+            }
+            if (JSON.stringify(data) == JSON.stringify(this.data2)) {
+                // this.isCheckEmail = true;
                 // alert('your email has been used')
                 this.errormessage = 'Your email has been used! Please try again!';
-            } else if (JSON.stringify(data) == JSON.stringify(this.data3)) {
+            }
+            if(JSON.stringify(data)==JSON.stringify(this.data3)){
                 // alert('Change Profile Success!!')
                 // this.errormessage = 'Change Profile Success!!'
-                this.tokenStorageService.saveUsername(this.form.username);
-                // this.tokenStorageService.saveAvatar(this.form.avatar);
-                this.tokenStorageService.saveEmail(this.form.email);
-                this.isCheckSuccess = true;
+                // this.tokenStorageService.saveUsername(this.form.username);
+                // // this.tokenStorageService.saveAvatar(this.form.avatar);
+                // this.tokenStorageService.saveEmail(this.form.email);
+                // this.isCheckSuccess = true;
                 alert('Change successful profile!')
                 this.tokenStorageService.signOut();
                 // this.route.navigate(['/login'])
-
+                this.isCheckSuccess = true;
             }
+
+            // if(JSON.stringify(data)==JSON.stringify(this.data4)){
+            //     this.errormessage = 'Exception kia'
+            // }
         }, error1 => {
             alert('Change Profile Failled! Please login before change!');
         })

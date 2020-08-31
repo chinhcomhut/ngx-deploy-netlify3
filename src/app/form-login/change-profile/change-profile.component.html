@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px 0;">
-                <mat-card-title *ngIf="isCheckSuccess; else changeProfile">
+                <mat-card-title *ngIf="isCheckSuccess; else changeProfiles">
                     <mat-card-subtitle style="color: #f92672">Please Login Again!!</mat-card-subtitle>
                     <button routerLink="/login" style="color: springgreen; text-decoration: none;" aria-label="Angular Audio Player"
                             class="docs-button mat-button"
@@ -31,15 +31,16 @@
                         <div class="mat-button-focus-overlay"></div>
                     </button><span class="example-spacer"></span>
                 </mat-card-title>
-                <ng-template #changeProfile>
-                    <mat-error class="alert alert-success">
-                        {{errormessage}}
-                    </mat-error>
+                <ng-template #changeProfiles>
+
                     <form class="change-profile" (ngSubmit)="f.form.valid && ngSubmit()" #f="ngForm" novalidate>
+                        <mat-error class="alert alert-success">
+                            {{errormessage}}
+                        </mat-error>
                         <mat-form-field style="width: 350px" appearance="outline">
                             <mat-label>Enter your name ...</mat-label>
                             <input matInput placeholder="Enter your name..."
-                                   name="name" [(ngModel)]="form.name" #name = "ngModel" required >
+                                   name="name" [(ngModel)]="changeProfile.name" #name = "ngModel" required >
                             <mat-icon color="accent" matSuffix>sentiment_very_satisfied</mat-icon>
                             <mat-error *ngIf="f.submitted && name.invalid "></mat-error>
                         </mat-form-field>
@@ -47,7 +48,7 @@
                         <mat-form-field style="width: 350px" appearance="outline">
                             <mat-label>Enter your user account ...</mat-label>
                             <input matInput placeholder="Enter your account..."
-                                   name="username" [(ngModel)]="form.username" #username="ngModel" required >
+                                   name="username" [(ngModel)]="changeProfile.username" #username="ngModel" required >
                             <mat-icon color="accent" matSuffix>recent_actors</mat-icon>
 <!--                            <div *ngIf="f.submitted && username.invalid; else nouser">-->
 <!--                                &lt;!&ndash;                                <div *ngIf="username.errors.required">Username is&ndash;&gt;-->
@@ -55,6 +56,17 @@
 <!--                                &lt;!&ndash;                                </div>&ndash;&gt;-->
 <!--                            </div>-->
                         </mat-form-field>
+<!--                        <mat-form-field style="width: 350px" appearance="outline">-->
+<!--                            <mat-label>Enter your user account ...</mat-label>-->
+<!--                            <input matInput placeholder="Enter your account..."-->
+<!--                                   name="email" [(ngModel)]="changeProfile.email" #email="ngModel" required >-->
+<!--                            <mat-icon color="accent" matSuffix>recent_actors</mat-icon>-->
+<!--                            &lt;!&ndash;                            <div *ngIf="f.submitted && username.invalid; else nouser">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                &lt;!&ndash;                                <div *ngIf="username.errors.required">Username is&ndash;&gt;&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                &lt;!&ndash;                                    required&ndash;&gt;&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                &lt;!&ndash;                                </div>&ndash;&gt;&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                        </mat-form-field>-->
 <!--                        <ng-template #nouser>-->
 <!--                            <mat-error *ngIf="isCheckUser;" style="color: #f92672"> User Trùng Nhau</mat-error>-->
 <!--                        </ng-template>-->
@@ -75,7 +87,7 @@
 
                         <mat-form-field style="width: 350px"  appearance="outline">
                             <mat-label>Email</mat-label>
-                            <input  name="email" [(ngModel)]="form.email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+                            <input  name="email" [(ngModel)]="changeProfile.email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
                             <mat-icon color="accent" matSuffix>attach_email</mat-icon>
 
                             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">

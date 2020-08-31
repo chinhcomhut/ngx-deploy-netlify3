@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.prod';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CategoryInfo} from '../model/category-info';
@@ -9,7 +9,6 @@ import {CategoryInfo} from '../model/category-info';
 })
 export class CategoryService {
   //API LoCal//
-  // private List_Category_Pagination = environment.URL_local + 'category/pagination';
   // private API_Category = environment.URL_local + 'category';
   // private API_Category_Update = environment.URL_local+'update-category';
   // private API_Category_By_User = environment.URL_local+'category-by-user';
@@ -18,6 +17,8 @@ export class CategoryService {
   private API_Category = environment.URL_server+'category';
   private API_Category_By_User = environment.URL_server+'category-by-user';
   private API_Category_Update = environment.URL_server+'update-category';
+  private API_List_Category = environment.URL_server+'list-category';
+
   constructor(private http: HttpClient) {
   }
 
@@ -31,7 +32,7 @@ export class CategoryService {
   }
 
   getListCategory(): Observable<CategoryInfo[]> {
-    return this.http.get<CategoryInfo[]>(this.API_Category);
+    return this.http.get<CategoryInfo[]>(this.API_List_Category);
   }
 
   createCategory(category: Object): Observable<Object> {

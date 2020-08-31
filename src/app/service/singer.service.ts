@@ -10,13 +10,16 @@ import {catchError, tap} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SingerService {
-
-  private API_SINGER = 'http://localhost:8080/api/auth/singer';
+//API Local
+//   private API_SINGER = 'http://localhost:8080/api/auth/singer';
   private API_SINGER_PAGINATION = 'http://localhost:8080/api/auth/singer/pagination';
   private List_Singer_Pagination = environment.URL_local + 'singer/pagination';
   private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser';
   private API_Put_Singer = environment.URL_local+'update-singer';
   private API_Page_Singer_By_User = environment.URL_local+'singer-by-user';
+
+  //API SEVER
+  private API_SINGER = environment.URL_server+'singer';
   constructor(private http: HttpClient) {
   }
 
@@ -45,7 +48,7 @@ updateSinger(singer: SingerInfo): Observable<SingerInfo>{
 
   getPageSinger(request) {
     const params = request;
-    return this.http.get(this.List_Singer_Pagination, {params});
+    return this.http.get(this.API_SINGER, {params});
   }
   getPageSingerByUser(request){
     const params = request;

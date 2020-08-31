@@ -69,10 +69,11 @@
 <!--                    Your have successfully registered! Please login!-->
 <!--                </mat-card-title>-->
 
-                    <mat-error style="color: red" *ngIf="f.submitted " class="alert alert-warning">
-                        {{errorMessage}}
-                    </mat-error>
+
                     <form class="form-register" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"  novalidate>
+                        <mat-error  class="alert alert-warning">
+                            {{errorMessage}}
+                        </mat-error>
                         <mat-form-field style="width: 350px" appearance="outline">
                             <mat-label>Enter your name ...</mat-label>
                             <input matInput placeholder="Enter your name..."

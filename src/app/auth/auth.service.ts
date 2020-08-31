@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
 import { SignUpInfo } from './signup-info';
-import {environment} from "../../environments/environment";
+import {environment} from "../../environments/environment.prod";
 import {ChangePassword} from "./change-password";
 import {UserAccount} from "../model/userAccount/userAccount";
 import {FormGroup} from "@angular/forms";
+import {ChangeProfile} from './change-profile';
 // import {UpdateInfo} from '../model/userManager/UpdateInfo';
 // import {ChangePassword} from '../model/userManager/ChangePassword';
 
@@ -23,20 +24,21 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class AuthService {
   // //SERVICE LOCAL
-  // private getUserId = environment.URL_local+'user';
-  // private signupUrl = environment.URL_local+'signup';
-  // private loginUrl = environment.URL_local+'signin';
-  // private changeProfileUrl= environment.URL_local+'update-profile';
-  // private changePassUrl = environment.URL_local+'change-password';
-  // private changeAvatarUrl = environment.URL_local+'change-avatar';
+  private getUserId = environment.URL_local+'user';
+  private signupUrl = environment.URL_local+'signup';
+  private loginUrl = environment.URL_local+'signin';
+  private changeProfileUrl= environment.URL_local+'update-profile';
+  private changePassUrl = environment.URL_local+'change-password';
+  private changeAvatarUrl = environment.URL_local+'change-avatar';
 
   // SERVICE SERVER
-  private getUserId = environment.URL_server+'user';
-  private loginUrl = environment.URL_server+'signin';
-  private signupUrl = environment.URL_server+'signup';
-  private changeProfileUrl = environment.URL_server+'update-profile';
-  private changePassUrl = environment.URL_server+'change-password';
-  private changeAvatarUrl = environment.URL_server+'change-avatar';
+  // private getUserId = environment.URL_server+'user';
+  // private loginUrl = environment.URL_server+'signin';
+  // // private signupUrl = 'https://backend-lamlai.herokuapp.com/api/auth/signup';
+  // private signupUrl = environment.URL_server+'signup';
+  // private changeProfileUrl = environment.URL_server+'update-profile';
+  // private changePassUrl = environment.URL_server+'change-password';
+  // private changeAvatarUrl = environment.URL_server+'change-avatar';
 
   constructor(private http: HttpClient) {
   }
@@ -60,9 +62,9 @@ export class AuthService {
     }
     return false;
   }
-  signUp(info: SignUpInfo): Observable<string> {
+  signUp(info: SignUpInfo): Observable<any> {
     console.log(info)
-    return this.http.post<string>(this.signupUrl, info, httpOptions);
+    return this.http.post<any>(this.signupUrl, info, httpOptions);
   }
   // updateAuth(info: UpdateInfo): Observable<JwtResponse> {
   //   return this.http.put<JwtResponse>(this.updateProfileUrl, info, httpOptions);
