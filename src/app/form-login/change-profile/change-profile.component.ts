@@ -81,9 +81,9 @@ export class ChangeProfileComponent implements OnInit {
             if(JSON.stringify(data)==JSON.stringify(this.data3)){
                 // alert('Change Profile Success!!')
                 // this.errormessage = 'Change Profile Success!!'
-                // this.tokenStorageService.saveUsername(this.form.username);
+                this.tokenStorageService.saveUsername(this.form.username);
                 // // this.tokenStorageService.saveAvatar(this.form.avatar);
-                // this.tokenStorageService.saveEmail(this.form.email);
+                this.tokenStorageService.saveEmail(this.form.email);
                 // this.isCheckSuccess = true;
                 alert('Change successful profile!')
                 this.tokenStorageService.signOut();
