@@ -20,7 +20,7 @@ export class SingerByUserComponent implements OnInit {
   constructor(private singerService: SingerService) { }
 
   ngOnInit(): void {
-    this.getListResquest({page: '', size: ''});
+    // this.getListResquest({page: '', size: ''});
   }
   deleteSinger(id: number){
     this.singerService.deleteSinger(id).subscribe(data=>{
@@ -32,23 +32,23 @@ export class SingerByUserComponent implements OnInit {
       alert('You have to delete songs from artist first!')
     })
   }
-  private getListResquest(request) {
-    this.loading = true;
-    this.singerService.getPageSingerByUser(request)
-      .subscribe(data => {
-        this.singers = data['content'];
-        console.log('singer', data);
-        this.totalElements = data['totalElements'];
-        this.loading = false;
-      }, error => {
-        this.loading = false;
-      });
-  }
-
-  nextPage(event: PageEvent) {
-    const request = {};
-    request['page'] = event.pageIndex.toString();
-    request['size'] = event.pageSize.toString();
-    this.getListResquest(request);
-  }
+  // private getListResquest(request) {
+  //   this.loading = true;
+  //   this.singerService.getPageSingerByUser(request)
+  //     .subscribe(data => {
+  //       this.singers = data['content'];
+  //       console.log('singer', data);
+  //       this.totalElements = data['totalElements'];
+  //       this.loading = false;
+  //     }, error => {
+  //       this.loading = false;
+  //     });
+  // }
+  //
+  // nextPage(event: PageEvent) {
+  //   const request = {};
+  //   request['page'] = event.pageIndex.toString();
+  //   request['size'] = event.pageSize.toString();
+  //   this.getListResquest(request);
+  // }
 }

@@ -34,42 +34,42 @@ export class AddPlayListToSingerComponent implements OnInit {
     });
     this.getListResquest({page:'', size: ''})
   }
-
-  addPlayListToCategory(playList: PlaylistInfo) {
-    console.log('leng', this.singer.playlists.length);
-    this.isCheck = false;
-    if (this.singer.playlists.length == 0) {
-      this.isCheck = false;
-    } else {
-      for (let i = 0; i < this.singer.playlists.length; i++) {
-        console.log('playlist.id', playList.id);
-        console.log('playlist.id', this.singer.playlists[i].id);
-        if (playList.id != this.singer.playlists[i].id) {
-          continue;
-        } else {
-          this.isCheck = true;
-          break;
-        }
-      }
-    }
-    if (this.isCheck) {
-      // alert('The Song already exists in your play list')
-      this.errorMessage = 'The PlayList already exists in Music Genre!';
-    } else {
-      this.singer.playlists.push(playList);
-      this.errorMessage = 'add successful Play List!';
-      alert('add play list success!');
-    }
-    // console.log('song',song)
-    // this.category.songList.push(song);
-
-    this.singerService.updateSinger(this.singer).subscribe(next => {
-      console.log('next', next);
-      // alert('co vao day khong')
-      // this.router.navigate([url]);
-      // alert('add song success!')
-    });
-  }
+  //
+  // addPlayListToCategory(playList: PlaylistInfo) {
+  //   console.log('leng', this.singer.playlists.length);
+  //   this.isCheck = false;
+  //   if (this.singer.playlists.length == 0) {
+  //     this.isCheck = false;
+  //   } else {
+  //     for (let i = 0; i < this.singer.playlists.length; i++) {
+  //       console.log('playlist.id', playList.id);
+  //       console.log('playlist.id', this.singer.playlists[i].id);
+  //       if (playList.id != this.singer.playlists[i].id) {
+  //         continue;
+  //       } else {
+  //         this.isCheck = true;
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   if (this.isCheck) {
+  //     // alert('The Song already exists in your play list')
+  //     this.errorMessage = 'The PlayList already exists in Music Genre!';
+  //   } else {
+  //     this.singer.playlists.push(playList);
+  //     this.errorMessage = 'add successful Play List!';
+  //     alert('add play list success!');
+  //   }
+  //   // console.log('song',song)
+  //   // this.category.songList.push(song);
+  //
+  //   this.singerService.updateSinger(this.singer).subscribe(next => {
+  //     console.log('next', next);
+  //     // alert('co vao day khong')
+  //     // this.router.navigate([url]);
+  //     // alert('add song success!')
+  //   });
+  // }
 
   private getListResquest(request) {
     this.loading = true;
