@@ -11,14 +11,16 @@ export class SongService {
   //API LOCAL
   // private API_Page_Song = environment.URL_local + 'song/pagination';
   // private API_Song = environment.URL_local + 'song';
-  private API_Song_By_Category = environment.URL_local + 'song-by-category-id';
-  private API_Song_By_Singer = environment.URL_local + 'song-by-singer';
+  // private API_Song_By_Category = environment.URL_local + 'song-by-category-id';
+  // private API_Song_By_Singer = environment.URL_local + 'song-by-singer';
   private API_Page_Song_By_User = environment.URL_local + 'song-by-user';
   private API_Create_Song_For_Band = environment.URL_local +'song-band';
   private API_Song_By_Band = environment.URL_local+'song-by-band'
 
   //API SEVER
-  private API_Song = environment.URL_server+'song'
+  private API_Song = environment.URL_server+'song';
+  private API_Song_By_Singer = environment.URL_server+'song-by-singer';
+  private API_Song_By_Category = environment.URL_server+'song-by-category';
   constructor(private http: HttpClient) {
   }
 
@@ -50,9 +52,9 @@ export class SongService {
     return this.http.put<Object>(`${this.API_Song}/${id}`, value);
   }
 
-  getPageSongByCategory(request) {
+  getPageSongByCategory(id: number,request) {
     const params = request;
-    return this.http.get(this.API_Song_By_Category, {params});
+    return this.http.get(`${this.API_Song_By_Category}/${id}`, {params});
   }
 
   getPageSongBySinger(id: number,request) {

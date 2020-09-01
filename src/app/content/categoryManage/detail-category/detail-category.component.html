@@ -49,11 +49,11 @@
                     </div>
                     <div class="row">
 
-                        <div class="column" *ngFor="let ctc of category.songList|filter: searchSong"[routerLink]="['/song-by-category-id',ctc.id]">
-                            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
-                                    (click)="deleteSongByCategory(ctc.id)">
-                                <mat-icon>delete</mat-icon>
-                            </button>
+                        <div class="column" *ngFor="let ctc of songs|filter: searchSong"[routerLink]="['/song-by-category-id',ctc.id]">
+<!--                            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
+<!--                                    (click)="deleteSongByCategory(ctc.id)">-->
+<!--                                <mat-icon>delete</mat-icon>-->
+<!--                            </button>-->
                             <div class="card">
                                 <b [routerLink]="['/detailSong/',ctc.id]" class="title" style="color: crimson">{{ctc.nameSong}}</b>
                                 <img [routerLink]="['/detailSong/',ctc.id]" class="image1" [src]="ctc.avatarSong">

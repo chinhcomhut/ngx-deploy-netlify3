@@ -16,6 +16,7 @@ import {PlaylistInfo} from '../../../model/playlist-info';
 export class DetailCategoryComponent implements OnInit {
   category: CategoryInfo = new CategoryInfo()
   playLists: PlaylistInfo[];
+  songs: SongInfo[];
   totalElements: number = 0;
   loading: boolean;
   searchSong;
@@ -30,23 +31,24 @@ export class DetailCategoryComponent implements OnInit {
       const id = +categoryId.get('id');
       this.categoryService.getCategoryById(id).subscribe(rusult=>{
         this.category = rusult;
+        this.getListResquest({page: '', size: ''});
       })
     })
-    // this.getListResquest({page: '', size: ''});
+
     // this.getPagePlayListResquest({page: '', size: ''});
   }
-  // private getListResquest(request) {
-  //   this.loading = true;
-  //   this.songService.getPageSongByCategory(request)
-  //     .subscribe(data => {
-  //       this.category = data['content'];
-  //       console.log('listSong', data);
-  //       this.totalElements = data['totalElements'];
-  //       this.loading = false;
-  //     }, error => {
-  //       this.loading = false;
-  //     });
-  // }
+   getListResquest(request) {
+    this.loading = true;
+    this.songService.getPageSongByCategory(this.category.id,request)
+      .subscribe(data => {
+        this.songs = data['content'];
+        console.log('listSong', data);
+        this.totalElements = data['totalElements'];
+        this.loading = false;
+      }, error => {
+        this.loading = false;
+      });
+  }
   // private getPagePlayListResquest(request){
   //   this.loading = true;
   //   this.playListService.getPagePlayListOfSinger(request).subscribe(data=>{
@@ -58,13 +60,13 @@ export class DetailCategoryComponent implements OnInit {
   //   })
   // }
 
-  // nextPage(event: PageEvent) {
-  //   const request = {};
-  //   request['page'] = event.pageIndex.toString();
-  //   request['size'] = event.pageSize.toString();
-  //   this.getListResquest(request);
-  //   this.getPagePlayListResquest(request);
-  // }
+  nextPage(event: PageEvent) {
+    const request = {};
+    request['page'] = event.pageIndex.toString();
+    request['size'] = event.pageSize.toString();
+    this.getListResquest(request);
+    // this.getPagePlayListResquest(request);
+  }
 
   deleteCategory(id: number) {
     this.categoryService.deleteCategory(id).subscribe(data => {
