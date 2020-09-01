@@ -36,7 +36,7 @@ export class PageSingerComponent implements OnInit {
         //         console.log(error)
         //     }
         // )
-       this.getListResquest({page: "", size: ""})
+       this.getListResquest({page: '', size: ''})
         if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.data)){
             this.isCheck = true;
         }

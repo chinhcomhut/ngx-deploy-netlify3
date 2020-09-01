@@ -31,16 +31,17 @@
 <!--                        <button *ngIf="isCheck" [routerLink]="['/addSongToCategory/',ctc.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
 <!--                            <mat-icon>queue music</mat-icon>-->
 <!--                        </button>-->
-                        <button *ngIf="isCheck" [routerLink]="['/editCategory/',ctc.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                        <button *ngIf="isCheckAmin" [routerLink]="['/editCategory/',ctc.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button *ngIf="isCheck" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                        <button *ngIf="isCheckAmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
                                 (click)="deleteCategory(ctc.id)">
                             <mat-icon>delete</mat-icon>
                         </button>
                         <div class="card" >
                             <b [routerLink]="['/detailCategory/',ctc.id]" class="title" style="color: crimson">{{ctc.nameCategory}}</b>
                             <img [routerLink]="['/detailCategory/',ctc.id]" class="image"  [src]="ctc.avatarCategory">
+                            <mat-card-subtitle *ngIf="isCheckUser" style="color: #ff03cc">{{ctc.createBy}}</mat-card-subtitle>
                         </div>
                        
                     </div>

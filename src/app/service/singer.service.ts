@@ -12,14 +12,15 @@ import {catchError, tap} from 'rxjs/operators';
 export class SingerService {
 //API Local
 //   private API_SINGER = 'http://localhost:8080/api/auth/singer';
-  private API_SINGER_PAGINATION = 'http://localhost:8080/api/auth/singer/pagination';
-  private List_Singer_Pagination = environment.URL_local + 'singer/pagination';
-  private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser';
-  private API_Put_Singer = environment.URL_local+'update-singer';
-  private API_Page_Singer_By_User = environment.URL_local+'singer-by-user';
+//   private API_SINGER_PAGINATION = 'http://localhost:8080/api/auth/singer/pagination';
+//   private List_Singer_Pagination = environment.URL_local + 'singer/pagination';
+//   private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser';
+//   private API_Put_Singer = environment.URL_local+'update-singer';
+//   private API_Page_Singer_By_User = environment.URL_local+'singer-by-user';
 
   //API SEVER
-  private API_SINGER = environment.URL_server+'singer';
+  private API_SINGER = environment.URL_server + 'singer';
+
   constructor(private http: HttpClient) {
   }
 
@@ -35,9 +36,10 @@ export class SingerService {
     return this.http.put(`${this.API_SINGER}/${id}`, value);
   }
 
-updateSinger(singer: SingerInfo): Observable<SingerInfo>{
-    return this.http.put<SingerInfo>(this.API_Put_Singer, singer)
-}
+  // updateSinger(singer: SingerInfo): Observable<SingerInfo> {
+  //   return this.http.put<SingerInfo>(this.API_Put_Singer, singer);
+  // }
+
   deleteSinger(id: number): Observable<SingerInfo> {
     return this.http.delete<SingerInfo>(`${this.API_SINGER}/${id}`);
   }
@@ -50,8 +52,9 @@ updateSinger(singer: SingerInfo): Observable<SingerInfo>{
     const params = request;
     return this.http.get(this.API_SINGER, {params});
   }
-  getPageSingerByUser(request){
-    const params = request;
-    return this.http.get(this.API_Page_Singer_By_User, {params})
-  }
+
+  // getPageSingerByUser(request) {
+  //   const params = request;
+  //   return this.http.get(this.API_Page_Singer_By_User, {params});
+  // }
 }

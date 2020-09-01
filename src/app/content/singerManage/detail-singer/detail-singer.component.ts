@@ -80,33 +80,33 @@ export class DetailSingerComponent implements OnInit {
     this.getListResquest(request);
     // this.getPagePlayListRequest(request);
   }
-  deleteSongBySinger(id: number) {
-    console.log('lenth', this.singer.songList);
-    for (let i = 0; i < this.singer.songList.length; i++) {
-      if (this.singer.songList[i].id === id) {
-        this.singer.songList.splice(i, 1);
-        console.log('leng in if', this.singer.songList.length);
-      }
-      // console.log(this.song.length);
-    }
-    this.singerService.updateSinger(this.singer).subscribe(()=>{
-      alert('delete successful Song!')
-    })
-  }
-  deletePlayList(id: number){
-    this.playListService.deletePlayList(id).subscribe(data=>{
-      if(JSON.stringify(data)==JSON.stringify(this.data1)){
-        alert('Delete Successful Play List!')
-      }
-      this.playListService.updatePlaylistById(this.playlist.id, this.playlist).subscribe(()=>{
-      alert('delete successful Song!')
-        window.location.reload()
-      })
-      window.location.reload();
-    }, error => {
-      alert('Can phai xoa o cho khac truoc')
-    })
-  }
+  // deleteSongBySinger(id: number) {
+  //   console.log('lenth', this.singer.songList);
+  //   for (let i = 0; i < this.singer.songList.length; i++) {
+  //     if (this.singer.songList[i].id === id) {
+  //       this.singer.songList.splice(i, 1);
+  //       console.log('leng in if', this.singer.songList.length);
+  //     }
+  //     // console.log(this.song.length);
+  //   }
+  //   this.singerService.updateSinger(this.singer).subscribe(()=>{
+  //     alert('delete successful Song!')
+  //   })
+  // }
+  // deletePlayList(id: number){
+  //   this.playListService.deletePlayList(id).subscribe(data=>{
+  //     if(JSON.stringify(data)==JSON.stringify(this.data1)){
+  //       alert('Delete Successful Play List!')
+  //     }
+  //     this.playListService.updatePlaylistById(this.playlist.id, this.playlist).subscribe(()=>{
+  //     alert('delete successful Song!')
+  //       window.location.reload()
+  //     })
+  //     window.location.reload();
+  //   }, error => {
+  //     alert('Can phai xoa o cho khac truoc')
+  //   })
+  // }
 
 
 }

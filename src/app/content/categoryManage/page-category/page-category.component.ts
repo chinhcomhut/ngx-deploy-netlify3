@@ -14,8 +14,10 @@ export class PageCategoryComponent implements OnInit {
   category: CategoryInfo[];
   loading: boolean;
   searchText;
-  isCheck = false;
-  data: any = ["ADMIN"]
+  isCheckAmin = false;
+  isCheckUser = false;
+  admin: any = ["ADMIN"]
+  user: any = ["USER"]
   data1: any = {
     message: "yes"
   }
@@ -25,8 +27,11 @@ export class PageCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListResquest({page: '', size: ''});
-    if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.data)){
-      this.isCheck = true;
+    if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
+      this.isCheckAmin = true;
+    }
+    if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.user)){
+      this.isCheckUser = true;
     }
   }
 deleteCategory(id: number){

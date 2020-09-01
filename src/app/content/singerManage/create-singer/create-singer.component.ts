@@ -74,6 +74,7 @@ export class CreateSingerComponent implements OnInit {
             if(JSON.stringify(data)==JSON.stringify(this.data6)){
                 this.errorMessage = 'Create sucessful Singer'
                 alert(this.errorMessage);
+                this.router.navigate(['/pageSinger'])
             }
         }, error1 => {
             this.errorMessage = 'Please login before create Singer.'
