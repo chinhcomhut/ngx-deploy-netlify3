@@ -20,6 +20,7 @@ export class SingerService {
 
   //API SEVER
   private API_SINGER = environment.URL_server + 'singer';
+  private API_List_Singer = environment.URL_server+'list-singer'
 
   constructor(private http: HttpClient) {
   }
@@ -45,7 +46,7 @@ export class SingerService {
   }
 
   getListSinger(): Observable<SingerInfo[]> {
-    return this.http.get<SingerInfo[]>(this.API_SINGER);
+    return this.http.get<SingerInfo[]>(this.API_List_Singer);
   }
 
   getPageSinger(request) {

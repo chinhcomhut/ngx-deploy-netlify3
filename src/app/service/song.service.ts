@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.prod';
 import {SongInfo} from '../model/song-info';
 import {Observable} from 'rxjs';
 
@@ -8,19 +8,23 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class SongService {
-  private API_Page_Song = environment.URL_local + 'song/pagination';
-  private API_Song = environment.URL_local + 'song';
+  //API LOCAL
+  // private API_Page_Song = environment.URL_local + 'song/pagination';
+  // private API_Song = environment.URL_local + 'song';
   private API_Song_By_Category = environment.URL_local + 'song-by-category-id';
   private API_Song_By_Singer = environment.URL_local + 'song-by-singer';
   private API_Page_Song_By_User = environment.URL_local + 'song-by-user';
   private API_Create_Song_For_Band = environment.URL_local +'song-band';
   private API_Song_By_Band = environment.URL_local+'song-by-band'
+
+  //API SEVER
+  private API_Song = environment.URL_server+'song'
   constructor(private http: HttpClient) {
   }
 
   getPageSong(request) {
     const params = request;
-    return this.http.get(this.API_Page_Song, {params});
+    return this.http.get(this.API_Song, {params});
   }
   getPageSongByBand(request, id: number){
     const params = request;

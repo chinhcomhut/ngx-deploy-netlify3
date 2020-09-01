@@ -14,8 +14,11 @@ export class PageSongComponent implements OnInit {
   loading: boolean;
   searchText;
   isCheck = false;
-  data: any = ["ADMIN"];
+  admin: any = ['ADMIN'];
   songs: SongInfo[];
+  data1: any = {
+    message: "yes"
+  };
 
   constructor(private songService: SongService,
               private tokenService: TokenStorageService) {
@@ -23,15 +26,15 @@ export class PageSongComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListResquest({page: '', size: ''});
-    if (JSON.stringify(this.tokenService.getAuthorities()) == JSON.stringify(this.data)) {
+    if (JSON.stringify(this.tokenService.getAuthorities()) == JSON.stringify(this.admin)) {
       this.isCheck = true;
     }
   }
 
-  deleteSong(id: number){
-    this.songService.deleteSong(id).subscribe(data=>{
-      if(JSON.stringify(data)==JSON.stringify(this.data)){
-        alert('Delete Successful Song!')
+  deleteSong(id: number) {
+    this.songService.deleteSong(id).subscribe(data => {
+      if (JSON.stringify(data) == JSON.stringify(this.data1)) {
+        alert('Delete Successful Song!');
       }
       // this.songService.updateSong(this.song.id, this.song).subscribe(()=>{
       // alert('delete successful Song!')
@@ -39,9 +42,10 @@ export class PageSongComponent implements OnInit {
       // })
       window.location.reload();
     }, error => {
-      alert('Can phai xoa o cho khac truoc')
-    })
+      alert('Can phai xoa o cho khac truoc');
+    });
   }
+
   private getListResquest(request) {
     this.loading = true;
     this.songService.getPageSong(request)
