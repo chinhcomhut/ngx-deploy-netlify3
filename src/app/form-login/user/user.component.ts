@@ -49,21 +49,25 @@ export class UserComponent implements OnInit {
   // @ts-ignore
   ngOnInit() {
     // this.routes.paramMap.subscribe(userId=>{
+    // const id = +userId.get('id')
+    //
+    // })
+    // this.routes.paramMap.subscribe(userId=>{
     //     const id = +userId.get('id')
     //     this.userService.getUserById(id).subscribe(result=>{
     //         this.user = result;
     //     })
     // })
-    this.userService.getUserBoard().subscribe(
-      data => {
-        this.board = data;
-      },
-      error => {
-        this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
-      }
-    );
+    // this.userService.getUserBoard().subscribe(
+    //   data => {
+    //     this.board = data;
+    //     console.log('data',data)
+    //   },
+    //   error => {
+    //     this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
+    //   }
+    // );
     this.info = {
-
       token: this.token.getToken(),
       username: this.token.getUsername(),
       avatar: this.token.getAvatar(),
@@ -73,48 +77,15 @@ export class UserComponent implements OnInit {
     // console.log(this.info)
     console.log('token' + this.token.getToken());
     this.getListResquest({page: '', size: ''});
-    console.log('listreques', this.getListResquest({page: '', size: ''}));
+    // console.log('listreques', this.getListResquest({page: '', size: ''}));
   }
 
-  // changeMsbapDisplayTitle(event) {
-  //     this.msbapDisplayTitle = event.checked;
-  // }
-  //
-  // changeMsbapDisplayVolumeControls(event) {
-  //     this.msbapDisplayVolumeControls = event.checked;
-  // }
-  //
-  // changeMsaapDisplayTitle(event) {
-  //     this.msaapDisplayTitle = event.checked;
-  // }
-  //
-  // changeMsaapDisplayPlayList(event) {
-  //     this.msaapDisplayPlayList = event.checked;
-  // }
-  //
-  // changeMsaapDisplayVolumeControls(event) {
-  //     this.msaapDisplayVolumeControls = event.checked;
-  // }
   logout() {
     this.token.signOut();
     // this.route.navigate([''])
     window.location.reload();
   }
 
-  // update(songs: Song[]) {
-  //     this.songList = songs;
-  // }
-  // getUser() {
-  //     if (this.token) {
-  //         this.userService.getUserById(this.token.getUserId()).subscribe(
-  //             result => {
-  //                 this.user = result;
-  //             }, error1 => {
-  //                 console.log(error1);
-  //             }
-  //         );
-  //     }
-  // }
 
   editUser(user: UserAccount): void {
     window.sessionStorage.removeItem('AuthUserId');

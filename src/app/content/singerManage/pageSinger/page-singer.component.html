@@ -45,9 +45,9 @@
 
                         <div class="card" >
                             <b  [routerLink]="['/detailSinger/',singer.id]" style="color: crimson">{{singer.nameSinger}}</b>
-                            <b  [routerLink]="['/detailSinger/',singer.id]" style="color: crimson">birthday:{{singer.birthday}}</b>
+                            <mat-card-subtitle  [routerLink]="['/detailSinger/',singer.id]" style="color: green">birthday:{{singer.birthday}}</mat-card-subtitle>
                             <img [routerLink]="['/detailSinger/',singer.id]" class="image"  [src]="singer.avatarSinger">
-                            <b>{{singer.id}}</b>
+<!--                            <b>{{singer.id}}</b>-->
                         </div>
 
                     </div>

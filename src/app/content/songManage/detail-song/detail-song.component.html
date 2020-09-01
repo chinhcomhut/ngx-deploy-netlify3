@@ -38,7 +38,7 @@
                         <mat-basic-audio-player (click)="onClick($event)" (timeupdate)="onClick($event)" class="col-12 col-md-6" [audioUrl]="song.mp3Url" [title]="song.lyrics"
                                                 [displayTitle]="msbapDisplayTitle"
                                                 [displayVolumeControls]="msbapDisplayVolumeControls"
-                                                [autoPlay]="true" muted="muted"
+                                                [autoPlay]="false" muted="muted"
                         ></mat-basic-audio-player>
                     </div>
                 </mat-card-content>
