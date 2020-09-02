@@ -34,16 +34,17 @@
                                           (change)="changeMsbapDisplayVolumeControls($event)">{{msbapDisplayVolumeControls}}</mat-checkbox>
                         </div>
                     </div>
-<!--                    <div class="col">-->
-<!--                        <mat-basic-audio-player (click)="onClick($event)" (timeupdate)="onClick($event)" class="col-12 col-md-6" [audioUrl]="song.mp3Url" [title]="song.lyrics"-->
-<!--                                                [displayTitle]="msbapDisplayTitle"-->
-<!--                                                [displayVolumeControls]="msbapDisplayVolumeControls"-->
-<!--                                                [autoPlay]="false" muted="muted"-->
-<!--                        ></mat-basic-audio-player>-->
-<!--                    </div>-->
-                    <div style="width: 500px">
-                        <mat-advanced-audio-player [playlist]="playlist"></mat-advanced-audio-player>
+                    <div class="col">
+                        <mat-basic-audio-player (click)="onClick($event)" (timeupdate)="onClick($event)" class="col-12 col-md-6" [audioUrl]="song.mp3Url" [title]="song.lyrics"
+                                                [displayTitle]="msbapDisplayTitle"
+                                                [displayVolumeControls]="msbapDisplayVolumeControls"
+                                                [autoPlay]="false" muted="muted"
+                        ></mat-basic-audio-player>
                     </div>
+<!--                    <div style="width: 500px">-->
+<!--                        <mat-advanced-audio-player [playlist]="playlist"></mat-advanced-audio-player>-->
+
+<!--                    </div>-->
                 </mat-card-content>
             </mat-card>
         </div>
@@ -51,4 +52,6 @@
 </div>
 
 
+<!--<audio [src]="song.mp3Url">-->
 
+<!--</audio>-->
