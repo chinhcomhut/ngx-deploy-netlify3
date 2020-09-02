@@ -9,7 +9,7 @@ import {SongInfo} from '../../../model/song-info';
   styleUrls: ['./detail-song.component.css']
 })
 export class DetailSongComponent implements OnInit {
-
+  playlist = [];
   song: SongInfo;
   msbapDisplayTitle = false;
   msbapDisplayVolumeControls = true;
@@ -76,6 +76,14 @@ export class DetailSongComponent implements OnInit {
         next => {
           this.song = next;
           console.log('next', next)
+          this.playlist = [
+
+            {
+              title: this.song.lyrics,
+              // link: 'https://firebasestorage.googleapis.com/v0/b/chinhbeo-18d3b.appspot.com/o/zohv0090g6a?alt=media&token=f864ed42-249a-4656-b674-4fb13a9ce579'
+              link: this.song.mp3Url
+            }
+          ];
         },
         error => {
           this.song = null;
