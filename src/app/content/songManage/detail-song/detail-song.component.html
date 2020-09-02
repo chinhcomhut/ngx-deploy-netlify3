@@ -34,8 +34,8 @@
                                           (change)="changeMsbapDisplayVolumeControls($event)">{{msbapDisplayVolumeControls}}</mat-checkbox>
                         </div>
                     </div>
-                    <audio controls>
-<!--                        <source src="horse.ogg" type="audio/ogg">-->
+                    <audio class="audio" controls>
+                        <source [src]="song.mp3Url"type="audio/ogg">
                         <source [src]="song.mp3Url" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
