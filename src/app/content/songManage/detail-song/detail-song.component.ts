@@ -22,6 +22,8 @@ export class DetailSongComponent implements OnInit {
   data: any = {
     message: "yes"
   }
+ audio = new Audio();
+
   changeMsbapDisplayTitle(event) {
     this.msbapDisplayTitle = event.checked;
     console.log('title',event)
@@ -70,13 +72,17 @@ export class DetailSongComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+
     this.routes.paramMap.subscribe(paramMap => {
       const id = +paramMap.get('id');
       this.songService.getSongById(id).subscribe(
         next => {
           this.song = next;
           console.log('next', next)
-          this.playlist = [
+          // this.audio.src = this.song.mp3Url;
+          // this.audio.load()
+          // this.audio.play()
+            this.playlist = [
 
             {
               title: this.song.lyrics,
