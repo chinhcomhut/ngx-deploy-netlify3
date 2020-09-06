@@ -18,9 +18,9 @@ export class EditPlaylistComponent implements OnInit {
   data2: any = {
     message: "yes"
   }
-  data3: any = {
-    message: "namesake"
-  }
+  // data3: any = {
+  //   message: "namesake"
+  // }
   constructor(private playListService: PlaylistService,
               private routes: ActivatedRoute) {
   }
@@ -40,10 +40,10 @@ export class EditPlaylistComponent implements OnInit {
       if(JSON.stringify(data)==JSON.stringify(this.data1)){
         this.errorMessage = 'Name Play List is required! Please fill in form'
       }
-      if(JSON.stringify(data)==JSON.stringify(this.data3)){
-        this.errorMessage = 'The new name is the same as the old one! Please try again!'
-        // alert(this.errorMessage)
-      }
+      // if(JSON.stringify(data)==JSON.stringify(this.data3)){
+      //   this.errorMessage = 'The new name is the same as the old one! Please try again!'
+      //   // alert(this.errorMessage)
+      // }
       if(JSON.stringify(data)==JSON.stringify(this.data2)){
         alert('Edit successful Play List')
         window.location.reload()

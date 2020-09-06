@@ -12,11 +12,11 @@ import {catchError, tap} from 'rxjs/operators';
 export class SingerService {
 //API Local
 //   private API_SINGER = 'http://localhost:8080/api/auth/singer';
-//   private API_SINGER_PAGINATION = 'http://localhost:8080/api/auth/singer/pagination';
-//   private List_Singer_Pagination = environment.URL_local + 'singer/pagination';
-//   private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser';
-//   private API_Put_Singer = environment.URL_local+'update-singer';
-//   private API_Page_Singer_By_User = environment.URL_local+'singer-by-user';
+//   private API_List_Singer = environment.URL_local+'list-singer';
+  private List_Singer_Pagination = environment.URL_local + 'singer/pagination';
+  private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser';
+  private API_Put_Singer = environment.URL_local+'update-singer';
+  private API_Page_Singer_By_User = environment.URL_local+'singer-by-user';
 
   //API SEVER
   private API_SINGER = environment.URL_server + 'singer';

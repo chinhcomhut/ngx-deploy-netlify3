@@ -9,4 +9,5 @@ export class SongInfo {
     nameCategory: string;
     avatarSong: string;
     createBy: string;
+    playlist_id: number;
 }

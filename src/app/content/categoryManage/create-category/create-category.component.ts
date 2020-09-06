@@ -14,13 +14,13 @@ export class CreateCategoryComponent implements OnInit {
   category: CategoryInfo = new CategoryInfo();
   errorMessage = 'Enter music genres in the form below!';
   data1: any = {
-    message: 'nocategory'
+    message: "nocategory"
   };
   data2: any = {
-    message: 'yes'
+    message: "yes"
   };
   data3: any = {
-    message: 'noavatar'
+    message: "noavatar"
   };
   addAvatar = false;
 

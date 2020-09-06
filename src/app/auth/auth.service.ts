@@ -23,7 +23,7 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
   providedIn: 'root'
 })
 export class AuthService {
-  // //SERVICE LOCAL
+  //SERVICE LOCAL
   // private getUserId = environment.URL_local+'user';
   // private signupUrl = environment.URL_local+'signup';
   // private loginUrl = environment.URL_local+'signin';

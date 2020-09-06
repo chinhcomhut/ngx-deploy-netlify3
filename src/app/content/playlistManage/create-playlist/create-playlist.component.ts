@@ -23,13 +23,13 @@ export class CreatePlaylistComponent implements OnInit {
   isUploadAvatar = false;
   selectAlbum = this.albums[0];
   data1: any = {
-    message: 'noname'
+    message: "noname"
   };
   data2: any = {
-    message: 'noavatar'
+    message: "noavatar"
   };
   data3: any = {
-    message: 'yes'
+    message: "yes"
   };
   user: UserAccount;
   form: any = {};
@@ -67,6 +67,7 @@ isCheckAdmin = false;
     this.form.nameAlbum = this.playList.nameAlbum;
     console.log('form', this.form);
     this.playListService.createPlayList(this.form).subscribe(data => {
+      console.log('data',data)
       if (JSON.stringify(data) == JSON.stringify(this.data1)) {
         this.errorMessage = 'Name play list is required! Please try again!';
       }

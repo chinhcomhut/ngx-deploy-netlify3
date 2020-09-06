@@ -12,6 +12,7 @@ export class CategoryService {
   // private API_Category = environment.URL_local + 'category';
   // private API_Category_Update = environment.URL_local+'update-category';
   // private API_Category_By_User = environment.URL_local+'category-by-user';
+  // private API_List_Category = environment.URL_local+'list-category'
 
   //API Sever//
   private API_Category = environment.URL_server+'category';
@@ -35,8 +36,8 @@ export class CategoryService {
     return this.http.get<CategoryInfo[]>(this.API_List_Category);
   }
 
-  createCategory(category: Object): Observable<Object> {
-    return this.http.post(this.API_Category, category);
+  createCategory(category: CategoryInfo): Observable<CategoryInfo> {
+    return this.http.post<CategoryInfo>(this.API_Category, category);
   }
 
   getCategoryById(id: number): Observable<CategoryInfo> {

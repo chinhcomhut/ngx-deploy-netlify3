@@ -7,6 +7,7 @@ import {SongInfo} from "../../../model/song-info";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
+import {SongService} from '../../../service/song.service';
 
 @Component({
   selector: 'app-detail-playlist',
@@ -27,11 +28,14 @@ export class DetailPlaylistComponent implements OnInit {
   dataSource: any;
   displayedColumns: string[] = ['id','nameSong','mp3Url']
   panelOpenState = false;
+  songs: SongInfo[];
+  song: SongInfo;
   @ViewChild(MatSort) sort: MatSort;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private playListService: PlaylistService,
-              private routes: ActivatedRoute) {
+              private routes: ActivatedRoute,
+              private songService: SongService) {
   }
 
   ngOnInit(): void {
@@ -39,9 +43,15 @@ export class DetailPlaylistComponent implements OnInit {
       const id = +playListId.get('id');
       this.playListService.getPlayListById(id).subscribe(result=>{
         this.playList = result;
-        this.convertSongToPlayList(result.songList)
-        this.dataSource = new MatTableDataSource<any>(result.songList)
-        this.dataSource.paginator = this.paginator;
+        console.log('result',result)
+        console.log('songlist',result.songList.length)
+        this.songService.getListSongByPlayListId(result.id).subscribe(listSong=>{
+          this.songs = listSong;
+          this.convertSongToPlayList(listSong);
+          this.dataSource = new MatTableDataSource<any>(listSong)
+          this.dataSource.paginator = this.paginator;
+        })
+
       })
     })
 
@@ -57,21 +67,22 @@ export class DetailPlaylistComponent implements OnInit {
     this.msMapPlayList = this.playlist2;
   }
   deleteSong(mp3Url: string) {
-    console.log('lenth',this.playList.songList)
-    for (let i = 0; i < this.playList.songList.length; i++) {
-      if (this.playList.songList[i].mp3Url === mp3Url) {
-        this.playList.songList.splice(i, 1);
-        console.log('leng in if',this.playList.songList.length)
+    console.log('listSong of playlist',this.songs)
+    for (let i = 0; i < this.songs.length; i++) {
+      if (this.songs[i].mp3Url === mp3Url) {
+        this.songs.splice(i, 1);
+        console.log('leng in if',this.songs.length)
+        alert('delete success')
       }
       // console.log(this.song.length);
     }
 
-    this.playListService.updatePlaylistById(this.playList.id, this.playList).subscribe( () => {
-      console.log('success', this.playList.songList.length);
-    }, error => {
-      console.log('error');
-    });
-    window.location.reload();
+    // this.playList.updateSong(this.playList.id, this.playList).subscribe( () => {
+    //   alert('updatet')
+    // }, error => {
+    //   console.log('error');
+    // });
+    // window.location.reload();
   }
 
 
