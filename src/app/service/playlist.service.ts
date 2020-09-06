@@ -12,7 +12,7 @@ export class PlaylistService {
   //API LOCAL
   // private API_Play_List = environment.URL_local + 'playlist';
   // private API_Play_List_By_User = environment.URL_local + 'playlist-by-user';
-  // private API_Page_PlayList = environment.URL_local + 'playlist/pagination'
+  private API_Page_PlayList = environment.URL_local + 'playlist/pagination'
   private API_Create_PlayList_For_Singer = environment.URL_local+'playlist-singer'
   private API_Page_Play_List_OF_Singer = environment.URL_local+'playlist-by-singer';
   private API_Page_Play_List_Of_Album = environment.URL_local+'playlist-by-album';
