@@ -17,14 +17,17 @@ const httpOption = {
 })
 
 export class UserService {
-
+  //API LOCAL
   public USER_API = environment.URL_local+'user';
   // public USER_API = environment.URL_server+'user';
-  private API_Page_User = environment.URL_local+'user/pagination'
+  // private API_Page_User = environment.URL_local+'user/pagination'
   // private pmUrl = environment.URL+'/api/test/pm';
   // private adminUrl = environment.URL+'/api/test/admin';
   // private updateUserUrl = environment.URL+'/api/auth/updateuser';
   // private getUserUrl = environment.URL+'/api/auth/user';
+
+  //API SEVER
+  private API_Page_User = environment.URL_server+'user';
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

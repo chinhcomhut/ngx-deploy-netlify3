@@ -8,6 +8,7 @@ import {SongService} from '../../../service/song.service';
 import {SongInfo} from '../../../model/song-info';
 import {PlaylistService} from '../../../service/playlist.service';
 import {PlaylistInfo} from '../../../model/playlist-info';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 
 @Component({
@@ -27,11 +28,13 @@ export class DetailSingerComponent implements OnInit {
     message: "yes"
   }
   playlist: PlaylistInfo;
-
+  admin: any = ["ADMIN"]
+  isCheckAdmin = false;
   constructor(private singerService: SingerService,
               private routes: ActivatedRoute,
               private songService: SongService,
-              private playListService: PlaylistService
+              private playListService: PlaylistService,
+              private tokenService: TokenStorageService
   ) {
   }
 
@@ -47,6 +50,9 @@ export class DetailSingerComponent implements OnInit {
     console.log('request1',this.getListResquest({page:'', size: ''}))
     // this.getPagePlayListRequest({page:'', size: ''});
     // console.log('request',this.getPagePlayListRequest({page:'', size: ''}))
+    if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
+      this.isCheckAdmin = true;
+    }
   }
   private getListResquest(request) {
     this.loading = true;

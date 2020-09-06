@@ -97,6 +97,7 @@ export class UserComponent implements OnInit {
     this.playListService.deletePlayList(id).subscribe(data => {
       if (JSON.stringify(data) == JSON.stringify(this.data1)) {
         alert('Delete successful play list!')
+        window.location.reload();
       }
     }, error => {
       alert('You have to delete songs from play list first!')

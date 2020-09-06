@@ -53,7 +53,7 @@
                 <div class="search-hero">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                            placeholder="&#61442;  Search Song in one page ..."><br>
-                    <button [routerLink]="['/editSinger/',singer.id]" type="submit" style="color: crimson; text-decoration: none;"
+                    <button *ngIf="isCheckAdmin" [routerLink]="['/editSinger/',singer.id]" type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-success"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
