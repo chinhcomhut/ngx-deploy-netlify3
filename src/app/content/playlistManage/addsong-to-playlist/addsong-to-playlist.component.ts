@@ -69,7 +69,7 @@ export class AddsongToPlaylistComponent implements OnInit {
     // console.log('playlistid', song.playlist_id)
     // console.log('song',song)
     // this.songs = new Array();
-    // this.playList.songList = new Array();
+    this.playList.songList = new Array();
     this.playList.songList.push(song);
     console.log('song',song)
     console.log('playlist_id', this.playList.id)
