@@ -45,12 +45,10 @@ export class DetailPlaylistComponent implements OnInit {
         this.playList = result;
         console.log('result',result)
         console.log('songlist',result.songList.length)
-        this.songService.getListSongByPlayListId(result.id).subscribe(listSong=>{
-          this.songs = listSong;
-          this.convertSongToPlayList(listSong);
-          this.dataSource = new MatTableDataSource<any>(listSong)
+          this.convertSongToPlayList(result.songList);
+          this.dataSource = new MatTableDataSource<any>(result.songList)
           this.dataSource.paginator = this.paginator;
-        })
+
 
       })
     })
@@ -67,22 +65,22 @@ export class DetailPlaylistComponent implements OnInit {
     this.msMapPlayList = this.playlist2;
   }
   deleteSong(mp3Url: string) {
-    console.log('listSong of playlist',this.songs)
-    for (let i = 0; i < this.songs.length; i++) {
-      if (this.songs[i].mp3Url === mp3Url) {
-        this.songs.splice(i, 1);
-        console.log('leng in if',this.songs.length)
+    console.log('listSong of playlist',this.playList.songList.length)
+    for (let i = 0; i < this.playList.songList.length; i++) {
+      if (this.playList.songList[i].mp3Url === mp3Url) {
+        this.playList.songList.splice(i, 1);
+        console.log('leng in if',this.playList.songList.length)
         alert('delete success')
       }
       // console.log(this.song.length);
     }
 
-    // this.playList.updateSong(this.playList.id, this.playList).subscribe( () => {
-    //   alert('updatet')
-    // }, error => {
-    //   console.log('error');
-    // });
-    // window.location.reload();
+    this.playListService.updatePlayListAfterAddSong(this.playList).subscribe( () => {
+      alert('updatet')
+    }, error => {
+      console.log('error');
+    });
+    window.location.reload();
   }
 
 
