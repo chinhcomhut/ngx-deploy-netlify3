@@ -8,8 +8,13 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class AlbumService {
-  private API_Album = environment.URL_local+'album';
+  //API LOCAL
+  // private API_Album = environment.URL_local+'album';
   private API_List_Album = environment.URL_local+'list-album';
+
+  //API SEVER
+  private API_Album = environment.URL_server+'album';
+  private API_Play_List_By_Album = environment.URL_server+'playlist-by-album';
   constructor(private http: HttpClient) { }
   createAlbum(album: AlbumInfo): Observable<AlbumInfo>{
     return this.http.post<AlbumInfo>(this.API_Album, album);
@@ -23,5 +28,9 @@ export class AlbumService {
   }
   getAlbumById(id: number): Observable<AlbumInfo>{
     return this.http.get<AlbumInfo>(`${this.API_Album}/${id}`)
+  }
+  pagePlayListByAlbum(request){
+    const params = request;
+    return this.http.get(this.API_Play_List_By_Album, {params})
   }
 }
