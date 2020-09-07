@@ -45,7 +45,7 @@
                     </div>
 
                 </div>
-                <mat-paginator #paginator [pageSizeOptions]="[5, 10, 100]" [pageSize]="5" [length]="totalElements"
+                <mat-paginator #paginator [pageSizeOptions]="[4, 8, 16,32,100]" [pageSize]="5" [length]="totalElements"
                                (page)="nextPage($event)">
                 </mat-paginator>
             </mat-card>
