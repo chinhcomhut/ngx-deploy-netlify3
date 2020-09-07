@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit {
   }
   private getListResquest(request) {
     this.loading = true;
-    this.playListService.getPagePlayList(request)
+    this.playListService.pagePlayListByUser(request)
       .subscribe(data => {
         this.playLists = data['content'];
         console.log('songList o dau', data);
