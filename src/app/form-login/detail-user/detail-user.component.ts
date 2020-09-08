@@ -34,7 +34,7 @@ user: UserAccount;
   }
   private getListResquest(request) {
     this.loading = true;
-    this.playListService.pagePlayListByUser(request)
+    this.playListService.pagePlayListByUser(this.user.id,request)
       .subscribe(data => {
         this.playLists = data['content'];
         console.log('songList', data);
