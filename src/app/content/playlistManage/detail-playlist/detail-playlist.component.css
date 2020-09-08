@@ -15,11 +15,17 @@
     border-bottom-left-radius: 2% 2%;
 }
 .example-container {
-    display: flex;
+
+
+    display: inline-flex;
     flex-direction: column;
     min-width: 300px;
+    /*width: auto;*/
+    /*height: 300px;*/
 }
-
+.mat-card1{
+    text-align: center;
+}
 .example-header {
     min-height: 64px;
     padding: 8px 24px 0;

@@ -20,7 +20,7 @@
     <!--            <p style="font-size: 85%">Thể loại - <a class="font-weight-bold">{{song.category}}</a></p>-->
     <!--        </div>-->
     <!--    </div>-->
-
+<mat-card-title>{{playList.createBy}}</mat-card-title>
     <div class="col-12" style="margin-top: 20px;">
         <mat-card style="background-image: url(https://firebasestorage.googleapis.com/v0/b/chinhbeo-18d3b.appspot.com/o/nla8ou635og?alt=media&token=0bb386a6-2c82-49ea-939f-5d1a1102677a)">
             <mat-card>
@@ -51,7 +51,11 @@
                     </div>
                 </div>
                 <div class="col">
-                    <button [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
+                    <button *ngIf="!isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
+                        <mat-icon>queue music</mat-icon>
+                        Add Music
+                    </button>
+                    <button *ngIf="isCheckAmin" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
                         <mat-icon>queue music</mat-icon>
                         Add Music
                     </button>
@@ -77,7 +81,7 @@
                     </mat-expansion-panel-header>
                     <div class="container">
                         <div class="row">
-                            <div class="col-12" style="margin-top: 20px">
+                            <div class="col-12" style="margin-top: 20px;">
                                 <mat-card style="margin: 50px 0;">
                                     <mat-card-title style="color:indianred;">Manage Play List</mat-card-title>
                                     <div class="example-header">
@@ -171,9 +175,11 @@
 
                                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                        </table>
 
-                                        <mat-paginator [pageSizeOptions]="[2,5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                        </table>
+                                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
                                     </div>
 
 

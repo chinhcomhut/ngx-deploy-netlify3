@@ -5,7 +5,7 @@ export class PlaylistInfo{
     namePlayList: string;
     avatarPlayList: string;
     createBy: string;
-    songList: any;
+    songList: SongInfo[]=[];
     nameSinger: string;
     nameAlbum: string;
 }

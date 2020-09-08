@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {PlaylistInfo} from "../../../model/playlist-info";
 import {Track} from "../../../../../projects/ngx-audio-player/src/lib/model/track.model";
 import {PlaylistService} from "../../../service/playlist.service";
@@ -8,13 +8,14 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {SongService} from '../../../service/song.service';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-detail-playlist',
   templateUrl: './detail-playlist.component.html',
   styleUrls: ['./detail-playlist.component.css']
 })
-export class DetailPlaylistComponent implements OnInit {
+export class DetailPlaylistComponent implements AfterViewInit {
   playList: PlaylistInfo;
   playlist1: Track;
   playlist2: Track[] = [];
@@ -28,32 +29,57 @@ export class DetailPlaylistComponent implements OnInit {
   dataSource: any;
   displayedColumns: string[] = ['id','nameSong','mp3Url']
   panelOpenState = false;
-  songs: SongInfo[];
+  songs: SongInfo[]=[];
   song: SongInfo;
-  @ViewChild(MatSort) sort: MatSort;
-
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  isCheckAddSong = false;
+  isCheckAmin = false;
+  // @ViewChild(MatSort) sort: MatSort;
+  admin: any = ["ADMIN"];
+  // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private playListService: PlaylistService,
               private routes: ActivatedRoute,
-              private songService: SongService) {
+              private songService: SongService,
+              private tokenService: TokenStorageService) {
   }
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
+  //   this.routes.paramMap.subscribe(playListId=>{
+  //     const id = +playListId.get('id');
+  //     this.playListService.getPlayListById(id).subscribe(result=>{
+  //       this.playList = result;
+  //       console.log('result',result)
+  //       console.log('songlist',result.songList.length)
+  //         this.convertSongToPlayList(result.songList);
+  //         this.dataSource = new MatTableDataSource<SongInfo[]>(result.songList)
+  //       // this.dataSource = new MatTableDataSource<Track>(this.msMapPlayList);
+  //         this.dataSource.paginator = this.paginator;
+  //     })
+  //   })
+  //
+  // }
+  ngAfterViewInit() {
     this.routes.paramMap.subscribe(playListId=>{
       const id = +playListId.get('id');
       this.playListService.getPlayListById(id).subscribe(result=>{
         this.playList = result;
+        if(result.nameAlbum!=null||result.nameAlbum!=""){
+          this.isCheckAddSong = true;
+          console.log('isCheckAddSong',this.isCheckAddSong)
+        }
         console.log('result',result)
         console.log('songlist',result.songList.length)
-          this.convertSongToPlayList(result.songList);
-          this.dataSource = new MatTableDataSource<any>(result.songList)
-          this.dataSource.paginator = this.paginator;
-
-
+        this.convertSongToPlayList(result.songList);
+        this.dataSource = new MatTableDataSource<SongInfo>(result.songList)
+        // this.dataSource = new MatTableDataSource<Track>(this.msMapPlayList);
+        this.dataSource.paginator = this.paginator;
       })
     })
-
+if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
+  this.isCheckAmin = true;
+}
   }
+
   convertSongToPlayList(songs: SongInfo[]) {
     for (const song of songs) {
       this.playlist1 = {
@@ -103,10 +129,10 @@ export class DetailPlaylistComponent implements OnInit {
   changeMsaapDisplayVolumeControls(event) {
     this.msaapDisplayVolumeControls = event.checked;
   }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   // this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

@@ -106,7 +106,7 @@ export class UserComponent implements OnInit {
 
   getListResquest(request) {
     this.loading = true;
-    this.playListService.pagePlayListByUser(request)
+    this.playListService.pagePlayListByUser(this.token.getUserId(),request)
       .subscribe(data => {
         this.playList = data['content'];
         console.log('category', data);
