@@ -120,7 +120,7 @@ export class UserComponent implements OnInit {
     console.log('userID duoi List', this.info.id);
     var userId: number = +this.info.id
     console.log('IDDDDDD',userId)
-    this.playListService.pagePlayListByUser(request)
+    this.playListService.pagePlayListByUser(this.info,request)
       .subscribe(data => {
         this.playList = data['content'];
         console.log('category', data);
