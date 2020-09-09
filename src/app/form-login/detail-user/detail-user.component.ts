@@ -30,26 +30,26 @@ user: UserAccount;
         console.log('userId2', result)
       })
     })
-    this.getListResquest({page: '', size: ''});
+    // this.getListResquest({page: '', size: ''});
   }
-  private getListResquest(request) {
-    this.loading = true;
-    this.playListService.pagePlayListByUser(+this.user.id,request)
-      .subscribe(data => {
-        this.playLists = data['content'];
-        console.log('songList', data);
-        this.totalElements = data['totalElements'];
-        this.loading = false;
-      }, error => {
-        this.loading = false;
-      });
-  }
+  // private getListResquest(request) {
+  //   this.loading = true;
+  //   this.playListService.pagePlayListByUser(+this.user.id,request)
+  //     .subscribe(data => {
+  //       this.playLists = data['content'];
+  //       console.log('songList', data);
+  //       this.totalElements = data['totalElements'];
+  //       this.loading = false;
+  //     }, error => {
+  //       this.loading = false;
+  //     });
+  // }
 
 
-  nextPage(event: PageEvent) {
-    const request = {};
-    request['page'] = event.pageIndex.toString();
-    request['size'] = event.pageSize.toString();
-    this.getListResquest(request);
-  }
+  // nextPage(event: PageEvent) {
+  //   const request = {};
+  //   request['page'] = event.pageIndex.toString();
+  //   request['size'] = event.pageSize.toString();
+  //   this.getListResquest(request);
+  // }
 }

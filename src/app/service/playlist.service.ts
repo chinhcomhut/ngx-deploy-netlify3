@@ -33,10 +33,10 @@ export class PlaylistService {
   createPlayListForSinger(playlist: PlaylistInfo): Observable<PlaylistInfo>{
     return this.http.post<PlaylistInfo>(this.API_Create_PlayList_For_Singer, playlist);
   }
-  pagePlayListByUser(id: number,request) {
-    console.log('id tai service', id)
+  pagePlayListByUser(request) {
+    // console.log('id tai service)
     const params = request;
-    return this.http.get<any>(`${this.API_Play_List_By_User}/${id}`, {params});
+    return this.http.get<any>(this.API_Play_List_By_User, {params});
   }
 
   getPagePlayList(request) {
