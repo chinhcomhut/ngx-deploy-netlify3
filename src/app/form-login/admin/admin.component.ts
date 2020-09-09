@@ -48,7 +48,7 @@ export class AdminComponent implements OnInit {
     if(JSON.stringify(this.token.getAuthorities())=== JSON.stringify(this.data)){
       this.ischeck = true;
     }
-    // this.getListResquest({page: '', size: ''});
+    this.getListResquest({page: '', size: ''});
   }
 
   logout() {
@@ -56,18 +56,18 @@ export class AdminComponent implements OnInit {
     // this.route.navigate(['/'])
     window.location.reload();
   }
-  // private getListResquest(request) {
-  //   this.loading = true;
-  //   this.playListService.pagePlayListByUser(this.token.getUserId(),request)
-  //     .subscribe(data => {
-  //       this.playLists = data['content'];
-  //       console.log('songList o dau', data);
-  //       this.totalElements = data['totalElements'];
-  //       this.loading = false;
-  //     }, error => {
-  //       this.loading = false;
-  //     });
-  // }
+  private getListResquest(request) {
+    this.loading = true;
+    this.playListService.getPagePlayList(request)
+      .subscribe(data => {
+        this.playLists = data['content'];
+        console.log('songList o dau', data);
+        this.totalElements = data['totalElements'];
+        this.loading = false;
+      }, error => {
+        this.loading = false;
+      });
+  }
 
   deleteSong(id: number){
     this.playListService.deletePlayList(id).subscribe(data=>{
