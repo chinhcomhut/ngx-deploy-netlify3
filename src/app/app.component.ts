@@ -59,6 +59,9 @@ export class AppComponent implements OnInit {
       authorities: this.tokenStorage.getAuthorities(),
       id: this.tokenStorage.getUserId()
     };
+   //  console.log('info.id',this.info.id)
+   // this.user.id = +this.info.id;
+   //  console.log('userId tai appcompo', this.user.id)
     // this.songService.getSong()
     //     .subscribe(next => {
     //       this.songList = next;

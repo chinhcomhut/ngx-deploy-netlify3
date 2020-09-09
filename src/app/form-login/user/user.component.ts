@@ -52,12 +52,20 @@ export class UserComponent implements OnInit {
     // const id = +userId.get('id')
     //
     // })
-    // this.routes.paramMap.subscribe(userId=>{
-    //     const id = +userId.get('id')
-    //     this.userService.getUserById(id).subscribe(result=>{
-    //         this.user = result;
-    //     })
-    // })
+    this.routes.paramMap.subscribe(userId=>{
+        const id = +userId.get('id')
+      console.log('id o tren',id)
+        this.userService.getUserById(id).subscribe(result=>{
+          this.user = result;
+          console.log('userID ID', this.user.id)
+          // console.log('this.user.id',this.user.id)
+            // this.token.saveUserId(result);
+            // console.log('userId',result);
+        })
+    })
+    // this.user.id = this.info.id;
+    // console.log('this.user.id', this.user.id)
+
     // this.userService.getUserBoard().subscribe(
     //   data => {
     //     this.board = data;
@@ -67,15 +75,17 @@ export class UserComponent implements OnInit {
     //     this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
     //   }
     // );
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
       avatar: this.token.getAvatar(),
       password: this.token.getUserPassword(),
-      roles: this.token.getAuthorities()
+      roles: this.token.getAuthorities(),
+      id: this.token.getUserId()
     };
     // console.log(this.info)
-    console.log('token' + this.token.getToken());
+    console.log('info.id at user = ', this.info.id);
     this.getListResquest({page: '', size: ''});
     // console.log('listreques', this.getListResquest({page: '', size: ''}));
   }
@@ -106,7 +116,11 @@ export class UserComponent implements OnInit {
 
   getListResquest(request) {
     this.loading = true;
-    this.playListService.pagePlayListByUser(this.token.getUserId(),request)
+    console.log('loading',this.loading)
+    console.log('userID duoi List', this.info.id);
+    var userId: number = +this.info.id
+    console.log('IDDDDDD',userId)
+    this.playListService.pagePlayListByUser(userId,request)
       .subscribe(data => {
         this.playList = data['content'];
         console.log('category', data);

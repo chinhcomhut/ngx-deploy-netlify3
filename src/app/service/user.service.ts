@@ -18,7 +18,7 @@ const httpOption = {
 
 export class UserService {
   //API LOCAL
-  public USER_API = environment.URL_local+'user';
+  // public API_USER = environment.URL_local+'user';
   // public USER_API = environment.URL_server+'user';
   // private API_Page_User = environment.URL_local+'user/pagination'
   // private pmUrl = environment.URL+'/api/test/pm';
@@ -28,6 +28,7 @@ export class UserService {
 
   //API SEVER
   private API_Page_User = environment.URL_server+'user';
+  private API_USER = environment.URL_server+'user';
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -41,7 +42,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUserBoard(): Observable<string> {
-    return this.http.get(this.USER_API, { responseType: 'text' });
+    return this.http.get(this.API_USER, { responseType: 'text' });
   }
 
   // getPMBoard(): Observable<string> {
@@ -49,7 +50,7 @@ export class UserService {
   // }
   getUserById(userId: number): Observable<UserAccount> {
     console.log("userId1 = "+userId)
-    return this.http.get<UserAccount>(`${this.USER_API}/${userId}`);
+    return this.http.get<UserAccount>(`${this.API_USER}/${userId}`);
   }
   // getUserById(id: number): Observable<UserAccount> {
   //  return this.http.get<UserAccount>(`${this.USER_API}/${id}`)
@@ -78,6 +79,6 @@ export class UserService {
     return this.http.get<any>(this.API_Page_User,{params})
   }
   deleteUser(id: number): Observable<any>{
-    return this.http.delete<any>(`${this.USER_API}/${id}`)
+    return this.http.delete<any>(`${this.API_USER}/${id}`)
   }
 }

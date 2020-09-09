@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
                 this.roles = this.tokenStorage.getAuthorities()
                 alert('Login success!!')
                 window.location.reload()
+              // var userId: number = +this.tokenStorage.getUserId();
                 this.route.navigate(['/user'])
 
 
