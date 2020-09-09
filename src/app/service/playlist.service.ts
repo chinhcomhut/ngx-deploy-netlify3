@@ -38,7 +38,7 @@ export class PlaylistService {
   pagePlayListByUser(id: number,request) {
     // console.log('id tai service)
     const params = request;
-    return this.http.get<any>(this.API_Play_List_By_User, {params});
+    return this.http.get<any>(`${this.API_Play_List_By_User}/${id}`, {params});
   }
 
   getPagePlayList(request) {
