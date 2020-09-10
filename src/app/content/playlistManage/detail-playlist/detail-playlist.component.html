@@ -68,7 +68,7 @@
                                                [expanded]="true"></mat-advanced-audio-player>
                 </div>
             </mat-card-content>
-            <mat-accordion *ngIf="isCheckAddSong">
+            <mat-accordion *ngIf="!isCheckAddSong">
                 <mat-expansion-panel (opened)="panelOpenState = true"
                                      (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>

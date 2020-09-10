@@ -8,4 +8,6 @@ export class PlaylistInfo{
     songList: SongInfo[]=[];
     nameSinger: string;
     nameAlbum: string;
+    nameBand: string;
+    nameCategory: string;
 }

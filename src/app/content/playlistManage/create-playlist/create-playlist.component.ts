@@ -11,6 +11,8 @@ import {AlbumInfo} from '../../../model/album-info';
 import {AlbumService} from '../../../service/album.service';
 import {SingerInfo} from '../../../model/singer/singer-info';
 import {SingerService} from '../../../service/singer.service';
+import {CategoryInfo} from '../../../model/category-info';
+import {CategoryService} from '../../../service/category.service';
 
 @Component({
   selector: 'app-create-playlist',
@@ -22,6 +24,7 @@ export class CreatePlaylistComponent implements OnInit {
   playList: PlaylistInfo = new PlaylistInfo();
   albums: AlbumInfo[] = [];
   singers: SingerInfo[] = [];
+  categorys: CategoryInfo[] = [];
   errorMessage = 'Please complete the form below!';
   isUploadAvatar = false;
   selectAlbum = this.albums[0];
@@ -44,7 +47,8 @@ isCheckAdmin = false;
               private authService: AuthService,
               private tokenService: TokenStorageService,
               private albumService: AlbumService,
-              private singerService: SingerService) {
+              private singerService: SingerService,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -53,6 +57,9 @@ isCheckAdmin = false;
    this.albumService.getListAlbum().subscribe(listAbum=>{
      this.albums = listAbum;
    })
+    this.categoryService.getListCategory().subscribe(listCategory=>{
+      this.categorys = listCategory;
+    })
     this.singerService.getListSinger().subscribe(listSinger=>{
       this.singers = listSinger;
     })
@@ -67,13 +74,17 @@ isCheckAdmin = false;
       createBy: this.tokenService.getUsername(),
       avatarPlayList: '',
       nameAlbum: '',
-      nameSinger: ''
+      nameSinger: '',
+      nameCategory: '',
+      nameBand: '',
     };
     this.form.namePlayList = this.playList.namePlayList;
     // this.form.createBy = this.playList.createBy;
     this.form.avatarPlayList = this.playList.avatarPlayList;
     this.form.nameAlbum = this.playList.nameAlbum;
     this.form.nameSinger = this.playList.nameSinger;
+    this.form.nameCategory = this.playList.nameCategory;
+    this.form.nameBand = this.playList.nameBand;
     console.log('form', this.form);
     this.playListService.createPlayList(this.form).subscribe(data => {
       console.log('data',data)

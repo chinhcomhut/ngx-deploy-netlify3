@@ -153,10 +153,10 @@
                 <!--                </mat-grid-list>-->
                 <div class="row">
                     <div class="column" *ngFor="let pl of playLists|filter: searchText">
-                        <button  [routerLink]="['/addSongToPlayList/',pl.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
+                        <button  *ngIf="isCheckAdmin" [routerLink]="['/addSongToPlayList/',pl.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
                             <mat-icon>queue music</mat-icon>
                         </button>
-                        <button [routerLink]="['/editPlayList/',pl.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                        <button *ngIf="isCheckAdmin" [routerLink]="['/editPlayList/',pl.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
                             <mat-icon>edit</mat-icon>
                         </button>
 <!--                        <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
