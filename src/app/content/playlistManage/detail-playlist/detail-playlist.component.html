@@ -20,7 +20,7 @@
     <!--            <p style="font-size: 85%">Thể loại - <a class="font-weight-bold">{{song.category}}</a></p>-->
     <!--        </div>-->
     <!--    </div>-->
-<mat-card-title>{{playList.createBy}}</mat-card-title>
+<!--<mat-card-title>{{playList.createBy}}</mat-card-title>-->
     <div class="col-12" style="margin-top: 20px;">
         <mat-card style="background-image: url(https://firebasestorage.googleapis.com/v0/b/chinhbeo-18d3b.appspot.com/o/nla8ou635og?alt=media&token=0bb386a6-2c82-49ea-939f-5d1a1102677a)">
             <mat-card>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <button *ngIf="!isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
+                    <button *ngIf="isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
                         <mat-icon>queue music</mat-icon>
                         Add Music
                     </button>
@@ -68,7 +68,7 @@
                                                [expanded]="true"></mat-advanced-audio-player>
                 </div>
             </mat-card-content>
-            <mat-accordion>
+            <mat-accordion *ngIf="isCheckAddSong">
                 <mat-expansion-panel (opened)="panelOpenState = true"
                                      (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
