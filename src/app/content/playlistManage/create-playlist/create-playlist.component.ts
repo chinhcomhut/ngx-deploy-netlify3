@@ -9,6 +9,8 @@ import {AuthService} from '../../../auth/auth.service';
 import {UserAccount} from '../../../model/userAccount/userAccount';
 import {AlbumInfo} from '../../../model/album-info';
 import {AlbumService} from '../../../service/album.service';
+import {SingerInfo} from '../../../model/singer/singer-info';
+import {SingerService} from '../../../service/singer.service';
 
 @Component({
   selector: 'app-create-playlist',
@@ -19,6 +21,7 @@ export class CreatePlaylistComponent implements OnInit {
   panelOpenState = false;
   playList: PlaylistInfo = new PlaylistInfo();
   albums: AlbumInfo[] = [];
+  singers: SingerInfo[] = [];
   errorMessage = 'Please complete the form below!';
   isUploadAvatar = false;
   selectAlbum = this.albums[0];
@@ -40,7 +43,8 @@ isCheckAdmin = false;
               private routes: ActivatedRoute,
               private authService: AuthService,
               private tokenService: TokenStorageService,
-              private albumService: AlbumService) {
+              private albumService: AlbumService,
+              private singerService: SingerService) {
   }
 
   ngOnInit(): void {
@@ -49,6 +53,9 @@ isCheckAdmin = false;
    this.albumService.getListAlbum().subscribe(listAbum=>{
      this.albums = listAbum;
    })
+    this.singerService.getListSinger().subscribe(listSinger=>{
+      this.singers = listSinger;
+    })
     if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.data)){
       this.isCheckAdmin = true;
     }
@@ -59,12 +66,14 @@ isCheckAdmin = false;
       namePlayList: '',
       createBy: this.tokenService.getUsername(),
       avatarPlayList: '',
-      nameAlbum: ''
+      nameAlbum: '',
+      nameSinger: ''
     };
     this.form.namePlayList = this.playList.namePlayList;
     // this.form.createBy = this.playList.createBy;
     this.form.avatarPlayList = this.playList.avatarPlayList;
     this.form.nameAlbum = this.playList.nameAlbum;
+    this.form.nameSinger = this.playList.nameSinger;
     console.log('form', this.form);
     this.playListService.createPlayList(this.form).subscribe(data => {
       console.log('data',data)

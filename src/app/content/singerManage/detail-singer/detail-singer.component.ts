@@ -44,6 +44,8 @@ export class DetailSingerComponent implements OnInit {
       this.singerService.getSingerById(id).subscribe(result=>{
         this.singer = result;
         this.getListResquest({page: '', size: ''});
+        this.getPagePlayListRequest({page:'', size:''});
+        console.log('goi ham',this.getPagePlayListRequest({page:'', size:''}))
       })
     })
 
@@ -67,24 +69,28 @@ export class DetailSingerComponent implements OnInit {
         this.loading = false;
       });
   }
-// private getPagePlayListRequest(request){
-//     this.loading = true;
-//     this.playListService.getPagePlayListOfSinger(this.singer.id,request).subscribe(data=>{
-//       this.playLists = data['content'];
-//       console.log('playlists',data['content'])
-//       this.totalElements = data['totalElements'];
-//       this.loading = false;
-//     }, error => {
-//       this.loading = true;
-//     })
-// }
+private getPagePlayListRequest(request){
+    console.log('goi ham nay')
+    this.loading = true;
+    console.log('this.loading', this.loading)
+  console.log(this.singer.id)
+    this.playListService.getPagePlayListOfSinger(this.singer.id,request).subscribe(data=>{
+      this.playLists = data['content'];
+      console.log(data)
+      console.log('playlists',data['content'])
+      this.totalElements = data['totalElements'];
+      this.loading = false;
+    }, error => {
+      this.loading = true;
+    })
+}
 
   nextPage(event: PageEvent) {
     const request = {};
     request['page'] = event.pageIndex.toString();
     request['size'] = event.pageSize.toString();
     this.getListResquest(request);
-    // this.getPagePlayListRequest(request);
+    this.getPagePlayListRequest(request);
   }
   // deleteSongBySinger(id: number) {
   //   console.log('lenth', this.singer.songList);

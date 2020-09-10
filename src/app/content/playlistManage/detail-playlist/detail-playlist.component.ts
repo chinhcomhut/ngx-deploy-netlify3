@@ -63,9 +63,13 @@ export class DetailPlaylistComponent implements AfterViewInit {
       const id = +playListId.get('id');
       this.playListService.getPlayListById(id).subscribe(result=>{
         this.playList = result;
-        if(result.nameAlbum==null||result.nameAlbum==""){
+        console.log('nameAlbum',result.nameAlbum)
+        console.log('nameSinger', result.nameSinger)
+        if(result.nameAlbum!=null||result.nameSinger!=null){
           this.isCheckAddSong = true;
           console.log('isCheckAddSong',this.isCheckAddSong)
+        }else {
+          this.isCheckAmin = false;
         }
         console.log('result',result)
         console.log('songlist',result.songList.length)

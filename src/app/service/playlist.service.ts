@@ -16,7 +16,7 @@ export class PlaylistService {
   // private API_Play_List_By_User = environment.URL_local + 'playlist-by-user';
   private API_Page_PlayList = environment.URL_local + 'playlist/pagination'
   private API_Create_PlayList_For_Singer = environment.URL_local+'playlist-singer'
-  private API_Page_Play_List_OF_Singer = environment.URL_local+'playlist-by-singer';
+  // private API_Page_Play_List_OF_Singer = environment.URL_local+'playlist-by-singer';
   // private API_Page_Play_List_Of_Album = environment.URL_local+'playlist-by-album';
   // private API_Update_Play_List_After_Add_Song = environment.URL_local+'update-playlist'
   private API_Add_Song_To_Play_List = environment.URL_local+'add-song-to-playlist'
@@ -25,6 +25,7 @@ export class PlaylistService {
   private API_Play_List_By_User = environment.URL_server+'playlist-by-user';
   private API_Update_Play_List_After_Add_Song = environment.URL_server+'update-playlist';
   private API_Page_Play_List_Of_Album = environment.URL_server+'playlist-by-album';
+  private API_Page_Play_List_Of_Singer = environment.URL_server+'playlist-by-singer';
   constructor(private http: HttpClient) {
   }
 
@@ -49,9 +50,10 @@ export class PlaylistService {
     const params = request;
     return this.http.get(`${this.API_Page_Play_List_Of_Album}/${id}`,{params})
   }
-  getPagePlayListOfSinger(request){
+  getPagePlayListOfSinger(id: number,request){
+    console.log('id tai service', id)
     const params = request;
-    return  this.http.get<any>(this.API_Page_Play_List_OF_Singer, {params})
+    return  this.http.get<any>(`${this.API_Page_Play_List_Of_Singer}/${id}`, {params})
   }
 
   getPlayListById(id: number): Observable<PlaylistInfo> {

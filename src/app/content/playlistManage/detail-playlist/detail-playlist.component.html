@@ -51,14 +51,14 @@
                     </div>
                 </div>
                 <div class="col">
-                    <button *ngIf="isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
+                    <button *ngIf="!isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
                         <mat-icon>queue music</mat-icon>
                         Add Music
                     </button>
-                    <button *ngIf="isCheckAmin" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
-                        <mat-icon>queue music</mat-icon>
-                        Add Music
-                    </button>
+<!--                    <button *ngIf="isCheckAmin" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">-->
+<!--                        <mat-icon>queue music</mat-icon>-->
+<!--                        Add Music-->
+<!--                    </button>-->
                     <!--                <h3>{{title}}</h3>-->
                     <mat-advanced-audio-player [playlist]="msMapPlayList" [displayTitle]="msaapDisplayTitle"
                                                [displayPlaylist]="msaapDisplayPlayList" [autoPlay]="true"

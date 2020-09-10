@@ -35,6 +35,28 @@
                             </mat-select>
                         </mat-form-field>
                     </mat-expansion-panel><br>
+                    <mat-expansion-panel *ngIf="isCheckAdmin" (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header  class="alert alert-success">
+                            <mat-panel-title  style="color: mediumvioletred;">
+                                Album For Singer:
+                            </mat-panel-title>
+                            <mat-panel-description style="color: red;">
+                                Click View {{panelOpenState ? 'open!' : 'closed!'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-panel-title style="color: #2b542c" class="alert alert-warning">
+                            Create Play List For The Singer</mat-panel-title>
+                        <mat-form-field>
+                            <mat-label>Select Singer</mat-label>
+                            <mat-select [(value)]="selectAlbum" [ngModel]="playList.nameSinger"
+                                        (ngModelChange)="playList.nameSinger=$event" [ngModelOptions]="{standalone: true}">
+                                <mat-option *ngFor="let p of singers" [value]="p.nameSinger">
+                                    {{ p.nameSinger }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-expansion-panel><br>
 <!--                    <mat-form-field style="width: 300px;" appearance="outline">-->
 <!--                        <mat-label>Create By:</mat-label>-->
 <!--                        <input name="createBy" matInput placeholder="Please fill name Playlist..."-->
