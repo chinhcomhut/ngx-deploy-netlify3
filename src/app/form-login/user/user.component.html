@@ -54,7 +54,7 @@
                 </mat-card>
                 <mat-card class="button">
                     <mat-card-title style="color: firebrick" class="alert alert-success">Manage All Your Create</mat-card-title>
-                    <button routerLink="/pageCategoryByUser" type="submit" style="color: crimson; text-decoration: none;"
+                    <button [routerLink]="['/pageCategoryByUser/',userId]" type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-success"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
@@ -63,14 +63,14 @@
                                             width="40"/>
                     </b></span>
                     </button>
-                    <button routerLink="/pageSingerByUser" type="submit" style="color: mediumvioletred; text-decoration: none;"
+                    <button [routerLink]="['/pageSingerByUser/',userId]" type="submit" style="color: mediumvioletred; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-primary"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
                         The Singer you have created
                     <img src="../../../assets/images/icons/create-singer.png" height="40" width="40"/></b></span>
                     </button><br><br>
-                    <button routerLink="/pageSongByUser" type="submit" style="color: darkgreen; text-decoration: none;"
+                    <button [routerLink]="['/pageSongByUser/',userId]" type="submit" style="color: darkgreen; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-warning"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>

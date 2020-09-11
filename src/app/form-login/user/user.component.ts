@@ -37,7 +37,7 @@ export class UserComponent implements OnInit {
   data1: any = {
     message: 'yes'
   };
-
+userId: number;
   constructor(private token: TokenStorageService,
               private routes: ActivatedRoute,
               private userService: UserService,
@@ -84,6 +84,8 @@ export class UserComponent implements OnInit {
       roles: this.token.getAuthorities(),
       id: this.token.getUserId()
     };
+    this.userId = +this.info.id;
+    console.log('this.userId',this.userId)
     // console.log(this.info)
     console.log('info.id at user = ', this.info.id);
     this.getListResquest({page: '', size: ''});

@@ -27,9 +27,9 @@ export class CategoryService {
     const params = request;
     return this.http.get(this.API_Category, {params});
   }
-  getPageCategoryByUser(request){
+  getPageCategoryByUser(id: number,request){
     const params = request;
-    return this.http.get(this.API_Category_By_User, {params})
+    return this.http.get(`${this.API_Category_By_User}/${id}`, {params})
   }
 
   getListCategory(): Observable<CategoryInfo[]> {

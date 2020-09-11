@@ -3,6 +3,7 @@ import {SingerInfo} from '../../../model/singer/singer-info';
 import {PageEvent} from '@angular/material/paginator';
 import {SongService} from '../../../service/song.service';
 import {SongInfo} from '../../../model/song-info';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-song-by-user',
@@ -17,7 +18,8 @@ export class SongByUserComponent implements OnInit {
   data1: any = {
     message: "yes"
   }
-  constructor(private songService: SongService) { }
+  constructor(private songService: SongService,
+              private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.getListResquest({page: '', size: ''});
@@ -34,10 +36,13 @@ export class SongByUserComponent implements OnInit {
   }
   private getListResquest(request) {
     this.loading = true;
-    this.songService.getPageSongByUser(request)
+    // this.tokenService.getUserId();
+    var userId: number = +this.tokenService.getUserId();
+    console.log('userId',userId)
+    this.songService.getPageSongByUser(userId,request)
       .subscribe(data => {
         this.songs = data['content'];
-        console.log('singer', data);
+        console.log('page Song', data);
         this.totalElements = data['totalElements'];
         this.loading = false;
       }, error => {

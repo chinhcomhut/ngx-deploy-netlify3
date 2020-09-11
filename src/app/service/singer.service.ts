@@ -16,12 +16,12 @@ export class SingerService {
   private List_Singer_Pagination = environment.URL_local + 'singer/pagination';
   private API_SINGER_BYUSERID = 'http://localhost:8080/api/auth/listSingerByUser';
   private API_Put_Singer = environment.URL_local+'update-singer';
-  private API_Page_Singer_By_User = environment.URL_local+'singer-by-user';
+  // private API_Page_Singer_By_User = environment.URL_local+'singer-by-user';
 
   //API SEVER
   private API_SINGER = environment.URL_server + 'singer';
   private API_List_Singer = environment.URL_server+'list-singer'
-
+  private API_Page_Singer_By_User = environment.URL_server+'singer-by-user';
   constructor(private http: HttpClient) {
   }
 
@@ -54,8 +54,9 @@ export class SingerService {
     return this.http.get(this.API_SINGER, {params});
   }
 
-  // getPageSingerByUser(request) {
-  //   const params = request;
-  //   return this.http.get(this.API_Page_Singer_By_User, {params});
-  // }
+  getPageSingerByUser(id: number,request) {
+    console.log('id tai service', id)
+    const params = request;
+    return this.http.get(`${this.API_Page_Singer_By_User}/${id}`, {params});
+  }
 }

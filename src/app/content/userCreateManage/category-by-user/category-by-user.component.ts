@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {CategoryInfo} from '../../../model/category-info';
 import {CategoryService} from '../../../service/category.service';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-category-by-user',
@@ -16,7 +17,8 @@ export class CategoryByUserComponent implements OnInit {
   data1: any = {
     message: "yes"
   }
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,
+              private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.getListResquest({page: '', size: ''});
@@ -33,7 +35,8 @@ export class CategoryByUserComponent implements OnInit {
   }
   private getListResquest(request) {
     this.loading = true;
-    this.categoryService.getPageCategoryByUser(request)
+    var userId: number = +this.tokenService.getUserId();
+    this.categoryService.getPageCategoryByUser(userId,request)
       .subscribe(data => {
         this.category = data['content'];
         console.log('category', data);

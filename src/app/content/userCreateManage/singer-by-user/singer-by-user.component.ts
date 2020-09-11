@@ -3,6 +3,7 @@ import {PageEvent} from '@angular/material/paginator';
 import {CategoryInfo} from '../../../model/category-info';
 import {SingerInfo} from '../../../model/singer/singer-info';
 import {SingerService} from '../../../service/singer.service';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-singer-by-user',
@@ -17,10 +18,11 @@ export class SingerByUserComponent implements OnInit {
   data1: any = {
     message: "yes"
   }
-  constructor(private singerService: SingerService) { }
+  constructor(private singerService: SingerService,
+              private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
-    // this.getListResquest({page: '', size: ''});
+    this.getListResquest({page: '', size: ''});
   }
   deleteSinger(id: number){
     this.singerService.deleteSinger(id).subscribe(data=>{
@@ -32,23 +34,24 @@ export class SingerByUserComponent implements OnInit {
       alert('You have to delete songs from artist first!')
     })
   }
-  // private getListResquest(request) {
-  //   this.loading = true;
-  //   this.singerService.getPageSingerByUser(request)
-  //     .subscribe(data => {
-  //       this.singers = data['content'];
-  //       console.log('singer', data);
-  //       this.totalElements = data['totalElements'];
-  //       this.loading = false;
-  //     }, error => {
-  //       this.loading = false;
-  //     });
-  // }
-  //
-  // nextPage(event: PageEvent) {
-  //   const request = {};
-  //   request['page'] = event.pageIndex.toString();
-  //   request['size'] = event.pageSize.toString();
-  //   this.getListResquest(request);
-  // }
+  private getListResquest(request) {
+    this.loading = true;
+    var userId: number = +this.tokenService.getUserId();
+    this.singerService.getPageSingerByUser(userId,request)
+      .subscribe(data => {
+        this.singers = data['content'];
+        console.log('singer', data);
+        this.totalElements = data['totalElements'];
+        this.loading = false;
+      }, error => {
+        this.loading = false;
+      });
+  }
+
+  nextPage(event: PageEvent) {
+    const request = {};
+    request['page'] = event.pageIndex.toString();
+    request['size'] = event.pageSize.toString();
+    this.getListResquest(request);
+  }
 }
