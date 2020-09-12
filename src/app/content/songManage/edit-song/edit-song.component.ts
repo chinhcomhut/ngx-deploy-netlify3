@@ -104,7 +104,8 @@ export class EditSongComponent implements OnInit {
       lyrics: '',
       nameCategory: '',
       mp3Url: '',
-      avatarSong: ''
+      avatarSong: '',
+      nameBand: ''
     };
     console.log('song', this.song);
     this.a = new Array(this.song.nameSinger);
@@ -116,6 +117,7 @@ export class EditSongComponent implements OnInit {
     this.form1.nameCategory = this.song.nameCategory;
     this.form1.mp3Url = this.song.mp3Url;
     this.form1.avatarSong = this.song.avatarSong;
+    this.form1.nameBand = this.song.nameBand;
     console.log('this.form1', this.form1);
     this.songService.updateSong(this.song.id, this.form1).subscribe(result=>{
       console.log('resulte', result)
