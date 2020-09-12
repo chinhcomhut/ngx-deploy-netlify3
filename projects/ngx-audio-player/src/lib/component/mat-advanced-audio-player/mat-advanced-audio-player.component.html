@@ -57,9 +57,9 @@
 
 <mat-card *ngIf="displayTitle" class="mat-elevation-z1">
   <div style="text-align: center;">
-    <div style="margin: 1px 2px; padding: 1em">
-      <span *ngIf="!isPlaying">{{ playlistTrack[1].title }}</span>
-      <marquee *ngIf="isPlaying" behavior="scroll" direction="left">{{ playlistTrack[1].title }}</marquee>
+    <div style="color: red;margin: 1px 2px; padding: 1em">
+      <span style="color: #ff03cc" *ngIf="!isPlaying">{{ playlistTrack[1].title }}</span>
+      <marquee  *ngIf="isPlaying" behavior="scroll" direction="left">{{ playlistTrack[1].title }}</marquee>
     </div>
     <div class="clear"></div>
   </div>

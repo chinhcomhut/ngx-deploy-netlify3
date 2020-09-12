@@ -106,10 +106,10 @@ import { CreateBandComponent } from './content/bandManage/create-band/create-ban
 import { PageBandComponent } from './content/bandManage/page-band/page-band.component';
 import { CreateSongForBandComponent } from './content/bandManage/create-song-for-band/create-song-for-band.component';
 import { DetailBandComponent } from './content/bandManage/detail-band/detail-band.component';
-import { AddSongToBandComponent } from './content/bandManage/add-song-to-band/add-song-to-band.component';
 import { CreateAlbumComponent } from './content/albumManage/create-album/create-album.component';
 import { PageAlbumComponent } from './content/albumManage/page-album/page-album.component';
 import { DetailAlbumComponent } from './content/albumManage/detail-album/detail-album.component';
+import { EditBandComponent } from './content/bandManage/edit-band/edit-band.component';
 
 
 // const config = new SocialAuthService([
@@ -160,15 +160,16 @@ export const appRoutes: Routes = [
     {path: 'createBand', component: CreateBandComponent, data: {title: 'CreateBand'}},
     {path: 'pageBand', component: PageBandComponent, data: {title: 'PageBand'}},
     {path: 'createSongForBand', component: CreateSongForBandComponent, data: {title: 'CreateSongForBand'}},
-    {path: 'addSongToBand/:id', component: AddSongToBandComponent, data:{title: 'AddSongToBand'}},
     {path: 'createAlbum', component: CreateAlbumComponent, data:{title: 'CreateAlbum'}},
     {path: 'pageAlbum', component: PageAlbumComponent, data: {title: 'PageAlbum'}},
     {path: 'detailAlbum/:id',component: DetailAlbumComponent, data: {title: 'DetailAlbum'}},
+    {path: 'editBand/:id',component: EditBandComponent, data:{title: 'EditBand'}},
+    {path: 'detailBand/:id', component: DetailBandComponent, data:{title: 'DetailBand'}},
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, AddsongToSingerComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,AddPlayListToSingerComponent, CreateBandComponent, PageBandComponent, CreateSongForBandComponent, DetailBandComponent, AddSongToBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent,
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, AddsongToSingerComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,AddPlayListToSingerComponent, CreateBandComponent, PageBandComponent, CreateSongForBandComponent, DetailBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent, EditBandComponent,
     ],
     imports: [
         HttpClientModule,

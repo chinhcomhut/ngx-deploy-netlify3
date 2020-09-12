@@ -5,11 +5,11 @@
                 <div class="search-hero">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                            placeholder="&#61442;  Search band in one page..."><br>
-                    <button routerLink="/createSongForBand" type="submit" style="color: crimson; text-decoration: none;"
+                    <button routerLink="/createBand" type="submit" style="color: crimson; text-decoration: none;"
                             aria-label="Angular Audio Player"
                             class="mat-button-toggle-group btn-outline-success"
                             mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
-                        Create Song for Band
+                        Create Band
                         <img src="../../../../assets/images/icons/create-band.png" height="40" width="40"/></b></span>
                     </button>
                 </div>
@@ -25,19 +25,19 @@
                 <!--                </mat-grid-list>-->
                 <div class="row">
                     <div class="column" *ngFor="let ctc of bands|filter: searchText">
-                        <button  [routerLink]="['/addSongToBand/',ctc.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
-                            <mat-icon>playlist_add</mat-icon>
-                        </button>
+<!--                        <button  [routerLink]="['/addSongToBand/',ctc.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+<!--                            <mat-icon>playlist_add</mat-icon>-->
+<!--                        </button>-->
 <!--                        <button *ngIf="isCheck" [routerLink]="['/addSongToCategory/',ctc.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
 <!--                            <mat-icon>queue music</mat-icon>-->
 <!--                        </button>-->
-<!--                        <button *ngIf="isCheck" [routerLink]="['/editCategory/',ctc.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">-->
-<!--                            <mat-icon>edit</mat-icon>-->
-<!--                        </button>-->
-<!--                        <button *ngIf="isCheck" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
-<!--                                (click)="deleteCategory(ctc.id)">-->
-<!--                            <mat-icon>delete</mat-icon>-->
-<!--                        </button>-->
+                        <button *ngIf="isCheckAdmin" [routerLink]="['/editBand/',ctc.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                (click)="deleteBand(ctc.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                         <div class="card" >
                             <b [routerLink]="['/detailBand/',ctc.id]" class="title" style="color: crimson">{{ctc.nameBand}}</b>
                             <img [routerLink]="['/detailBand/',ctc.id]" class="image"  [src]="ctc.avatarBand">

@@ -31,7 +31,16 @@
                         <mat-icon color="accent" matSuffix>edit</mat-icon>
                     </mat-form-field><br>
                     <!-- SELECT SINGER -->
+                    <mat-panel-title style="color: #2b542c" class="alert alert-warning">
+                        Nếu bài hát thuộc nhóm nhạc bạn có thể bỏ trống lựa chọn ca sĩ để chọn nhóm nhạc!
+                        Hoặc bạn có thể chọn ca sĩ của nhóm nhạc thể hiện ca khúc đó. Nếu chưa có ca sĩ bạn có thể vào mục Singers để tạo ca sĩ của bạn!</mat-panel-title>
+                    <mat-panel-title style="color: #ff03cc" class="alert alert-warning">
+
+                        If the song belongs to a group you can leave the artist selection blank to select the group! Or you can choose the singer of the group to perform that track.
+                        If you do not have a singer you can go to Singers to create your artist!
+                    </mat-panel-title>
                     <mat-form-field style="width: 300px">
+
                         <mat-select style="width: 300px" placeholder="Select Singers" [formControl]="toppings"
                                     [ngModel]="song.nameSinger" (ngModelChange)="song.nameSinger=$event" multiple>
                             <mat-select-trigger style="width: 500px">

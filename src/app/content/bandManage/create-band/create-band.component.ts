@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BandService} from '../../../service/band.service';
 import {BandInfo} from '../../../model/band-info';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-create-band',
@@ -23,11 +24,13 @@ export class CreateBandComponent implements OnInit {
   data4: any = {
     message: "yes"
   }
-  constructor(private bandService: BandService) { }
+  constructor(private bandService: BandService,
+              private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
   }
   createBand(){
+    this.band.createBy = this.tokenService.getUsername();
     this.bandService.createBand(this.band).subscribe(data =>{
       if(JSON.stringify(data)==JSON.stringify(this.data1)){
         this.errorMessage = 'The name band is required, please try again!'

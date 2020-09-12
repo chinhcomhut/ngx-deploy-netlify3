@@ -1,0 +1,43 @@
+<div class="container" *ngIf="band">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <mat-card-title style="color: #bd4147" class="alert alert-primary">Old Band</mat-card-title>
+                <mat-card-title style="color: #ff03cc"><b style="color: #2b542c">Name
+                    Band:</b>{{band.nameBand}}</mat-card-title>
+                <img class="image" [src]="band.avatarBand">
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div class="contianer">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <form class="edit-band" #f="ngForm" (ngSubmit)="updateBand()&&f.form.valid" novalidate>
+                    <mat-card-title style="color: #2b542c" class="alert alert-warning">Form Edit Band
+                    </mat-card-title>
+                    <mat-form-field style="width: 300px;" appearance="outline">
+                        <mat-label>Name Band:</mat-label>
+                        <input name="nameBand" matInput placeholder="Fill name Band in the form ..."
+                               [(ngModel)]="band.nameBand" #nameBand="ngModel" required>
+                        <mat-icon color="accent" matSuffix>edit</mat-icon>
+                    </mat-form-field>
+                    <!--                    <mat-error *ngIf="f.submitted&&nameCategory.invalid">-->
+                    <!--                        <mat-error *ngIf="nameCategory.errors.required">{{errorMessage}}</mat-error>-->
+                    <!--                    </mat-error>-->
+                    <mat-error>{{errorMessage}}</mat-error><br>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-warning"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                       Edit Band
+                       <img src="../../../../assets/images/icons/EditBand.png" height="40" width="40"/></b></span>
+                    </button>
+                </form>
+                <mat-error *ngIf="!addAvatar">If you want change avatar, please upload!</mat-error>
+                <app-upload-avatar (giveURLtoCreate)="onAvatar($event)"></app-upload-avatar>
+            </mat-card>
+        </div>
+    </div>
+</div>

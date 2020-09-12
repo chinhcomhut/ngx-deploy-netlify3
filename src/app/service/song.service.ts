@@ -16,7 +16,7 @@ export class SongService {
   // private API_Song_By_Singer = environment.URL_local + 'song-by-singer';
   // private API_Page_Song_By_User = environment.URL_local + 'song-by-user';
   private API_Create_Song_For_Band = environment.URL_local + 'song-band';
-  private API_Song_By_Band = environment.URL_local + 'song-by-band';
+  // private API_Song_By_Band = environment.URL_local + 'song-by-band';
   // private API_Song_By_Play_List = environment.URL_local+'add-song-by-playlist'
   private API_List_Song_By_Play_List = environment.URL_local + 'song-by-playlist';
   //API SEVER
@@ -26,6 +26,7 @@ export class SongService {
   private API_Song_By_Play_List = environment.URL_server + 'song-by-playlist';
   private API_Add_Song_To_Play_List = environment.URL_server + 'add-song-to-playlist';
   private API_Page_Song_By_User = environment.URL_server + 'song-by-user';
+  private API_Song_By_Band = environment.URL_server+'song-by-band';
 
   constructor(private http: HttpClient) {
   }
@@ -35,7 +36,7 @@ export class SongService {
     return this.http.get(this.API_Song, {params});
   }
 
-  getPageSongByBand(request, id: number) {
+  getPageSongByBand(id: number,request) {
     const params = request;
     return this.http.get<any>(`${this.API_Song_By_Band}/${id}`, {params});
   }

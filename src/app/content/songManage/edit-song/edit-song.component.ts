@@ -7,6 +7,8 @@ import {FormControl} from '@angular/forms';
 import {SongInfo} from '../../../model/song-info';
 import {SingerInfo} from '../../../model/singer/singer-info';
 import {CategoryInfo} from '../../../model/category-info';
+import {BandInfo} from '../../../model/band-info';
+import {BandService} from '../../../service/band.service';
 
 @Component({
   selector: 'app-edit-song',
@@ -14,11 +16,13 @@ import {CategoryInfo} from '../../../model/category-info';
   styleUrls: ['./edit-song.component.css']
 })
 export class EditSongComponent implements OnInit {
-
+  panelOpenState = false;
   toppings = new FormControl();
   song: SongInfo = new SongInfo();
   singer: SingerInfo[];
   category: CategoryInfo[]=[];
+  bands: BandInfo[] = [];
+  selectBand = this.bands[0];
   data1: any = {
     message: "nosong"
   }
@@ -70,12 +74,16 @@ export class EditSongComponent implements OnInit {
   constructor(private singerService: SingerService,
               private songService: SongService,
               private routes: ActivatedRoute,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private bandService: BandService) {
   }
 
   ngOnInit(): void {
     this.singerService.getListSinger().subscribe(listSinger=>{
       this.singer = listSinger;
+    })
+    this.bandService.getListBand().subscribe(listBand=>{
+      this.bands = listBand;
     })
     this.categoryService.getListCategory().subscribe(listCategory=>{
       this.category = listCategory;

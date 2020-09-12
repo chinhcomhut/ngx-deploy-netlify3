@@ -37,7 +37,7 @@ export class CreateSongComponent implements OnInit {
     message: "nocategory"
   };
   data4: any = {
-    message: "nosinger"
+    message: "nosingerband"
   };
   data5: any = {
     message: "yes"
@@ -106,7 +106,7 @@ export class CreateSongComponent implements OnInit {
         this.errorMessage = 'You have not selected Music Genre. If the Music Genre does not exist, please go to the: MUSIC GENRE to create new one!'
       }
       if(JSON.stringify(data)==JSON.stringify(this.data4)){
-        this.errorMessage = 'You have not selected Name Singer. If the Singer does not exist, please go to the List Singer to create new one!'
+        this.errorMessage = 'You have not selected Name Singer or Band. If the Singer or Band does not exist, please go to the Singers or Band to create new one!'
       }
       if(JSON.stringify(data)==JSON.stringify(this.data5)){
         this.errorMessage = 'Create successful the songs!'
