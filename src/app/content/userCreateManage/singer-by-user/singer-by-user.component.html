@@ -27,9 +27,9 @@
                 <!--                </mat-grid-list>-->
                 <div class="row">
                     <div class="column" *ngFor="let singer of singers|filter: searchText">
-                        <button  [routerLink]="['/addSongToSinger/',singer.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
-                            <mat-icon>queue music</mat-icon>
-                        </button>
+<!--                        <button  [routerLink]="['/addSongToSinger/',singer.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+<!--                            <mat-icon>queue music</mat-icon>-->
+<!--                        </button>-->
                         <button [routerLink]="['/editSinger/',singer.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
                             <mat-icon>edit</mat-icon>
                         </button>

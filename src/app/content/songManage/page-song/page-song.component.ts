@@ -25,7 +25,7 @@ export class PageSongComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getListResquest({page: '', size: ''});
+    this.getListResquest({page: 0, size: 16}); //Chinh size se hien thi size luc khoi dong trang//
     if (JSON.stringify(this.tokenService.getAuthorities()) == JSON.stringify(this.admin)) {
       this.isCheck = true;
     }
