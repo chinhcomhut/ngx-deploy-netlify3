@@ -159,7 +159,7 @@
                         <button *ngIf="isCheckAdmin" [routerLink]="['/editPlayList/',pl.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                        <button  *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
                                 (click)="deletePlayList(pl.id)">
                             <mat-icon>delete</mat-icon>
                         </button>
