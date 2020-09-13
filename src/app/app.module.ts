@@ -110,6 +110,7 @@ import { CreateAlbumComponent } from './content/albumManage/create-album/create-
 import { PageAlbumComponent } from './content/albumManage/page-album/page-album.component';
 import { DetailAlbumComponent } from './content/albumManage/detail-album/detail-album.component';
 import { EditBandComponent } from './content/bandManage/edit-band/edit-band.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 // const config = new SocialAuthService([
@@ -177,6 +178,7 @@ export const appRoutes: Routes = [
         MatCardModule, MatToolbarModule, MatIconModule, MatRadioModule, MatCheckboxModule, MatSlideToggleModule,
         BrowserAnimationsModule, ShareButtonsModule,
         NgxAudioPlayerModule,
+        NgxPaginationModule,
         AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         RouterModule.forRoot(appRoutes, {useHash: false}), MatButtonModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, Ng2SearchPipeModule,

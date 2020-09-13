@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {BandInfo} from '../../../model/band-info';
 import {AlbumInfo} from '../../../model/album-info';
-import {PageEvent} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {AlbumService} from '../../../service/album.service';
 import {TokenStorageService} from '../../../auth/token-storage.service';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-page-album',
   templateUrl: './page-album.component.html',
   styleUrls: ['./page-album.component.css']
 })
-export class PageAlbumComponent implements OnInit {
+export class PageAlbumComponent implements OnInit{
+
   totalElements: number = 0;
   albums: AlbumInfo[];
   loading: boolean;
@@ -20,10 +22,12 @@ export class PageAlbumComponent implements OnInit {
   data1: any = {
     message: "yes"
   }
+
   constructor(private albumService: AlbumService,
               private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
+
     this.getListResquest({page:'', size:''})
     if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
       this.isCheckAdmin = true;

@@ -48,4 +48,18 @@
 .mat-form-field + .mat-form-field {
     margin-left: 8px;
 }
-
+table {
+    width: 100%;
+}
+.search-hero {
+    max-width: 300px;
+    padding-bottom: 50px;
+    margin:auto;
+    text-align: center;
+}
+.form-control {
+    box-shadow: 0 10px 40px 0 #B0C1D9;
+}
+.form-control::placeholder  {
+    font-family: FontAwesome;
+}

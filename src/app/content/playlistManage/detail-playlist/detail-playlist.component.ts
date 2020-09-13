@@ -15,7 +15,10 @@ import {TokenStorageService} from '../../../auth/token-storage.service';
   templateUrl: './detail-playlist.component.html',
   styleUrls: ['./detail-playlist.component.css']
 })
-export class DetailPlaylistComponent implements AfterViewInit {
+export class DetailPlaylistComponent implements OnInit {
+  config: any;
+  // collection = { count: 60, data: [] };
+  collection: any = {}
   playList: PlaylistInfo;
   playlist1: Track;
   playlist2: Track[] = [];
@@ -26,22 +29,41 @@ export class DetailPlaylistComponent implements AfterViewInit {
   msaapDisplayVolumeControls = true;
   msbapDisplayVolumeControls = true;
   pageSizeOptions = [2, 4, 6];
-  dataSource: any;
+  dataSource = new MatTableDataSource<Song>();
+  // dataSource: any;
   displayedColumns: string[] = ['id','nameSong','mp3Url']
   panelOpenState = false;
-  songs: SongInfo[]=[];
+  searchText;
+  // songs: SongInfo[]=[];
+  songs: Song[] = [];
   song: SongInfo;
   isCheckAddSong = false;
   isCheckAmin = false;
   // @ViewChild(MatSort) sort: MatSort;
   admin: any = ["ADMIN"];
   user: any = ["USER"]
-  // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+
   constructor(private playListService: PlaylistService,
               private routes: ActivatedRoute,
               private songService: SongService,
               private tokenService: TokenStorageService) {
+    // for (var i = 0; i < this.collection.count; i++) {
+    //   this.collection.data.push(
+    //     {
+    //       id: i + 1,
+    //       value: "items number " + (i + 1)
+    //     }
+    //   );
+    // }
+
+    this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
   }
 
   // ngOnInit(): void {
@@ -59,13 +81,22 @@ export class DetailPlaylistComponent implements AfterViewInit {
   //   })
   //
   // }
-  ngAfterViewInit() {
+  ngOnInit() {
+
+
+    // this.dataSource.sort = this.sort;
+
     this.routes.paramMap.subscribe(playListId=>{
       const id = +playListId.get('id');
       this.playListService.getPlayListById(id).subscribe(result=>{
         this.playList = result;
-        console.log('nameAlbum',result.nameAlbum)
-        console.log('nameSinger', result.nameSinger)
+        // this.dataSource = new MatTableDataSource<Song>(this.playList.songList);
+        // this.dataSource.paginator = this.paginator;
+        // console.log('?',this.dataSource.data)
+        // // this.dataSource.paginator = this.paginator;
+        // console.log('nameAlbum',result.nameAlbum)
+        // console.log('nameSinger', result.nameSinger)
+        this.collection = { count: 60, this:this.playList.songList };
         if((result.nameAlbum!=null||result.nameSinger!=null)&&
           JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.user)){
           this.isCheckAddSong = true;
@@ -74,18 +105,29 @@ export class DetailPlaylistComponent implements AfterViewInit {
           this.isCheckAmin = false;
         }
         console.log('result',result)
-        console.log('songlist',result.songList.length)
+        console.log('songlist',result.songList)
+
+        // this.dataSource.data = result.songList;
+        // this.dataSource.paginator = this.paginator
         this.convertSongToPlayList(result.songList);
-        this.dataSource = new MatTableDataSource<SongInfo>(result.songList)
+
+        // this.dataSource = new MatTableDataSource<Song>(result.songList)
+
+
         // this.dataSource = new MatTableDataSource<Track>(this.msMapPlayList);
-        this.dataSource.paginator = this.paginator;
+        // this.dataSource.paginator = this.paginator;
       })
     })
+
 if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
   this.isCheckAmin = true;
 }
+
   }
 
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
   convertSongToPlayList(songs: SongInfo[]) {
     for (const song of songs) {
       this.playlist1 = {
@@ -145,4 +187,17 @@ if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+}
+export interface Song {
+  id: number;
+  nameSong: string;
+  mp3Url: string;
+  lyrics: string;
+  likeSong: number;
+  nameSinger: string;
+  nameBand: string;
+  nameCategory: string;
+  avatarSong: string;
+  createBy: string;
+  playlist_id: number;
 }

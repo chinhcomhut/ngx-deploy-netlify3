@@ -1,4 +1,3 @@
-
 <div class="container" style="margin-top: 10px" *ngIf="playList">
     <!--    <a [routerLink]="['/add-song/',playlist.id]" class="btn btn-outline-warning offset-5">Thêm Bài Hát Vào PLaylist</a>-->
     <!--    <hr>-->
@@ -20,13 +19,16 @@
     <!--            <p style="font-size: 85%">Thể loại - <a class="font-weight-bold">{{song.category}}</a></p>-->
     <!--        </div>-->
     <!--    </div>-->
-<!--<mat-card-title>{{playList.createBy}}</mat-card-title>-->
+    <!--<mat-card-title>{{playList.createBy}}</mat-card-title>-->
     <div class="col-12" style="margin-top: 20px;">
-        <mat-card style="background-image: url(https://firebasestorage.googleapis.com/v0/b/chinhbeo-18d3b.appspot.com/o/nla8ou635og?alt=media&token=0bb386a6-2c82-49ea-939f-5d1a1102677a)">
+        <mat-card
+                style="background-image: url(https://firebasestorage.googleapis.com/v0/b/chinhbeo-18d3b.appspot.com/o/nla8ou635og?alt=media&token=0bb386a6-2c82-49ea-939f-5d1a1102677a)">
             <mat-card>
-                <img class="image1" src="https://blog.flamingtext.com/blog/2020/08/25/flamingtext_com_1598335997_246990797.gif" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com">
+                <img class="image1"
+                     src="https://blog.flamingtext.com/blog/2020/08/25/flamingtext_com_1598335997_246990797.gif"
+                     border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com">
             </mat-card>
-<!--            <img class="img" [src]="playList.avatarPlayList">-->
+            <!--            <img class="img" [src]="playList.avatarPlayList">-->
             <mat-card-content style="color: #bf79db" class="row justify-contents-around">
                 <div class="col py-3 pl-5">
                     <h4 style="color: greenyellow">Controls</h4>
@@ -51,11 +53,13 @@
                     </div>
                 </div>
                 <div class="col">
-                    <button *ngIf="!isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
+                    <button *ngIf="!isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button
+                            color="accent">
                         <mat-icon>queue music</mat-icon>
                         Add Music
                     </button>
-                    <button *ngIf="isCheckAmin" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button color="accent">
+                    <button *ngIf="isCheckAmin" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button
+                            color="accent">
                         <mat-icon>queue music</mat-icon>
                         Add Music
                     </button>
@@ -79,410 +83,98 @@
                             Click View {{panelOpenState ? 'open!' : 'closed!'}}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12" style="margin-top: 20px;">
-                                <mat-card style="margin: 50px 0;">
-                                    <mat-card-title style="color:indianred;">Manage Play List</mat-card-title>
-                                    <div class="example-header">
-                                        <mat-form-field>
-                                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Song..">
-                                            <mat-icon color="accent" matPrefix>image_search</mat-icon>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="example-container mat-elevation-z8">
 
-                                        <table mat-table [dataSource]="dataSource">
+                    <!-- KHONG PHAN TRANG DUOC -->
+                    <!--                    <div class="container">-->
+                    <!--                        <div class="row">-->
+                    <!--                            <div class="col-12" style="margin-top: 20px;">-->
+                    <!--                                <mat-card style="margin: 50px 0;">-->
+                    <!--                                    <mat-card-title style="color:indianred;">Manage Play List</mat-card-title>-->
+                    <!--                                    <div class="example-header">-->
+                    <!--                                        <mat-form-field>-->
+                    <!--                                            <input matInput (keyup)="applyFilter($event.target.value)"-->
+                    <!--                                                   placeholder="Search Song..">-->
+                    <!--                                            <mat-icon color="accent" matPrefix>image_search</mat-icon>-->
+                    <!--                                        </mat-form-field>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="example-container mat-elevation-z8">-->
+                    <!--                                        <table mat-table [dataSource]="dataSource">-->
+                    <!--                                            &lt;!&ndash; Position Column &ndash;&gt;-->
+                    <!--                                            <ng-container matColumnDef="id">-->
+                    <!--                                                <th mat-header-cell *matHeaderCellDef> ID</th>-->
+                    <!--                                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>-->
+                    <!--                                            </ng-container>-->
+                    <!--                                            <ng-container matColumnDef="nameSong">-->
+                    <!--                                                <th mat-header-cell *matHeaderCellDef> NameSong</th>-->
+                    <!--                                                <td mat-cell *matCellDef="let element"> {{element.nameSong}} </td>-->
+                    <!--                                            </ng-container>-->
+                    <!--                                            <ng-container matColumnDef="mp3Url">-->
+                    <!--                                                <th mat-header-cell *matHeaderCellDef> Delete Song</th>-->
+                    <!--                                                <td mat-cell *matCellDef="let element">-->
+                    <!--                                                    <div class="example-button-container">-->
+                    <!--                                                        <button mat-mini-fab color="warn"-->
+                    <!--                                                                aria-label="Example icon button with a delete icon"-->
+                    <!--                                                                (click)="deleteSong(element.mp3Url)">-->
+                    <!--                                                            <mat-icon>delete</mat-icon>-->
+                    <!--                                                        </button>-->
+                    <!--                                                    </div>-->
+                    <!--                                                </td>-->
+                    <!--                                            </ng-container>-->
+                    <!--                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+                    <!--                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
 
-                                            <!--        <div class="search-hero">-->
-                                            <!--            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"-->
-                                            <!--                   placeholder="&#61442;  Start searching music genre..."><br>-->
-                                            <!--            <div class="row">-->
-                                            <!--                <div class="column" *ngFor="let ctc of msMapPlayList|filter: searchText">-->
-                                            <!--                    &lt;!&ndash;                <div class="card" >&ndash;&gt;-->
-                                            <!--                    &lt;!&ndash;                    <b class="title" style="color: crimson">{{ctc.nameCategory}}</b>&ndash;&gt;-->
-                                            <!--                    &lt;!&ndash;                    <img class="image"  [src]="ctc.avatarCategory">&ndash;&gt;-->
-                                            <!--                    &lt;!&ndash;                </div>&ndash;&gt;-->
-                                            <!--                </div>-->
+                    <!--                                        </table>-->
+                    <!--                                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"-->
+                    <!--                                                       showFirstLastButtons></mat-paginator>-->
+                    <!--                                        -->
+                    <!--                                    </div>-->
+                    <!--                                -->
 
-                                            <!--            </div>-->
-                                            <!--        </div>-->
-
-                                            <!-- Position Column -->
-                                            <ng-container matColumnDef="id">
-                                                <th mat-header-cell *matHeaderCellDef> ID </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                                            </ng-container>
-                                            <ng-container matColumnDef="nameSong">
-                                                <th mat-header-cell *matHeaderCellDef> NameSong </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.nameSong}} </td>
-                                            </ng-container>
-                                            <ng-container matColumnDef="mp3Url">
-                                                <th mat-header-cell *matHeaderCellDef> Delete Song </th>
-                                                <td mat-cell *matCellDef="let element">
-                                                    <!--                                <section>-->
-                                                    <!--                                    <div class="example-label"></div>-->
-                                                    <!--                                    <div class="example-button-row">-->
-                                                    <!--                                        <div class="example-flex-container">-->
-                                                    <div class="example-button-container">
-                                                        <button mat-mini-fab color="warn" aria-label="Example icon button with a delete icon"(click)="deleteSong(element.mp3Url)">
-                                                            <mat-icon>delete</mat-icon>
-                                                        </button>
-                                                    </div>
-                                                    <!--            <div class="example-button-container">-->
-                                                    <!--                <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">-->
-                                                    <!--                    <mat-icon>bookmark</mat-icon>-->
-                                                    <!--                </button>-->
-                                                    <!--            </div>-->
-                                                    <!--            <div class="example-button-container">-->
-                                                    <!--                <button mat-fab color="warn" aria-label="Example icon button with a home icon">-->
-                                                    <!--                    <mat-icon>home</mat-icon>-->
-                                                    <!--                </button>-->
-                                                    <!--            </div>-->
-                                                    <!--            <div class="example-button-container">-->
-                                                    <!--                <button mat-fab disabled aria-label="Example icon button with a heart icon">-->
-                                                    <!--                    <mat-icon>favorite</mat-icon>-->
-                                                    <!--                </button>-->
-                                                    <!--            </div>-->
-                                                    <!--                                        </div>-->
-                                                    <!--                                    </div>-->
-                                                    <!--                                </section>-->
-
-                                                    <!--                                <button class="btn btn-danger" type="submit"(click)="deleteSong(element.mp3Url)">Delete</button>-->
-                                                </td>
-                                            </ng-container>
-
-
-
-
-                                            <!--        &lt;!&ndash; Name Column &ndash;&gt;-->
-                                            <!--        <ng-container matColumnDef="gender">-->
-                                            <!--            <th mat-header-cell *matHeaderCellDef> Name </th>-->
-                                            <!--            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>-->
-                                            <!--        </ng-container>-->
-
-                                            <!--        &lt;!&ndash; Weight Column &ndash;&gt;-->
-                                            <!--        <ng-container matColumnDef="information">-->
-                                            <!--            <th mat-header-cell *matHeaderCellDef> Weight </th>-->
-                                            <!--            <td mat-cell *matCellDef="let element"> {{element.information}} </td>-->
-                                            <!--        </ng-container>-->
-
-                                            <!--        &lt;!&ndash; Symbol Column &ndash;&gt;-->
-                                            <!--        <ng-container matColumnDef="birthday">-->
-                                            <!--            <th mat-header-cell *matHeaderCellDef> Symbol </th>-->
-                                            <!--            <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>-->
-                                            <!--        </ng-container>-->
-
-                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-                                        </table>
-                                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
-
-                                    </div>
-
-
-                                </mat-card>
-                            </div>
-                        </div>
+                    <!--                                </mat-card>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!-- END KHONG PHAN TRANG DUOC -->
+                    <div class="search-hero">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                               autocomplete="off"
+                               placeholder="&#61442;  Search Song..."><br>
                     </div>
+                    <div style="text-align:center">
+                        <h4>
+                            Basic Pagination
+                        </h4>
 
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name Song</th>
+                                <th scope="col">Delete Song</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let item of playList.songList|filter: searchText | paginate: config">
+                                <th scope="row">{{item.id}}</th>
+                                <td>{{item.nameSong}}</td>
+                                <td>
+                                    <button mat-mini-fab color="warn"
+                                            aria-label="Example icon button with a delete icon"
+                                            (click)="deleteSong(item.mp3Url)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
 
+                        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+                    </div>
                 </mat-expansion-panel>
             </mat-accordion>
         </mat-card>
     </div>
 </div>
-<!--<mat-accordion>-->
-<!--<mat-expansion-panel (opened)="panelOpenState = true"-->
-<!--                     (closed)="panelOpenState = false">-->
-<!--    <mat-expansion-panel-header>-->
-<!--        <mat-panel-title style="color: blue;">-->
-<!--            INFORMATION:-->
-<!--        </mat-panel-title>-->
-<!--        <mat-panel-description style="color: red;">-->
-<!--            Click View {{panelOpenState ? 'open!' : 'closed!'}}-->
-<!--        </mat-panel-description>-->
-<!--    </mat-expansion-panel-header>-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-12" style="margin-top: 20px">-->
-<!--                <mat-card style="margin: 50px 0;">-->
-<!--                    <mat-card-title style="color:indianred;">Manage Play List</mat-card-title>-->
-<!--                    <div class="example-header">-->
-<!--                        <mat-form-field>-->
-<!--                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Song..">-->
-<!--                            <mat-icon color="accent" matPrefix>image_search</mat-icon>-->
-<!--                        </mat-form-field>-->
-<!--                    </div>-->
-<!--                    <div class="example-container mat-elevation-z8">-->
-
-<!--                        <table mat-table [dataSource]="dataSource">-->
-
-<!--                            &lt;!&ndash;        <div class="search-hero">&ndash;&gt;-->
-<!--                            &lt;!&ndash;            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"&ndash;&gt;-->
-<!--                            &lt;!&ndash;                   placeholder="&#61442;  Start searching music genre..."><br>&ndash;&gt;-->
-<!--                            &lt;!&ndash;            <div class="row">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                <div class="column" *ngFor="let ctc of msMapPlayList|filter: searchText">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                    &lt;!&ndash;                <div class="card" >&ndash;&gt;&ndash;&gt;-->
-<!--                            &lt;!&ndash;                    &lt;!&ndash;                    <b class="title" style="color: crimson">{{ctc.nameCategory}}</b>&ndash;&gt;&ndash;&gt;-->
-<!--                            &lt;!&ndash;                    &lt;!&ndash;                    <img class="image"  [src]="ctc.avatarCategory">&ndash;&gt;&ndash;&gt;-->
-<!--                            &lt;!&ndash;                    &lt;!&ndash;                </div>&ndash;&gt;&ndash;&gt;-->
-<!--                            &lt;!&ndash;                </div>&ndash;&gt;-->
-
-<!--                            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--                            &lt;!&ndash;        </div>&ndash;&gt;-->
-
-<!--                            &lt;!&ndash; Position Column &ndash;&gt;-->
-<!--                            <ng-container matColumnDef="id">-->
-<!--                                <th mat-header-cell *matHeaderCellDef> ID </th>-->
-<!--                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container matColumnDef="nameSong">-->
-<!--                                <th mat-header-cell *matHeaderCellDef> NameSong </th>-->
-<!--                                <td mat-cell *matCellDef="let element"> {{element.nameSong}} </td>-->
-<!--                            </ng-container>-->
-<!--                            <ng-container matColumnDef="mp3Url">-->
-<!--                                <th mat-header-cell *matHeaderCellDef> Delete Song </th>-->
-<!--                                <td mat-cell *matCellDef="let element">-->
-<!--                                    &lt;!&ndash;                                <section>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                                    <div class="example-label"></div>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                                    <div class="example-button-row">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                                        <div class="example-flex-container">&ndash;&gt;-->
-<!--                                    <div class="example-button-container">-->
-<!--                                        <button mat-mini-fab color="warn" aria-label="Example icon button with a delete icon"(click)="deleteSong(element.mp3Url)">-->
-<!--                                            <mat-icon>delete</mat-icon>-->
-<!--                                        </button>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                    <mat-icon>bookmark</mat-icon>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                </button>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                <button mat-fab color="warn" aria-label="Example icon button with a home icon">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                    <mat-icon>home</mat-icon>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                </button>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                <button mat-fab disabled aria-label="Example icon button with a heart icon">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                    <mat-icon>favorite</mat-icon>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                </button>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                                </section>&ndash;&gt;-->
-
-<!--                                    &lt;!&ndash;                                <button class="btn btn-danger" type="submit"(click)="deleteSong(element.mp3Url)">Delete</button>&ndash;&gt;-->
-<!--                                </td>-->
-<!--                            </ng-container>-->
 
 
-
-
-<!--                            &lt;!&ndash;        &lt;!&ndash; Name Column &ndash;&gt;&ndash;&gt;-->
-<!--                            &lt;!&ndash;        <ng-container matColumnDef="gender">&ndash;&gt;-->
-<!--                            &lt;!&ndash;            <th mat-header-cell *matHeaderCellDef> Name </th>&ndash;&gt;-->
-<!--                            &lt;!&ndash;            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>&ndash;&gt;-->
-<!--                            &lt;!&ndash;        </ng-container>&ndash;&gt;-->
-
-<!--                            &lt;!&ndash;        &lt;!&ndash; Weight Column &ndash;&gt;&ndash;&gt;-->
-<!--                            &lt;!&ndash;        <ng-container matColumnDef="information">&ndash;&gt;-->
-<!--                            &lt;!&ndash;            <th mat-header-cell *matHeaderCellDef> Weight </th>&ndash;&gt;-->
-<!--                            &lt;!&ndash;            <td mat-cell *matCellDef="let element"> {{element.information}} </td>&ndash;&gt;-->
-<!--                            &lt;!&ndash;        </ng-container>&ndash;&gt;-->
-
-<!--                            &lt;!&ndash;        &lt;!&ndash; Symbol Column &ndash;&gt;&ndash;&gt;-->
-<!--                            &lt;!&ndash;        <ng-container matColumnDef="birthday">&ndash;&gt;-->
-<!--                            &lt;!&ndash;            <th mat-header-cell *matHeaderCellDef> Symbol </th>&ndash;&gt;-->
-<!--                            &lt;!&ndash;            <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>&ndash;&gt;-->
-<!--                            &lt;!&ndash;        </ng-container>&ndash;&gt;-->
-
-<!--                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-<!--                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-<!--                        </table>-->
-
-<!--                        <mat-paginator [pageSizeOptions]="[2,5, 10, 20]" showFirstLastButtons></mat-paginator>-->
-<!--                    </div>-->
-
-
-<!--                </mat-card>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
-<!--</mat-expansion-panel>-->
-<!--</mat-accordion>-->
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-12" style="margin-top: 20px">-->
-<!--            <mat-card style="margin: 50px 0;">-->
-<!--                <mat-card-title style="color:indianred;">Manage Play List</mat-card-title>-->
-<!--                <div class="example-header">-->
-<!--                    <mat-form-field>-->
-<!--                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Song..">-->
-<!--                        <mat-icon color="accent" matPrefix>image_search</mat-icon>-->
-<!--                    </mat-form-field>-->
-<!--                </div>-->
-<!--                <div class="example-container mat-elevation-z8">-->
-
-<!--                    <table mat-table [dataSource]="dataSource">-->
-
-<!--                        &lt;!&ndash;        <div class="search-hero">&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                   placeholder="&#61442;  Start searching music genre..."><br>&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <div class="row">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                <div class="column" *ngFor="let ctc of msMapPlayList|filter: searchText">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    &lt;!&ndash;                <div class="card" >&ndash;&gt;&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    &lt;!&ndash;                    <b class="title" style="color: crimson">{{ctc.nameCategory}}</b>&ndash;&gt;&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    &lt;!&ndash;                    <img class="image"  [src]="ctc.avatarCategory">&ndash;&gt;&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    &lt;!&ndash;                </div>&ndash;&gt;&ndash;&gt;-->
-<!--                        &lt;!&ndash;                </div>&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;        </div>&ndash;&gt;-->
-
-<!--                        &lt;!&ndash; Position Column &ndash;&gt;-->
-<!--                        <ng-container matColumnDef="id">-->
-<!--                            <th mat-header-cell *matHeaderCellDef> ID </th>-->
-<!--                            <td mat-cell *matCellDef="let element"> {{element.id}} </td>-->
-<!--                        </ng-container>-->
-<!--                        <ng-container matColumnDef="nameSong">-->
-<!--                            <th mat-header-cell *matHeaderCellDef> NameSong </th>-->
-<!--                            <td mat-cell *matCellDef="let element"> {{element.nameSong}} </td>-->
-<!--                        </ng-container>-->
-<!--                        <ng-container matColumnDef="mp3Url">-->
-<!--                            <th mat-header-cell *matHeaderCellDef> Delete Song </th>-->
-<!--                            <td mat-cell *matCellDef="let element">-->
-<!--                                &lt;!&ndash;                                <section>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <div class="example-label"></div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <div class="example-button-row">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <div class="example-flex-container">&ndash;&gt;-->
-<!--                                <div class="example-button-container">-->
-<!--                                    <button mat-mini-fab color="warn" aria-label="Example icon button with a delete icon"(click)="deleteSong(element.mp3Url)">-->
-<!--                                        <mat-icon>delete</mat-icon>-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                    <mat-icon>bookmark</mat-icon>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                </button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                <button mat-fab color="warn" aria-label="Example icon button with a home icon">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                    <mat-icon>home</mat-icon>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                </button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                <button mat-fab disabled aria-label="Example icon button with a heart icon">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                    <mat-icon>favorite</mat-icon>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                </button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                </section>&ndash;&gt;-->
-
-<!--                                &lt;!&ndash;                                <button class="btn btn-danger" type="submit"(click)="deleteSong(element.mp3Url)">Delete</button>&ndash;&gt;-->
-<!--                            </td>-->
-<!--                        </ng-container>-->
-
-
-
-
-<!--                        &lt;!&ndash;        &lt;!&ndash; Name Column &ndash;&gt;&ndash;&gt;-->
-<!--                        &lt;!&ndash;        <ng-container matColumnDef="gender">&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <th mat-header-cell *matHeaderCellDef> Name </th>&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>&ndash;&gt;-->
-<!--                        &lt;!&ndash;        </ng-container>&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;        &lt;!&ndash; Weight Column &ndash;&gt;&ndash;&gt;-->
-<!--                        &lt;!&ndash;        <ng-container matColumnDef="information">&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <th mat-header-cell *matHeaderCellDef> Weight </th>&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <td mat-cell *matCellDef="let element"> {{element.information}} </td>&ndash;&gt;-->
-<!--                        &lt;!&ndash;        </ng-container>&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;        &lt;!&ndash; Symbol Column &ndash;&gt;&ndash;&gt;-->
-<!--                        &lt;!&ndash;        <ng-container matColumnDef="birthday">&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <th mat-header-cell *matHeaderCellDef> Symbol </th>&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>&ndash;&gt;-->
-<!--                        &lt;!&ndash;        </ng-container>&ndash;&gt;-->
-
-<!--                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-<!--                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-<!--                    </table>-->
-
-<!--                    <mat-paginator [pageSizeOptions]="[2,5, 10, 20]" showFirstLastButtons></mat-paginator>-->
-<!--                </div>-->
-
-
-<!--            </mat-card>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-<!--<section>-->
-<!--    <div class="example-label"></div>-->
-<!--    <div class="example-button-row">-->
-<!--        <div class="example-flex-container">-->
-<!--            <div class="example-button-container">-->
-<!--                <button mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">-->
-<!--                    <mat-icon>delete</mat-icon>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--&lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--&lt;!&ndash;                <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <mat-icon>bookmark</mat-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;                </button>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--&lt;!&ndash;                <button mat-fab color="warn" aria-label="Example icon button with a home icon">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <mat-icon>home</mat-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;                </button>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="example-button-container">&ndash;&gt;-->
-<!--&lt;!&ndash;                <button mat-fab disabled aria-label="Example icon button with a heart icon">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <mat-icon>favorite</mat-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;                </button>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-
-<!--<div class="example-container mat-elevation-z8">-->
-
-<!--    <mat-table [dataSource]="dataSource1" matSort>-->
-
-<!--        &lt;!&ndash; ID Column &ndash;&gt;-->
-<!--        <ng-container matColumnDef="id">-->
-<!--            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>-->
-<!--            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>-->
-<!--        </ng-container>-->
-
-<!--        &lt;!&ndash; Progress Column &ndash;&gt;-->
-<!--        <ng-container matColumnDef="progress">-->
-<!--            <mat-header-cell *matHeaderCellDef mat-sort-header> Progress </mat-header-cell>-->
-<!--            <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>-->
-<!--        </ng-container>-->
-
-<!--        &lt;!&ndash; Name Column &ndash;&gt;-->
-<!--        <ng-container matColumnDef="name">-->
-<!--            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>-->
-<!--            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>-->
-<!--        </ng-container>-->
-
-<!--        &lt;!&ndash; Color Column &ndash;&gt;-->
-<!--        <ng-container matColumnDef="color">-->
-<!--            <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>-->
-<!--            <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>-->
-<!--        </ng-container>-->
-
-<!--        <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>-->
-<!--        <mat-row *matRowDef="let row; columns: displayedColumns1;">-->
-<!--        </mat-row>-->
-<!--    </mat-table>-->
-
-<!--    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
-<!--</div>-->
