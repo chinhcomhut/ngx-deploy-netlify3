@@ -141,10 +141,6 @@
                                placeholder="&#61442;  Search Song..."><br>
                     </div>
                     <div style="text-align:center">
-                        <h4>
-                            Basic Pagination
-                        </h4>
-
                         <table class="table">
                             <thead>
                             <tr>
@@ -154,8 +150,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let item of playList.songList|filter: searchText | paginate: config">
-                                <th scope="row">{{item.id}}</th>
+                            <tr *ngFor="let i=index;let item of playList.songList|filter: searchText | paginate: config">
+                                <th scope="row">{{i + 1}}</th>
                                 <td><mat-card-subtitle style="color: #ff03cc" [routerLink]="['/detailSong/',item.id]">{{item.nameSong}}</mat-card-subtitle></td>
                                 <td>
                                     <button mat-mini-fab color="warn"
