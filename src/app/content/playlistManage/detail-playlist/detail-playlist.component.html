@@ -149,14 +149,14 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name Song</th>
-                                <th scope="col">Delete Song</th>
+                                <th style="color: #2b542c" scope="col">Name Song</th>
+                                <th style="color: #2b542c" scope="col">Delete Song</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr *ngFor="let item of playList.songList|filter: searchText | paginate: config">
                                 <th scope="row">{{item.id}}</th>
-                                <td>{{item.nameSong}}</td>
+                                <td><mat-card-subtitle style="color: #ff03cc" [routerLink]="['/detailSong/',item.id]">{{item.nameSong}}</mat-card-subtitle></td>
                                 <td>
                                     <button mat-mini-fab color="warn"
                                             aria-label="Example icon button with a delete icon"
