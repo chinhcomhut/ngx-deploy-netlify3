@@ -3,6 +3,7 @@ import {BandInfo} from '../../../model/band-info';
 import {AlbumInfo} from '../../../model/album-info';
 import {PageEvent} from '@angular/material/paginator';
 import {AlbumService} from '../../../service/album.service';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-page-album',
@@ -14,10 +15,27 @@ export class PageAlbumComponent implements OnInit {
   albums: AlbumInfo[];
   loading: boolean;
   searchText;
-  constructor(private albumService: AlbumService) { }
+  admin: any = ["ADMIN"]
+  isCheckAdmin = false;
+  data1: any = {
+    message: "yes"
+  }
+  constructor(private albumService: AlbumService,
+              private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.getListResquest({page:'', size:''})
+    if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
+      this.isCheckAdmin = true;
+    }
+  }
+  deleteAlbum(id: number){
+    this.albumService.deleteAlbum(id).subscribe(data=>{
+      if(JSON.stringify(data)==JSON.stringify(this.data1)){
+        alert('delete successful Album')
+        window.location.reload()
+      }
+    })
   }
   private getListResquest(request) {
     this.loading = true;

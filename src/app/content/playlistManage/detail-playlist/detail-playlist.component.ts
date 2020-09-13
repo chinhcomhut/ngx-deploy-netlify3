@@ -35,6 +35,7 @@ export class DetailPlaylistComponent implements AfterViewInit {
   isCheckAmin = false;
   // @ViewChild(MatSort) sort: MatSort;
   admin: any = ["ADMIN"];
+  user: any = ["USER"]
   // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private playListService: PlaylistService,
@@ -65,7 +66,8 @@ export class DetailPlaylistComponent implements AfterViewInit {
         this.playList = result;
         console.log('nameAlbum',result.nameAlbum)
         console.log('nameSinger', result.nameSinger)
-        if(result.nameAlbum!=null||result.nameSinger!=null){
+        if((result.nameAlbum!=null||result.nameSinger!=null)&&
+          JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.user)){
           this.isCheckAddSong = true;
           console.log('isCheckAddSong',this.isCheckAddSong)
         }else {

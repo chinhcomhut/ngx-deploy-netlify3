@@ -34,4 +34,7 @@ export class AlbumService {
     const params = request;
     return this.http.get(this.API_Play_List_By_Album, {params})
   }
+  deleteAlbum(id: number){
+    return this.http.delete(`${this.API_Album}/${id}`)
+  }
 }
