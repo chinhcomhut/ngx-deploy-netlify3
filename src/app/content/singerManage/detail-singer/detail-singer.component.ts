@@ -84,7 +84,13 @@ private getPagePlayListRequest(request){
       this.loading = true;
     })
 }
-
+deletePlayList(id: number){
+    this.playListService.deletePlayList(id).subscribe(data=>{
+      if(JSON.stringify(data)==JSON.stringify(this.data1)){
+        alert('delete successful Play List!')
+      }
+    })
+}
   nextPage(event: PageEvent) {
     const request = {};
     request['page'] = event.pageIndex.toString();

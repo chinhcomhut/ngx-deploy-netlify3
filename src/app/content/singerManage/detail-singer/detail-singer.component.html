@@ -153,16 +153,16 @@
                 <!--                </mat-grid-list>-->
                 <div class="row">
                     <div class="column" *ngFor="let pl of playLists|filter: searchText">
-                        <button  *ngIf="isCheckAdmin" [routerLink]="['/addSongToPlayList/',pl.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
-                            <mat-icon>queue music</mat-icon>
-                        </button>
+<!--                        <button  *ngIf="isCheckAdmin" [routerLink]="['/addSongToPlayList/',pl.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+<!--                            <mat-icon>queue music</mat-icon>-->
+<!--                        </button>-->
                         <button *ngIf="isCheckAdmin" [routerLink]="['/editPlayList/',pl.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
                             <mat-icon>edit</mat-icon>
                         </button>
-<!--                        <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
-<!--                                (click)="deletePlayList(pl.id)">-->
-<!--                            <mat-icon>delete</mat-icon>-->
-<!--                        </button>-->
+                        <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                (click)="deletePlayList(pl.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                         <div class="card" >
                             <b [routerLink]="['/detailPlayList/',pl.id]" class="title" style="color: crimson">{{pl.namePlayList}}</b>
                             <img [routerLink]="['/detailPlayList/',pl.id]" class="image1"  [src]="pl.avatarPlayList">

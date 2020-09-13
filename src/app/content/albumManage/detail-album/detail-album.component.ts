@@ -20,8 +20,11 @@ export class DetailAlbumComponent implements OnInit {
   loading = false;
   totalElements: number = 0;
   searchText;
-  data: any = ["ADMIN"];
+  admin: any = ["ADMIN"];
   isCheckAdmin = false;
+  data1: any = {
+    message: "yes"
+  }
   constructor(private albumService: AlbumService,
               private routes: ActivatedRoute,
               private playListService: PlaylistService,
@@ -36,11 +39,18 @@ export class DetailAlbumComponent implements OnInit {
         this.getListResquest({page:'', size:''})
       })
     })
-    if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.data)){
+    if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
       this.isCheckAdmin = true;
     }
   }
-
+deletePlayList(id:number){
+    this.playListService.deletePlayList(id).subscribe(data=>{
+      if(JSON.stringify(data)==JSON.stringify(this.data1)){
+        alert('delete successful Play List!')
+        window.location.reload();
+      }
+    })
+}
   private getListResquest(request) {
     this.loading = true;
     this.playListService.getPagePlayListByAlbum(this.album.id, request)

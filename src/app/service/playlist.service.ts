@@ -68,8 +68,8 @@ export class PlaylistService {
     return this.http.put<PlaylistInfo>(`${this.API_Play_List}/${id}`, playlist)
   }
 
-  deletePlayList(id: number): Observable<PlaylistInfo> {
-    return this.http.delete<PlaylistInfo>(`${this.API_Play_List}/${id}`)
+  deletePlayList(id: number) {
+    return this.http.delete(`${this.API_Play_List}/${id}`)
   }
   updatePlayListAfterAddSong(playList: PlaylistInfo):Observable<PlaylistInfo>{
     console.log('playlist sv',playList)
