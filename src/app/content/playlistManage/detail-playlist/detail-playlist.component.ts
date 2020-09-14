@@ -29,9 +29,9 @@ export class DetailPlaylistComponent implements OnInit {
   msaapDisplayVolumeControls = true;
   msbapDisplayVolumeControls = true;
   pageSizeOptions = [2, 4, 6];
-  dataSource = new MatTableDataSource<Song>();
+  // dataSource = new MatTableDataSource<Song>();
   // dataSource: any;
-  displayedColumns: string[] = ['id','nameSong','mp3Url']
+  // displayedColumns: string[] = ['id','nameSong','mp3Url']
   panelOpenState = false;
   searchText;
   // songs: SongInfo[]=[];
@@ -60,7 +60,7 @@ export class DetailPlaylistComponent implements OnInit {
     // }
 
     this.config = {
-      itemsPerPage: 5,
+      itemsPerPage: 10,
       currentPage: 1,
       totalItems: this.collection.count
     };
@@ -97,15 +97,16 @@ export class DetailPlaylistComponent implements OnInit {
         // console.log('nameAlbum',result.nameAlbum)
         // console.log('nameSinger', result.nameSinger)
         this.collection = { count: 60, this:this.playList.songList };
-        if((result.nameAlbum!=null||result.nameSinger!=null)&&
-          JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.user)){
+        if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
           this.isCheckAddSong = true;
           console.log('isCheckAddSong',this.isCheckAddSong)
-        }else {
-          this.isCheckAmin = false;
         }
-        console.log('result',result)
-        console.log('songlist',result.songList)
+        if(result.nameAlbum==null&&result.nameSinger==null&&
+        JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.user)){
+          this.isCheckAddSong = true;
+        }
+        // console.log('result',result)
+        // console.log('songlist',result.songList)
 
         // this.dataSource.data = result.songList;
         // this.dataSource.paginator = this.paginator
@@ -182,11 +183,11 @@ if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin
   //   // this.dataSource.sort = this.sort;
   // }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
+  // applyFilter(filterValue: string) {
+  //   filterValue = filterValue.trim(); // Remove whitespace
+  //   filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+  //   this.dataSource.filter = filterValue;
+  // }
 }
 export interface Song {
   id: number;

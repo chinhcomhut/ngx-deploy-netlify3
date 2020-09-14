@@ -53,16 +53,16 @@
                     </div>
                 </div>
                 <div class="col">
-                    <button *ngIf="!isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button
+                    <button *ngIf="isCheckAddSong" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button
                             color="accent">
                         <mat-icon>queue music</mat-icon>
                         Add Music
                     </button>
-                    <button *ngIf="isCheckAmin" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button
-                            color="accent">
-                        <mat-icon>queue music</mat-icon>
-                        Add Music
-                    </button>
+<!--                    <button *ngIf="isCheckAmin" [routerLink]="['/addSongToPlayList/',playList.id]" mat-flat-button-->
+<!--                            color="accent">-->
+<!--                        <mat-icon>queue music</mat-icon>-->
+<!--                        Add Music-->
+<!--                    </button>-->
                     <!--                <h3>{{title}}</h3>-->
                     <mat-advanced-audio-player [playlist]="msMapPlayList" [displayTitle]="msaapDisplayTitle"
                                                [displayPlaylist]="msaapDisplayPlayList" [autoPlay]="true"
@@ -72,7 +72,7 @@
                                                [expanded]="true"></mat-advanced-audio-player>
                 </div>
             </mat-card-content>
-            <mat-accordion *ngIf="!isCheckAddSong">
+            <mat-accordion *ngIf="isCheckAddSong">
                 <mat-expansion-panel (opened)="panelOpenState = true"
                                      (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
