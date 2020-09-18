@@ -7,6 +7,7 @@ import {SongInfo} from '../../../model/song-info';
 import {SongService} from '../../../service/song.service';
 import {PlaylistService} from '../../../service/playlist.service';
 import {PlaylistInfo} from '../../../model/playlist-info';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'app-detail-category',
@@ -21,10 +22,16 @@ export class DetailCategoryComponent implements OnInit {
   loading: boolean;
   searchSong;
   searchText;
+  admin : any = ["ADMIN"]
+  isCheckAdmin = false;
+  data1: any ={
+    message: "yes"
+  }
   constructor(private categoryService: CategoryService,
               private routes: ActivatedRoute,
               private songService: SongService,
-              private playListService: PlaylistService) { }
+              private playListService: PlaylistService,
+              private tokenSerVice: TokenStorageService) { }
 
   ngOnInit(): void {
     this.routes.paramMap.subscribe(categoryId =>{
@@ -32,10 +39,32 @@ export class DetailCategoryComponent implements OnInit {
       this.categoryService.getCategoryById(id).subscribe(rusult=>{
         this.category = rusult;
         this.getListResquest({page: '', size: ''});
+        this.getPagePlayListRequest({page:'', size:''})
       })
     })
-
+  if(JSON.stringify(this.tokenSerVice.getAuthorities())==JSON.stringify(this.admin)){
+    this.isCheckAdmin = true;
+  }
     // this.getPagePlayListResquest({page: '', size: ''});
+  }
+  getPagePlayListRequest(request){
+    this.loading = false;
+    this.playListService.getPagePlayListByCategory(this.category.id,request).subscribe(data=>{
+      this.playLists = data['content'];
+      console.log('pl by cate',data)
+      this.totalElements = data['totalElements'];
+      this.loading = false;
+    }, error => {
+      this.loading = false;
+    })
+  }
+  deletePlayList(id: number){
+    this.playListService.deletePlayList(id).subscribe(data=>{
+      if(JSON.stringify(data)==JSON.stringify(this.data1)){
+        alert('Delete successful Play List')
+        window.location.reload();
+      }
+    })
   }
    getListResquest(request) {
     this.loading = true;
@@ -65,7 +94,7 @@ export class DetailCategoryComponent implements OnInit {
     request['page'] = event.pageIndex.toString();
     request['size'] = event.pageSize.toString();
     this.getListResquest(request);
-    // this.getPagePlayListResquest(request);
+    this.getPagePlayListRequest(request);
   }
 
   deleteCategory(id: number) {

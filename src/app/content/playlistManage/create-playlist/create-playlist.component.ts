@@ -13,6 +13,8 @@ import {SingerInfo} from '../../../model/singer/singer-info';
 import {SingerService} from '../../../service/singer.service';
 import {CategoryInfo} from '../../../model/category-info';
 import {CategoryService} from '../../../service/category.service';
+import {BandInfo} from '../../../model/band-info';
+import {BandService} from '../../../service/band.service';
 
 @Component({
   selector: 'app-create-playlist',
@@ -25,9 +27,13 @@ export class CreatePlaylistComponent implements OnInit {
   albums: AlbumInfo[] = [];
   singers: SingerInfo[] = [];
   categorys: CategoryInfo[] = [];
+  bands: BandInfo[] = [];
   errorMessage = 'Please complete the form below!';
   isUploadAvatar = false;
   selectAlbum = this.albums[0];
+  selectSinger = this.singers[0];
+  selectBand = this.bands[0];
+  selectCategory = this.categorys[0];
   data1: any = {
     message: "noname"
   };
@@ -48,7 +54,8 @@ isCheckAdmin = false;
               private tokenService: TokenStorageService,
               private albumService: AlbumService,
               private singerService: SingerService,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private bandService: BandService) {
   }
 
   ngOnInit(): void {
@@ -62,6 +69,9 @@ isCheckAdmin = false;
     })
     this.singerService.getListSinger().subscribe(listSinger=>{
       this.singers = listSinger;
+    })
+    this.bandService.getListBand().subscribe(listBand=>{
+      this.bands = listBand;
     })
     if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.data)){
       this.isCheckAdmin = true;

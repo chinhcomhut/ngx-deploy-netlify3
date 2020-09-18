@@ -26,6 +26,8 @@ export class PlaylistService {
   private API_Update_Play_List_After_Add_Song = environment.URL_server+'update-playlist';
   private API_Page_Play_List_Of_Album = environment.URL_server+'playlist-by-album';
   private API_Page_Play_List_Of_Singer = environment.URL_server+'playlist-by-singer';
+  private API_Page_Play_List_By_Band = environment.URL_server+'playlist-by-band';
+  private API_Page_Play_List_By_Category = environment.URL_server+'playlist-by-category';
   constructor(private http: HttpClient) {
   }
 
@@ -41,7 +43,10 @@ export class PlaylistService {
     const params = request;
     return this.http.get<any>(`${this.API_Play_List_By_User}/${id}`, {params});
   }
-
+  getPagePlayListByCategory(id: number, request){
+    const params = request;
+    return this.http.get(`${this.API_Page_Play_List_By_Category}/${id}`, {params})
+  }
   getPagePlayList(request) {
     const params = request;
     return this.http.get<any>(this.API_Page_PlayList, {params})
@@ -55,7 +60,10 @@ export class PlaylistService {
     const params = request;
     return  this.http.get<any>(`${this.API_Page_Play_List_Of_Singer}/${id}`, {params})
   }
-
+  getPagePlayListByBand(id: number, request){
+    const params = request;
+    return this.http.get(`${this.API_Page_Play_List_By_Band}/${id}`,{params})
+  }
   getPlayListById(id: number): Observable<PlaylistInfo> {
     return this.http.get<PlaylistInfo>(`${this.API_Play_List}/${id}`)
   }

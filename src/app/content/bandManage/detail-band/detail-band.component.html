@@ -130,6 +130,65 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <mat-card-title style="color: green"><img src="../../../../assets/images/icons/album1.png" height="50"
+                                                          width="50"/>Albums</mat-card-title>
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Search album ..."><br>
+                    <!--                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"-->
+                    <!--                            aria-label="Angular Audio Player"-->
+                    <!--                            class="mat-button-toggle-group btn-outline-success"-->
+                    <!--                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>-->
+                    <!--                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                    <!--                                            width="40"/></b></span>-->
+                    <!--                    </button>-->
+                </div>
+
+                <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                <!--                          <mat-card>-->
+                <!--                              <b>{{ctg.nameCategory}}</b>-->
+                <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                <!--                          </mat-card>-->
+                <!--                    </mat-grid-tile>-->
+
+                <!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let pl of playLists|filter: searchText">
+                        <!--                        <button  *ngIf="isCheckAdmin" [routerLink]="['/addSongToPlayList/',pl.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+                        <!--                            <mat-icon>queue music</mat-icon>-->
+                        <!--                        </button>-->
+                        <button *ngIf="isCheckAdmin" [routerLink]="['/editPlayList/',pl.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button  *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                 (click)="deletePlayList(pl.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <div class="card" >
+                            <b [routerLink]="['/detailPlayList/',pl.id]" class="title" style="color: crimson">{{pl.namePlayList}}</b>
+                            <img [routerLink]="['/detailPlayList/',pl.id]" class="image1"  [src]="pl.avatarPlayList">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <mat-paginator #paginator [pageSizeOptions]="[30, 50, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
 
 
 
