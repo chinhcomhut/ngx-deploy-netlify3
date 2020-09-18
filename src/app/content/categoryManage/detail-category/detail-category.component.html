@@ -98,10 +98,10 @@
 <!--                                                    <button  [routerLink]="['/addSongToPlayList/',ctc.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
 <!--                                                        <mat-icon>queue music</mat-icon>-->
 <!--                                                    </button>-->
-                                                    <button [routerLink]="['/editPlayList/',ctc.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                                                    <button *ngIf="isCheckAdmin" [routerLink]="['/editPlayList/',ctc.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
                                                         <mat-icon>edit</mat-icon>
                                                     </button>
-                                                    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                                    <button *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
                                                             (click)="deletePlayList(ctc.id)">
                                                         <mat-icon>delete</mat-icon>
                                                     </button>

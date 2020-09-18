@@ -101,9 +101,10 @@ export class DetailPlaylistComponent implements OnInit {
           this.isCheckAddSong = true;
           console.log('isCheckAddSong',this.isCheckAddSong)
         }
-        if(result.nameAlbum==null&&result.nameSinger==null&&
+        if(result.nameAlbum==null&&result.nameSinger==null&&result.nameCategory==null&&result.nameBand==null&&
         JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.user)){
           this.isCheckAddSong = true;
+          console.log('isCheckAddSong',this.isCheckAddSong)
         }
         // console.log('result',result)
         // console.log('songlist',result.songList)
