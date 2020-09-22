@@ -131,7 +131,7 @@ const customConfig: ShareButtonsConfig = {
     theme: 'circles-dark',
     autoSetMeta: true,
     twitterAccount: 'ankitsharma_007'
-};
+}; //CONFIG SHARE FaceBook//
 
 
 export const appRoutes: Routes = [
@@ -192,7 +192,7 @@ export const appRoutes: Routes = [
         AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         RouterModule.forRoot(appRoutes, {useHash: false}), MatButtonModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, Ng2SearchPipeModule,
-        ShareButtonsModule.withConfig(customConfig),
+        ShareButtonsModule.withConfig(customConfig), //CONFIG SHARE FaceBook//
 ],
 
     // entryComponents: [UserComponent],
