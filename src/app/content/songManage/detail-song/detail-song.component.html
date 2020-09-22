@@ -33,6 +33,11 @@
 <!--                                          [checked]="msbapDisplayVolumeControls"-->
 <!--                                          (change)="changeMsbapDisplayVolumeControls($event)">{{msbapDisplayVolumeControls}}</mat-checkbox>-->
 <!--                        </div>-->
+                        <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
+                                url="https://dongchinh.netlify.app/detailSong/{{song.id}}"
+                                [image]="song.avatarSong">
+                            <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                        </button>
                     </div>
 <!--                    <audio class="audio" controls autoplay>-->
 <!--                        <source [src]="song.mp3Url"type="audio/ogg">-->
@@ -40,6 +45,7 @@
 <!--                        Your browser does not support the audio element.-->
 <!--                    </audio>-->
                     <div class="container-audio">
+
                         <audio controls loop autoplay>
                             <source [src]="song.mp3Url"type="audio/ogg">
                             <source [src]="song.mp3Url" type="audio/mpeg">

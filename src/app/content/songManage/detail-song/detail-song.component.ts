@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
 import {SongInfo} from '../../../model/song-info';
+import {ShareService} from '@ngx-share/core';
 
 @Component({
   selector: 'app-detail-song',
@@ -45,7 +46,8 @@ export class DetailSongComponent implements OnInit {
   //   this.msaapDisplayVolumeControls = event.checked;
   // }
   constructor(private songService: SongService,
-              private routes: ActivatedRoute) {
+              private routes: ActivatedRoute,
+              private share: ShareService) {
   }
   onClick($event){
 

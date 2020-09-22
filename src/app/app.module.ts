@@ -111,6 +111,7 @@ import { PageAlbumComponent } from './content/albumManage/page-album/page-album.
 import { DetailAlbumComponent } from './content/albumManage/detail-album/detail-album.component';
 import { EditBandComponent } from './content/bandManage/edit-band/edit-band.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {ShareButtonsConfig, ShareModule} from '@ngx-share/core';
 
 
 // const config = new SocialAuthService([
@@ -123,6 +124,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
 // export function provideConfig() {
 //     return config;
 // }
+
+
+const customConfig: ShareButtonsConfig = {
+    include: ['facebook', 'twitter', 'linkedin', 'reddit', 'whatsapp', 'telegram', 'print', 'email'],
+    theme: 'circles-dark',
+    autoSetMeta: true,
+    twitterAccount: 'ankitsharma_007'
+};
+
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent, data: {title: 'Home'}},
@@ -182,8 +192,9 @@ export const appRoutes: Routes = [
         AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         RouterModule.forRoot(appRoutes, {useHash: false}), MatButtonModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, Ng2SearchPipeModule,
+        ShareButtonsModule.withConfig(customConfig),
+],
 
-    ],
     // entryComponents: [UserComponent],
     providers: [
         httpInterceptorProviders, AuthGuard, SingerService//Doan code lay JWT cho Header gui request lien quan ChangePass//

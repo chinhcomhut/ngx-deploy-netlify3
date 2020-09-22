@@ -5,7 +5,7 @@ import {UserService} from './service/user.service';
 import {ActivatedRoute} from '@angular/router';
 // import {Song} from './model/song/song';
 // import {SongService} from './services/song/song.service';
-
+import { ShareService } from '@ngx-share/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
   info: any;
   constructor(private tokenStorage: TokenStorageService,
               private userService: UserService,
-              private routes: ActivatedRoute
+              private routes: ActivatedRoute,
+              private share: ShareService
               // private songService: SongService
   ) {
   }
