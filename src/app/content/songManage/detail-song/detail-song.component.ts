@@ -3,6 +3,8 @@ import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
 import {SongInfo} from '../../../model/song-info';
 import {ShareService} from '@ngx-share/core';
+import {LikesongService} from '../../../service/likesong.service';
+import {LikeSongInfo} from '../../../model/likeSong-info';
 
 @Component({
   selector: 'app-detail-song',
@@ -10,6 +12,8 @@ import {ShareService} from '@ngx-share/core';
   styleUrls: ['./detail-song.component.css']
 })
 export class DetailSongComponent implements OnInit {
+  likeSongs: LikeSongInfo[]=[];
+  isCheckLikeSong = false;
   playlist = [];
   song: SongInfo;
   msbapDisplayTitle = false;
@@ -48,7 +52,8 @@ export class DetailSongComponent implements OnInit {
   // }
   constructor(private songService: SongService,
               private routes: ActivatedRoute,
-              private share: ShareService) {
+              private share: ShareService,
+              private likeSongService: LikesongService) {
   }
   onClick($event){
 
@@ -66,11 +71,29 @@ export class DetailSongComponent implements OnInit {
       this.songService.getLikeSongUpById(id).subscribe(data => {
             console.log('data',data)
             this.song = data;
+            window.location.reload();
           },
           error => {
             this.song = null;
           }
         );
+    }
+    checkLikeSong(){
+    this.likeSongService.getListLikeSongByUser().subscribe(data =>{
+      this.likeSongs = data;
+      console.log('listLike',data)
+      console.log('lenglike',this.likeSongs.length)
+      console.log('nameSong: ',this.song.nameSong)
+      for(let i=0; i<this.likeSongs.length;i++){
+        console.log('i = ',i,' likesong.nameSong = ',this.likeSongs[i].nameSong)
+        if(JSON.stringify(this.song.nameSong)==JSON.stringify(this.likeSongs[i].nameSong)){
+          this.isCheckLikeSong = true;
+          console.log('isCheckLikeSong',this.isCheckLikeSong)
+        }
+      }
+
+    })
+
     }
 
   deleteSong(id: number){
@@ -95,6 +118,7 @@ export class DetailSongComponent implements OnInit {
         next => {
           this.song = next;
           console.log('next', next)
+          this.checkLikeSong();
           // this.audio.src = this.song.mp3Url;
           // this.audio.load()
           // this.audio.play()
@@ -113,5 +137,6 @@ export class DetailSongComponent implements OnInit {
         }
       );
     });
+
   }
 }
