@@ -186,6 +186,7 @@ export const appRoutes: Routes = [
         HttpClientModule,
         BrowserModule, FontAwesomeModule,
         MatCardModule, MatToolbarModule, MatIconModule, MatRadioModule, MatCheckboxModule, MatSlideToggleModule,
+
         BrowserAnimationsModule, ShareButtonsModule,
         NgxAudioPlayerModule,
         NgxPaginationModule,
@@ -193,7 +194,9 @@ export const appRoutes: Routes = [
         AngularFireModule.initializeApp(environment.firebaseConfig),
         RouterModule.forRoot(appRoutes, {useHash: false}), MatButtonModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, Ng2SearchPipeModule,
         ShareButtonsModule.withConfig(customConfig), //CONFIG SHARE FaceBook//
+
 ],
+
 
     // entryComponents: [UserComponent],
     providers: [

@@ -18,6 +18,7 @@ export class DetailSongComponent implements OnInit {
   msaapDisplayPlayList = true;
   pageSizeOptions = [2, 4, 6];
   msaapDisplayVolumeControls = true;
+  likeCounter = 0;
   id: any;
   i = 0;
   data: any = {
@@ -59,6 +60,19 @@ export class DetailSongComponent implements OnInit {
     }
     console.log('even',$event)
   }
+  likeCount(id: number) {
+    this.likeCounter++;
+    console.log('Click',this.likeCounter)
+      this.songService.getLikeSongUpById(id).subscribe(data => {
+            console.log('data',data)
+            this.song = data;
+          },
+          error => {
+            this.song = null;
+          }
+        );
+    }
+
   deleteSong(id: number){
     this.songService.deleteSong(id).subscribe(data=>{
       if(JSON.stringify(data)==JSON.stringify(this.data)){

@@ -38,6 +38,23 @@
                                 [image]="song.avatarSong">
                             <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
                         </button>
+<!--                        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
+<!--                                  >-->
+<!--                            <mat-icon>delete</mat-icon>-->
+<!--                        </button>-->
+                        <button (click)="likeCount(song.id)" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-success">
+<!--                                aria-label="Angular Audio Player"-->
+<!--                                class="mat-button-toggle-group btn-outline-success"-->
+<!--                                mat-button tabindex="0" aria-disabled="false"-->
+<!--                        >-->
+
+<!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                            <!--                              width="40"/>-->
+
+
+                            <img src="../../../../assets/images/icons/LikeMusic1.png" height="50" width="50"/><b>{{song.likeSong}}</b>
+                        </button>
+
                     </div>
 <!--                    <audio class="audio" controls autoplay>-->
 <!--                        <source [src]="song.mp3Url"type="audio/ogg">-->
@@ -45,7 +62,6 @@
 <!--                        Your browser does not support the audio element.-->
 <!--                    </audio>-->
                     <div class="container-audio">
-
                         <audio controls loop autoplay>
                             <source [src]="song.mp3Url"type="audio/ogg">
                             <source [src]="song.mp3Url" type="audio/mpeg">
@@ -165,6 +181,3 @@
         </div>
     </div>
 </div>
-
-
-
