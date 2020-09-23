@@ -1,67 +1,69 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Track } from 'ngx-audio-player';
+import {SongInfo} from '../model/song-info';
+import {SongService} from '../service/song.service';
+import {TokenStorageService} from '../auth/token-storage.service';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  private fmaBaseUrl = 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music';
+export class HomeComponent implements OnInit{
+  totalElements: number = 0;
+  loading: boolean;
+  searchText;
+  isCheckAdmin = false;
+  admin: any = ['ADMIN'];
+  songs: SongInfo[];
+  data1: any = {
+    message: "yes"
+  };
 
-  // Material Style Basic Audio Player Title and Audio URL
-  msbapTitle = 'Night Owl (by Broke For Free)';
-  msbapAudioUrl = `${this.fmaBaseUrl}/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3`;
+  constructor(private songService: SongService,
+              private tokenService: TokenStorageService) { }
 
-  msbapDisplayTitle = false;
-  msbapDisplayVolumeControls = true;
-
-  // Material Style Advance Audio Player Playlist
-  msaapPlaylist: Track[] = [
-    {
-      title: '1400 (by Yung Kartz)',
-      link: `${this.fmaBaseUrl}/no_curator/Yung_Kartz/August_2018/Yung_Kartz_-_10_-_1400.mp3`
-    },
-    {
-      title: 'Epic Song (by BoxCat Games)',
-      link: `${this.fmaBaseUrl}/ccCommunity/BoxCat_Games/Nameless_The_Hackers_RPG_Soundtrack/BoxCat_Games_-_10_-_Epic_Song.mp3`
-    },
-    {
-      title: 'Hachiko (The Faithful Dog) (by The Kyoto)',
-      link: `${this.fmaBaseUrl}/ccCommunity/The_Kyoto_Connection/Wake_Up/The_Kyoto_Connection_-_09_-_Hachiko_The_Faithtful_Dog.mp3`
-    },
-    {
-      title: 'Starling (by Podington Bear)',
-      link: `${this.fmaBaseUrl}/Music_for_Video/Podington_Bear/Solo_Instruments/Podington_Bear_-_Starling.mp3`
-    },
-  ];
-
-  msaapDisplayTitle = true;
-  msaapDisplayPlayList = true;
-  pageSizeOptions = [2, 4, 6];
-
-  msaapDisplayVolumeControls = true;
-
-  constructor() { }
-
-  changeMsbapDisplayTitle(event) {
-    this.msbapDisplayTitle = event.checked;
+  ngOnInit(): void {
+    this.getListResquest({page: 0, size: 16}); //Chinh size se hien thi size luc khoi dong trang//
+    if (JSON.stringify(this.tokenService.getAuthorities()) == JSON.stringify(this.admin)) {
+      this.isCheckAdmin = true;
+    }
+  }
+  deleteSong(id: number) {
+    this.songService.deleteSong(id).subscribe(data => {
+      if (JSON.stringify(data) == JSON.stringify(this.data1)) {
+        alert('Delete Successful Song!');
+      }
+      // this.songService.updateSong(this.song.id, this.song).subscribe(()=>{
+      // alert('delete successful Song!')
+      //   window.location.reload()
+      // })
+      window.location.reload();
+    }, error => {
+      alert('Can phai xoa o cho khac truoc');
+    });
   }
 
-  changeMsbapDisplayVolumeControls(event) {
-    this.msbapDisplayVolumeControls = event.checked;
+  private getListResquest(request) {
+    this.loading = true;
+    this.songService.getPageTopLikeSong(request)
+      .subscribe(data => {
+        this.songs = data['content'];
+        console.log('songList', data);
+        this.totalElements = data['totalElements'];
+        this.loading = false;
+      }, error => {
+        this.loading = false;
+      });
   }
 
-  changeMsaapDisplayTitle(event) {
-    this.msaapDisplayTitle = event.checked;
-  }
 
-  changeMsaapDisplayPlayList(event) {
-    this.msaapDisplayPlayList = event.checked;
-  }
-
-  changeMsaapDisplayVolumeControls(event) {
-    this.msaapDisplayVolumeControls = event.checked;
+  nextPage(event: PageEvent) {
+    const request = {};
+    request['page'] = event.pageIndex.toString();
+    request['size'] = event.pageSize.toString();
+    this.getListResquest(request);
   }
 
 }

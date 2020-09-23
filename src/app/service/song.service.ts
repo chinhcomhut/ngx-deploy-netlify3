@@ -31,12 +31,17 @@ export class SongService {
   private API_Song_By_Band = environment.URL_server+'song-by-band';
   private API_Song_Like_Up = environment.URL_server+'song-like-up';
   private API_Song_Like_Down = environment.URL_server+'song-like-down';
+  private API_Page_Top_Like_Song = environment.URL_server+'page-top-like-song';
   constructor(private http: HttpClient) {
   }
 
   getPageSong(request) {
     const params = request;
     return this.http.get(this.API_Song, {params});
+  }
+  getPageTopLikeSong(request){
+    const params = request;
+    return this.http.get(this.API_Page_Top_Like_Song,{params})
   }
 
   getPageSongByBand(id: number,request) {

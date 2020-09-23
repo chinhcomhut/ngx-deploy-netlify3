@@ -1,92 +1,72 @@
-
-<!--<div class="header mat-toolbar mat-autocomplete-panel">-->
-<!--  <div class="d-flex justify-contents-center" style="text-align: center;">-->
-<!--    <div class="flex-fill">-->
-
-<!--      <h2 style="font-size: 18px;font-weight: 400;line-height: 28px;margin: 15px 0 25px;">A simple, clean, responsive,-->
-<!--        <a id="matLink" href="https://material.angular.io">angular material</a> design inspired basic and advanced-->
-<!--        audio players for-->
-<!--        Angular 7/8/9</h2>-->
-      <a style="text-decoration: none;" class="docs-button mat-raised-button" mat-raised-button=""
-        routerlink="/guide/getting-started" tabindex="0" aria-disabled="false" [routerLink]="['/guide/getting-started']"><span
-          class="mat-button-wrapper">Get
-          started</span>
-        <div class="mat-button-ripple mat-ripple" matripple=""></div>
-        <div class="mat-button-focus-overlay"></div>
-      </a>
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 <div class="container">
   <div class="row">
     <div class="col-12" style="margin-top: 20px">
-      <mat-card style="margin: 50px 0;">
-
-
-      </mat-card>
-
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-12" style="margin-top: 20px;">
-
-      <mat-card style="margin: 50px 0;">
-        <mat-card-header>
-          <mat-card-title>Material Style Basic Audio Player</mat-card-title>
-          <mat-card-subtitle>Material Style Basic Audio Player</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="row justify-contents-around mat-basic-player">
-          <div class="col py-3 pl-5">
-            <h6>Controls</h6>
-            <div class="d-flex flex-row px-3">
-              displayTitle: <mat-checkbox class="px-3 mat-basic-player-display-title" [checked]="msbapDisplayTitle"
-                (change)="changeMsbapDisplayTitle($event)">{{msbapDisplayTitle}}</mat-checkbox>
-            </div>
-            <div class="d-flex flex-row px-3">
-              displayVolumeControls: <mat-checkbox class="px-3 mat-basic-player-display-title" [checked]="msbapDisplayVolumeControls"
-                (change)="changeMsbapDisplayVolumeControls($event)">{{msbapDisplayVolumeControls}}</mat-checkbox>
-            </div>
-          </div>
-          <div class="col">
-            <mat-basic-audio-player class="col-12 col-md-6" [audioUrl]="msbapAudioUrl" [title]="msbapTitle" [autoPlay]="false" muted="muted"
-              [displayTitle]="msbapDisplayTitle" [displayVolumeControls]="msbapDisplayVolumeControls"></mat-basic-audio-player>
-          </div>
-        </mat-card-content>
-        <div>
+      <mat-card style="margin: 50px">
+        <div class="search-hero">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                 placeholder="&#61442;  Search Song in one page...">
+<!--          <button routerLink="/createSong" type="submit" style="color: crimson; text-decoration: none;"-->
+<!--                  aria-label="Angular Audio Player"-->
+<!--                  class="mat-button-toggle-group btn-outline-success"-->
+<!--                  mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">-->
+<!--&lt;!&ndash;                         <img src="../../../../assets/images/icons/create-category.png" height="40"&ndash;&gt;-->
+<!--            &lt;!&ndash;                              width="40"/>&ndash;&gt;-->
+<!--                        <b>Create Song-->
+<!--                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>-->
+<!--          </button>-->
         </div>
-      </mat-card>
-    </div>
-    <div class="col-12" style="margin-top: 20px;">
-      <mat-card style="margin-bottom: 70px;">
-        <mat-card-header>
-          <mat-card-title>Material Style Advanced Audio Player</mat-card-title>
-          <mat-card-subtitle>Material Style Advanced Audio Player</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="row justify-contents-around">
-          <div class="col py-3 pl-5">
-            <h6>Controls</h6>
-            <div class="d-flex flex-row px-3">
-              displayTitle: <mat-checkbox class="px-3 mat-advanced-player-display-title" [checked]="msaapDisplayTitle"
-                (change)="changeMsaapDisplayTitle($event)">{{msaapDisplayTitle}}</mat-checkbox>
+
+
+        <mat-card-title style="color: #ff03cc" class="alert alert-primary">  <img src="../../assets/images/icons/heart-like-1.png" height="50" width="50"/>Top bài hát được yêu thích nhất
+          <img src="../../assets/images/icons/heart-like.png" height="50" width="50"/></mat-card-title>
+
+        <div class="row">
+          <div class="column" *ngFor="let song of songs|filter: searchText">
+            <button *ngIf="isCheckAdmin" routerLink="/createSong" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
+              <mat-icon>queue music</mat-icon>
+            </button>
+            <button *ngIf="isCheckAdmin" [routerLink]="['/editSong/',song.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button  *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                     (click)="deleteSong(song.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <div class="card">
+              <button mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-success">
+                <!--                                aria-label="Angular Audio Player"-->
+                <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                <!--                        >-->
+
+                <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                <!--                              width="40"/>-->
+
+
+                <img src="../../../../assets/images/icons/LikeMusic1.png" height="30" width="30"/><b>{{song.likeSong}}</b>
+              </button><br>
+              <mat-card-subtitle [routerLink]="['/detailSong/',song.id]"style="color: #2b542c">Name Song: <b
+                      style="color: crimson">{{song.nameSong}}</b>
+              </mat-card-subtitle>
+              <mat-card-subtitle [routerLink]="['/detailSong/',song.id]"style="color: #2b542c">Singer's: <b
+                      style="color: crimson">{{song.nameSinger}}</b>
+              </mat-card-subtitle>
+              <mat-card-subtitle [routerLink]="['/detailSong/',song.id]" style="color: #2b542c">Music Genre: <b
+                      style="color: crimson">{{song.nameCategory}}</b>
+              </mat-card-subtitle>
+              <img [routerLink]="['/detailSong/',song.id]"class="img" [src]="song.avatarSong">
+              <mat-card-subtitle style="color: #ff03cc"><b style="color: #2b542c">Created by:</b>{{song.createBy}}</mat-card-subtitle>
             </div>
-            <div class="d-flex flex-row px-3">
-              displayPlayList: <mat-checkbox class="px-3 mat-advanced-player-display-playlist" [checked]="msaapDisplayPlayList"
-                (change)="changeMsaapDisplayPlayList($event)">{{msaapDisplayPlayList}}</mat-checkbox>
-            </div>
-            <div class="d-flex flex-row px-3">
-              displayVolumeControls: <mat-checkbox class="px-3 mat-basic-player-display-title" [checked]="msaapDisplayVolumeControls"
-                (change)="changeMsaapDisplayVolumeControls($event)">{{msaapDisplayVolumeControls}}</mat-checkbox>
-            </div>
+
           </div>
-          <div class="col">
-            <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [displayPlaylist]="msaapDisplayPlayList" [autoPlay]="false" muted="muted"
-              [pageSizeOptions]="pageSizeOptions" [displayVolumeControls]="msaapDisplayVolumeControls" [expanded]="true"></mat-advanced-audio-player>
-          </div>
-        </mat-card-content>
+
+        </div>
+        <mat-paginator #paginator [pageSizeOptions]="[16,32,100]" [length]="totalElements"
+                       (page)="nextPage($event)">
+        </mat-paginator>
       </mat-card>
     </div>
   </div>
 </div>
+
 
