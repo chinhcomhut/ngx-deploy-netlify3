@@ -48,7 +48,7 @@ export class PageSongComponent implements OnInit {
 
   private getListResquest(request) {
     this.loading = true;
-    this.songService.getPageTopLikeSong(request)
+    this.songService.getPageSong(request)
       .subscribe(data => {
         this.songs = data['content'];
         console.log('songList', data);

@@ -42,7 +42,7 @@
 <!--                                  >-->
 <!--                            <mat-icon>delete</mat-icon>-->
 <!--                        </button>-->
-                        <button (click)="likeCount(song.id)" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-success">
+                        <button mat-icon-button (click)="likeCount(song.id)" *ngIf="!isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
 <!--                                aria-label="Angular Audio Player"-->
 <!--                                class="mat-button-toggle-group btn-outline-success"-->
 <!--                                mat-button tabindex="0" aria-disabled="false"-->
@@ -52,9 +52,9 @@
                             <!--                              width="40"/>-->
 
 
-                            <img src="../../../../assets/images/icons/LikeMusic1.png" height="50" width="50"/><b>{{song.likeSong}}</b>
+                            <img src="../../../../assets/images/icons/like1.png" height="55" width="55"/><b>{{song.likeSong}}</b>
                         </button>
-                        <button mat-icon-button *ngIf="isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-success">
+                        <button (click)="likeCount(song.id)"mat-icon-button *ngIf="isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
                             <!--                                aria-label="Angular Audio Player"-->
                             <!--                                class="mat-button-toggle-group btn-outline-success"-->
                             <!--                                mat-button tabindex="0" aria-disabled="false"-->
@@ -63,9 +63,7 @@
                             <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
                             <!--                              width="40"/>-->
 
-
-                           <img src="../../../../assets/images/icons/heart-like.png" height="35" width="35"/>
-                        </button>
+                            <img src="../../../../assets/images/icons/like2.png" height="50" width="50"/><b>{{song.likeSong}}</b></button>
 
                     </div>
 <!--                    <audio class="audio" controls autoplay>-->

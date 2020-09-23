@@ -33,7 +33,7 @@
               <mat-icon>delete</mat-icon>
             </button>
             <div class="card">
-              <button mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-success">
+              <button mat-button [routerLink]="['/detailSong/',song.id]"type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-success">
                 <!--                                aria-label="Angular Audio Player"-->
                 <!--                                class="mat-button-toggle-group btn-outline-success"-->
                 <!--                                mat-button tabindex="0" aria-disabled="false"-->

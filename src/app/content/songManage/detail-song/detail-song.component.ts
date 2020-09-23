@@ -74,7 +74,7 @@ export class DetailSongComponent implements OnInit {
             window.location.reload();
           },
           error => {
-            this.song = null;
+            alert('Please login before click like!')
           }
         );
     }
