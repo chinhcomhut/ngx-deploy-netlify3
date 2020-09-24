@@ -5,6 +5,7 @@ import {SongInfo} from '../../../model/song-info';
 import {ShareService} from '@ngx-share/core';
 import {LikesongService} from '../../../service/likesong.service';
 import {LikeSongInfo} from '../../../model/likeSong-info';
+import {error} from 'ng-packagr/lib/utils/log';
 
 @Component({
   selector: 'app-detail-song',

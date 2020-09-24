@@ -55,7 +55,7 @@
                             <img src="../../../../assets/images/icons/like1.png" height="55" width="55"/><b>{{song.likeSong}}</b>
                         </button>
 
-                        <button (click)="likeCount(song.id)"mat-icon-button *ngIf="isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                        <button (click)="likeCount(song.id)"mat-button *ngIf="isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
                             <!--                                aria-label="Angular Audio Player"-->
                             <!--                                class="mat-button-toggle-group btn-outline-success"-->
                             <!--                                mat-button tabindex="0" aria-disabled="false"-->
@@ -91,7 +91,7 @@
                             mat-button onclick="document.getElementById('track').pause();"><img
                             src="../../../../assets/images/icons/Pause.png" height="50" width="50"/></button>
                     <div class="container-audio">
-                        <button mat-icon-button  type="submit" style="color: crimson; text-decoration: none;"  >
+                        <button mat-button  type="submit" style="color: crimson; text-decoration: none;"  >
                             <!--                                aria-label="Angular Audio Player"-->
                             <!--                                class="mat-button-toggle-group btn-outline-success"-->
                             <!--                                mat-button tabindex="0" aria-disabled="false"-->
