@@ -1,24 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-12" style="margin-top: 20px">
-      <mat-card style="margin: 50px">
-        <div class="search-hero">
-          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                 placeholder="&#61442;  Search Song in one page...">
-<!--          <button routerLink="/createSong" type="submit" style="color: crimson; text-decoration: none;"-->
-<!--                  aria-label="Angular Audio Player"-->
-<!--                  class="mat-button-toggle-group btn-outline-success"-->
-<!--                  mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">-->
-<!--&lt;!&ndash;                         <img src="../../../../assets/images/icons/create-category.png" height="40"&ndash;&gt;-->
-<!--            &lt;!&ndash;                              width="40"/>&ndash;&gt;-->
-<!--                        <b>Create Song-->
-<!--                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>-->
-<!--          </button>-->
-        </div>
+    <div class="col-12" style="margin-top: 10px">
+      <mat-card style="margin: 10px">
+
 
 
         <mat-card-title style="color: #ff03cc" class="alert alert-primary">  <img src="../../assets/images/icons/heart-like-1.png" height="50" width="50"/>Top bài hát được yêu thích nhất
           <img src="../../assets/images/icons/heart-like.png" height="50" width="50"/></mat-card-title>
+        <div class="search-hero">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                 placeholder="&#61442;  Search Song in one page...">
+          <!--          <button routerLink="/createSong" type="submit" style="color: crimson; text-decoration: none;"-->
+          <!--                  aria-label="Angular Audio Player"-->
+          <!--                  class="mat-button-toggle-group btn-outline-success"-->
+          <!--                  mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">-->
+          <!--&lt;!&ndash;                         <img src="../../../../assets/images/icons/create-category.png" height="40"&ndash;&gt;-->
+          <!--            &lt;!&ndash;                              width="40"/>&ndash;&gt;-->
+          <!--                        <b>Create Song-->
+          <!--                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>-->
+          <!--          </button>-->
+        </div>
 
         <div class="row">
           <div class="column" *ngFor="let song of songs|filter: searchText">
@@ -71,8 +72,11 @@
 <hr>
 <div class="container">
   <div class="row">
-    <div class="col-12" style="margin-top: 20px">
-      <mat-card style="margin: 50px">
+    <div class="col-12" style="margin-top: 0px">
+      <mat-card style="margin: 0px">
+        <mat-card-title style="color: darkgreen" class="alert alert-danger">
+          <img src="../../assets/images/icons/heard.png" height="50" width="50"/>Top Songs most heard<img
+                src="../../assets/images/icons/listen.png" height="50" width="50"/></mat-card-title>
         <div class="search-hero">
           <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                  placeholder="&#61442;  Search Song in one page...">
@@ -86,11 +90,6 @@
           <!--                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>-->
           <!--          </button>-->
         </div>
-
-
-        <mat-card-title style="color: darkgreen" class="alert alert-danger">
-          <img src="../../assets/images/icons/heard.png" height="50" width="50"/>Top Songs most heard<img
-                src="../../assets/images/icons/listen.png" height="50" width="50"/></mat-card-title>
 
         <div class="row">
           <div class="column" *ngFor="let song of pageListenSongs|filter: searchText">
