@@ -33,29 +33,32 @@
 <!--                                          [checked]="msbapDisplayVolumeControls"-->
 <!--                                          (change)="changeMsbapDisplayVolumeControls($event)">{{msbapDisplayVolumeControls}}</mat-checkbox>-->
 <!--                        </div>-->
-                        <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
-                                url="https://dongchinh.netlify.app/detailSong/{{song.id}}"
-                                [image]="song.avatarSong">
-                            <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
-                        </button>
-<!--                        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
-<!--                                  >-->
-<!--                            <mat-icon>delete</mat-icon>-->
-<!--                        </button>-->
-                        <button mat-icon-button (click)="likeCount(song.id)" *ngIf="!isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
-<!--                                aria-label="Angular Audio Player"-->
-<!--                                class="mat-button-toggle-group btn-outline-success"-->
-<!--                                mat-button tabindex="0" aria-disabled="false"-->
-<!--                        >-->
 
-<!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
-                            <!--                              width="40"/>-->
+                            <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
+                                    url="https://dongchinh.netlify.app/detailSong/{{song.id}}"
+                                    [image]="song.avatarSong">
+                                <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                            </button>
+                            <!--                        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
+                            <!--                                  >-->
+                            <!--                            <mat-icon>delete</mat-icon>-->
+                            <!--                        </button>-->
+                            <button  (click)="likeCount(song.id)" *ngIf="!isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                                <!--                                aria-label="Angular Audio Player"-->
+                                <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                                <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                                <!--                        >-->
+
+                                <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                                <!--                              width="40"/>-->
 
 
-                            <img src="../../../../assets/images/icons/like1.png" height="55" width="55"/><b>{{song.likeSong}}</b>
-                        </button>
+                                <img src="../../../../assets/images/icons/like1.png" height="55" width="55"/><b>{{song.likeSong}}</b>
+                            </button>
 
-                        <button (click)="likeCount(song.id)"mat-button *ngIf="isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+
+
+                        <button (click)="likeCount(song.id)"mat-button *ngIf="isCheckLikeSong"  type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
                             <!--                                aria-label="Angular Audio Player"-->
                             <!--                                class="mat-button-toggle-group btn-outline-success"-->
                             <!--                                mat-button tabindex="0" aria-disabled="false"-->
@@ -65,32 +68,6 @@
                             <!--                              width="40"/>-->
 
                             <img src="../../../../assets/images/icons/like2.png" height="50" width="50"/><b>{{song.likeSong}}</b></button>
-
-                    </div>
-<!--                    <audio class="audio" controls autoplay>-->
-<!--                        <source [src]="song.mp3Url"type="audio/ogg">-->
-<!--                        <source [src]="song.mp3Url" type="audio/mpeg">-->
-<!--                        Your browser does not support the audio element.-->
-
-<!--                    </audio>-->
-                    <audio id="track" controls loop
-                           ontimeupdate="document.getElementById('tracktime').innerHTML = Math.floor(this.currentTime) + ' / ' + Math.floor(this.duration);"
-                    >
-                        <source [src]="song.mp3Url"type="audio/ogg">
-                        <source [src]="song.mp3Url" type="audio/mpeg">
-                        <p>Your browser does not support the audio element</p>
-                    </audio>
-                    <span style="color: #ff03cc" id="tracktime">0 / 0</span>
-
-                        <button mat-button class="listen" *ngIf="!isPlaying"
-                                (click)="listenCount(song.id)" onclick="document.getElementById('track').play();"><img
-                                src="../../../../assets/images/icons/Play.png" height="50" width="50"/></button>
-
-
-                    <button class="listen" (click)="changePause()" *ngIf="isPlaying"
-                            mat-button onclick="document.getElementById('track').pause();"><img
-                            src="../../../../assets/images/icons/Pause.png" height="50" width="50"/></button>
-                    <div class="container-audio">
                         <button mat-button  type="submit" style="color: crimson; text-decoration: none;"  >
                             <!--                                aria-label="Angular Audio Player"-->
                             <!--                                class="mat-button-toggle-group btn-outline-success"-->
@@ -103,6 +80,35 @@
 
                             <b><img src="../../../../assets/images/icons/listen.png" height="48" width="48"/>{{song.listenSong}}</b>
                         </button>
+
+
+                    </div>
+
+<!--                    <audio class="audio" controls autoplay>-->
+<!--                        <source [src]="song.mp3Url"type="audio/ogg">-->
+<!--                        <source [src]="song.mp3Url" type="audio/mpeg">-->
+<!--                        Your browser does not support the audio element.-->
+
+<!--                    </audio>-->
+
+                    <div class="container-audio">
+                        <audio id="track" controls loop
+                               ontimeupdate="document.getElementById('tracktime').innerHTML = Math.floor(this.currentTime) + ' / ' + Math.floor(this.duration);"
+                        >
+                            <source [src]="song.mp3Url"type="audio/ogg">
+                            <source [src]="song.mp3Url" type="audio/mpeg">
+                            <p>Your browser does not support the audio element</p>
+                        </audio>
+                        <span style="color: #ff03cc" id="tracktime">0 / 0</span>
+
+                        <button mat-button class="listen" *ngIf="!isPlaying"
+                                (click)="listenCount(song.id)" onclick="document.getElementById('track').play();"><img
+                                src="../../../../assets/images/icons/Play.png" height="50" width="50"/></button>
+
+
+                        <button class="listen" (click)="changePause()" *ngIf="isPlaying"
+                                mat-button onclick="document.getElementById('track').pause();"><img
+                                src="../../../../assets/images/icons/Pause.png" height="50" width="50"/></button>
 <!--                        <audio  controls loop>-->
 
 <!--                            <source [src]="song.mp3Url"type="audio/ogg">-->
