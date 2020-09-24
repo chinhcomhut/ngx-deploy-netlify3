@@ -92,23 +92,21 @@
 <!--                    </audio>-->
 
                     <div class="container-audio">
-                        <audio id="track" controls loop
-                               ontimeupdate="document.getElementById('tracktime').innerHTML = Math.floor(this.currentTime) + ' / ' + Math.floor(this.duration);"
-                        >
+                        <audio id="track" controls loop>
                             <source [src]="song.mp3Url"type="audio/ogg">
                             <source [src]="song.mp3Url" type="audio/mpeg">
                             <p>Your browser does not support the audio element</p>
                         </audio>
-                        <span class="span" style="color: #ff03cc" id="tracktime">0 / 0</span>
+
 
                         <button mat-button class="listen" *ngIf="!isPlaying"
                                 (click)="listenCount(song.id)" onclick="document.getElementById('track').play();"><img
-                                src="../../../../assets/images/icons/Play.png" height="50" width="100"/></button>
+                                src="../../../../assets/images/icons/Play.png" height="50" width="70"/></button>
 
 
                         <button class="listen" (click)="changePause()" *ngIf="isPlaying"
                                 mat-button onclick="document.getElementById('track').pause();"><img
-                                src="../../../../assets/images/icons/Pause.png" height="50" width="100"/></button>
+                                src="../../../../assets/images/icons/Pause.png" height="50" width="70"/></button>
 <!--                        <audio  controls loop>-->
 
 <!--                            <source [src]="song.mp3Url"type="audio/ogg">-->
