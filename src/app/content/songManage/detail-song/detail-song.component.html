@@ -19,7 +19,7 @@
                     <mat-card-title style="color: #ff03cc"><b style="color: green">Name Song:</b>  {{song.nameSong}}</mat-card-title>
                     <mat-card-subtitle style="color: #ff03cc"><b style="color: green">Singer's:</b>  {{song.nameSinger}}</mat-card-subtitle>
                 </mat-card-header>
-                <mat-card-content class="row justify-contents-around mat-basic-player">
+<!--                <mat-card-content class="row justify-contents-around mat-basic-player">-->
                     <div class="col py-3 pl-5">
 <!--                        <h6>Controls</h6>-->
 <!--                        <div class="d-flex flex-row px-3">-->
@@ -99,14 +99,17 @@
                         </audio>
 
 
-                        <button mat-button class="listen" *ngIf="!isPlaying"
-                                (click)="listenCount(song.id)" onclick="document.getElementById('track').play();"><img
-                                src="../../../../assets/images/icons/Play.png" height="50" width="70"/></button>
+
+                        <div class="heart-shape" *ngIf="!isPlaying"
+                                (click)="listenCount(song.id)" onclick="document.getElementById('track').play();">
+                            <img src="../../../../assets/images/icons/Play.png" height="50" width="50"/></div>
 
 
-                        <button class="listen" (click)="changePause()" *ngIf="isPlaying"
-                                mat-button onclick="document.getElementById('track').pause();"><img
-                                src="../../../../assets/images/icons/Pause.png" height="50" width="70"/></button>
+                        <div  class="heart-shape" (click)="changePause()" *ngIf="isPlaying"
+                                 onclick="document.getElementById('track').pause();">
+                            <img src="../../../../assets/images/icons/Pause.png" height="50" width="50"/>
+                            </div>
+
 <!--                        <audio  controls loop>-->
 
 <!--                            <source [src]="song.mp3Url"type="audio/ogg">-->
@@ -205,9 +208,9 @@
                             <div class="colum1">
                                 <div class="row"></div>
                             </div>
-                            <div class="colum1">
-                                <div class="row"></div>
-                            </div>
+<!--                            <div class="colum1">-->
+<!--                                <div class="row"></div>-->
+<!--                            </div>-->
                         </div>
                     </div>
 
@@ -222,7 +225,7 @@
 <!--                        <mat-advanced-audio-player [playlist]="playlist"></mat-advanced-audio-player>-->
 
 <!--                    </div>-->
-                </mat-card-content>
+<!--                </mat-card-content>-->
             </mat-card>
         </div>
     </div>
@@ -233,6 +236,4 @@
   http://dribbble.com/shots/1408634-Music-Player
 
 -->
-
-
 
