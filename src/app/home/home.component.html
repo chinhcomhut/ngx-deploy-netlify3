@@ -68,5 +68,80 @@
     </div>
   </div>
 </div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+      <mat-card style="margin: 50px">
+        <div class="search-hero">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                 placeholder="&#61442;  Search Song in one page...">
+          <!--          <button routerLink="/createSong" type="submit" style="color: crimson; text-decoration: none;"-->
+          <!--                  aria-label="Angular Audio Player"-->
+          <!--                  class="mat-button-toggle-group btn-outline-success"-->
+          <!--                  mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">-->
+          <!--&lt;!&ndash;                         <img src="../../../../assets/images/icons/create-category.png" height="40"&ndash;&gt;-->
+          <!--            &lt;!&ndash;                              width="40"/>&ndash;&gt;-->
+          <!--                        <b>Create Song-->
+          <!--                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>-->
+          <!--          </button>-->
+        </div>
+
+
+        <mat-card-title style="color: darkgreen" class="alert alert-danger">
+          <img src="../../assets/images/icons/heard.png" height="50" width="50"/>Top Songs most heard<img
+                src="../../assets/images/icons/listen.png" height="50" width="50"/></mat-card-title>
+
+        <div class="row">
+          <div class="column" *ngFor="let song of pageListenSongs|filter: searchText">
+            <button *ngIf="isCheckAdmin" routerLink="/createSong" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
+              <mat-icon>queue music</mat-icon>
+            </button>
+            <button *ngIf="isCheckAdmin" [routerLink]="['/editSong/',song.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button  *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                     (click)="deleteSong(song.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <div class="card">
+              <button mat-button [routerLink]="['/detailSong/',song.id]"type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-success">
+                <!--                                aria-label="Angular Audio Player"-->
+                <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                <!--                        >-->
+
+                <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                <!--                              width="40"/>-->
+
+
+                <img src="../../assets/images/icons/listen.png" height="30" width="30"/><b>{{song.listenSong}}</b>
+              </button><br>
+              <mat-card-subtitle [routerLink]="['/detailSong/',song.id]"style="color: #2b542c">Name Song: <b
+                      style="color: crimson">{{song.nameSong}}</b>
+              </mat-card-subtitle>
+              <mat-card-subtitle [routerLink]="['/detailSong/',song.id]"style="color: #2b542c">Singer's: <b
+                      style="color: crimson">{{song.nameSinger}}</b>
+              </mat-card-subtitle>
+              <mat-card-subtitle [routerLink]="['/detailSong/',song.id]" style="color: #2b542c">Music Genre: <b
+                      style="color: crimson">{{song.nameCategory}}</b>
+              </mat-card-subtitle>
+              <img [routerLink]="['/detailSong/',song.id]"class="img" [src]="song.avatarSong">
+              <mat-card-subtitle style="color: #ff03cc"><b style="color: #2b542c">Created by:</b>{{song.createBy}}</mat-card-subtitle>
+            </div>
+
+          </div>
+
+        </div>
+        <mat-paginator #paginator [pageSizeOptions]="[16,32,100]" [length]="totalElements"
+                       (page)="nextPage($event)">
+        </mat-paginator>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+
 
 

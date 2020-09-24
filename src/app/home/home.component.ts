@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit{
   isCheckAdmin = false;
   admin: any = ['ADMIN'];
   songs: SongInfo[];
+  pageListenSongs: SongInfo[];
   data1: any = {
     message: "yes"
   };
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.getListResquest({page: 0, size: 16}); //Chinh size se hien thi size luc khoi dong trang//
+    this.getPageListenResquest({page:0, size: 16})
     if (JSON.stringify(this.tokenService.getAuthorities()) == JSON.stringify(this.admin)) {
       this.isCheckAdmin = true;
     }
@@ -57,13 +59,23 @@ export class HomeComponent implements OnInit{
         this.loading = false;
       });
   }
-
+private getPageListenResquest(request){
+    this.loading = true;
+    this.songService.getPageTopListenSong(request).subscribe(data=>{
+      this.pageListenSongs = data['content'];
+      this.totalElements = data['totalElements'];
+      this.loading = false;
+    }, error => {
+      this.loading = false;
+    })
+}
 
   nextPage(event: PageEvent) {
     const request = {};
     request['page'] = event.pageIndex.toString();
     request['size'] = event.pageSize.toString();
     this.getListResquest(request);
+    this.getPageListenResquest(request)
   }
 
 }

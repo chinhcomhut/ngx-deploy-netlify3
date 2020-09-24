@@ -45,7 +45,10 @@ export class SongService {
     const params = request;
     return this.http.get(this.API_Page_Top_Like_Song,{params})
   }
-
+  getPageTopListenSong(request){
+    const params = request;
+    return this.http.get(this.API_Page_Top_Listen_Song, {params})
+  }
   getPageSongByBand(id: number,request) {
     const params = request;
     return this.http.get<any>(`${this.API_Song_By_Band}/${id}`, {params});
