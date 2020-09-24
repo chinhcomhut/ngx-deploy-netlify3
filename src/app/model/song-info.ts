@@ -4,6 +4,7 @@ export class SongInfo {
     mp3Url: string;
     lyrics: string;
     likeSong: number;
+    listenSong: number;
     nameSinger: string;
     nameBand: string;
     nameCategory: string;

@@ -6,7 +6,7 @@ export class PlaylistInfo{
     namePlayList: string;
     avatarPlayList: string;
     createBy: string;
-    songList: Song[];
+    songList: SongInfo[];
     nameSinger: string;
     nameAlbum: string;
     nameBand: string;

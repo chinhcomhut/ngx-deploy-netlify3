@@ -32,6 +32,8 @@ export class SongService {
   private API_Song_Like_Up = environment.URL_server+'song-like-up';
   private API_Song_Like_Down = environment.URL_server+'song-like-down';
   private API_Page_Top_Like_Song = environment.URL_server+'page-top-like-song';
+  private API_Page_Top_Listen_Song = environment.URL_server+'page-top-listen-song';
+  private API_Count_Listen_Song = environment.URL_server+'count-listen-song';
   constructor(private http: HttpClient) {
   }
 
@@ -57,6 +59,10 @@ export class SongService {
   getLikeSongUpById(id: number): Observable<SongInfo> {
     console.log('id service',id)
     return this.http.get<SongInfo>(`${this.API_Song_Like_Up}/${id}`);
+  }
+  getListenSongById(id: number): Observable<SongInfo>{
+    console.log('id service',id)
+    return this.http.get<SongInfo>(`${this.API_Count_Listen_Song}/${id}`)
   }
   getLikeSongDownById(id: number): Observable<SongInfo> {
     return this.http.get<SongInfo>(`${this.API_Song_Like_Down}/${id}`);

@@ -23,6 +23,9 @@ export class DetailSongComponent implements OnInit {
   pageSizeOptions = [2, 4, 6];
   msaapDisplayVolumeControls = true;
   likeCounter = 0;
+  checkPause = 0;
+  listenCounter = 0;
+  isPlaying = false;
   id: any;
   i = 0;
   data: any = {
@@ -57,7 +60,7 @@ export class DetailSongComponent implements OnInit {
   }
   onClick($event){
 
-    console.log($event.isTrusted);
+    console.log('even',$event);
 
     if($event.isTrusted==true){
       this.i = this.i + 1;
@@ -66,8 +69,8 @@ export class DetailSongComponent implements OnInit {
     console.log('even',$event)
   }
   likeCount(id: number) {
-    this.likeCounter++;
-    console.log('Click',this.likeCounter)
+
+    console.log('isPlaying nhan Play', this.isPlaying)
       this.songService.getLikeSongUpById(id).subscribe(data => {
             console.log('data',data)
             this.song = data;
@@ -78,7 +81,17 @@ export class DetailSongComponent implements OnInit {
           }
         );
     }
-    checkLikeSong(){
+  listenCount(id: number){
+    this.isPlaying = !this.isPlaying
+    this.songService.getListenSongById(id).subscribe(data=>{
+      this.song = data;
+      console.log('data',data)
+    })
+  }
+changePause(){
+  this.isPlaying = !this.isPlaying;
+}
+    checkLikeSong(){ //Thay doi trang thai nut bam LIKE
     this.likeSongService.getListLikeSongByUser().subscribe(data =>{
       this.likeSongs = data;
       console.log('listLike',data)
@@ -110,6 +123,7 @@ export class DetailSongComponent implements OnInit {
       alert('Can phai xoa o cho khac truoc')
     })
   }
+
   ngOnInit(): void {
 
     this.routes.paramMap.subscribe(paramMap => {
