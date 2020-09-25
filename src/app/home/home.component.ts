@@ -54,6 +54,12 @@ export class HomeComponent implements OnInit{
   birthDay3: any;
   numberRandomSinger3: any;
   nameSinger3: any;
+
+  imageSinger4: any;
+  idSinger4: any;
+  birthDay4: any;
+  numberRandomSinger4: any;
+  nameSinger4: any;
   constructor(private songService: SongService,
               private tokenService: TokenStorageService,
               private singerService: SingerService) { }
@@ -78,6 +84,7 @@ export class HomeComponent implements OnInit{
     this.numberRandomSinger1 = this.getRandomInt(2);
     this.numberRandomSinger2 = this.getRandomInt(2)+2;
     this.numberRandomSinger3 = this.getRandomInt(2)+4;
+    this.numberRandomSinger4 = this.getRandomInt(2)+6;
     this.singerService.getListSinger().subscribe(listSinger=>{
       this.singers = listSinger;
       for(let i=0; i<this.singers.length;i++){
@@ -95,6 +102,11 @@ export class HomeComponent implements OnInit{
         this.idSinger3 = this.singers[this.numberRandomSinger3].id;
         this.birthDay3 = this.singers[this.numberRandomSinger3].birthday;
         this.nameSinger3 = this.singers[this.numberRandomSinger3].nameSinger;
+
+        this.imageSinger4 = this.singers[this.numberRandomSinger4].avatarSinger;
+        this.idSinger4 = this.singers[this.numberRandomSinger4].id;
+        this.birthDay4 = this.singers[this.numberRandomSinger4].birthday;
+        this.nameSinger4 = this.singers[this.numberRandomSinger4].nameSinger;
       }
     })
     this.getListResquest({page: 0, size: 16}); //Chinh size se hien thi size luc khoi dong trang//
