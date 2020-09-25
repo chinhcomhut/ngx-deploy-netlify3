@@ -40,6 +40,10 @@
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
+                <mat-card-title style="color: crimson" class="alert alert-primary">
+                  <img src="../../assets/images/icons/heart-like.png" height="50" width="50">
+                    Top favorite Songs
+                    <img src="../../assets/images/icons/heart-like-1.png" height="50" width="50"/></mat-card-title>
                 <div class="search-hero">
                     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                            placeholder="&#61442;  Search Song in one page..."><br>
@@ -182,7 +186,7 @@
                     </div>
 
                 </div>
-                <mat-paginator #paginator [pageSizeOptions]="[16,32,100]" [length]="totalElements"
+                <mat-paginator #paginator [pageSizeOptions]="[3,15,30,90]" [length]="totalElements"
                                (page)="nextPage($event)">
                 </mat-paginator>
             </mat-card>
