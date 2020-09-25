@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit{
   isCheckAdmin = false;
   admin: any = ['ADMIN'];
   songs: SongInfo[];
+  pageLikeSong: SongInfo[];
   pageListenSongs: SongInfo[];
   data1: any = {
     message: "yes"
@@ -80,7 +81,7 @@ export class HomeComponent implements OnInit{
     this.loading = true;
     this.songService.getPageTopLikeSong(request)
       .subscribe(data => {
-        this.songs = data['content'];
+        this.pageLikeSong = data['content'];
         console.log('songList', data);
         this.totalElements = data['totalElements'];
         this.loading = false;
