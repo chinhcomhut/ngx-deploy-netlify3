@@ -41,7 +41,7 @@
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
                 <mat-card-title style="color: crimson" class="alert alert-primary">
-                  <img src="../../assets/images/icons/heart-like.png" height="50" width="50">
+                    <img src="../../assets/images/icons/heart-like.png" height="50" width="50">
                     Top favorite Songs
                     <img src="../../assets/images/icons/heart-like-1.png" height="50" width="50"/></mat-card-title>
                 <div class="search-hero">
@@ -62,14 +62,17 @@
                     <div class="column" *ngFor="let song of pageLikeSong|filter: searchText">
 
 
-                        <button *ngIf="isCheckAdmin" routerLink="/createSong" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">
+                        <button *ngIf="isCheckAdmin" routerLink="/createSong" mat-icon-button style="color: #ff03cc"
+                                aria-label="Example icon button with a heart icon">
                             <mat-icon>queue music</mat-icon>
                         </button>
-                        <button *ngIf="isCheckAdmin" [routerLink]="['/editSong/',song.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                        <button *ngIf="isCheckAdmin" [routerLink]="['/editSong/',song.id]" mat-icon-button
+                                color="primary" aria-label="Example icon button with a heart icon">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button  *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
-                                 (click)="deleteSong(song.id)">
+                        <button *ngIf="isCheckAdmin" mat-icon-button color="warn"
+                                aria-label="Example icon button with a heart icon"
+                                (click)="deleteSong(song.id)">
                             <mat-icon>delete</mat-icon>
                         </button>
 
@@ -79,24 +82,26 @@
                                     style="color: crimson; text-decoration: none;"
                                     class="mat-button-toggle-group btn-outline-success">
 
-                                <img src="../../assets/images/icons/like2.png" height="30" width="30"/><b>{{song.likeSong}}</b>
+                                <img src="../../assets/images/icons/like2.png" height="30"
+                                     width="30"/><b>{{song.likeSong}}</b>
                             </button>
-                            <i [routerLink]="['/detailSong/',song.id]"style="color: crimson">
+                            <i [routerLink]="['/detailSong/',song.id]" style="color: crimson">
                                 {{song.nameSong}}
                             </i>
 
-                            <img [routerLink]="['/detailSong/',song.id]"class="img" [src]="song.avatarSong">
-                            <mat-card-subtitle [routerLink]="['/detailSong/',song.id]"style="color: #2b542c">Singer's: <b
-                                    style="color: crimson">{{song.nameSinger}}</b>
+                            <img [routerLink]="['/detailSong/',song.id]" class="img" [src]="song.avatarSong">
+                            <mat-card-subtitle [routerLink]="['/detailSong/',song.id]" style="color: #2b542c">Singer's:
+                                <b
+                                        style="color: crimson">{{song.nameSinger}}</b>
                             </mat-card-subtitle>
-                            <mat-card-subtitle [routerLink]="['/detailSong/',song.id]" style="color: #2b542c">Music Genre: <b
-                                    style="color: crimson">{{song.nameCategory}}</b>
+                            <mat-card-subtitle [routerLink]="['/detailSong/',song.id]" style="color: #2b542c">Music
+                                Genre: <b
+                                        style="color: crimson">{{song.nameCategory}}</b>
                             </mat-card-subtitle>
-                            <mat-card-subtitle style="color: #ff03cc"><b style="color: #2b542c">Created by:</b>{{song.createBy}}</mat-card-subtitle>
+                            <mat-card-subtitle style="color: #ff03cc"><b style="color: #2b542c">Created
+                                by:</b>{{song.createBy}}</mat-card-subtitle>
 
                         </div>
-
-
 
 
                     </div>
@@ -109,7 +114,6 @@
         </div>
     </div>
 </div>
-
 
 
 <hr>
@@ -193,6 +197,82 @@
         </div>
     </div>
 </div>
+
+<!-- SINGER -->
+<!--<div class="col">-->
+<!--    <h3 routerLink="/list-singer" style="color: deeppink; font-weight: bold">-->
+<!--        Các Ca Sĩ Liên Quan<i class="fas fa-chevron-right fas-1g ml-2" style="font-size: 80%"></i>-->
+<!--    </h3>-->
+<!--</div>-->
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 0px">
+            <mat-card style="margin: 0px 0;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="ih-item circle effect3 left_to_right">
+                           <a [routerLink]="['/detailSinger/',idSinger1]">
+                                <div class="img"><img
+                                        src="{{imageSinger1}}"
+                                        alt="img"></div>
+                                <div class="info"><h3>{{nameSinger1}}</h3>
+                                    <p>Birthday</p>
+                                    <p>{{birthDay1}}</p>
+                                </div>
+                           </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="ih-item circle effect3 left_to_right">
+                            <a [routerLink]="['/detailSinger/',idSinger2]">
+                                <div class="img"><img
+                                        src="{{imageSinger2}}"
+                                        alt="img"></div>
+                                <div class="info"><h3>{{nameSinger2}}</h3>
+                                    <p>Birth Day</p>
+                                    <p>{{birthDay2}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="ih-item circle effect3 left_to_right">
+                            <a [routerLink]="['/detailSinger/',idSinger3]">
+                                <div class="img">
+                                    <img  src="{{imageSinger3}}" alt="img">
+                                </div>
+                                <div class="info"><h3>{{nameSinger3}}</h3>
+                                    <p>Birth Day</p>
+                                    <p>{{birthDay3}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="ih-item circle effect3 left_to_right">
+                           <a>
+                                <div class="img"><img
+                                        src="https://3.bp.blogspot.com/-2v_EkxEGzos/WKEKNhZvMmI/AAAAAAAAlOs/0Zz4gKvK5Mo9onS0Qrx3nPw2mRc8MZUkACLcB/s1600/HAN%2BSARA%2BT%25E1%25BB%25AA%2BHOTGIRL%2BV%25C3%2580O%2BV%25C3%2592NG%2BGI%25E1%25BA%25A4U%2BM%25E1%25BA%25B6T%2BGI%25E1%25BB%258CNG%2BH%25C3%2581T%2BVI%25E1%25BB%2586T%2B2017%2B%25282%2529.jpg"
+                                        alt="img"></div>
+                                <div class="info"><h3>Han Sara</h3>
+                                    <p>Singer, Idol</p>
+                                    <p>Birthday 17/11/2000</p>
+                                </div>
+                           </a>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 

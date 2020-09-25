@@ -4,6 +4,8 @@ import {SongInfo} from '../model/song-info';
 import {SongService} from '../service/song.service';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {PageEvent} from '@angular/material/paginator';
+import {SingerService} from '../service/singer.service';
+import {SingerInfo} from '../model/singer/singer-info';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,7 @@ export class HomeComponent implements OnInit{
   isCheckAdmin = false;
   admin: any = ['ADMIN'];
   songs: SongInfo[];
+  singers: SingerInfo[];
   pageLikeSong: SongInfo[];
   pageListenSongs: SongInfo[];
   data1: any = {
@@ -33,8 +36,27 @@ export class HomeComponent implements OnInit{
   image3: any;
   id3: any;
   numberRandom3: any;
+
+  imageSinger1: any;
+  idSinger1: any;
+  birthDay1: any;
+  numberRandomSinger1: any;
+  nameSinger1: any;
+
+  imageSinger2: any;
+  idSinger2: any;
+  birthDay2: any;
+  numberRandomSinger2: any;
+  nameSinger2: any;
+
+  imageSinger3: any;
+  idSinger3: any;
+  birthDay3: any;
+  numberRandomSinger3: any;
+  nameSinger3: any;
   constructor(private songService: SongService,
-              private tokenService: TokenStorageService) { }
+              private tokenService: TokenStorageService,
+              private singerService: SingerService) { }
 
   ngOnInit(): void {
     this.numberRandom1 = this.getRandomInt(2);
@@ -51,6 +73,28 @@ export class HomeComponent implements OnInit{
         this.id2 = this.songs[this.numberRandom2].id;
         this.image3 = this.songs[this.numberRandom3].avatarSong;
         this.id3 = this.songs[this.numberRandom3].id;
+      }
+    })
+    this.numberRandomSinger1 = this.getRandomInt(2);
+    this.numberRandomSinger2 = this.getRandomInt(2)+2;
+    this.numberRandomSinger3 = this.getRandomInt(2)+4;
+    this.singerService.getListSinger().subscribe(listSinger=>{
+      this.singers = listSinger;
+      for(let i=0; i<this.singers.length;i++){
+        this.imageSinger1 = this.singers[this.numberRandomSinger1].avatarSinger;
+        this.idSinger1 = this.singers[this.numberRandomSinger1].id;
+        this.birthDay1 = this.singers[this.numberRandomSinger1].birthday;
+        this.nameSinger1 = this.singers[this.numberRandomSinger1].nameSinger;
+
+        this.imageSinger2 = this.singers[this.numberRandomSinger2].avatarSinger;
+        this.idSinger2 = this.singers[this.numberRandomSinger2].id;
+        this.birthDay2 = this.singers[this.numberRandomSinger2].birthday;
+        this.nameSinger2 = this.singers[this.numberRandomSinger2].nameSinger;
+
+        this.imageSinger3 = this.singers[this.numberRandomSinger3].avatarSinger;
+        this.idSinger3 = this.singers[this.numberRandomSinger3].id;
+        this.birthDay3 = this.singers[this.numberRandomSinger3].birthday;
+        this.nameSinger3 = this.singers[this.numberRandomSinger3].nameSinger;
       }
     })
     this.getListResquest({page: 0, size: 16}); //Chinh size se hien thi size luc khoi dong trang//
