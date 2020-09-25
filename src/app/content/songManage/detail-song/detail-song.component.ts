@@ -17,6 +17,7 @@ export class DetailSongComponent implements OnInit {
   isCheckLikeSong = false;
   playlist = [];
   song: SongInfo;
+  songs: SongInfo[];
   msbapDisplayTitle = false;
   msbapDisplayVolumeControls = true;
   msaapDisplayTitle = true;
@@ -126,7 +127,6 @@ changePause(){
   }
 
   ngOnInit(): void {
-
     this.routes.paramMap.subscribe(paramMap => {
       const id = +paramMap.get('id');
       this.songService.getSongById(id).subscribe(

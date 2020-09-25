@@ -79,5 +79,29 @@ body {
     text-align: center;
 }
 
+#matLink{
+    text-decoration: none;
+    color: white!important;
+}
+
+.header {
+    text-align: center;
+    padding: 60px;
+    color: white;
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100%;
+}
+.img1 {
+    max-width: 100%;
+    width: 1200px;
+    height:400px;
+}
+
 
 

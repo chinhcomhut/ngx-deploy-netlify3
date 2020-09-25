@@ -24,6 +24,7 @@ export class SongService {
 
   //API SEVER
   private API_Song = environment.URL_server + 'song';
+  private API_List_Song = environment.URL_server+'list-song';
   private API_Song_By_Singer = environment.URL_server + 'song-by-singer';
   private API_Song_By_Category = environment.URL_server + 'song-by-category';
   private API_Song_By_Play_List = environment.URL_server + 'song-by-playlist';
@@ -36,7 +37,9 @@ export class SongService {
   private API_Count_Listen_Song = environment.URL_server+'count-listen-song';
   constructor(private http: HttpClient) {
   }
-
+  getListSong(): Observable<SongInfo[]>{
+    return this.http.get<SongInfo[]>(this.API_List_Song)
+  }
   getPageSong(request) {
     const params = request;
     return this.http.get(this.API_Song, {params});

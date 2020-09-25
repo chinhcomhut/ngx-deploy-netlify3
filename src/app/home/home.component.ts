@@ -21,16 +21,45 @@ export class HomeComponent implements OnInit{
   data1: any = {
     message: "yes"
   };
+  image1: any;
+  id1: any;
+  numberRandom1: any;
 
+  image2: any;
+  id2: any;
+  numberRandom2: any;
+
+  image3: any;
+  id3: any;
+  numberRandom3: any;
   constructor(private songService: SongService,
               private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.numberRandom1 = this.getRandomInt(2);
+    console.log('random =',this.getRandomInt(2));
+    this.numberRandom2 = this.getRandomInt(2)+2;
+    this.numberRandom3 = this.getRandomInt(2)+4;
+    this.songService.getListSong().subscribe(data=>{
+      this.songs = data;
+      console.log('listSongs',data)
+      for(let i=0;i<this.songs.length;i++ ){
+        this.image1 = this.songs[this.numberRandom1].avatarSong;
+        this.id1 = this.songs[this.numberRandom1].id;
+        this.image2 = this.songs[this.numberRandom2].avatarSong;
+        this.id2 = this.songs[this.numberRandom2].id;
+        this.image3 = this.songs[this.numberRandom3].avatarSong;
+        this.id3 = this.songs[this.numberRandom3].id;
+      }
+    })
     this.getListResquest({page: 0, size: 16}); //Chinh size se hien thi size luc khoi dong trang//
     this.getPageListenResquest({page:0, size: 16})
     if (JSON.stringify(this.tokenService.getAuthorities()) == JSON.stringify(this.admin)) {
       this.isCheckAdmin = true;
     }
+  }
+   getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
   deleteSong(id: number) {
     this.songService.deleteSong(id).subscribe(data => {
