@@ -1,0 +1,47 @@
+<div class="container" *ngIf="karaoke">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <mat-card-title style="color: #bd4147" class="alert alert-primary">Old Karaoke</mat-card-title><br><br>
+                <mat-card-title style="color: #ff03cc"><b style="color: darkgreen">Name Play List:</b> {{karaoke.nameSong}}</mat-card-title>
+                <mat-card-title style="color: #2b542c"><b style="color: #ff03cc">Link Youtube: </b>{{karaoke.linkYoutube}} </mat-card-title>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 0px 0;">
+                <mat-card-title style="color: darkgreen" class="alert alert-warning">Form Edit Play List</mat-card-title>
+                <form class="edit-play-list" #f="ngForm" (ngSubmit)="updatePlayList()&&f.form.valid" novalidate>
+                    <mat-form-field style="width: 300px"appearance="outline">
+                        <mat-label>Name Play List:</mat-label>
+                        <input name="nameSong" matInput [(ngModel)]="karaoke.nameSong"#nameSong="ngModel" required>
+                        <mat-icon color="accent"matSuffix>video_settings</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="f.submitted&&nameSong.invalid">{{errorMessage}}
+                        <mat-error *ngIf="nameSong.errors"></mat-error>
+                    </mat-error><br>
+                    <mat-form-field style="width: 300px"appearance="outline">
+                        <mat-label>Link Youtube:</mat-label>
+                        <input name="linkYoutube" matInput [(ngModel)]="karaoke.linkYoutube"#linkYoutube="ngModel" required>
+                        <mat-icon color="accent"matSuffix>video_settings</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="f.submitted&&linkYoutube.invalid">{{errorMessage}}
+                        <mat-error *ngIf="linkYoutube.errors"></mat-error>
+                    </mat-error><br>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">
+<!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+                        <b>Edit Play List
+                       <img src="../../../../assets/images/icons/edit-play-list.png" height="40" width="40"/></b></span>
+                    </button>
+                </form><br>
+            </mat-card>
+        </div>
+    </div>
+</div>

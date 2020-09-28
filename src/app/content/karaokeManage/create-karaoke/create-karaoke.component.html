@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+            <form class="create-karaoke"#f="ngForm"(ngSubmit)="createKaraoke()&&f.form.valid" novalidate>
+                <mat-error class="alert alert-primary">{{errorMessage}}</mat-error>
+            <mat-form-field style="width: 300px" appearance="outline">
+                <mat-label>Name Song:</mat-label>
+                <input  name="nameSong" matInput placeholder="Please fill the Name Song ..."
+                [(ngModel)]="karaoke.nameSong" #nameSong="ngModel" required>
+                <mat-icon matSuffix color="accent">mic</mat-icon>
+            </mat-form-field>
+                <mat-error *ngIf="f.submitted&&nameSong.invalid">
+                    <mat-error *ngIf="nameSong.errors"></mat-error>
+                </mat-error><br>
+            <mat-form-field style="width: 300px" appearance="outline">
+                <mat-label>Link Youtube:</mat-label>
+                <input  name="linkYoutube" matInput placeholder="Please fill link Youtube ..."
+                [(ngModel)]="karaoke.linkYoutube"#linkYoutube="ngModel" required>
+                <mat-icon matSuffix color="accent">video_call</mat-icon>
+            </mat-form-field>
+                <mat-error *ngIf="f.submitted&&linkYoutube.invalid">
+                    <mat-error *ngIf="linkYoutube.errors"></mat-error>
+                </mat-error><br>
+                <button type="submit" style="color: crimson; text-decoration: none;"
+                        aria-label="Angular Audio Player"
+                        class="mat-button-toggle-group btn-outline-primary"
+                        mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Karaoke
+                    <img src="../../../../assets/images/icons/create-playlist.png" height="40" width="40"/></b></span>
+                </button>
+            </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
