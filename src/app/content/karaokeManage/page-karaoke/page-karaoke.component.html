@@ -37,7 +37,7 @@
 <!--                            <a>{{karaoke.linkYoutube}}</a>-->
 <!--                            <mat-video width="700" height="500" src="{{karaoke.linkYoutube}}"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></mat-video>-->
 <!--                            {{karaoke.linkYoutube}}-->
-                            <iframe width="270px" height="200px" [src]="karaoke.linkYoutube|safe:'resourceUrl'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe class="youtube" width="270px" height="200px" [src]="karaoke.linkYoutube|safe:'resourceUrl'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <!--                            <img [routerLink]="['/detailSong/',song.id]"class="img" [src]="song.avatarSong">-->
 <!--                            <mat-card-subtitle [routerLink]="['/detailSong/',song.id]"style="color: #2b542c">Singer's: <b-->
 <!--                                    style="color: crimson">{{song.nameSinger}}</b>-->
