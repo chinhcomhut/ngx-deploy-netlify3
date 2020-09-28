@@ -111,6 +111,11 @@ import { DetailAlbumComponent } from './content/albumManage/detail-album/detail-
 import { EditBandComponent } from './content/bandManage/edit-band/edit-band.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {ShareButtonsConfig, ShareModule} from '@ngx-share/core';
+import {MatVideoModule} from 'mat-video';
+import { PageKaraokeComponent } from './content/karaokeManage/page-karaoke/page-karaoke.component';
+import { CreateKaraokeComponent } from './content/karaokeManage/create-karaoke/create-karaoke.component';
+import { EditKaraokeComponent } from './content/karaokeManage/edit-karaoke/edit-karaoke.component';
+import {SafePipeModule} from 'safe-pipe';
 
 
 // const config = new SocialAuthService([
@@ -174,26 +179,30 @@ export const appRoutes: Routes = [
     {path: 'detailAlbum/:id',component: DetailAlbumComponent, data: {title: 'DetailAlbum'}},
     {path: 'editBand/:id',component: EditBandComponent, data:{title: 'EditBand'}},
     {path: 'detailBand/:id', component: DetailBandComponent, data:{title: 'DetailBand'}},
+    {path: 'createKaraoke',component: CreateKaraokeComponent, data:{title: 'CreateKaraoke'}},
+    {path: 'pageKaraoke',component: PageKaraokeComponent, data:{title: 'PageKaraoke'}},
+    {path: 'editKaraoke/:id',component: EditKaraokeComponent, data: {title: 'EditKaraoke'}}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, AddsongToSingerComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,AddPlayListToSingerComponent, CreateBandComponent, PageBandComponent, DetailBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent, EditBandComponent,
+        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, AddsongToSingerComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,AddPlayListToSingerComponent, CreateBandComponent, PageBandComponent, DetailBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent, EditBandComponent, PageKaraokeComponent, CreateKaraokeComponent, EditKaraokeComponent,
     ],
-    imports: [
-        HttpClientModule,
-        BrowserModule, FontAwesomeModule,
-        MatCardModule, MatToolbarModule, MatIconModule, MatRadioModule, MatCheckboxModule, MatSlideToggleModule,
+  imports: [
+    HttpClientModule,
+    BrowserModule, FontAwesomeModule,
+    MatCardModule, MatToolbarModule, MatIconModule, MatRadioModule, MatCheckboxModule, MatSlideToggleModule,
 
-        BrowserAnimationsModule, ShareButtonsModule,
-        NgxAudioPlayerModule,
-        NgxPaginationModule,
-        AngularFireStorageModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        RouterModule.forRoot(appRoutes, {useHash: false}), MatButtonModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, Ng2SearchPipeModule,
-        ShareButtonsModule.withConfig(customConfig), //CONFIG SHARE FaceBook//
+    BrowserAnimationsModule, ShareButtonsModule,
+    NgxAudioPlayerModule,
+    NgxPaginationModule,
+    MatVideoModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    RouterModule.forRoot(appRoutes, {useHash: false}), MatButtonModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, Ng2SearchPipeModule,
+    ShareButtonsModule.withConfig(customConfig), SafePipeModule, //CONFIG SHARE FaceBook//
 
-],
+  ],
 
 
     // entryComponents: [UserComponent],
