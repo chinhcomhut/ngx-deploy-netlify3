@@ -21,7 +21,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {HomeComponent} from './home/home.component';
-import {GettingStartedComponent} from './gettingstarted/gettingstarted.component';
 import {AngularFireModule} from '@angular/fire';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
@@ -95,13 +94,11 @@ import { PageSongComponent } from './content/songManage/page-song/page-song.comp
 import { DetailSongComponent } from './content/songManage/detail-song/detail-song.component';
 import { EditSongComponent } from './content/songManage/edit-song/edit-song.component';
 import { DetailCategoryComponent } from './content/categoryManage/detail-category/detail-category.component';
-import { AddsongToSingerComponent } from './content/singerManage/addsong-to-singer/addsong-to-singer.component';
 import { PageUserComponent } from './form-login/page-user/page-user.component';
 import { DetailUserComponent } from './form-login/detail-user/detail-user.component';
 import { SongByUserComponent } from './content/userCreateManage/song-by-user/song-by-user.component';
 import { SingerByUserComponent } from './content/userCreateManage/singer-by-user/singer-by-user.component';
 import { CategoryByUserComponent } from './content/userCreateManage/category-by-user/category-by-user.component';
-import { AddPlayListToSingerComponent } from './content/singerManage/add-play-list-to-singer/add-play-list-to-singer.component';
 import { CreateBandComponent } from './content/bandManage/create-band/create-band.component';
 import { PageBandComponent } from './content/bandManage/page-band/page-band.component';
 import { DetailBandComponent } from './content/bandManage/detail-band/detail-band.component';
@@ -140,7 +137,6 @@ const customConfig: ShareButtonsConfig = {
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent, data: {title: 'Home'}},
-    {path: 'guide/getting-started', component: GettingStartedComponent, data: {title: 'Getting Started'}},
     {path: 'register', component: RegisterComponent, data: {title: 'Register'}},
     {path: 'login', component: LoginComponent, data: {title: 'Login'}},
     {path: 'user', component: UserComponent, data: {title: 'User'}},
@@ -164,14 +160,12 @@ export const appRoutes: Routes = [
     {path: 'detailSong/:id',component: DetailSongComponent, data: {title: 'DetailSong'}},
     {path: 'editSong/:id', component: EditSongComponent, data: {title: 'EditSong'}},
     {path: 'detailCategory/:id',component: DetailCategoryComponent, data: {title: 'DetailCategory'}},
-    {path: 'addSongToSinger/:id', component: AddsongToSingerComponent, data: {title: 'AddSongToSinger'}},
     {path: 'pageUser', component: PageUserComponent, data: {title: 'PageUser'}},
     {path: 'detailUser/:id', component: DetailUserComponent, data: {title: 'DetailUser'}},
     {path: 'pageCategoryByUser/:id', component: CategoryByUserComponent, data: {title: 'PageCategoryByUser'}},
     {path: 'pageSongByUser/:id', component: SongByUserComponent, data: {title: 'PageSongByUser'}},
     {path: 'pageSingerByUser/:id', component: SingerByUserComponent, data: {title: 'SingerByUser'}},
     {path: 'editPlayList/:id', component: EditPlaylistComponent, data: {title: 'EditPlayList'}},
-    {path: 'addPlayListToSinger/:id', component: AddPlayListToSingerComponent, data: {title: 'AddPlayListToSinger'}},
     {path: 'createBand', component: CreateBandComponent, data: {title: 'CreateBand'}},
     {path: 'pageBand', component: PageBandComponent, data: {title: 'PageBand'}},
     {path: 'createAlbum', component: CreateAlbumComponent, data:{title: 'CreateAlbum'}},
@@ -186,7 +180,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, AddsongToSingerComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,AddPlayListToSingerComponent, CreateBandComponent, PageBandComponent, DetailBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent, EditBandComponent, PageKaraokeComponent, CreateKaraokeComponent, EditKaraokeComponent,
+        AppComponent, HomeComponent,RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,CreateBandComponent, PageBandComponent, DetailBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent, EditBandComponent, PageKaraokeComponent, CreateKaraokeComponent, EditKaraokeComponent,
     ],
   imports: [
     HttpClientModule,
