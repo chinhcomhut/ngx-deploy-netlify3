@@ -17,4 +17,13 @@ export class VideoService {
     const params = request;
     return this.http.get(this.API_Video, {params})
   }
+  getVideoById(id: number): Observable<Video>{
+    return this.http.get<Video>(`${this.API_Video}/${id}`)
+  }
+  updateVideo(id: number, video: Video): Observable<Video>{
+    return this.http.put<Video>(`${this.API_Video}/${id}`,video)
+  }
+  deleteVideo(id: number){
+    return this.http.delete(`${this.API_Video}/${id}`)
+  }
 }

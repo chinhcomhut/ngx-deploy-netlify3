@@ -49,4 +49,14 @@ export class PageVideoComponent implements OnInit {
     request['size'] = event.pageSize.toString();
     this.getListResquest(request);
   }
+  deleteVideo(id: number){
+    console.log('goi ham delete', id)
+    this.videoService.deleteVideo(id).subscribe(data=>{
+      if(JSON.stringify(data)==JSON.stringify(this.data1)){
+        alert('Delete successful Video!')
+      }
+    }, error => {
+      alert('Please login before delete!')
+    })
+  }
 }

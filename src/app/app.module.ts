@@ -181,6 +181,7 @@ export const appRoutes: Routes = [
     {path: 'editKaraoke/:id',component: EditKaraokeComponent, data: {title: 'EditKaraoke'}},
     {path: 'createVideo', component: CreateVideoComponent, data: {title: 'CreateVideo'}},
     {path: 'pageVideo',component: PageVideoComponent, data: {title: 'PageVideo'}},
+    {path: 'editVideo/:id',component: EditVideoComponent, data: {title: 'EditVideo'}},
 ];
 
 @NgModule({
