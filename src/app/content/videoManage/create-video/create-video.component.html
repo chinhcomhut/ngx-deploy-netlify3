@@ -1,1 +1,114 @@
-<p>create-video works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <form class="create-video" #f="ngForm" (ngSubmit)="f.form.valid&& createVideo()" novalidate>
+                    <mat-error class="alert alert-success">
+                        Status: {{errorMessage}}
+                    </mat-error>
+                    <mat-form-field style="width: 300px;" appearance="outline">
+                        <mat-label style="color: #bd4147">Name Video:</mat-label>
+                        <input name="nameVideo" matInput placeholder="Fill the name Song ..."
+                               [(ngModel)]="video.nameVideo" #nameVideo="ngModel" required>
+                        <mat-icon color="accent" matSuffix>library_music</mat-icon>
+                        <!--matSuffix de icon ngang hang voi input -->
+                    </mat-form-field>
+                    <br>
+                    <mat-error *ngIf="f.submitted&&nameVideo.invalid">
+                        <mat-error *ngIf="nameVideo.errors">
+                            Name Video is required! Please fill in form!
+                        </mat-error>
+                    </mat-error>
+                    <mat-form-field style="width: 300px" appearance="fill">
+                        <mat-label STYLE="color: crimson">Link Youtube:</mat-label>
+                        <input name="linkYoutube" matInput placeholder="Fill the lyrics of song..."
+                                  [(ngModel)]="video.linkYoutube" #linkYoutube="ngModel" required>
+                        <mat-error *ngIf="f.submitted&&linkYoutube.invalid">
+                            <mat-error *ngIf="linkYoutube.errors">
+                                Link Youtube is required! Please fill in form!
+                            </mat-error>
+                        </mat-error>
+                        <mat-icon color="accent" matSuffix>edit</mat-icon>
+                    </mat-form-field><br>
+                    <!-- SELECT SINGER -->
+                    <mat-panel-title style="color: #2b542c" class="alert alert-warning">
+                        Nếu bài hát thuộc nhóm nhạc bạn có thể bỏ trống lựa chọn ca sĩ để chọn nhóm nhạc!
+                        Hoặc bạn có thể chọn ca sĩ của nhóm nhạc thể hiện ca khúc đó. Nếu chưa có ca sĩ bạn có thể vào mục Singers để tạo ca sĩ của bạn!</mat-panel-title>
+                    <mat-panel-title style="color: #ff03cc" class="alert alert-warning">
+
+                        If the song belongs to a group you can leave the artist selection blank to select the group! Or you can choose the singer of the group to perform that track.
+                        If you do not have a singer you can go to Singers to create your artist!
+                    </mat-panel-title>
+                    <mat-form-field style="width: 300px">
+
+                        <mat-select style="width: 300px" placeholder="Select Singers" [formControl]="toppings"
+                                    [ngModel]="video.nameSinger" (ngModelChange)="video.nameSinger=$event" multiple>
+                            <mat-select-trigger style="width: 500px">
+                                {{toppings.value ? toppings.value[0] : ''}} -
+                                {{toppings.value ? toppings.value[1] : ''}} -
+                                <!--Them 1 dong la hien ra them 1 dong select-->
+                                {{toppings.value ? toppings.value[2] : ''}}
+                                {{toppings.value ? toppings.value[3] : ''}}
+                                <span *ngIf="toppings.value?.length > 4" class="example-additional-selection">
+        (+{{toppings.value.length - 4}} {{toppings.value?.length === 5 ? 'other' : 'others'}})
+                                    <!-- + = leng - 4 (dong da hien) vs = 5 thi 'other' #5 thi 'others'-->
+      </span>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let topping of singers"
+                                        [value]="topping.nameSinger">{{topping.nameSinger}}</mat-option>
+                        </mat-select>
+                    </mat-form-field><br>
+
+                    <!-- SELECT CATEGORY -->
+                    <mat-form-field style="width: 300px">
+                        <mat-label>Select Music genre</mat-label>
+                        <mat-select [(value)]="selectCategory" [ngModel]="video.nameCategory"
+                                    (ngModelChange)="video.nameCategory=$event" [ngModelOptions]="{standalone: true}">
+                            <mat-option *ngFor="let p of categorys" [value]="p.nameCategory">
+                                {{ p.nameCategory }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> <br>
+
+                    <!--                    <mat-accordion style="width: 300px">-->
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header  class="alert alert-success">
+                            <mat-panel-title  style="color: mediumvioletred;">
+                                Band:
+                            </mat-panel-title>
+                            <mat-panel-description style="color: red;">
+                                Click View {{panelOpenState ? 'open!' : 'closed!'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-panel-title style="color: #2b542c" class="alert alert-warning">
+                            Nếu bạn tạo bài hát cho nhóm nhạc hãy chọn nhóm nhạc ở đây!
+                            Nếu nhóm nhạc chưa tồn tại, bạn có thể vào Band để tạo thêm nhóm nhạc của bạn!</mat-panel-title>
+                        <mat-panel-title style="color: red" class="alert alert-warning">
+                            Nếu không phải nhóm nhạc bạn có thể bỏ trống trường này!</mat-panel-title>
+                        <mat-form-field style="width: 300px">
+                            <mat-label>Select Band</mat-label>
+                            <mat-select [(value)]="selectBand" [ngModel]="video.nameBand"
+                                        (ngModelChange)="video.nameBand=$event" [ngModelOptions]="{standalone: true}">
+                                <mat-option *ngFor="let p of bands" [value]="p.nameBand">
+                                    {{ p.nameBand }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-expansion-panel><br>
+                    <!--                    </mat-accordion><br>-->
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper">
+<!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+                        <b>Create Video
+                        <img src="../../../../assets/images/icons/create-song2.png" height="40" width="40"/></b></span>
+                    </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
