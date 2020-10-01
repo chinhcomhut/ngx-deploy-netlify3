@@ -4,6 +4,7 @@ import {Video} from "../../../model/video";
 import {PageEvent} from "@angular/material/paginator";
 import {VideoService} from "../../../service/video.service";
 import {TokenStorageService} from "../../../auth/token-storage.service";
+import {ShareService} from "@ngx-share/core";
 
 @Component({
   selector: 'app-page-video',
@@ -21,7 +22,8 @@ export class PageVideoComponent implements OnInit {
     message: "yes"
   }
   constructor(private videoService: VideoService,
-              private tokenService: TokenStorageService) { }
+              private tokenService: TokenStorageService,
+              private share: ShareService) { }
 
   ngOnInit(): void {
     this.getListResquest({page:0,size:15})
@@ -54,6 +56,7 @@ export class PageVideoComponent implements OnInit {
     this.videoService.deleteVideo(id).subscribe(data=>{
       if(JSON.stringify(data)==JSON.stringify(this.data1)){
         alert('Delete successful Video!')
+        window.location.reload();
       }
     }, error => {
       alert('Please login before delete!')

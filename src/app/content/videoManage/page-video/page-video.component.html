@@ -28,10 +28,14 @@
                                  (click)="deleteVideo(video.id)">
                             <mat-icon>delete</mat-icon>
                         </button>
+                        <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
+                                url="https://dongchinh.netlify.app/detailVideo/{{video.id}}"
+                                [image]="video.avatarSong">
+                            <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                        </button>
 
-
-                        <div class="card">
-                            <i style="color: crimson">
+                        <div [routerLink]="['/detailVideo/',video.id]" class="card">
+                            <i [routerLink]="['/detailVideo/',video.id]" style="color: crimson">
                                 {{video.nameVideo}}
                             </i>
                             <!--                            <a>{{karaoke.linkYoutube}}</a>-->

@@ -116,6 +116,7 @@ import {SafePipeModule} from 'safe-pipe';
 import { CreateVideoComponent } from './content/videoManage/create-video/create-video.component';
 import { EditVideoComponent } from './content/videoManage/edit-video/edit-video.component';
 import { PageVideoComponent } from './content/videoManage/page-video/page-video.component';
+import { DetailVideoComponent } from './content/videoManage/detail-video/detail-video.component';
 
 
 // const config = new SocialAuthService([
@@ -182,11 +183,12 @@ export const appRoutes: Routes = [
     {path: 'createVideo', component: CreateVideoComponent, data: {title: 'CreateVideo'}},
     {path: 'pageVideo',component: PageVideoComponent, data: {title: 'PageVideo'}},
     {path: 'editVideo/:id',component: EditVideoComponent, data: {title: 'EditVideo'}},
+    {path: 'detailVideo/:id',component: DetailVideoComponent, data: {title: 'DetailVideo'}},
 ];
 
 @NgModule({
     declarations: [
-        AppComponent, HomeComponent,RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,CreateBandComponent, PageBandComponent, DetailBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent, EditBandComponent, PageKaraokeComponent, CreateKaraokeComponent, EditKaraokeComponent, CreateVideoComponent, EditVideoComponent, PageVideoComponent,
+        AppComponent, HomeComponent,RegisterComponent, LoginComponent, UserComponent, UploadAvatarComponent, ChangePasswordComponent, ChangeProfileComponent, UploadFileComponent, CreateSingerComponent, AdminComponent, DetailSingerComponent, PageSingerComponent, EditSingerComponent, ChangeAvatarComponent, CreateSongComponent, CreateCategoryComponent, PageCategoryComponent, EditCategoryComponent, CreatePlaylistComponent, EditPlaylistComponent, AddsongToPlaylistComponent, DetailPlaylistComponent, PageSongComponent, DetailSongComponent, EditSongComponent, DetailCategoryComponent, PageUserComponent, DetailUserComponent, SongByUserComponent, SingerByUserComponent, CategoryByUserComponent,CreateBandComponent, PageBandComponent, DetailBandComponent, CreateAlbumComponent, PageAlbumComponent, DetailAlbumComponent, EditBandComponent, PageKaraokeComponent, CreateKaraokeComponent, EditKaraokeComponent, CreateVideoComponent, EditVideoComponent, PageVideoComponent, DetailVideoComponent,
     ],
   imports: [
     HttpClientModule,
