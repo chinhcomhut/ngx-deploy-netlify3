@@ -28,16 +28,56 @@
                                  (click)="deleteVideo(video.id)">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
-                                url="https://dongchinh.netlify.app/detailVideo/{{video.id}}"
-                                [image]="video.avatarSong">
-                            <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
-                        </button>
 
-                        <div [routerLink]="['/detailVideo/',video.id]" class="card">
+
+                        <div [routerLink]="['/detailVideo/',video.id]" class="card" >
+                            <div >
+                                <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
+                                        url="https://dongchinh.netlify.app/detailVideo/{{video.id}}"
+                                        [image]="video.avatarSong">
+                                    <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                                </button>
+                                <button  (click)="likeCount(video.id)" *ngIf="!isCheckLikeVideo" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                                    <!--                                aria-label="Angular Audio Player"-->
+                                    <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                                    <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                                    <!--                        >-->
+
+                                    <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                                    <!--                              width="40"/>-->
+
+
+                                    <img src="../../../../assets/images/icons/like1.png" height="50" width="50"/><b>{{video.likeVideo}}</b>
+                                </button>
+                                <button (click)="likeCount(video.id)"mat-button *ngIf="isCheckLikeVideo"  type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                                    <!--                                aria-label="Angular Audio Player"-->
+                                    <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                                    <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                                    <!--                        >-->
+
+                                    <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                                    <!--                              width="40"/>-->
+
+                                    <img src="../../../../assets/images/icons/like2.png" height="50" width="50"/><b>{{video.likeVideo}}</b></button>
+                                <button mat-button  type="submit" style="color: crimson; text-decoration: none;"  >
+                                    <!--                                aria-label="Angular Audio Player"-->
+                                    <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                                    <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                                    <!--                        >-->
+
+                                    <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                                    <!--                              width="40"/>-->
+
+
+                                    <b><img src="../../../../assets/images/icons/listen.png" height="50" width="50"/>{{video.viewVideo}}</b>
+                                </button>
+                            </div>
+
                             <i [routerLink]="['/detailVideo/',video.id]" style="color: crimson">
                                 {{video.nameVideo}}
                             </i>
+
+
                             <!--                            <a>{{karaoke.linkYoutube}}</a>-->
                             <!--                            <mat-video width="700" height="500" src="{{karaoke.linkYoutube}}"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></mat-video>-->
                             <!--                            {{karaoke.linkYoutube}}-->

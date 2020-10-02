@@ -3,12 +3,15 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment.prod";
 import {Video} from "../model/video";
 import {Observable} from "rxjs";
+import {SongInfo} from "../model/song-info";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoService {
   private API_Video = environment.URL_server+'video';
+  private API_Like_Video = environment.URL_server+'video-like-up';
+  private API_Count_View_Video = environment.URL_server+'count-view-video'
   constructor(private http: HttpClient) { }
   createVideo(video: Video): Observable<Video>{
     return this.http.post<Video>(this.API_Video, video)
@@ -25,5 +28,13 @@ export class VideoService {
   }
   deleteVideo(id: number){
     return this.http.delete(`${this.API_Video}/${id}`)
+  }
+  getLikeVideoUpById(id: number): Observable<Video> {
+    console.log('id service',id)
+    return this.http.get<Video>(`${this.API_Like_Video}/${id}`);
+  }
+  getViewVideoById(id: number): Observable<Video>{
+    console.log('id service',id)
+    return this.http.get<Video>(`${this.API_Count_View_Video}/${id}`)
   }
 }

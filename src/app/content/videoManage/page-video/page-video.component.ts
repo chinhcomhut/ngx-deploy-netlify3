@@ -5,6 +5,8 @@ import {PageEvent} from "@angular/material/paginator";
 import {VideoService} from "../../../service/video.service";
 import {TokenStorageService} from "../../../auth/token-storage.service";
 import {ShareService} from "@ngx-share/core";
+import {Likevideo} from "../../../model/likevideo";
+import {LikevideoService} from "../../../service/likevideo.service";
 
 @Component({
   selector: 'app-page-video',
@@ -17,16 +19,21 @@ export class PageVideoComponent implements OnInit {
   searchText;
   isCheck = false;
   admin: any = ['ADMIN'];
+  video: Video;
   videos: Video[]=[];
   data1: any ={
     message: "yes"
   }
+  isCheckLikeVideo: boolean;
+  likeVideos: Likevideo[];
   constructor(private videoService: VideoService,
               private tokenService: TokenStorageService,
-              private share: ShareService) { }
+              private share: ShareService,
+              private liveVideoService: LikevideoService) { }
 
   ngOnInit(): void {
     this.getListResquest({page:0,size:15})
+    // this.checkLikeVideo();
     if(JSON.stringify(this.tokenService.getAuthorities())==JSON.stringify(this.admin)){
       this.isCheck = true;
     }
@@ -61,5 +68,39 @@ export class PageVideoComponent implements OnInit {
     }, error => {
       alert('Please login before delete!')
     })
+  }
+  likeCount(id: number) {
+
+    this.videoService.getLikeVideoUpById(id).subscribe(data => {
+          console.log('data',data)
+          this.video = data;
+          this.checkLikeVideo();
+          // window.location.reload();
+        },
+        error => {
+          alert('Please login before click like!')
+        }
+    );
+  }
+  checkLikeVideo(){ //Thay doi trang thai nut bam LIKE
+    console.log('goi ham check Like')
+    this.liveVideoService.getListLikeVideoByUser().subscribe(data =>{
+      this.likeVideos = data;
+      if(data==null){
+        this.isCheckLikeVideo = false;
+        console.log('ischeckLike',this.isCheckLikeVideo)
+      }
+      console.log('listLike',data)
+      console.log('lenglike',this.likeVideos.length)
+      console.log('nameVideo: ',this.video.nameVideo)
+      for(let i=0; i<this.likeVideos.length;i++){
+        console.log('i = ',i,' likesong.nameSong = ',this.likeVideos[i].nameVideo)
+        if(JSON.stringify(this.video.nameVideo)==JSON.stringify(this.likeVideos[i].nameVideo)){
+          this.isCheckLikeVideo = true;
+          console.log('isCheckLikeSong',this.isCheckLikeVideo)
+        }
+      }
+    })
+
   }
 }

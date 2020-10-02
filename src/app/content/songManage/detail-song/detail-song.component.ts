@@ -106,11 +106,8 @@ changePause(){
           console.log('isCheckLikeSong',this.isCheckLikeSong)
         }
       }
-
     })
-
     }
-
   deleteSong(id: number){
     this.songService.deleteSong(id).subscribe(data=>{
       if(JSON.stringify(data)==JSON.stringify(this.data)){
@@ -125,7 +122,6 @@ changePause(){
       alert('Can phai xoa o cho khac truoc')
     })
   }
-
   ngOnInit(): void {
     this.routes.paramMap.subscribe(paramMap => {
       const id = +paramMap.get('id');

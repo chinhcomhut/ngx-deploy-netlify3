@@ -42,47 +42,50 @@
                     <!--                                  >-->
                     <!--                            <mat-icon>delete</mat-icon>-->
                     <!--                        </button>-->
-<!--                    <button  (click)="likeCount(song.id)" *ngIf="!isCheckLikeSong" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">-->
-<!--                        &lt;!&ndash;                                aria-label="Angular Audio Player"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                                class="mat-button-toggle-group btn-outline-success"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                                mat-button tabindex="0" aria-disabled="false"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        >&ndash;&gt;-->
+                    <button  (click)="likeCount(video.id)" *ngIf="!isCheckLikeVideo" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                        <!--                                aria-label="Angular Audio Player"-->
+                        <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                        <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                        <!--                        >-->
 
-<!--                        &lt;!&ndash;                         <img src="../../../../assets/images/icons/create-category.png" height="40"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                              width="40"/>&ndash;&gt;-->
-
-
-<!--                        <img src="../../../../assets/images/icons/like1.png" height="55" width="55"/><b>{{song.likeSong}}</b>-->
-<!--                    </button>-->
+                        <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
 
 
-
-<!--                    <button (click)="likeCount(song.id)"mat-button *ngIf="isCheckLikeSong"  type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">-->
-<!--                        &lt;!&ndash;                                aria-label="Angular Audio Player"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                                class="mat-button-toggle-group btn-outline-success"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                                mat-button tabindex="0" aria-disabled="false"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        >&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;                         <img src="../../../../assets/images/icons/create-category.png" height="40"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                              width="40"/>&ndash;&gt;-->
-
-<!--                        <img src="../../../../assets/images/icons/like2.png" height="50" width="50"/><b>{{song.likeSong}}</b></button>-->
-<!--                    <button mat-button  type="submit" style="color: crimson; text-decoration: none;"  >-->
-<!--                        &lt;!&ndash;                                aria-label="Angular Audio Player"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                                class="mat-button-toggle-group btn-outline-success"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                                mat-button tabindex="0" aria-disabled="false"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        >&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;                         <img src="../../../../assets/images/icons/create-category.png" height="40"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                              width="40"/>&ndash;&gt;-->
+                        <img src="../../../../assets/images/icons/like1.png" height="55" width="55"/><b>{{video.likeVideo}}</b>
+                    </button>
 
 
-<!--                        <b><img src="../../../../assets/images/icons/listen.png" height="48" width="48"/>{{song.listenSong}}</b>-->
-<!--                    </button>-->
+
+                    <button (click)="likeCount(video.id)"mat-button *ngIf="isCheckLikeVideo"  type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                        <!--                                aria-label="Angular Audio Player"-->
+                        <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                        <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                        <!--                        >-->
+
+                        <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+
+                        <img src="../../../../assets/images/icons/like2.png" height="50" width="50"/><b>{{video.likeVideo}}</b></button>
+                    <button mat-button  type="submit" style="color: crimson; text-decoration: none;"  >
+                        <!--                                aria-label="Angular Audio Player"-->
+                        <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                        <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                        <!--                        >-->
+
+                        <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+
+
+                        <b><img src="../../../../assets/images/icons/listen.png" height="48" width="48"/>{{video.viewVideo}}</b>
+                    </button>
 
 
                 </div>
-                <iframe class="youtube" width="270px" height="200px" [src]="video.linkYoutube|safe:'resourceUrl'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe (load)="onClick(video.id)" class="youtube" [src]="video.linkYoutube|safe:'resourceUrl'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
                 <!--                    <audio class="audio" controls autoplay>-->
                 <!--                        <source [src]="song.mp3Url"type="audio/ogg">-->
                 <!--                        <source [src]="song.mp3Url" type="audio/mpeg">-->

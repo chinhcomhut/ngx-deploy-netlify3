@@ -6,4 +6,6 @@ export class Video{
     nameSinger: string;
     nameBand: string;
     nameCategory: string;
+    likeVideo: number;
+    viewVideo: any;
 }
