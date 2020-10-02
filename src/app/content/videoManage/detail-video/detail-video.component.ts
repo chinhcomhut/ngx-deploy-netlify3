@@ -79,4 +79,5 @@ export class DetailVideoComponent implements OnInit {
     })
 
   }
+
 }

@@ -8,6 +8,10 @@ import {SongService} from '../../../service/song.service';
 import {PlaylistService} from '../../../service/playlist.service';
 import {PlaylistInfo} from '../../../model/playlist-info';
 import {TokenStorageService} from '../../../auth/token-storage.service';
+import {Video} from "../../../model/video";
+import {Likevideo} from "../../../model/likevideo";
+import {VideoService} from "../../../service/video.service";
+import {ShareService} from "@ngx-share/core";
 
 @Component({
   selector: 'app-detail-category',
@@ -27,11 +31,17 @@ export class DetailCategoryComponent implements OnInit {
   data1: any ={
     message: "yes"
   }
+  video: Video;
+  videos: Video[]=[];
+  isCheckLikeVideo: boolean;
+  likeVideos: Likevideo[];
   constructor(private categoryService: CategoryService,
               private routes: ActivatedRoute,
               private songService: SongService,
               private playListService: PlaylistService,
-              private tokenSerVice: TokenStorageService) { }
+              private tokenSerVice: TokenStorageService,
+              private videoService: VideoService,
+              private share: ShareService) { }
 
   ngOnInit(): void {
     this.routes.paramMap.subscribe(categoryId =>{
@@ -40,6 +50,7 @@ export class DetailCategoryComponent implements OnInit {
         this.category = rusult;
         this.getListResquest({page: '', size: ''});
         this.getPagePlayListRequest({page:'', size:''})
+        this.getPageVideoResquest({page:0, size:15})
       })
     })
   if(JSON.stringify(this.tokenSerVice.getAuthorities())==JSON.stringify(this.admin)){
@@ -95,6 +106,7 @@ export class DetailCategoryComponent implements OnInit {
     request['size'] = event.pageSize.toString();
     this.getListResquest(request);
     this.getPagePlayListRequest(request);
+    this.getPageVideoResquest(request);
   }
 
   deleteCategory(id: number) {
@@ -149,5 +161,38 @@ export class DetailCategoryComponent implements OnInit {
   //     })
   //     window.location.reload();
   //   });
+  private getPageVideoResquest(request) {
+    this.loading = true;
+    this.videoService.pageVideoByCategory(this.category.id,request)
+        .subscribe(data => {
+          this.videos = data['content'];
+          console.log('songList', data);
+          this.totalElements = data['totalElements'];
+          this.loading = false;
+        }, error => {
+          this.loading = false;
+        });
+  }
+  deleteVideo(id: number){
+    console.log('goi ham delete', id)
+    this.videoService.deleteVideo(id).subscribe(data=>{
+      if(JSON.stringify(data)==JSON.stringify(this.data1)){
+        alert('Delete successful Video!')
+        window.location.reload();
+      }
+    }, error => {
+      alert('Please login before delete!')
+    })
+  }
+  likeCount(id: number) {
 
+    this.videoService.getLikeVideoUpById(id).subscribe(data => {
+          console.log('data',data)
+          this.video = data;
+        },
+        error => {
+          alert('Please login before click like!')
+        }
+    );
+  }
 }

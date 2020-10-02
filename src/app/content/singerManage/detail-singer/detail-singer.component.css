@@ -1,16 +1,117 @@
+/** {*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*body {*/
+/*    font-family: Arial, Helvetica, sans-serif;*/
+/*}*/
+
+/*!* Float four columns side by side *!*/
+/*.column {*/
+/*    float: left;*/
+/*    width: 25%;*/
+/*    padding: 10px 10px;*/
+/*}*/
+
+/*!* Remove extra left and right margins, due to padding *!*/
+/*.row {margin: 0 -5px;}*/
+
+/*!* Clear floats after the columns *!*/
+/*.row:after {*/
+/*    content: "";*/
+/*    display: table;*/
+/*    clear: both;*/
+/*}*/
+
+/*!* Responsive columns *!*/
+/*@media screen and (max-width: 600px) {*/
+/*    .column {*/
+/*        width: 100%;*/
+/*        display: block;*/
+/*        margin-bottom: 20px;*/
+/*    }*/
+/*}*/
+/*.image {*/
+/*    width: 100%;*/
+/*    height: 300px;*/
+/*    border-top-left-radius: 50% 50%;*/
+/*    border-top-right-radius: 50% 50%;*/
+/*    border-bottom-right-radius: 50% 50%;*/
+/*    border-bottom-left-radius: 50% 50%;*/
+/*}*/
+/*.image1{*/
+/*    width: auto;*/
+/*    height: 100px;*/
+/*    border-top-left-radius: 5% 5%;*/
+/*    border-top-right-radius: 5% 5%;*/
+/*    border-bottom-right-radius: 5% 5%;*/
+/*    border-bottom-left-radius: 5% 5%;*/
+/*}*/
+/*!*.title{*!*/
+/*!*    width: 100%;*!*/
+/*!*    height: auto;*!*/
+/*!*}*!*/
+
+/*!* Style the counter cards *!*/
+/*.card {*/
+/*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+/*    padding: 16px;*/
+/*    text-align: center;*/
+/*    background-color: #f1f1f1;*/
+
+/*}*/
+
+/*!*.container {*!*/
+/*!*    padding-top: 50px;*!*/
+/*!*    padding-bottom: 10px;*!*/
+/*!*    color: #405065;*!*/
+/*!*}*!*/
+
+/*.search-hero {*/
+/*    max-width: 500px;*/
+/*    padding-bottom: 50px;*/
+/*    margin:auto;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.form-control {*/
+/*    box-shadow: 0 10px 40px 0 #B0C1D9;*/
+/*}*/
+/*.form-control::placeholder  {*/
+/*    font-family: FontAwesome;*/
+/*}*/
+/*!*mat-grid-tile {*!*/
+/*!*    background: lightblue;*!*/
+/*!*}*!*/
+/*.mat-form-field + .mat-form-field {*/
+/*    margin-left: 8px;*/
+/*}*/
+
+
 * {
     box-sizing: border-box;
+
 }
 
 body {
+
     font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Float four columns side by side */
 .column {
     float: left;
-    width: 25%;
+    width: 33.3%;
     padding: 10px 10px;
+
+}
+.image {
+    width: 100%;
+    height: 300px;
+    border-top-left-radius: 10% 10%;
+    border-top-right-radius: 10% 10%;
+    border-bottom-right-radius: 10% 10%;
+    border-bottom-left-radius: 10% 10%;
 }
 
 /* Remove extra left and right margins, due to padding */
@@ -18,6 +119,7 @@ body {
 
 /* Clear floats after the columns */
 .row:after {
+
     content: "";
     display: table;
     clear: both;
@@ -26,26 +128,19 @@ body {
 /* Responsive columns */
 @media screen and (max-width: 600px) {
     .column {
+
         width: 100%;
         display: block;
         margin-bottom: 20px;
     }
 }
-.image {
-    width: 100%;
-    height: 300px;
-    border-top-left-radius: 50% 50%;
-    border-top-right-radius: 50% 50%;
-    border-bottom-right-radius: 50% 50%;
-    border-bottom-left-radius: 50% 50%;
-}
-.image1{
+.youtube{
     width: auto;
-    height: 100px;
-    border-top-left-radius: 5% 5%;
-    border-top-right-radius: 5% 5%;
-    border-bottom-right-radius: 5% 5%;
-    border-bottom-left-radius: 5% 5%;
+    height: 200px;
+    border-top-left-radius: 8% 8%;
+    border-top-right-radius: 8% 8%;
+    border-bottom-right-radius: 8% 8%;
+    border-bottom-left-radius: 8% 8%;
 }
 /*.title{*/
 /*    width: 100%;*/
@@ -80,13 +175,5 @@ body {
 .form-control::placeholder  {
     font-family: FontAwesome;
 }
-/*mat-grid-tile {*/
-/*    background: lightblue;*/
-/*}*/
-.mat-form-field + .mat-form-field {
-    margin-left: 8px;
-}
-
-
 
 

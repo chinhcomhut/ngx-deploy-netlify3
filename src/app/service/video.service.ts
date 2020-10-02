@@ -11,7 +11,9 @@ import {SongInfo} from "../model/song-info";
 export class VideoService {
   private API_Video = environment.URL_server+'video';
   private API_Like_Video = environment.URL_server+'video-like-up';
-  private API_Count_View_Video = environment.URL_server+'count-view-video'
+  private API_Count_View_Video = environment.URL_server+'count-view-video';
+  private API_Page_Video_By_Category = environment.URL_server+'video-by-category';
+  private API_Page_Video_By_Singer = environment.URL_server+'video-by-singer';
   constructor(private http: HttpClient) { }
   createVideo(video: Video): Observable<Video>{
     return this.http.post<Video>(this.API_Video, video)
@@ -19,6 +21,14 @@ export class VideoService {
   pageVideo(request){
     const params = request;
     return this.http.get(this.API_Video, {params})
+  }
+  pageVideoByCategory(id: number,request){
+    const params = request;
+    return this.http.get(`${this.API_Page_Video_By_Category}/${id}`, {params})
+  }
+  pageVideoBySinger(id: number, request){
+    const params = request;
+    return this.http.get(`${this.API_Page_Video_By_Singer}/${id}`,{params})
   }
   getVideoById(id: number): Observable<Video>{
     return this.http.get<Video>(`${this.API_Video}/${id}`)

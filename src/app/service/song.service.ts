@@ -94,7 +94,6 @@ export class SongService {
     const params = request;
     return this.http.get(`${this.API_Song_By_Singer}/${id}`, {params});
   }
-
   deleteSong(id: number): Observable<SongInfo> {
     return this.http.delete<SongInfo>(`${this.API_Song}/${id}`);
   }
