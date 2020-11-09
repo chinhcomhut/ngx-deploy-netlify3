@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+
+}
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+    float: left;
+    width: 33.3%;
+    padding: 10px 10px;
+
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+    .column {
+
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+.youtube{
+    width: auto;
+    height: 200px;
+    border-top-left-radius: 8% 8%;
+    border-top-right-radius: 8% 8%;
+    border-bottom-right-radius: 8% 8%;
+    border-bottom-left-radius: 8% 8%;
+}
+/*.title{*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*}*/
+
+/* Style the counter cards */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+
+}
+
+/*.container {*/
+/*    padding-top: 50px;*/
+/*    padding-bottom: 10px;*/
+/*    color: #405065;*/
+/*}*/
+
+.search-hero {
+    max-width: 500px;
+    padding-bottom: 50px;
+    margin:auto;
+    text-align: center;
+}
+
+.form-control {
+    box-shadow: 0 10px 40px 0 #B0C1D9;
+}
+.form-control::placeholder  {
+    font-family: FontAwesome;
+}
+/*mat-grid-tile {*/
+/*    background: lightblue;*/
+/*}*/
+
+
+/*.example-container {*/
+/*    width: 500px;*/
+/*    height: 300px;*/
+/*    border: 1px solid rgba(0, 0, 0, 0.5);*/
+/*}*/
+
+/*.example-sidenav-content {*/
+/*    display: flex;*/
+/*    height: 100%;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.example-sidenav {*/
+/*    padding: 20px;*/
+/*}*/
+
+
+

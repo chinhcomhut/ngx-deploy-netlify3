@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;">
+                <form class="create-hoc-lap-trinh" #f="ngForm" (ngSubmit)="createHocLapTrinh()&&f.form.valid" novalidate>
+                    <mat-error class="alert alert-success">{{statusMessage}}</mat-error>
+                    <mat-form-field style="width: 300px" appearance="outline">
+                        <mat-label>Name Video:</mat-label>
+                        <input matInput name="nameVideo" placeholder="Fill the name video in the form ..."
+                        [(ngModel)]="hocLapTrinh.nameVideo" required>
+                        <mat-icon color="accent" matSuffix>shop</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field style="width: 300px" appearance="outline">
+                        <mat-label>Link Youtube:</mat-label>
+                            <input matInput name="linkYoutube" placeholder="Fill the link youtube ..."
+                            [(ngModel)]="hocLapTrinh.linkYoutube" required>
+                            <mat-icon color="accent" matSuffix>shop_two</mat-icon>
+                    </mat-form-field><br>
+                    <button type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-primary"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Karaoke
+                    <img src="../../../../assets/images/icons/create-playlist.png" height="40" width="40"/></b></span>
+                    </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
