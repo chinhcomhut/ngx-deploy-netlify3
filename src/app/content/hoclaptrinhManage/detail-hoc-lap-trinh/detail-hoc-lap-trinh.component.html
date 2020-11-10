@@ -1,1 +1,235 @@
-<p>detail-hoc-lap-trinh works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0;" *ngIf="hocLapTrinh">
+                <!--                <button [routerLink]="['/editSong',song.id]" type="submit" style="color: crimson; text-decoration: none;"-->
+                <!--                        aria-label="Angular Audio Player"-->
+                <!--                        class="mat-button-toggle-group btn-outline-success"-->
+                <!--                        mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>-->
+                <!--                        Edit Song <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                <!--                                       width="40"/></b></span>-->
+                <!--                </button>-->
+                <!--                <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
+                <!--                        (click)="deleteSong(song.id)">-->
+                <!--                    <mat-icon>delete</mat-icon>-->
+                <!--                </button>-->
+
+                <mat-card-header>
+                    <mat-card-title style="color: #ff03cc"><b style="color: green">Name Video:</b>  {{hocLapTrinh.nameVideo}}</mat-card-title>
+                </mat-card-header>
+                <!--                <mat-card-content class="row justify-contents-around mat-basic-player">-->
+                <div class="col py-3 pl-5">
+                    <!--                        <h6>Controls</h6>-->
+                    <!--                        <div class="d-flex flex-row px-3">-->
+                    <!--                            displayTitle:-->
+                    <!--                            <mat-checkbox style="color: #ff03cc" class="px-3 mat-basic-player-display-title" [checked]="msbapDisplayTitle"-->
+                    <!--                                          (change)="changeMsbapDisplayTitle($event)">{{msbapDisplayTitle}}</mat-checkbox>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="d-flex flex-row px-3">-->
+                    <!--                            displayVolumeControls:-->
+                    <!--                            <mat-checkbox class="px-3 mat-basic-player-display-title"-->
+                    <!--                                          [checked]="msbapDisplayVolumeControls"-->
+                    <!--                                          (change)="changeMsbapDisplayVolumeControls($event)">{{msbapDisplayVolumeControls}}</mat-checkbox>-->
+                    <!--                        </div>-->
+
+                    <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
+                            url="https://dongchinh.netlify.app/detailVideo/{{hocLapTrinh.id}}">
+                        <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                    </button>
+                    <!--                        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
+                    <!--                                  >-->
+                    <!--                            <mat-icon>delete</mat-icon>-->
+                    <!--                        </button>-->
+                    <button  (click)="likeCount(hocLapTrinh.id)" *ngIf="!isCheckLikeHocLapTrinh" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                        <!--                                aria-label="Angular Audio Player"-->
+                        <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                        <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                        <!--                        >-->
+
+                        <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+
+
+                        <img src="../../../../assets/images/icons/like1.png" height="55" width="55"/><b>{{hocLapTrinh.likeVideo}}</b>
+                    </button>
+
+
+
+                    <button (click)="likeCount(hocLapTrinh.id)"mat-button *ngIf="isCheckLikeHocLapTrinh"  type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                        <!--                                aria-label="Angular Audio Player"-->
+                        <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                        <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                        <!--                        >-->
+
+                        <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+
+                        <img src="../../../../assets/images/icons/like2.png" height="50" width="50"/><b>{{hocLapTrinh.likeVideo}}</b></button>
+                    <button mat-button  type="submit" style="color: crimson; text-decoration: none;"  >
+                        <!--                                aria-label="Angular Audio Player"-->
+                        <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                        <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                        <!--                        >-->
+
+                        <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                        <!--                              width="40"/>-->
+
+
+                        <b><img src="../../../../assets/images/icons/listen.png" height="48" width="48"/>{{hocLapTrinh.viewVideo}}</b>
+                    </button>
+
+
+                </div>
+                <iframe (load)="onClick(hocLapTrinh.id)" class="youtube" [src]="hocLapTrinh.linkYoutube|safe:'resourceUrl'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+                <!--                    <audio class="audio" controls autoplay>-->
+                <!--                        <source [src]="song.mp3Url"type="audio/ogg">-->
+                <!--                        <source [src]="song.mp3Url" type="audio/mpeg">-->
+                <!--                        Your browser does not support the audio element.-->
+
+                <!--                    </audio>-->
+
+                <!--                <div class="container-audio">-->
+                <!--                    <audio id="track" controls loop>-->
+                <!--                        <source [src]="song.mp3Url"type="audio/ogg">-->
+                <!--                        <source [src]="song.mp3Url" type="audio/mpeg">-->
+                <!--                        <p>Your browser does not support the audio element</p>-->
+                <!--                    </audio>-->
+
+
+
+                <!--                    <div class="heart-shape" *ngIf="!isPlaying"-->
+                <!--                         (click)="listenCount(song.id)" onclick="document.getElementById('track').play();">-->
+                <!--                        <img src="../../../../assets/images/icons/Play2.png" height="60" width="60"/></div>-->
+
+
+                <!--                    <div  class="heart-shape" (click)="changePause()" *ngIf="isPlaying"-->
+                <!--                          onclick="document.getElementById('track').pause();">-->
+
+                <!--                        <img src="../../../../assets/images/icons/Pause2.png" height="60" width="60"/>-->
+                <!--                    </div>-->
+
+                <!--                    &lt;!&ndash;                        <audio  controls loop>&ndash;&gt;-->
+
+                <!--                    &lt;!&ndash;                            <source [src]="song.mp3Url"type="audio/ogg">&ndash;&gt;-->
+                <!--                    &lt;!&ndash;                            <source [src]="song.mp3Url" type="audio/mpeg">&ndash;&gt;-->
+                <!--                    &lt;!&ndash;                            Your browser dose not Support the audio Tag&ndash;&gt;-->
+                <!--                    &lt;!&ndash;                        </audio>&ndash;&gt;-->
+                <!--&lt;!&ndash;                    <marquee><mat-card-title style="color: #ff03cc">{{song.lyrics}}</mat-card-title> </marquee>&ndash;&gt;-->
+                <!--                    <div class="container-audio">-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        <div class="colum1">-->
+                <!--                            <div class="row"></div>-->
+                <!--                        </div>-->
+                <!--                        &lt;!&ndash;                            <div class="colum1">&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                                <div class="row"></div>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                            </div>&ndash;&gt;-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <!--                    <div class="col">-->
+                <!--                        <mat-basic-audio-player (click)="onClick($event)" (timeupdate)="onClick($event)" class="col-12 col-md-6" [audioUrl]="song.mp3Url" [title]="song.lyrics"-->
+                <!--                                                [displayTitle]="msbapDisplayTitle"-->
+                <!--                                                [displayVolumeControls]="msbapDisplayVolumeControls"-->
+                <!--                                                [autoPlay]="false" muted="muted"-->
+                <!--                        ></mat-basic-audio-player>-->
+                <!--                    </div>-->
+                <!--                    <div style="width: 500px">-->
+                <!--                        <mat-advanced-audio-player [playlist]="playlist"></mat-advanced-audio-player>-->
+
+                <!--                    </div>-->
+                <!--                </mat-card-content>-->
+            </mat-card>
+        </div>
+    </div>
+</div>
+

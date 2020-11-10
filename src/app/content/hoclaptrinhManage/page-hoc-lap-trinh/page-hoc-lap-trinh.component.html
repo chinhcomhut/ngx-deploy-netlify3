@@ -30,11 +30,15 @@
                                                 </button>
 
 
-                        <div [routerLink]="['/detailHocLapTrinh/',hlt.id]" class="card" >
+                        <div [routerLink]="['/detailHocLapTrinh/',hlt.id]"class="card" >
                             <div >
                                 <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
                                         url="https://dongchinh.netlify.app/detailHocLapTrinh/{{hlt.id}}">
                                     <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                                </button>
+                                <button mat-fab>Detail
+
+
                                 </button>
                                 <!--                                <button  (click)="likeCount(video.id)" *ngIf="!isCheckLikeVideo" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">-->
                                 <!--                                    &lt;!&ndash;                                aria-label="Angular Audio Player"&ndash;&gt;-->
@@ -98,7 +102,7 @@
                     </div>
 
                 </div>
-                <mat-paginator #paginator [pageSizeOptions]="[3,15,30,90]" [length]="totalElements"
+                <mat-paginator  [pageSizeOptions]="[3,15,30,90]" [length]="totalElements"
                                (page)="nextPage($event)">
                 </mat-paginator>
             </mat-card>
