@@ -33,7 +33,7 @@ export class DetailHocLapTrinhComponent implements OnInit {
   onClick(id: number){
     console.log('vao ham')
     // this.count++;
-    this.hocLapTrinhService.getHocLapTrinhById(id).subscribe(data=>{
+    this.hocLapTrinhService.getViewVideoHLTById(id).subscribe(data=>{
       this.hocLapTrinh = data;
       console.log('data',data)
     })
