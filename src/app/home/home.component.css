@@ -490,5 +490,12 @@ figure {
 /* }*/
 /*}*/
 /*}*/
-
+.image1{
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 2% 2%;
+    border-top-right-radius: 2% 2%;
+    border-bottom-right-radius: 2% 2%;
+    border-bottom-left-radius: 2% 2%;
+}
 

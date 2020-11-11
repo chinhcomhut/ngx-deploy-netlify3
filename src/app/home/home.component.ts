@@ -109,8 +109,8 @@ export class HomeComponent implements OnInit{
         this.nameSinger4 = this.singers[this.numberRandomSinger4].nameSinger;
       }
     })
-    this.getListResquest({page: 0, size: 16}); //Chinh size se hien thi size luc khoi dong trang//
-    this.getPageListenResquest({page:0, size: 16})
+    this.getListResquest({page: 0, size: 9}); //Chinh size se hien thi size luc khoi dong trang//
+    this.getPageListenResquest({page:0, size: 15})
     if (JSON.stringify(this.tokenService.getAuthorities()) == JSON.stringify(this.admin)) {
       this.isCheckAdmin = true;
     }

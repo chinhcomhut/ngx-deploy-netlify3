@@ -40,7 +40,7 @@ export class DetailBandComponent implements OnInit {
       this.bandService.getBandById(id).subscribe(result=>{
         this.band = result;
         console.log('bandid',result.id)
-        this.getListResquest({page:'',size:''});
+        this.getListResquest({page:0,size:15});
         this.getPlayListResquest({page:'', size:''})
       })
     })
